@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Dashboard</title>
+  <title>PureFlow CRM – Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,24 +11,17 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebarToggle">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-      <line x1="3" y1="12" x2="21" y2="12"/>
-      <line x1="3" y1="6" x2="21" y2="6"/>
-      <line x1="3" y1="18" x2="21" y2="18"/>
-    </svg>
-  </button>
-  <div class="app-container">
-    <!-- Sidebar -->
+  <div class="app-container" id="appContainer">
+    <!-- Sidebar - Invisible -->
     <aside class="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="8" fill="currentColor"/>
-            <path d="M8 12h6v2H8v-2zm0 4h10v2H8v-2zm0 4h8v2H8v-2z" fill="#fff"/>
-            <circle cx="22" cy="14" r="4" fill="#fff"/>
+            <rect width="32" height="32" rx="6" fill="#1A1A1A"/>
+            <path d="M8 10h8v2H8v-2zm0 4h12v2H8v-2zm0 4h10v2H8v-2z" fill="#F9F9FB"/>
+            <circle cx="24" cy="10" r="2" fill="#F9F9FB"/>
           </svg>
-          <span>FlowCRM</span>
+          <span>PureFlow</span>
         </div>
       </div>
 
@@ -36,61 +29,61 @@
         <div class="nav-section">
           <div class="nav-section-title">Tổng quan</div>
           <a href="index.html" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            Dashboard
+            <span>Dashboard</span>
           </a>
         </div>
 
         <div class="nav-section">
           <div class="nav-section-title">Quản lý</div>
           <a href="pipeline.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            Pipeline
+            <span>Pipeline</span>
             <span class="badge">12</span>
           </a>
           <a href="customers.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            Khách hàng
+            <span>Khách hàng</span>
             <span class="badge">48</span>
           </a>
           <a href="messages.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
-            Tin nhắn
+            <span>Tin nhắn</span>
           </a>
         </div>
 
         <div class="nav-section">
           <div class="nav-section-title">Công việc</div>
           <a href="tasks.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
-            Nhiệm vụ
+            <span>Nhiệm vụ</span>
             <span class="badge">5</span>
           </a>
           <a href="calendar.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            Lịch hẹn
+            <span>Lịch hẹn</span>
           </a>
         </div>
       </nav>
@@ -108,244 +101,279 @@
 
     <!-- Main Content -->
     <main class="main-content">
+      <!-- Header -->
       <header class="topbar">
         <div class="topbar-left">
           <h1 class="page-title">Dashboard</h1>
         </div>
         <div class="topbar-right">
+          <!-- NLP Bar Toggle -->
+          <button class="focus-toggle" id="nlpToggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>Nhập lệnh</span>
+          </button>
+          <!-- Focus Mode Toggle -->
+          <button class="focus-toggle" id="focusToggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+            <span>Focus</span>
+          </button>
+          <!-- Search -->
           <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.35-4.35"/>
             </svg>
-            <input type="text" placeholder="Tìm kiếm nhanh...">
+            <input type="text" placeholder="Tìm kiếm...">
           </div>
-          <button class="icon-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-            </svg>
-            <span class="notification-dot"></span>
-          </button>
-          <button class="btn btn-primary" id="quickCreateBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            Tạo Deal
-          </button>
+          <!-- User -->
+          <div class="user-avatar">AN</div>
         </div>
       </header>
 
+      <!-- Content -->
       <div class="page-content">
-        <!-- Bento Grid Dashboard -->
-        <div class="bento-grid">
-          <!-- KPI: Open Deals -->
-          <div class="kpi-card span-3">
-            <div class="kpi-header">
-              <span class="kpi-label">Deals đang mở</span>
-              <span class="kpi-trend up">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="dashboard">
+
+          <!-- KPI Row - Expressive Numbers -->
+          <div class="kpi-row">
+            <div class="kpi-card">
+              <span class="kpi-label">Tổng doanh thu</span>
+              <div class="kpi-value">₫8.2B</div>
+              <span class="kpi-change up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="m18 15-6-6-6 6"/>
                 </svg>
-                12%
+                +18.5% so với tháng trước
               </span>
             </div>
-            <div class="kpi-value" id="kpi-deals">24</div>
-            <div class="kpi-subtitle">Tuần trước: 21 deals</div>
-          </div>
 
-          <!-- KPI: Revenue -->
-          <div class="kpi-card span-3">
-            <div class="kpi-header">
-              <span class="kpi-label">Doanh thu dự kiến</span>
-              <span class="kpi-trend up">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="kpi-card">
+              <span class="kpi-label">Deal mới tuần này</span>
+              <div class="kpi-value accent">24</div>
+              <span class="kpi-change up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="m18 15-6-6-6 6"/>
                 </svg>
-                8%
+                +12% so với tuần trước
               </span>
             </div>
-            <div class="kpi-value" id="kpi-revenue">₫0</div>
-            <div class="kpi-subtitle">Tuần trước: ₫2.2B</div>
-          </div>
 
-          <!-- KPI: Conversion -->
-          <div class="kpi-card span-3">
-            <div class="kpi-header">
-              <span class="kpi-label">Tỷ lệ chuyển đổi</span>
-              <span class="kpi-trend down">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="kpi-card">
+              <span class="kpi-label">Conversion Rate</span>
+              <div class="kpi-value">32%</div>
+              <span class="kpi-change down">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="m6 9 6 6 6-6"/>
                 </svg>
-                3%
+                -3% so với tháng trước
               </span>
             </div>
-            <div class="kpi-value" id="kpi-tasks">0</div>
-            <div class="kpi-subtitle">Mục tiêu: 35%</div>
-          </div>
 
-          <!-- KPI: New Customers -->
-          <div class="kpi-card span-3">
-            <div class="kpi-header">
+            <div class="kpi-card">
               <span class="kpi-label">Khách hàng mới</span>
-              <span class="kpi-trend up">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="kpi-value">8</div>
+              <span class="kpi-change up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="m18 15-6-6-6 6"/>
                 </svg>
-                24%
+                +24% so với tháng trước
               </span>
             </div>
-            <div class="kpi-value" id="kpi-customers">8</div>
-            <div class="kpi-subtitle">Tháng này: 8 khách</div>
           </div>
 
-          <!-- Pipeline Chart -->
-          <div class="chart-card span-8">
-            <div class="chart-header">
-              <h3 class="chart-title">Pipeline Overview</h3>
-              <div class="chart-tabs">
-                <button class="chart-tab active">Tuần</button>
-                <button class="chart-tab">Tháng</button>
-                <button class="chart-tab">Quý</button>
-              </div>
-            </div>
-            <div class="pipeline-chart">
-              <div class="pipeline-stage">
-                <div class="pipeline-bar">
-                  <div class="pipeline-bar-fill" style="height: 85%"></div>
+          <!-- Content Grid -->
+          <div class="content-grid">
+            <!-- Left Column - Chart + Recent Deals -->
+            <div class="left-column">
+              <!-- Revenue Chart -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Doanh thu theo tháng</h3>
+                  <div class="chart-tabs">
+                    <button class="chart-tab active">6 tháng</button>
+                    <button class="chart-tab">12 tháng</button>
+                  </div>
                 </div>
-                <div class="pipeline-value">₫680M</div>
-                <div class="pipeline-label">Chào hàng</div>
-              </div>
-              <div class="pipeline-stage">
-                <div class="pipeline-bar">
-                  <div class="pipeline-bar-fill" style="height: 60%"></div>
+                <div class="chart-container">
+                  <div class="line-chart">
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 45%"></div>
+                      <span class="chart-label">T10</span>
+                    </div>
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 60%"></div>
+                      <span class="chart-label">T11</span>
+                    </div>
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 40%"></div>
+                      <span class="chart-label">T12</span>
+                    </div>
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 75%"></div>
+                      <span class="chart-label">T1</span>
+                    </div>
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 85%"></div>
+                      <span class="chart-label">T2</span>
+                    </div>
+                    <div class="chart-point">
+                      <div class="chart-bar" style="height: 100%"></div>
+                      <span class="chart-label">T3</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="pipeline-value">₫480M</div>
-                <div class="pipeline-label">Đàm phán</div>
               </div>
-              <div class="pipeline-stage">
-                <div class="pipeline-bar">
-                  <div class="pipeline-bar-fill" style="height: 45%"></div>
-                </div>
-                <div class="pipeline-value">₫360M</div>
-                <div class="pipeline-label">Đề xuất</div>
-              </div>
-              <div class="pipeline-stage">
-                <div class="pipeline-bar">
-                  <div class="pipeline-bar-fill" style="height: 25%"></div>
-                </div>
-                <div class="pipeline-value">₫200M</div>
-                <div class="pipeline-label">Chốt</div>
-              </div>
-              <div class="pipeline-stage">
-                <div class="pipeline-bar">
-                  <div class="pipeline-bar-fill" style="height: 10%"></div>
-                </div>
-                <div class="pipeline-value">₫80M</div>
-                <div class="pipeline-label">Đã chốt</div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Today's Tasks -->
-          <div class="kpi-card span-4">
-            <div class="chart-header">
-              <h3 class="chart-title">Công việc hôm nay</h3>
-              <button class="btn btn-sm btn-secondary">Xem tất cả</button>
+              <!-- Recent Deals -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Deal gần đây</h3>
+                  <a href="#" class="card-action">Xem tất cả</a>
+                </div>
+                <div class="deals-list">
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">Website Redesign</span>
+                      <span class="list-item-subtitle">Công ty ABC • Tuần trước</span>
+                    </div>
+                    <div class="list-item-info">
+                      <div class="list-item-value">₫150M</div>
+                      <span class="list-item-meta">Đàm phán</span>
+                    </div>
+                  </div>
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">App Mobile Development</span>
+                      <span class="list-item-subtitle">Tech Solutions • 3 ngày trước</span>
+                    </div>
+                    <div class="list-item-info">
+                      <div class="list-item-value success">₫320M</div>
+                      <span class="list-item-meta">Ký hợp đồng</span>
+                    </div>
+                  </div>
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">CRM Implementation</span>
+                      <span class="list-item-subtitle">Fashion Store • 5 ngày trước</span>
+                    </div>
+                    <div class="list-item-info">
+                      <div class="list-item-value">₫280M</div>
+                      <span class="list-item-meta">Gửi báo giá</span>
+                    </div>
+                  </div>
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">Marketing Automation</span>
+                      <span class="list-item-subtitle">Beta Corp • 1 tuần trước</span>
+                    </div>
+                    <div class="list-item-info">
+                      <div class="list-item-value">₫95M</div>
+                      <span class="list-item-meta">Tiếp cận</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="todo-list">
-              <div class="todo-item">
-                <div class="todo-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <span class="todo-text">Gọi điện cho Công ty ABC về deal mới</span>
-                <span class="todo-time">9:00</span>
-              </div>
-              <div class="todo-item completed">
-                <div class="todo-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <span class="todo-text">Gửi báo giá cho Tech Solutions</span>
-                <span class="todo-time">10:30</span>
-              </div>
-              <div class="todo-item">
-                <div class="todo-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <span class="todo-text">Họp team về pipeline Q2</span>
-                <span class="todo-time">14:00</span>
-              </div>
-              <div class="todo-item">
-                <div class="todo-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <span class="todo-text">Follow up deal với Design Co</span>
-                <span class="todo-time">16:30</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Recent Activity -->
-          <div class="kpi-card span-8">
-            <div class="chart-header">
-              <h3 class="chart-title">Hoạt động gần đây</h3>
-            </div>
-            <div class="activity-list">
-              <div class="activity-item">
-                <div class="activity-icon deal">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2v20M2 12h20"/>
-                  </svg>
+            <!-- Right Column - Tasks + Customers -->
+            <div class="right-column">
+              <!-- Tasks -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Cần làm hôm nay</h3>
+                  <span class="badge-count">5</span>
                 </div>
-                <div class="activity-content">
-                  <p class="activity-text"><strong>Minh Anh</strong> tạo deal mới <strong>Website Redesign</strong> trị giá ₫150M</p>
-                  <span class="activity-time">5 phút trước</span>
+                <div class="task-list">
+                  <div class="task-item">
+                    <div class="task-checkbox">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                    </div>
+                    <div class="task-content">
+                      <span class="task-title">Gọi điện cho Công ty ABC</span>
+                      <div class="task-meta">
+                        <span>9:00</span>
+                        <span class="task-priority hot">Khẩn</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="task-item completed">
+                    <div class="task-checkbox">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                    </div>
+                    <div class="task-content">
+                      <span class="task-title">Gửi báo giá cho Tech Solutions</span>
+                      <div class="task-meta">
+                        <span>10:30</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                      <span class="task-title">Họp team về pipeline Q2</span>
+                      <div class="task-meta">
+                        <span>14:00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                      <span class="task-title">Theo dõi deal với Design Co</span>
+                      <div class="task-meta">
+                        <span>16:30</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                      <span class="task-title">Cập nhật thông tin khách hàng mới</span>
+                      <div class="task-meta">
+                        <span>17:00</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="activity-item">
-                <div class="activity-icon customer">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
+
+              <!-- New Customers -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Khách hàng mới</h3>
+                  <a href="#" class="card-action">Xem tất cả</a>
                 </div>
-                <div class="activity-content">
-                  <p class="activity-text"><strong>Hoàng Nam</strong> cập nhật thông tin khách hàng <strong>Fashion Store</strong></p>
-                  <span class="activity-time">15 phút trước</span>
-                </div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-icon task">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 11l3 3L22 4"/>
-                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                  </svg>
-                </div>
-                <div class="activity-content">
-                  <p class="activity-text"><strong>Thu Hà</strong> hoàn thành nhiệm vụ <strong>Gọi điện cho Alpha Corp</strong></p>
-                  <span class="activity-time">1 giờ trước</span>
-                </div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-icon email">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                </div>
-                <div class="activity-content">
-                  <p class="activity-text"><strong>Hieu ung</strong> gửi email cho <strong>Beta Industries</strong> về báo giá</p>
-                  <span class="activity-time">2 giờ trước</span>
+                <div class="customers-list">
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">Alpha Corporation</span>
+                      <span class="list-item-subtitle">Manufacturing • Tuần này</span>
+                    </div>
+                    <span class="list-item-meta">Mới</span>
+                  </div>
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">Beta Industries</span>
+                      <span class="list-item-subtitle">Technology • 3 ngày trước</span>
+                    </div>
+                    <span class="list-item-meta">Lead</span>
+                  </div>
+                  <div class="list-item">
+                    <div class="list-item-content">
+                      <span class="list-item-title">Gamma Solutions</span>
+                      <span class="list-item-subtitle">Finance • 1 tuần trước</span>
+                    </div>
+                    <span class="list-item-meta">Lead</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -355,13 +383,21 @@
     </main>
   </div>
 
-  <!-- Quick Create Modal -->
+  <!-- NLP Bar -->
+  <div class="nlp-bar" id="nlpBar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <input type="text" placeholder="Nhập lệnh: 'Báo cáo tháng này', 'Tạo task gọi khách'...">
+  </div>
+
+  <!-- Modal -->
   <div class="modal-overlay" id="quickCreateModal">
     <div class="modal">
       <div class="modal-header">
         <h2 class="modal-title">Tạo Deal mới</h2>
         <button class="modal-close" id="closeModalBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
@@ -384,10 +420,10 @@
             <div class="form-group">
               <label class="form-label">Giai đoạn</label>
               <select class="form-select" id="dealStage">
-                <option value="qualification">Chào hàng</option>
-                <option value="proposal">Đàm phán</option>
-                <option value="negotiation">Đề xuất</option>
-                <option value="closed">Chốt</option>
+                <option value="qualification">Tiếp cận</option>
+                <option value="proposal">Gặp gỡ</option>
+                <option value="negotiation">Gửi báo giá</option>
+                <option value="closed">Đàm phán</option>
               </select>
             </div>
           </div>
@@ -427,5 +463,30 @@
   </div>
 
   <script src="assets/js/app.js"></script>
+  <script>
+    // Focus Mode Toggle
+    const focusToggle = document.getElementById('focusToggle');
+    const appContainer = document.getElementById('appContainer');
+
+    focusToggle.addEventListener('click', () => {
+      appContainer.classList.toggle('focus-mode');
+      focusToggle.classList.toggle('active');
+    });
+
+    // NLP Bar Toggle
+    const nlpToggle = document.getElementById('nlpToggle');
+    const nlpBar = document.getElementById('nlpBar');
+
+    nlpToggle.addEventListener('click', () => {
+      nlpBar.classList.toggle('visible');
+    });
+
+    // Close NLP bar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!nlpBar.contains(e.target) && !nlpToggle.contains(e.target)) {
+        nlpBar.classList.remove('visible');
+      }
+    });
+  </script>
 </body>
 </html>
