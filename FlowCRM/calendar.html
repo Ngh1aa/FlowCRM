@@ -42,7 +42,7 @@
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            Dashboard
+            Tổng quan
           </a>
         </div>
 
@@ -52,7 +52,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            Pipeline
+            Quy trình bán hàng
           </a>
           <a href="customers.html" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -97,7 +97,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Sales Manager</div>
+            <div class="user-role">Quản lý bán hàng</div>
           </div>
         </div>
       </div>
@@ -146,6 +146,11 @@
                 </button>
               </div>
               <div class="calendar-actions">
+                <div class="view-toggle">
+                  <button class="view-btn active" data-view="month">Tháng</button>
+                  <button class="view-btn" data-view="week">Tuần</button>
+                  <button class="view-btn" data-view="day">Ngày</button>
+                </div>
                 <button class="btn btn-secondary btn-sm" id="todayBtn">Hôm nay</button>
               </div>
             </div>
@@ -166,6 +171,7 @@
           <div class="upcoming-events">
             <div class="events-header">
               <h3 class="events-title">Lịch hẹn sắp tới</h3>
+              <span class="events-count">5 cuộc hẹn</span>
             </div>
             <div class="events-list" id="eventsList">
               <div class="event-item" data-id="1">
@@ -174,8 +180,9 @@
                   <span class="event-month">Th05</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Họp team về pipeline Q2</span>
+                  <span class="event-title">Họp nhóm về quy trình bán hàng Q2</span>
                   <span class="event-slot">14:00 - 15:00</span>
+                  <span class="event-context">Nội bộ</span>
                 </div>
               </div>
               <div class="event-item" data-id="2">
@@ -184,8 +191,9 @@
                   <span class="event-month">Th05</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Call với Alpha Corp</span>
+                  <span class="event-title">Gọi cho Alpha Corp</span>
                   <span class="event-slot">10:00 - 10:30</span>
+                  <span class="event-context">Cơ hội: Chuyển đổi lên đám mây</span>
                 </div>
               </div>
               <div class="event-item" data-id="3">
@@ -196,6 +204,7 @@
                 <div class="event-content">
                   <span class="event-title">Gửi hợp đồng Delta Inc</span>
                   <span class="event-slot">09:00 - 09:30</span>
+                  <span class="event-context">Cơ hội: Tự động hóa tiếp thị</span>
                 </div>
               </div>
               <div class="event-item" data-id="4">
@@ -206,6 +215,7 @@
                 <div class="event-content">
                   <span class="event-title">Demo cho Epsilon Co</span>
                   <span class="event-slot">14:00 - 15:00</span>
+                  <span class="event-context">Khách tiềm năng: Epsilon Co</span>
                 </div>
               </div>
               <div class="event-item" data-id="5">
@@ -214,8 +224,9 @@
                   <span class="event-month">Th05</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Review proposal Gamma Ltd</span>
+                  <span class="event-title">Xem lại đề xuất Gamma Ltd</span>
                   <span class="event-slot">11:00 - 12:00</span>
+                  <span class="event-context">Cơ hội: Bộ phân tích dữ liệu</span>
                 </div>
               </div>
             </div>
@@ -305,6 +316,51 @@
 
     const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
+    // Event data with CRM context
+    const eventsData = {
+      12: [{ title: 'Họp quy trình bán hàng Q2', time: '14:00', type: 'internal' }],
+      13: [{ title: 'Gọi Alpha Corp', time: '10:00', type: 'deal', context: 'Chuyển đổi lên đám mây' }],
+      15: [{ title: 'Hợp đồng Delta', time: '09:00', type: 'deal', context: 'Tự động hóa tiếp thị' }],
+      18: [{ title: 'Demo Epsilon', time: '14:00', type: 'lead', context: 'Epsilon Co' }],
+      20: [{ title: 'Xem lại Gamma', time: '11:00', type: 'deal', context: 'Phân tích dữ liệu' }]
+    };
+
+    function addEventToCalendar(event, shouldRender = true) {
+      if (!event?.date) return;
+
+      const eventDate = new Date(event.date);
+      if (Number.isNaN(eventDate.getTime())) return;
+
+      const day = eventDate.getDate();
+      eventsData[day] = eventsData[day] || [];
+      eventsData[day].push({
+        title: event.title,
+        time: event.startTime || 'Cả ngày',
+        type: 'deal',
+        context: event.customer || event.location || ''
+      });
+
+      const upcomingList = document.getElementById('eventsList');
+      if (upcomingList) {
+        const item = document.createElement('div');
+        item.className = 'event-item';
+        item.innerHTML = `
+          <div class="event-time">
+            <span class="event-day">${day}</span>
+            <span class="event-month">T${eventDate.getMonth() + 1}</span>
+          </div>
+          <div class="event-content">
+            <span class="event-title">${event.title}</span>
+            <span class="event-slot">${event.startTime || ''}${event.endTime ? ` - ${event.endTime}` : ''}</span>
+            <span class="event-customer">${event.customer || event.location || ''}</span>
+          </div>
+        `;
+        upcomingList.prepend(item);
+      }
+
+      if (shouldRender) renderCalendar();
+    }
+
     function renderCalendar() {
       const firstDay = new Date(currentYear, currentMonth, 1).getDay();
       const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -327,17 +383,33 @@
       for (let day = 1; day <= daysInMonth; day++) {
         const dayCell = document.createElement('div');
         dayCell.className = 'calendar-day';
-        dayCell.textContent = day;
+
+        // Add day number
+        const dayNumber = document.createElement('span');
+        dayNumber.className = 'day-number';
+        dayNumber.textContent = day;
+        dayCell.appendChild(dayNumber);
 
         // Check if this is today
-        if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+        const isToday = day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+        if (isToday) {
           dayCell.classList.add('today');
         }
 
-        // Check if this day has events (mock data)
-        const hasEvents = [12, 13, 15, 18, 20].includes(day);
-        if (hasEvents) {
+        // Add event chips if there are events
+        if (eventsData[day]) {
           dayCell.classList.add('has-event');
+          const eventsList = document.createElement('div');
+          eventsList.className = 'day-events';
+
+          eventsData[day].forEach(event => {
+            const chip = document.createElement('div');
+            chip.className = `event-chip ${event.type}`;
+            chip.textContent = event.title;
+            eventsList.appendChild(chip);
+          });
+
+          dayCell.appendChild(eventsList);
         }
 
         dayCell.addEventListener('click', () => openModal(addEventModal));
@@ -367,6 +439,24 @@
       currentMonth = new Date().getMonth();
       currentYear = new Date().getFullYear();
       renderCalendar();
+    });
+
+    // View toggle functionality
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    try {
+      Storage.get(Storage.KEYS.EVENTS).forEach(event => addEventToCalendar(event, false));
+    } catch (error) {
+      // Calendar can still run as a static page if storage is unavailable.
+    }
+
+    window.addEventListener('flowcrm_event_created', (event) => {
+      addEventToCalendar(event.detail);
     });
 
     renderCalendar();

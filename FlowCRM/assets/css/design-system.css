@@ -1,38 +1,36 @@
 /* ========================================
-   PureFlow CRM - Expressive Minimalism Design System
-   Clean, Focused, Breathing Space
+   FlowCRM - Monochrome Minimal Design System
    ======================================== */
 
 :root {
-  /* Light Mode Base */
-  --bg-primary: #F9F9FB;
-  --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F4F5F7;
+  --bg-primary: #050505;
+  --bg-secondary: #0b0b0b;
+  --bg-tertiary: #141414;
+  --bg-elevated: #1b1b1b;
 
-  /* Text Colors */
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B7280;
-  --text-tertiary: #9CA3AF;
-  --text-inverse: #FFFFFF;
+  --text-primary: #f6f6f6;
+  --text-secondary: #c6c6c6;
+  --text-tertiary: #969696;
+  --text-inverse: #080808;
 
-  /* Accent - Single Elegant Blue */
-  --accent: #2563EB;
-  --accent-light: rgba(37, 99, 235, 0.1);
-  --accent-hover: #1D4ED8;
+  --accent: #eeeeee;
+  --accent-light: rgba(238, 238, 238, 0.08);
+  --accent-hover: #ffffff;
 
-  /* Semantic Colors */
-  --success: #059669;
-  --warning: #F59E0B;
-  --danger: #DC2626;
+  --success: #8fd6a4;
+  --warning: #d8bd76;
+  --danger: #ff8d8d;
 
-  /* Borders */
-  --border-light: rgba(0, 0, 0, 0.06);
-  --border-medium: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(255, 255, 255, 0.055);
+  --border-medium: rgba(255, 255, 255, 0.105);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
-  /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --black: #050505;
+  --white: #ffffff;
+  --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.5);
 
-  /* Font Sizes */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -40,20 +38,17 @@
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
-  --text-4xl: 3rem;
-  --text-5xl: 4.5rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 4rem;
 
-  /* Font Weights */
   --font-normal: 400;
   --font-medium: 500;
   --font-semibold: 600;
   --font-bold: 700;
 
-  /* Line Heights */
-  --leading-tight: 1.2;
+  --leading-tight: 1.15;
   --leading-normal: 1.5;
 
-  /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -65,26 +60,22 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  /* Border Radius - Minimal */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-lg: 8px;
   --radius-full: 9999px;
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms ease;
+  --transition-normal: 220ms ease;
 
-  /* Layout */
-  --header-height: 64px;
-  --sidebar-width: 72px;
-  --sidebar-expanded: 240px;
-  --gutter: 32px;
+  --header-height: 72px;
+  --sidebar-width: 256px;
+  --gutter: 24px;
 }
 
-/* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -97,13 +88,13 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
-  color: var(--text-primary);
-  background: var(--bg-primary);
-  min-height: 100vh;
 }
 
 a {
@@ -111,24 +102,36 @@ a {
   text-decoration: none;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 button {
-  font-family: inherit;
   cursor: pointer;
-  border: none;
+  border: 0;
   background: none;
 }
 
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
+input,
+textarea,
+select {
+  color: inherit;
 }
 
-img {
+img,
+svg {
+  display: block;
   max-width: 100%;
-  height: auto;
 }
 
-/* Utility Classes */
+::selection {
+  color: var(--text-inverse);
+  background: var(--accent);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

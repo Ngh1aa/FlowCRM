@@ -42,7 +42,7 @@
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            Dashboard
+            Tổng quan
           </a>
         </div>
 
@@ -52,7 +52,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            Pipeline
+            Quy trình bán hàng
             <span class="badge">12</span>
           </a>
           <a href="customers.html" class="nav-item active">
@@ -100,7 +100,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Sales Manager</div>
+            <div class="user-role">Quản lý bán hàng</div>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.35-4.35"/>
             </svg>
-            <input type="text" placeholder="Tìm kiếm khách hàng..." id="searchInput">
+            <input type="text" placeholder="Tìm kiếm khách hàng, deal..." id="searchInput">
           </div>
           <button class="icon-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -141,20 +141,22 @@
         <!-- Customer Table -->
         <div class="customer-table-wrapper">
           <div class="table-toolbar">
-            <div class="table-search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
-              <input type="text" placeholder="Lọc theo tên, email, công ty..." id="tableSearch">
+            <div class="toolbar-left">
+              <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Tất cả <span class="filter-count">48</span></button>
+                <button class="filter-btn" data-filter="active">Đang hoạt động <span class="filter-count">32</span></button>
+                <button class="filter-btn" data-filter="prospect">Tiềm năng <span class="filter-count">12</span></button>
+                <button class="filter-btn" data-filter="inactive">Ngừng chăm sóc <span class="filter-count">4</span></button>
+              </div>
             </div>
             <div class="table-actions">
               <button class="btn btn-ghost btn-sm">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                   <path d="M3 6h18M7 6V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2M7 6h10l1 14H6L7 6z"/>
                 </svg>
-                Export
+                Xuất dữ liệu
               </button>
+              <div class="divider-vertical"></div>
               <button class="btn btn-ghost btn-sm">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                   <path d="M4 4h16v4H4zM4 12h16v4H4zM4 16h16v4H4z"/>
@@ -170,12 +172,32 @@
                 <th class="checkbox-cell">
                   <input type="checkbox" id="selectAll">
                 </th>
-                <th>Tên khách hàng</th>
-                <th>Công ty</th>
-                <th>Email</th>
+                <th class="sortable" data-sort="name">
+                  <span>Tên khách hàng</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
+                    <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
+                  </svg>
+                </th>
+                <th class="sortable" data-sort="company">
+                  <span>Công ty</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
+                    <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
+                  </svg>
+                </th>
+                <th class="sortable" data-sort="email">
+                  <span>Email</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
+                    <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
+                  </svg>
+                </th>
                 <th>Điện thoại</th>
-                <th>Trạng thái</th>
-                <th>Deal gần nhất</th>
+                <th class="sortable" data-sort="status">
+                  <span>Trạng thái</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
+                    <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
+                  </svg>
+                </th>
+                <th>Cơ hội gần nhất</th>
                 <th>Thao tác</th>
               </tr>
             </thead>
@@ -196,8 +218,8 @@
                 <td>Công ty ABC</td>
                 <td>nguyen.an@company.com</td>
                 <td>0912 345 678</td>
-                <td><span class="status-badge active">Active</span></td>
-                <td>Website Redesign</td>
+                <td><span class="status-badge active">Đang hoạt động</span></td>
+                <td>Thiết kế lại website</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -236,8 +258,8 @@
                 <td>Tech Solutions</td>
                 <td>tran.hoang@tech.vn</td>
                 <td>0987 654 321</td>
-                <td><span class="status-badge active">Active</span></td>
-                <td>Mobile App Development</td>
+                <td><span class="status-badge active">Đang hoạt động</span></td>
+                <td>Phát triển ứng dụng di động</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -276,8 +298,8 @@
                 <td>Design Co</td>
                 <td>mai.linh@design.co</td>
                 <td>0932 111 222</td>
-                <td><span class="status-badge prospect">Prospect</span></td>
-                <td>CRM Integration</td>
+                <td><span class="status-badge prospect">Tiềm năng</span></td>
+                <td>Tích hợp CRM</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -316,8 +338,8 @@
                 <td>Fashion Store</td>
                 <td>le.hung@fashion.vn</td>
                 <td>0901 234 567</td>
-                <td><span class="status-badge active">Active</span></td>
-                <td>E-commerce Platform</td>
+                <td><span class="status-badge active">Đang hoạt động</span></td>
+                <td>Nền tảng thương mại điện tử</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -356,8 +378,8 @@
                 <td>Alpha Corp</td>
                 <td>pham.huong@alpha.com</td>
                 <td>0978 888 999</td>
-                <td><span class="status-badge active">Active</span></td>
-                <td>Cloud Migration</td>
+                <td><span class="status-badge active">Đang hoạt động</span></td>
+                <td>Chuyển đổi lên đám mây</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -396,8 +418,8 @@
                 <td>Beta Industries</td>
                 <td>vu.nam@beta.vn</td>
                 <td>0966 333 444</td>
-                <td><span class="status-badge prospect">Prospect</span></td>
-                <td>Security Audit</td>
+                <td><span class="status-badge prospect">Tiềm năng</span></td>
+                <td>Kiểm toán bảo mật</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -436,8 +458,8 @@
                 <td>Gamma Ltd</td>
                 <td>hoang.diep@gamma.com</td>
                 <td>0955 777 888</td>
-                <td><span class="status-badge active">Active</span></td>
-                <td>Data Analytics Suite</td>
+                <td><span class="status-badge active">Đang hoạt động</span></td>
+                <td>Bộ phân tích dữ liệu</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -476,8 +498,8 @@
                 <td>Delta Inc</td>
                 <td>tran.quang@delta.vn</td>
                 <td>0944 222 333</td>
-                <td><span class="status-badge inactive">Inactive</span></td>
-                <td>Marketing Automation</td>
+                <td><span class="status-badge inactive">Ngừng chăm sóc</span></td>
+                <td>Tự động hóa tiếp thị</td>
                 <td>
                   <div class="action-btns">
                     <button class="action-btn" title="Sửa">
@@ -574,9 +596,9 @@
             <div class="form-group">
               <label class="form-label">Trạng thái</label>
               <select class="form-select" id="customerStatus">
-                <option value="active">Active</option>
-                <option value="prospect">Prospect</option>
-                <option value="inactive">Inactive</option>
+                <option value="active">Đang hoạt động</option>
+                <option value="prospect">Tiềm năng</option>
+                <option value="inactive">Ngừng chăm sóc</option>
               </select>
             </div>
           </div>

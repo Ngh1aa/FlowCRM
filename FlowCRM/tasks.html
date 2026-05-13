@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="tasks-page">
   <button class="sidebar-toggle" id="sidebarToggle">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
@@ -42,7 +42,7 @@
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            Dashboard
+            Tổng quan
           </a>
         </div>
 
@@ -52,7 +52,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            Pipeline
+            Quy trình bán hàng
           </a>
           <a href="customers.html" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -97,7 +97,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Sales Manager</div>
+            <div class="user-role">Quản lý bán hàng</div>
           </div>
         </div>
       </div>
@@ -108,15 +108,9 @@
       <header class="topbar">
         <div class="topbar-left">
           <h1 class="page-title">Nhiệm vụ</h1>
+          <span class="task-summary">2 quá hạn · 3 hôm nay · 4 sắp tới</span>
         </div>
         <div class="topbar-right">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" placeholder="Tìm kiếm nhiệm vụ...">
-          </div>
           <button class="btn btn-primary" id="addTaskBtn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="12" y1="5" x2="12" y2="19"/>
@@ -128,305 +122,234 @@
       </header>
 
       <div class="page-content">
-        <div class="tasks-container">
-          <!-- Task Stats -->
-          <div class="bento-grid">
-            <div class="kpi-card span-4">
-              <div class="kpi-header">
-                <span class="kpi-label">Tổng số</span>
+        <div class="tasks-kanban">
+          <!-- Overdue Column -->
+          <div class="tasks-column overdue">
+            <div class="tasks-column-header">
+              <div class="tasks-column-title">
+                <span class="tasks-column-dot overdue"></span>
+                <span>Quá hạn</span>
               </div>
-              <div class="kpi-value">24</div>
-              <div class="kpi-subtitle">nhiệm vụ</div>
+              <span class="tasks-column-count danger">2</span>
             </div>
-            <div class="kpi-card span-4">
-              <div class="kpi-header">
-                <span class="kpi-label">Đang thực hiện</span>
+            <div class="tasks-column-body">
+              <div class="task-card" data-id="1">
+                <div class="task-card-header">
+                  <span class="task-priority-badge hot">Cao</span>
+                  <button class="task-card-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                </div>
+                <h4 class="task-card-title">Gọi điện cho Alpha Corp</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline overdue">Đã hạn: 10/05</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Cloud Migration</span>
+                  <span class="task-card-customer">Alpha Corp</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">AN</div>
+                </div>
               </div>
-              <div class="kpi-value">8</div>
-              <div class="kpi-subtitle">nhiệm vụ</div>
-            </div>
-            <div class="kpi-card span-4">
-              <div class="kpi-header">
-                <span class="kpi-label">Hoàn thành</span>
+              <div class="task-card" data-id="2">
+                <div class="task-card-header">
+                  <span class="task-priority-badge hot">Cao</span>
+                  <button class="task-card-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                </div>
+                <h4 class="task-card-title">Gửi báo giá cho Beta Industries</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline overdue">Đã hạn: 11/05</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Security Audit</span>
+                  <span class="task-card-customer">Beta Industries</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">MN</div>
+                </div>
               </div>
-              <div class="kpi-value">16</div>
-              <div class="kpi-subtitle">nhiệm vụ</div>
             </div>
           </div>
 
-          <!-- Task Filters -->
-          <div class="task-filters">
-            <button class="task-filter active" data-filter="all">Tất cả</button>
-            <button class="task-filter" data-filter="today">Hôm nay</button>
-            <button class="task-filter" data-filter="upcoming">Sắp tới</button>
-            <button class="task-filter" data-filter="overdue">Quá hạn</button>
+          <!-- Today Column -->
+          <div class="tasks-column today">
+            <div class="tasks-column-header">
+              <div class="tasks-column-title">
+                <span class="tasks-column-dot today"></span>
+                <span>Hôm nay</span>
+              </div>
+              <span class="tasks-column-count">3</span>
+            </div>
+            <div class="tasks-column-body">
+              <div class="task-card completed" data-id="3">
+                <div class="task-card-header">
+                  <span class="task-priority-badge warm">TB</span>
+                  <button class="task-card-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                </div>
+                <h4 class="task-card-title">Gửi báo giá cho Tech Solutions</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">10:30</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Mobile App</span>
+                  <span class="task-card-customer">Tech Solutions</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">LN</div>
+                  <div class="task-card-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="task-card" data-id="4">
+                <div class="task-card-header">
+                  <span class="task-priority-badge warm">TB</span>
+                  <button class="task-card-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                </div>
+                <h4 class="task-card-title">Họp nhóm về quy trình Q2</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">14:00</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Nội bộ</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">AN</div>
+                </div>
+              </div>
+              <div class="task-card" data-id="5">
+                <div class="task-card-header">
+                  <span class="task-priority-badge hot">Cao</span>
+                  <button class="task-card-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                </div>
+                <h4 class="task-card-title">Follow up deal với Design Co</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">16:30</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">CRM Integration</span>
+                  <span class="task-card-customer">Design Co</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">BN</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- Tasks List -->
-          <div class="tasks-list" id="tasksList">
-            <!-- Overdue Tasks -->
-            <div class="task-section">
-              <div class="task-section-header">
-                <span class="task-section-title">Quá hạn</span>
-                <span class="task-count">2</span>
+          <!-- Upcoming Column -->
+          <div class="tasks-column upcoming">
+            <div class="tasks-column-header">
+              <div class="tasks-column-title">
+                <span class="tasks-column-dot upcoming"></span>
+                <span>Sắp tới</span>
               </div>
-              <div class="task-item" data-id="1">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Gọi điện cho Alpha Corp</span>
-                  <div class="task-meta">
-                    <span class="task-deadline overdue">Đã hạn: 10/05/2026</span>
-                    <span class="task-deal">Deal: Cloud Migration</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="task-item" data-id="2">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Gửi báo giá cho Beta Industries</span>
-                  <div class="task-meta">
-                    <span class="task-deadline overdue">Đã hạn: 11/05/2026</span>
-                    <span class="task-deal">Deal: Security Audit</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
+              <span class="tasks-column-count">4</span>
             </div>
-
-            <!-- Today Tasks -->
-            <div class="task-section">
-              <div class="task-section-header">
-                <span class="task-section-title">Hôm nay</span>
-                <span class="task-count">3</span>
-              </div>
-              <div class="task-item" data-id="3">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Họp team về pipeline Q2</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">Hôm nay, 14:00</span>
-                    <span class="task-deal">Nội bộ</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
+            <div class="tasks-column-body">
+              <div class="task-card" data-id="6">
+                <div class="task-card-header">
+                  <span class="task-priority-badge warm">TB</span>
+                  <button class="task-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
                     </svg>
                   </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
+                </div>
+                <h4 class="task-card-title">Gửi hợp đồng cho Delta Inc</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">15/05</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Marketing Automation</span>
+                  <span class="task-card-customer">Delta Inc</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">MN</div>
                 </div>
               </div>
-              <div class="task-item completed" data-id="4">
-                <div class="task-checkbox checked">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Gửi báo giá cho Tech Solutions</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">Hôm nay, 10:30</span>
-                    <span class="task-deal">Deal: Mobile App Development</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
+              <div class="task-card" data-id="7">
+                <div class="task-card-header">
+                  <span class="task-priority-badge cold">Thấp</span>
+                  <button class="task-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
                     </svg>
                   </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
+                </div>
+                <h4 class="task-card-title">Demo sản phẩm cho Epsilon Co</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">18/05</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Inventory System</span>
+                  <span class="task-card-customer">Epsilon Co</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">LN</div>
                 </div>
               </div>
-              <div class="task-item" data-id="5">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Follow up deal với Design Co</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">Hôm nay, 16:30</span>
-                    <span class="task-deal">Deal: CRM Integration</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
+              <div class="task-card" data-id="8">
+                <div class="task-card-header">
+                  <span class="task-priority-badge warm">TB</span>
+                  <button class="task-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
                     </svg>
                   </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
+                </div>
+                <h4 class="task-card-title">Xem lại Đề xuất với Gamma Ltd</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">20/05</span>
+                </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">Data Analytics Suite</span>
+                  <span class="task-card-customer">Gamma Ltd</span>
+                </div>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">AN</div>
                 </div>
               </div>
-            </div>
-
-            <!-- Upcoming Tasks -->
-            <div class="task-section">
-              <div class="task-section-header">
-                <span class="task-section-title">Sắp tới</span>
-                <span class="task-count">4</span>
-              </div>
-              <div class="task-item" data-id="6">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Gửi hợp đồng cho Delta Inc</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">15/05/2026</span>
-                    <span class="task-deal">Deal: Marketing Automation</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
+              <div class="task-card" data-id="9">
+                <div class="task-card-header">
+                  <span class="task-priority-badge hot">Cao</span>
+                  <button class="task-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
                     </svg>
                   </button>
                 </div>
-              </div>
-              <div class="task-item" data-id="7">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
+                <h4 class="task-card-title">Chốt deal với Zeta Group</h4>
+                <div class="task-card-meta">
+                  <span class="task-card-deadline">25/05</span>
                 </div>
-                <div class="task-content">
-                  <span class="task-title">Demo sản phẩm cho Epsilon Co</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">18/05/2026</span>
-                    <span class="task-deal">Deal: Inventory System</span>
-                  </div>
+                <div class="task-card-context">
+                  <span class="task-card-deal">SEO Optimization</span>
+                  <span class="task-card-customer">Zeta Group</span>
                 </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="task-item" data-id="8">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Review proposal với Gamma Ltd</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">20/05/2026</span>
-                    <span class="task-deal">Deal: Data Analytics Suite</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="task-item" data-id="9">
-                <div class="task-checkbox">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                </div>
-                <div class="task-content">
-                  <span class="task-title">Chốt deal với Zeta Group</span>
-                  <div class="task-meta">
-                    <span class="task-deadline">25/05/2026</span>
-                    <span class="task-deal">Deal: SEO Optimization</span>
-                  </div>
-                </div>
-                <div class="task-actions">
-                  <button class="action-btn" title="Sửa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="action-btn" title="Xóa">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
+                <div class="task-card-footer">
+                  <div class="task-card-owner">BN</div>
                 </div>
               </div>
             </div>
@@ -467,13 +390,13 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Deal liên quan</label>
+            <label class="form-label">Cơ hội liên quan</label>
             <select class="form-select" id="taskDeal">
               <option value="">Chọn deal...</option>
-              <option value="1">Website Redesign - Công ty ABC</option>
-              <option value="2">Mobile App Development - Tech Solutions</option>
-              <option value="3">CRM Integration - Design Co</option>
-              <option value="4">Cloud Migration - Alpha Corp</option>
+              <option value="1">Thiết kế lại website - Công ty ABC</option>
+              <option value="2">Phát triển ứng dụng di động - Tech Solutions</option>
+              <option value="3">Tích hợp CRM - Design Co</option>
+              <option value="4">Chuyển đổi lên đám mây - Alpha Corp</option>
             </select>
           </div>
 

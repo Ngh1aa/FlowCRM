@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(python -m http.server 8000)",
-      "Bash(start *)"
+      "Bash(start *)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }

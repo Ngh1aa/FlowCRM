@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Pipeline</title>
+  <title>FlowCRM - Quy trình bán hàng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="pipeline-page">
   <button class="sidebar-toggle" id="sidebarToggle">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
@@ -42,7 +42,7 @@
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            Dashboard
+            Tổng quan
           </a>
         </div>
 
@@ -52,7 +52,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            Pipeline
+            Quy trình bán hàng
             <span class="badge">12</span>
           </a>
           <a href="customers.html" class="nav-item">
@@ -100,7 +100,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Sales Manager</div>
+            <div class="user-role">Quản lý bán hàng</div>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left">
-          <h1 class="page-title">Pipeline</h1>
+          <h1 class="page-title">Quy trình bán hàng</h1>
         </div>
         <div class="topbar-right">
           <div class="search-box">
@@ -132,15 +132,15 @@
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-            Tạo Deal
+            Tạo cơ hội
           </button>
         </div>
       </header>
 
       <div class="page-content">
-        <!-- Kanban Board -->
+        <!-- bảng Kanban -->
         <div class="kanban-board" id="kanbanBoard">
-          <!-- Qualification Column -->
+          <!-- Chào hàng Column -->
           <div class="kanban-column" data-stage="qualification">
             <div class="kanban-column-header">
               <div class="kanban-column-title">
@@ -149,10 +149,10 @@
               </div>
               <span class="kanban-count">4</span>
             </div>
-            <div class="kanban-cards">
+            <div class="kanban-card">
               <div class="kanban-card" draggable="true" data-id="1">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Website Redesign</span>
+                  <span class="kanban-card-title">Thiết kế lại website</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -164,13 +164,13 @@
                 <div class="kanban-card-customer">Công ty ABC</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫150,000,000</span>
-                  <span class="kanban-card-tag tag-warm">Warm</span>
+                  <span class="kanban-card-tag tag-warm">Ấm</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="2">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Mobile App Development</span>
+                  <span class="kanban-card-title">Phát triển ứng dụng di động</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -182,13 +182,13 @@
                 <div class="kanban-card-customer">Tech Solutions</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫320,000,000</span>
-                  <span class="kanban-card-tag tag-hot">Hot</span>
+                  <span class="kanban-card-tag tag-hot">Nóng</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="3">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">CRM Integration</span>
+                  <span class="kanban-card-title">Tích hợp CRM</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -200,13 +200,13 @@
                 <div class="kanban-card-customer">Design Co</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫85,000,000</span>
-                  <span class="kanban-card-tag tag-cold">Cold</span>
+                  <span class="kanban-card-tag tag-cold">Lạnh</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="4">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">E-commerce Platform</span>
+                  <span class="kanban-card-title">Nền tảng thương mại điện tử</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -218,13 +218,13 @@
                 <div class="kanban-card-customer">Fashion Store</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫125,000,000</span>
-                  <span class="kanban-card-tag tag-warm">Warm</span>
+                  <span class="kanban-card-tag tag-warm">Ấm</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Proposal Column -->
+          <!-- Đề xuất Column -->
           <div class="kanban-column" data-stage="proposal">
             <div class="kanban-column-header">
               <div class="kanban-column-title">
@@ -233,10 +233,10 @@
               </div>
               <span class="kanban-count">3</span>
             </div>
-            <div class="kanban-cards">
+            <div class="kanban-card">
               <div class="kanban-card" draggable="true" data-id="5">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Cloud Migration</span>
+                  <span class="kanban-card-title">Chuyển đổi lên đám mây</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -248,13 +248,13 @@
                 <div class="kanban-card-customer">Alpha Corp</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫480,000,000</span>
-                  <span class="kanban-card-tag tag-hot">Hot</span>
+                  <span class="kanban-card-tag tag-hot">Nóng</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="6">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Security Audit</span>
+                  <span class="kanban-card-title">Kiểm toán bảo mật</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -266,13 +266,13 @@
                 <div class="kanban-card-customer">Beta Industries</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫95,000,000</span>
-                  <span class="kanban-card-tag tag-warm">Warm</span>
+                  <span class="kanban-card-tag tag-warm">Ấm</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="7">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Data Analytics Suite</span>
+                  <span class="kanban-card-title">Bộ phân tích dữ liệu</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -284,13 +284,13 @@
                 <div class="kanban-card-customer">Gamma Ltd</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫210,000,000</span>
-                  <span class="kanban-card-tag tag-warm">Warm</span>
+                  <span class="kanban-card-tag tag-warm">Ấm</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Negotiation Column -->
+          <!-- Đàm phán Column -->
           <div class="kanban-column" data-stage="negotiation">
             <div class="kanban-column-header">
               <div class="kanban-column-title">
@@ -299,10 +299,10 @@
               </div>
               <span class="kanban-count">2</span>
             </div>
-            <div class="kanban-cards">
+            <div class="kanban-card">
               <div class="kanban-card" draggable="true" data-id="8">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Marketing Automation</span>
+                  <span class="kanban-card-title">Tự động hóa tiếp thị</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -314,13 +314,13 @@
                 <div class="kanban-card-customer">Delta Inc</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫180,000,000</span>
-                  <span class="kanban-card-tag tag-hot">Hot</span>
+                  <span class="kanban-card-tag tag-hot">Nóng</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="9">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Inventory System</span>
+                  <span class="kanban-card-title">Hệ thống quản lý tồn kho</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -332,13 +332,13 @@
                 <div class="kanban-card-customer">Epsilon Co</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫120,000,000</span>
-                  <span class="kanban-card-tag tag-warm">Warm</span>
+                  <span class="kanban-card-tag tag-warm">Ấm</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Closed Won Column -->
+          <!-- Đã chốt thắng Column -->
           <div class="kanban-column" data-stage="closed-won">
             <div class="kanban-column-header">
               <div class="kanban-column-title">
@@ -347,10 +347,10 @@
               </div>
               <span class="kanban-count">2</span>
             </div>
-            <div class="kanban-cards">
+            <div class="kanban-card">
               <div class="kanban-card" draggable="true" data-id="10">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">SEO Optimization</span>
+                  <span class="kanban-card-title">Tối ưu SEO</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -362,13 +362,13 @@
                 <div class="kanban-card-customer">Zeta Group</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫75,000,000</span>
-                  <span class="kanban-card-tag tag-won">Won</span>
+                  <span class="kanban-card-tag tag-won">Thắng</span>
                 </div>
               </div>
 
               <div class="kanban-card" draggable="true" data-id="11">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">UI/UX Design System</span>
+                  <span class="kanban-card-title">UI/UX Hệ thống thiết kế</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -380,13 +380,13 @@
                 <div class="kanban-card-customer">Eta Corp</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫95,000,000</span>
-                  <span class="kanban-card-tag tag-won">Won</span>
+                  <span class="kanban-card-tag tag-won">Thắng</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Closed Lost Column -->
+          <!-- Đã thất bại Column -->
           <div class="kanban-column" data-stage="closed-lost">
             <div class="kanban-column-header">
               <div class="kanban-column-title">
@@ -395,10 +395,10 @@
               </div>
               <span class="kanban-count">1</span>
             </div>
-            <div class="kanban-cards">
+            <div class="kanban-card">
               <div class="kanban-card" draggable="true" data-id="12">
                 <div class="kanban-card-header">
-                  <span class="kanban-card-title">Social Media Campaign</span>
+                  <span class="kanban-card-title">Chiến dịch mạng xã hội</span>
                   <button class="kanban-card-menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="1"/>
@@ -410,7 +410,7 @@
                 <div class="kanban-card-customer">Theta Ltd</div>
                 <div class="kanban-card-footer">
                   <span class="kanban-card-value">₫45,000,000</span>
-                  <span class="kanban-card-tag tag-lost">Lost</span>
+                  <span class="kanban-card-tag tag-lost">Thua</span>
                 </div>
               </div>
             </div>
@@ -420,11 +420,11 @@
     </main>
   </div>
 
-  <!-- Quick Create Modal -->
+  <!-- Hộp tạo nhanh -->
   <div class="modal-overlay" id="quickCreateModal">
     <div class="modal">
       <div class="modal-header">
-        <h2 class="modal-title">Tạo Deal mới</h2>
+        <h2 class="modal-title">Tạo Cơ hội mới</h2>
         <button class="modal-close" id="closeModalBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -435,22 +435,22 @@
       <div class="modal-body">
         <form id="quickCreateForm">
           <div class="form-group">
-            <label class="form-label required">Tên Deal</label>
-            <input type="text" class="form-input" id="dealName" placeholder="Nhập tên deal..." required>
+            <label class="form-label required">Tên cơ hội</label>
+            <input type="text" class="form-input" id="opportunityName" placeholder="Nhập tên deal..." required>
             <span class="form-error">Vui lòng nhập tên deal</span>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label class="form-label required">Giá trị (VNĐ)</label>
-              <input type="text" class="form-input" id="dealValue" placeholder="150,000,000" required>
+              <input type="text" class="form-input" id="opportunityValue" placeholder="150,000,000" required>
               <span class="form-error">Vui lòng nhập giá trị hợp lệ</span>
             </div>
             <div class="form-group">
               <label class="form-label">Giai đoạn</label>
-              <select class="form-select" id="dealStage">
+              <select class="form-select" id="opportunityStage">
                 <option value="qualification">Chào hàng</option>
-                <option value="proposal">Đàm phán</option>
+                <option value="Đề xuất">Đàm phán</option>
                 <option value="negotiation">Đề xuất</option>
                 <option value="closed">Chốt</option>
               </select>
@@ -460,7 +460,7 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Khách hàng</label>
-              <select class="form-select" id="dealCustomer">
+              <select class="form-select" id="opportunityCustomer">
                 <option value="">Chọn khách hàng...</option>
                 <option value="1">Công ty ABC</option>
                 <option value="2">Tech Solutions</option>
@@ -470,23 +470,23 @@
             </div>
             <div class="form-group">
               <label class="form-label">Ưu tiên</label>
-              <select class="form-select" id="dealPriority">
-                <option value="cold">Cold</option>
-                <option value="warm" selected>Warm</option>
-                <option value="hot">Hot</option>
+              <select class="form-select" id="opportunityPriority">
+                <option value="cold">Lạnh</option>
+                <option value="warm" selected>Ấm</option>
+                <option value="hot">Nóng</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label">Mô tả</label>
-            <textarea class="form-input" id="dealDescription" rows="3" placeholder="Mô tả ngắn về deal..."></textarea>
+            <textarea class="form-input" id="opportunityDescription" rows="3" placeholder="Mô tả ngắn về deal..."></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
-        <button class="btn btn-primary" id="createDealBtn">Tạo Deal</button>
+        <button class="btn btn-primary" id="createDealBtn">Tạo cơ hội</button>
       </div>
     </div>
   </div>

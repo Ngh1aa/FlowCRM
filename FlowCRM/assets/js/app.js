@@ -9,6 +9,7 @@ const Storage = {
     DEALS: 'flowcrm_deals',
     CUSTOMERS: 'flowcrm_customers',
     TASKS: 'flowcrm_tasks',
+    EVENTS: 'flowcrm_events',
     MESSAGES: 'flowcrm_messages',
     ACTIVITIES: 'flowcrm_activities'
   },
@@ -16,7 +17,7 @@ const Storage = {
   init() {
     if (!localStorage.getItem(this.KEYS.DEALS)) {
       this.save(this.KEYS.DEALS, [
-        { id: '1', title: 'Thiết kế Website E-commerce', customer: 'Cty Alpha', value: 25000000, stage: 'qualification', tag: 'hot', date: '2023-10-25' },
+        { id: '1', title: 'Thiết kế website thương mại điện tử', customer: 'Cty Alpha', value: 25000000, stage: 'qualification', tag: 'hot', date: '2023-10-25' },
         { id: '2', title: 'Gói SEO Tổng thể', customer: 'Nha khoa Smile', value: 12000000, stage: 'proposal', tag: 'warm', date: '2023-10-24' },
         { id: '3', title: 'Chạy Quảng cáo Facebook', customer: 'Shop Fashionista', value: 8000000, stage: 'negotiation', tag: 'hot', date: '2023-10-23' },
         { id: '4', title: 'Phần mềm Quản lý Kho', customer: 'Logistics Beta', value: 45000000, stage: 'closed', tag: 'won', date: '2023-10-20' },
@@ -101,6 +102,62 @@ const Storage = {
 // Initialize Storage
 Storage.init();
 
+function hydrateDemoData() {
+  const deals = Storage.get(Storage.KEYS.DEALS);
+  const customers = Storage.get(Storage.KEYS.CUSTOMERS);
+  const tasks = Storage.get(Storage.KEYS.TASKS);
+
+  if (deals.length < 6) {
+    Storage.save(Storage.KEYS.DEALS, [
+      { id: '1', title: 'Website Redesign', customer: 'Công ty ABC', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Xác nhận phạm vi' },
+      { id: '2', title: 'Mobile App Development', customer: 'Tech Solutions', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Chốt ngân sách' },
+      { id: '3', title: 'CRM Integration', customer: 'Design Co', value: 85000000, stage: 'qualification', tag: 'cold', date: '2026-05-15', owner: 'Bao Le', nextAction: 'Xác minh nhu cầu' },
+      { id: '4', title: 'E-commerce Platform', customer: 'Fashion Store', value: 125000000, stage: 'qualification', tag: 'warm', date: '2026-05-16', owner: 'An Nguyen', nextAction: 'Gửi proposal mẫu' },
+      { id: '5', title: 'Cloud Migration', customer: 'Alpha Corp', value: 480000000, stage: 'proposal', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Gửi báo giá' },
+      { id: '6', title: 'Security Audit', customer: 'Beta Industries', value: 95000000, stage: 'proposal', tag: 'warm', date: '2026-05-16', owner: 'Minh Tran', nextAction: 'Xác nhận lịch audit' },
+      { id: '7', title: 'Data Analytics Suite', customer: 'Gamma Ltd', value: 210000000, stage: 'proposal', tag: 'warm', date: '2026-05-17', owner: 'An Nguyen', nextAction: 'Review proposal' },
+      { id: '8', title: 'Marketing Automation', customer: 'Delta Inc', value: 180000000, stage: 'negotiation', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Chốt điều khoản' },
+      { id: '9', title: 'Inventory System', customer: 'Epsilon Co', value: 120000000, stage: 'negotiation', tag: 'warm', date: '2026-05-18', owner: 'Linh Pham', nextAction: 'Demo sản phẩm' },
+      { id: '10', title: 'SEO Optimization', customer: 'Zeta Group', value: 75000000, stage: 'closed', tag: 'won', date: '2026-05-10', owner: 'Bao Le', nextAction: 'Bàn giao dự án' },
+      { id: '11', title: 'UI/UX Design System', customer: 'Eta Corp', value: 95000000, stage: 'closed', tag: 'won', date: '2026-05-11', owner: 'Linh Pham', nextAction: 'Gửi invoice' },
+      { id: '12', title: 'Social Media Campaign', customer: 'Theta Ltd', value: 45000000, stage: 'lost', tag: 'lost', date: '2026-05-09', owner: 'Bao Le', nextAction: 'Ghi nhận lý do' }
+    ]);
+  }
+
+  if (customers.length < 6) {
+    Storage.save(Storage.KEYS.CUSTOMERS, [
+      { id: '1', name: 'Nguyễn Văn An', email: 'an@alpha.vn', phone: '0901234567', status: 'active', company: 'Alpha Corp', latestDeal: 'Cloud Migration' },
+      { id: '2', name: 'Trần Minh', email: 'minh@techsolutions.vn', phone: '0912345678', status: 'active', company: 'Tech Solutions', latestDeal: 'Mobile App Development' },
+      { id: '3', name: 'Lê Mai Linh', email: 'linh@designco.vn', phone: '0987654321', status: 'prospect', company: 'Design Co', latestDeal: 'CRM Integration' },
+      { id: '4', name: 'Phạm Hoàng Diệp', email: 'diep@gamma.vn', phone: '0934567890', status: 'prospect', company: 'Gamma Ltd', latestDeal: 'Data Analytics Suite' },
+      { id: '5', name: 'Vũ Nam', email: 'nam@beta.vn', phone: '0976543210', status: 'active', company: 'Beta Industries', latestDeal: 'Security Audit' },
+      { id: '6', name: 'Đặng Bảo', email: 'bao@delta.vn', phone: '0966123456', status: 'active', company: 'Delta Inc', latestDeal: 'Marketing Automation' },
+      { id: '7', name: 'Ngô Khánh', email: 'khanh@epsilon.vn', phone: '0955123456', status: 'inactive', company: 'Epsilon Co', latestDeal: 'Inventory System' },
+      { id: '8', name: 'Hoàng My', email: 'my@zeta.vn', phone: '0944123456', status: 'active', company: 'Zeta Group', latestDeal: 'SEO Optimization' }
+    ]);
+  }
+
+  if (tasks.length < 5) {
+    Storage.save(Storage.KEYS.TASKS, [
+      { id: '1', title: 'Gọi điện cho Alpha Corp', deadline: '2026-05-10', dueLabel: 'Đã hạn: 10/05/2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Alpha Corp', owner: 'An', priority: 'hot', completed: false },
+      { id: '2', title: 'Gửi báo giá cho Beta Industries', deadline: '2026-05-11', dueLabel: 'Đã hạn: 11/05/2026', category: 'overdue', deal: 'Security Audit', customer: 'Beta Industries', owner: 'Minh', priority: 'hot', completed: false },
+      { id: '3', title: 'Họp team về pipeline Q2', deadline: '2026-05-14', dueLabel: 'Hôm nay, 14:00', category: 'today', deal: 'Nội bộ', customer: 'Sales team', owner: 'An', priority: 'warm', completed: false },
+      { id: '4', title: 'Gửi báo giá cho Tech Solutions', deadline: '2026-05-14', dueLabel: 'Hôm nay, 10:30', category: 'today', deal: 'Mobile App Development', customer: 'Tech Solutions', owner: 'Linh', priority: 'warm', completed: true },
+      { id: '5', title: 'Follow up deal với Design Co', deadline: '2026-05-14', dueLabel: 'Hôm nay, 16:30', category: 'today', deal: 'CRM Integration', customer: 'Design Co', owner: 'Bao', priority: 'hot', completed: false },
+      { id: '6', title: 'Gửi hợp đồng cho Delta Inc', deadline: '2026-05-15', dueLabel: '15/05/2026', category: 'upcoming', deal: 'Marketing Automation', customer: 'Delta Inc', owner: 'Minh', priority: 'warm', completed: false },
+      { id: '7', title: 'Demo sản phẩm cho Epsilon Co', deadline: '2026-05-18', dueLabel: '18/05/2026', category: 'upcoming', deal: 'Inventory System', customer: 'Epsilon Co', owner: 'Linh', priority: 'cold', completed: false },
+      { id: '8', title: 'Review proposal với Gamma Ltd', deadline: '2026-05-20', dueLabel: '20/05/2026', category: 'upcoming', deal: 'Data Analytics Suite', customer: 'Gamma Ltd', owner: 'An', priority: 'warm', completed: false },
+      { id: '9', title: 'Chốt deal với Zeta Group', deadline: '2026-05-25', dueLabel: '25/05/2026', category: 'upcoming', deal: 'SEO Optimization', customer: 'Zeta Group', owner: 'Bao', priority: 'hot', completed: false }
+    ]);
+  }
+
+  if (!localStorage.getItem(Storage.KEYS.EVENTS)) {
+    Storage.save(Storage.KEYS.EVENTS, []);
+  }
+}
+
+hydrateDemoData();
+
 // ========================================
 // Utility Functions
 // ========================================
@@ -111,6 +168,76 @@ function formatCurrency(amount) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   }).format(amount);
+}
+
+const PIPELINE_STAGE_CONFIG = {
+  qualification: {
+    selector: 'qualification',
+    probability: 28,
+    nextAction: 'Xác nhận ngân sách'
+  },
+  proposal: {
+    selector: 'proposal',
+    probability: 52,
+    nextAction: 'Gửi đề xuất'
+  },
+  negotiation: {
+    selector: 'negotiation',
+    probability: 68,
+    nextAction: 'Chốt điều khoản'
+  },
+  closed: {
+    selector: 'closed-won',
+    probability: 100,
+    nextAction: 'Bàn giao dự án'
+  },
+  lost: {
+    selector: 'closed-lost',
+    probability: 0,
+    nextAction: 'Ghi nhận lý do'
+  }
+};
+
+const PIPELINE_OWNERS = ['An Nguyen', 'Minh Tran', 'Linh Pham', 'Bao Le'];
+
+function formatShortDate(value) {
+  if (!value) return 'Chưa có ngày';
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return date.toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit'
+  });
+}
+
+function getPipelineColumn(stage) {
+  const config = PIPELINE_STAGE_CONFIG[stage] || {};
+  return document.querySelector(
+    `.kanban-column[data-stage="${stage}"], .kanban-column[data-stage="${config.selector}"]`
+  );
+}
+
+function normalizePipelineStage(stage) {
+  if (PIPELINE_STAGE_CONFIG[stage]) return stage;
+  return 'proposal';
+}
+
+function getDealPipelineMeta(deal, index, stage) {
+  const config = PIPELINE_STAGE_CONFIG[stage] || PIPELINE_STAGE_CONFIG.qualification;
+
+  return {
+    owner: deal.owner || PIPELINE_OWNERS[index % PIPELINE_OWNERS.length],
+    followUp: deal.followUp || deal.date,
+    probability: Number.isFinite(deal.probability) ? deal.probability : config.probability,
+    nextAction: deal.nextAction || config.nextAction
+  };
+}
+
+function parseCardValue(card) {
+  const rawValue = card.dataset.value || card.querySelector('.kanban-card-value')?.textContent || '0';
+  return Number(String(rawValue).replace(/[^\d]/g, '')) || 0;
 }
 
 function debounce(func, wait) {
@@ -267,7 +394,7 @@ const addCustomerModal = document.getElementById('addCustomerModal');
 const saveCustomerBtn = document.getElementById('saveCustomerBtn');
 const addCustomerForm = document.getElementById('addCustomerForm');
 const customerTableBody = document.getElementById('customerTableBody');
-const tableSearch = document.getElementById('tableSearch');
+const tableSearch = document.getElementById('tableSearch') || document.getElementById('searchInput');
 const selectAllCheckbox = document.getElementById('selectAll');
 
 // Add Task Modal
@@ -287,8 +414,13 @@ const newMessageBtn = document.getElementById('newMessageBtn');
 const newMessageModal = document.getElementById('newMessageModal');
 const sendMessageBtn = document.getElementById('sendMessageBtn');
 
+function getFieldValue(formData, name, id, fallback = '') {
+  const value = formData.get(name);
+  return value || document.getElementById(id)?.value || fallback;
+}
+
 // ========================================
-// Quick Create Modal (Pipeline)
+// Hộp tạo nhanh (Quy trình bán hàng)
 // ========================================
 if (quickCreateBtn) {
   quickCreateBtn.addEventListener('click', () => openModal(quickCreateModal));
@@ -440,18 +572,19 @@ document.querySelectorAll('.form-input, .form-select').forEach(input => {
 });
 
 // ========================================
-// Deal Creation with Toast
+// Cơ hội Creation with Toast
 // ========================================
 if (createDealBtn) {
   createDealBtn.addEventListener('click', () => {
     if (validateForm(quickCreateForm)) {
       const formData = new FormData(quickCreateForm);
+      const rawDealValue = formData.get('opportunityValue') || document.getElementById('opportunityValue')?.value;
       const newDeal = {
-        title: formData.get('dealTitle'),
-        customer: formData.get('customerName'),
-        value: parseInt(formData.get('dealValue')) || 0,
-        stage: formData.get('dealStage') || 'qualification',
-        tag: 'warm',
+        title: formData.get('opportunityTitle') || document.getElementById('opportunityName')?.value || 'Cơ hội chưa đặt tên',
+        customer: formData.get('customerName') || document.getElementById('opportunityCustomer')?.selectedOptions[0]?.textContent || 'Tiềm năng',
+        value: Number(String(rawDealValue || '').replace(/[^\d]/g, '')) || 0,
+        stage: normalizePipelineStage(formData.get('opportunityStage') || document.getElementById('opportunityStage')?.value || 'qualification'),
+        tag: formData.get('opportunityPriority') || document.getElementById('opportunityPriority')?.value || 'warm',
         date: new Date().toISOString().split('T')[0]
       };
 
@@ -461,10 +594,10 @@ if (createDealBtn) {
       setTimeout(() => {
         Storage.addItem(Storage.KEYS.DEALS, newDeal);
         createDealBtn.disabled = false;
-        createDealBtn.textContent = 'Tạo Deal';
+        createDealBtn.textContent = 'Tạo cơ hội';
         quickCreateForm.reset();
         closeModal(quickCreateModal);
-        Toast.show('Deal mới đã được tạo thành công!');
+        Toast.show('Cơ hội mới đã được tạo thành công!');
       }, 500);
     }
   });
@@ -477,12 +610,15 @@ if (saveCustomerBtn) {
   saveCustomerBtn.addEventListener('click', () => {
     if (validateForm(addCustomerForm)) {
       const formData = new FormData(addCustomerForm);
+      const firstName = getFieldValue(formData, 'customerFirstName', 'customerFirstName');
+      const lastName = getFieldValue(formData, 'customerLastName', 'customerLastName');
       const newCustomer = {
-        name: formData.get('custName'),
-        email: formData.get('custEmail'),
-        phone: formData.get('custPhone'),
-        company: formData.get('custCompany'),
-        status: 'active'
+        name: `${firstName} ${lastName}`.trim() || getFieldValue(formData, 'custName', 'customerFirstName', 'Khách hàng mới'),
+        email: getFieldValue(formData, 'customerEmail', 'customerEmail') || formData.get('custEmail') || '',
+        phone: getFieldValue(formData, 'customerPhone', 'customerPhone') || formData.get('custPhone') || '',
+        company: getFieldValue(formData, 'customerCompany', 'customerCompany') || formData.get('custCompany') || '',
+        status: getFieldValue(formData, 'customerStatus', 'customerStatus', 'active'),
+        latestDeal: 'Chưa có cơ hội'
       };
 
       saveCustomerBtn.disabled = true;
@@ -507,10 +643,19 @@ if (saveTaskBtn) {
   saveTaskBtn.addEventListener('click', () => {
     if (validateForm(addTaskForm)) {
       const formData = new FormData(addTaskForm);
+      const deadline = getFieldValue(formData, 'taskDeadline', 'taskDeadline');
+      const time = getFieldValue(formData, 'taskTime', 'taskTime');
+      const dealSelect = document.getElementById('taskDeal');
+      const selectedDeal = dealSelect?.selectedOptions[0]?.textContent || '';
       const newTask = {
-        title: formData.get('taskTitle'),
-        deadline: formData.get('taskDeadline'),
-        priority: formData.get('taskPriority'),
+        title: getFieldValue(formData, 'taskTitle', 'taskTitle', 'Nhiệm vụ mới'),
+        deadline,
+        dueLabel: deadline ? `${formatShortDate(deadline)}${time ? `, ${time}` : ''}` : 'Chưa có hạn',
+        category: deadline === '2026-05-14' ? 'today' : 'upcoming',
+        deal: selectedDeal && !selectedDeal.includes('Chọn') ? selectedDeal : 'Chưa liên kết',
+        customer: selectedDeal.includes('-') ? selectedDeal.split('-').pop().trim() : 'Chưa gán',
+        owner: 'An',
+        priority: getFieldValue(formData, 'taskPriority', 'taskPriority', 'warm'),
         completed: false
       };
 
@@ -547,6 +692,41 @@ if (saveEventBtn) {
       }, 500);
     }
   });
+}
+
+if (saveEventBtn && addEventForm) {
+  saveEventBtn.addEventListener('click', (eventClick) => {
+    eventClick.preventDefault();
+    eventClick.stopImmediatePropagation();
+
+    if (!validateForm(addEventForm)) return;
+
+    const formData = new FormData(addEventForm);
+    const event = {
+      id: Date.now().toString(),
+      title: getFieldValue(formData, 'eventTitle', 'eventTitle', 'Lịch hẹn mới'),
+      date: getFieldValue(formData, 'eventDate', 'eventDate'),
+      startTime: getFieldValue(formData, 'eventStartTime', 'eventStartTime'),
+      endTime: getFieldValue(formData, 'eventEndTime', 'eventEndTime'),
+      customer: document.getElementById('eventCustomer')?.selectedOptions[0]?.textContent || '',
+      location: getFieldValue(formData, 'eventLocation', 'eventLocation'),
+      notes: getFieldValue(formData, 'eventNotes', 'eventNotes')
+    };
+
+    saveEventBtn.disabled = true;
+    saveEventBtn.textContent = 'Đang tạo...';
+
+    setTimeout(() => {
+      const events = Storage.get(Storage.KEYS.EVENTS);
+      Storage.save(Storage.KEYS.EVENTS, [event, ...events]);
+      saveEventBtn.disabled = false;
+      saveEventBtn.textContent = 'Tạo lịch hẹn';
+      addEventForm.reset();
+      closeModal(addEventModal);
+      window.dispatchEvent(new CustomEvent('flowcrm_event_created', { detail: event }));
+      Toast.show('Lịch hẹn mới đã được tạo!');
+    }, 500);
+  }, true);
 }
 
 // ========================================
@@ -614,7 +794,7 @@ function handleDrop(e) {
     if (cardsContainer) {
       cardsContainer.appendChild(draggedCard);
       updateColumnCounts();
-      Toast.show('Deal đã được chuyển sang ' + this.querySelector('.kanban-column-title').textContent.trim());
+      Toast.show('Cơ hội đã được chuyển sang ' + this.querySelector('.kanban-column-title').textContent.trim());
     }
   }
 }
@@ -627,6 +807,45 @@ function updateColumnCounts() {
     if (countBadge) {
       countBadge.textContent = cards.length;
     }
+
+    const cardList = column.querySelector('.kanban-cards');
+    let emptyState = column.querySelector('.kanban-empty-state');
+    if (!cards.length && cardList) {
+      if (!emptyState) {
+        emptyState = document.createElement('div');
+        emptyState.className = 'kanban-empty-state';
+        cardList.appendChild(emptyState);
+      }
+      emptyState.textContent = 'Chưa có cơ hội ở giai đoạn này';
+    } else if (emptyState) {
+      emptyState.remove();
+    }
+
+    const totalValue = Array.from(cards).reduce((sum, card) => sum + parseCardValue(card), 0);
+    const probabilities = Array.from(cards)
+      .map(card => Number(card.dataset.probability))
+      .filter(Number.isFinite);
+    const avgProbability = probabilities.length
+      ? Math.round(probabilities.reduce((sum, value) => sum + value, 0) / probabilities.length)
+      : 0;
+    let summary = column.querySelector('.kanban-column-summary');
+
+    if (!summary) {
+      summary = document.createElement('div');
+      summary.className = 'kanban-column-summary';
+      column.appendChild(summary);
+    }
+
+    summary.innerHTML = `
+      <div class="kanban-summary-row">
+        <span>Tổng giá trị</span>
+        <strong>${formatCurrency(totalValue)}</strong>
+      </div>
+      <div class="kanban-summary-row">
+        <span>Xác suất TB</span>
+        <strong>${avgProbability}%</strong>
+      </div>
+    `;
   });
 }
 
@@ -649,6 +868,23 @@ document.querySelectorAll('.task-item').forEach(item => {
   });
 });
 
+document.addEventListener('click', (e) => {
+  const taskItem = e.target.closest('.tasks-page .task-item');
+  if (!taskItem || e.target.closest('.task-actions')) return;
+
+  const checkbox = taskItem.querySelector('.task-checkbox');
+  const isCompleted = !taskItem.classList.contains('completed');
+  taskItem.classList.toggle('completed', isCompleted);
+  checkbox?.classList.toggle('checked', isCompleted);
+
+  const tasks = Storage.get(Storage.KEYS.TASKS).map(task =>
+    task.id === taskItem.dataset.id ? { ...task, completed: isCompleted } : task
+  );
+  Storage.save(Storage.KEYS.TASKS, tasks);
+
+  if (isCompleted) Toast.show('Nhiệm vụ đã hoàn thành!');
+});
+
 // ========================================
 // Todo Checkbox Interaction
 // ========================================
@@ -668,13 +904,7 @@ if (tableSearch) {
   tableSearch.addEventListener('input', function() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      const searchTerm = this.value.toLowerCase();
-      const rows = customerTableBody?.querySelectorAll('tr');
-
-      rows?.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchTerm) ? '' : 'none';
-      });
+      applyCustomerTableState();
     }, 200);
   });
 }
@@ -690,6 +920,59 @@ if (selectAllCheckbox) {
     });
   });
 }
+
+function getCustomerStatusLabel(status = 'active') {
+  const labels = {
+    active: 'Đang hoạt động',
+    prospect: 'Tiềm năng',
+    inactive: 'Ngừng chăm sóc'
+  };
+  return labels[status] || status;
+}
+
+function applyCustomerTableState() {
+  const rows = customerTableBody?.querySelectorAll('tr');
+  if (!rows) return;
+
+  const searchTerm = (tableSearch?.value || '').toLowerCase();
+  const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+
+  rows.forEach(row => {
+    const matchesSearch = row.textContent.toLowerCase().includes(searchTerm);
+    const matchesFilter = activeFilter === 'all' || row.dataset.status === activeFilter;
+    row.style.display = matchesSearch && matchesFilter ? '' : 'none';
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    this.classList.add('active');
+    applyCustomerTableState();
+  });
+});
+
+document.querySelectorAll('.customer-table th.sortable').forEach(header => {
+  header.addEventListener('click', function() {
+    if (!customerTableBody) return;
+
+    const index = Array.from(this.parentElement.children).indexOf(this);
+    const direction = this.classList.contains('asc') ? 'desc' : 'asc';
+    const rows = Array.from(customerTableBody.querySelectorAll('tr'));
+
+    document.querySelectorAll('.customer-table th.sortable').forEach(th => th.classList.remove('sorted', 'asc', 'desc'));
+    this.classList.add('sorted', direction);
+
+    rows.sort((a, b) => {
+      const aText = a.children[index]?.textContent.trim().toLowerCase() || '';
+      const bText = b.children[index]?.textContent.trim().toLowerCase() || '';
+      return direction === 'asc' ? aText.localeCompare(bText) : bText.localeCompare(aText);
+    });
+
+    rows.forEach(row => customerTableBody.appendChild(row));
+    applyCustomerTableState();
+  });
+});
 
 // ========================================
 // Chart Tabs Interaction
@@ -714,18 +997,36 @@ document.querySelectorAll('.task-filter').forEach(filter => {
 
     const filterType = this.dataset.filter;
     const taskItems = document.querySelectorAll('.task-item');
+    const taskList = document.querySelector('.tasks-list');
+
+    if (taskList) taskList.dataset.filter = filterType;
 
     taskItems.forEach(item => {
+      const deadline = item.querySelector('.task-deadline');
+      const deadlineText = deadline?.textContent || '';
+      const isOverdue = item.querySelector('.task-deadline.overdue');
+      const isTodayText = deadlineText.includes('Hôm nay') || deadlineText.includes('HÃ´m nay');
+      const isOverdueTask = item.classList.contains('task-overdue') || isOverdue;
+      const isTodayTask = item.classList.contains('task-today') || (!isOverdueTask && isTodayText);
+      const isUpcomingTask = item.classList.contains('task-upcoming') || (!isOverdueTask && !isTodayTask);
+
       if (filterType === 'all') {
         item.style.display = '';
       } else if (filterType === 'overdue') {
-        const isOverdue = item.querySelector('.task-deadline.overdue');
-        item.style.display = isOverdue ? '' : 'none';
+        item.style.display = isOverdueTask ? '' : 'none';
       } else if (filterType === 'today') {
         const isToday = item.querySelector('.task-deadline:not(.overdue)') &&
                        item.querySelector('.task-deadline').textContent.includes('Hôm nay');
-        item.style.display = isToday ? '' : 'none';
+        item.style.display = isTodayTask ? '' : 'none';
+      } else if (filterType === 'upcoming') {
+        item.style.display = isUpcomingTask ? '' : 'none';
       }
+    });
+
+    document.querySelectorAll('.task-section').forEach(section => {
+      const hasVisibleTasks = Array.from(section.querySelectorAll('.task-item'))
+        .some(item => item.style.display !== 'none');
+      section.style.display = hasVisibleTasks ? '' : 'none';
     });
   });
 });
@@ -733,6 +1034,72 @@ document.querySelectorAll('.task-filter').forEach(filter => {
 // ========================================
 // Dropdown Menus
 // ========================================
+function initActionMenus() {
+  document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
+    if (menuBtn.dataset.menuBound === 'true') return;
+    menuBtn.dataset.menuBound = 'true';
+
+    menuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+
+      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+        if (menu !== this.nextElementSibling) menu.classList.remove('show');
+      });
+
+      let dropdown = this.nextElementSibling;
+      if (!dropdown || !dropdown.classList.contains('dropdown-menu')) {
+        const canDelete = this.title === 'Xóa' || this.dataset.action === 'delete';
+
+        dropdown = document.createElement('div');
+        dropdown.className = 'dropdown-menu show';
+        dropdown.innerHTML = `
+          <div class="dropdown-item">Xem chi tiết</div>
+          <div class="dropdown-item">Chỉnh sửa</div>
+          ${canDelete ? '<div class="dropdown-item danger">Xóa</div>' : ''}
+        `;
+        this.parentElement.appendChild(dropdown);
+
+        dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+          item.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const action = item.textContent.trim();
+
+            if (action === 'Xóa') {
+              const card = menuBtn.closest('.kanban-card');
+              const row = menuBtn.closest('tr');
+              const task = menuBtn.closest('.task-item');
+
+              if (card) {
+                card.style.animation = 'fade-out 0.3s ease forwards';
+                setTimeout(() => {
+                  card.remove();
+                  updateColumnCounts();
+                }, 300);
+              } else if (row) {
+                row.style.animation = 'fade-out 0.3s ease forwards';
+                setTimeout(() => {
+                  row.remove();
+                  applyCustomerTableState();
+                }, 300);
+              } else if (task) {
+                const tasks = Storage.get(Storage.KEYS.TASKS).filter(item => item.id !== task.dataset.id);
+                Storage.save(Storage.KEYS.TASKS, tasks);
+              }
+              Toast.show('Đã xóa thành công!');
+            } else {
+              Toast.show('Chức năng đang phát triển...');
+            }
+
+            dropdown.classList.remove('show');
+          });
+        });
+      } else {
+        dropdown.classList.toggle('show');
+      }
+    });
+  });
+}
+
 document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
   menuBtn.addEventListener('click', function(e) {
     e.stopPropagation();
@@ -824,7 +1191,7 @@ document.addEventListener('keydown', (e) => {
     });
   }
 
-  // Ctrl/Cmd + N to open quick create (on pipeline page)
+  // Ctrl/Cmd + N to open quick create on the pipeline page
   if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
     e.preventDefault();
     if (quickCreateModal) openModal(quickCreateModal);
@@ -946,14 +1313,19 @@ const UI = {
 
   renderPipeline() {
     const deals = Storage.get(Storage.KEYS.DEALS);
-    const stages = ['qualification', 'proposal', 'negotiation', 'closed', 'lost'];
+    const stages = Object.keys(PIPELINE_STAGE_CONFIG);
     
     stages.forEach(stage => {
-      const stageContainer = document.querySelector(`.kanban-column[data-stage="${stage}"] .kanban-cards`);
+      const column = getPipelineColumn(stage);
+      const stageContainer = column?.querySelector('.kanban-cards');
       if (stageContainer) {
         const stageDeals = deals.filter(d => d.stage === stage);
-        stageContainer.innerHTML = stageDeals.map(deal => `
-          <div class="kanban-card" draggable="true" data-id="${deal.id}">
+        stageContainer.innerHTML = stageDeals.map((deal, index) => {
+          const meta = getDealPipelineMeta(deal, index, stage);
+          const tag = deal.tag || 'warm';
+
+          return `
+          <div class="kanban-card" draggable="true" data-id="${deal.id}" data-value="${deal.value || 0}" data-probability="${meta.probability}">
             <div class="kanban-card-header">
               <span class="kanban-card-title">${deal.title}</span>
               <button class="kanban-card-menu">
@@ -961,16 +1333,27 @@ const UI = {
               </button>
             </div>
             <div class="kanban-card-customer">${deal.customer}</div>
+            <div class="kanban-card-meta">
+              <span>Phụ trách: ${meta.owner}</span>
+              <span>Theo dõi: ${formatShortDate(meta.followUp)}</span>
+            </div>
+            <div class="kanban-card-next">
+              <span>Việc tiếp theo</span>
+              <strong>${meta.nextAction}</strong>
+            </div>
             <div class="kanban-card-footer">
-              <span class="kanban-card-value">${formatCurrency(deal.value)}</span>
-              <span class="kanban-card-tag tag-${deal.tag}">${deal.tag.toUpperCase()}</span>
+              <span class="kanban-card-value">${formatCurrency(deal.value || 0)}</span>
+              <span class="kanban-card-probability">${meta.probability}%</span>
+              <span class="kanban-card-tag tag-${tag}">${tag.toUpperCase()}</span>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
       }
     });
     updateColumnCounts();
     this.initDragAndDrop();
+    initActionMenus();
   },
 
   renderCustomers() {
@@ -978,20 +1361,22 @@ const UI = {
     const tbody = document.getElementById('customerTableBody');
     if (tbody) {
       tbody.innerHTML = customers.map(cust => `
-        <tr>
+        <tr data-status="${cust.status || 'active'}">
           <td><input type="checkbox" data-id="${cust.id}"></td>
           <td>
             <div class="customer-name-cell">
-              <div class="customer-avatar">${cust.name.split(' ').map(n => n[0]).join('')}</div>
+              <div class="customer-avatar">${(cust.name || 'KH').split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
               <div>
-                <div class="customer-name">${cust.name}</div>
+                <div class="customer-name">${cust.name || 'Khách hàng mới'}</div>
                 <div class="customer-email">${cust.email}</div>
               </div>
             </div>
           </td>
           <td>${cust.company}</td>
-          <td>${cust.phone}</td>
-          <td><span class="status-badge active">${cust.status}</span></td>
+          <td>${cust.email || ''}</td>
+          <td>${cust.phone || ''}</td>
+          <td><span class="status-badge ${cust.status || 'active'}">${getCustomerStatusLabel(cust.status)}</span></td>
+          <td>${cust.latestDeal || 'Chưa có cơ hội'}</td>
           <td>
             <div class="action-btns">
               <button class="action-btn" title="Chỉnh sửa">
@@ -1004,7 +1389,75 @@ const UI = {
           </td>
         </tr>
       `).join('');
+      applyCustomerTableState();
+      initActionMenus();
     }
+  },
+
+  renderTasks() {
+    const taskList = document.getElementById('tasksList');
+    if (!taskList) return;
+
+    const tasks = Storage.get(Storage.KEYS.TASKS);
+    const groups = [
+      { key: 'overdue', title: 'Quá hạn' },
+      { key: 'today', title: 'Hôm nay' },
+      { key: 'upcoming', title: 'Sắp tới' }
+    ];
+    const priorityLabel = { hot: 'High', warm: 'Medium', cold: 'Low', high: 'High', medium: 'Medium', low: 'Low' };
+
+    taskList.innerHTML = groups.map(group => {
+      const groupTasks = tasks.filter(task => (task.category || 'upcoming') === group.key);
+      return `
+        <div class="task-section task-section-${group.key}">
+          <div class="task-section-header">
+            <span class="task-section-title">${group.title}</span>
+            <span class="task-count">${groupTasks.length}</span>
+          </div>
+          ${groupTasks.map(task => `
+            <div class="task-item task-${group.key} ${task.completed ? 'completed' : ''}" data-id="${task.id}">
+              <div class="task-checkbox ${task.completed ? 'checked' : ''}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              </div>
+              <div class="task-content">
+                <span class="task-title">${task.title || 'Nhiệm vụ mới'}</span>
+                <div class="task-meta">
+                  <span class="task-deadline ${group.key === 'overdue' ? 'overdue' : ''}">${task.dueLabel || formatShortDate(task.deadline)}</span>
+                  <span class="task-deal">${task.deal || 'Chưa liên kết'}</span>
+                  <span class="task-customer">${task.customer || 'Chưa gán'}</span>
+                  <span class="task-owner">Owner: ${task.owner || 'An'}</span>
+                  <span class="task-priority ${task.priority || 'warm'}">${priorityLabel[task.priority] || 'Medium'}</span>
+                </div>
+              </div>
+              <div class="task-actions">
+                <button class="action-btn" title="Chỉnh sửa">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="action-btn" title="Xóa">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }).join('');
+
+    const overdue = tasks.filter(task => (task.category || 'upcoming') === 'overdue').length;
+    const today = tasks.filter(task => (task.category || 'upcoming') === 'today').length;
+    const completed = tasks.filter(task => task.completed).length;
+    const values = document.querySelectorAll('.tasks-page .kpi-value');
+    const subtitles = document.querySelectorAll('.tasks-page .kpi-subtitle');
+
+    if (values[0]) values[0].textContent = overdue;
+    if (values[1]) values[1].textContent = today;
+    if (values[2]) values[2].textContent = `${tasks.length ? Math.round((completed / tasks.length) * 100) : 0}%`;
+    if (subtitles[2]) subtitles[2].textContent = `${completed}/${tasks.length} nhiệm vụ`;
+
+    initActionMenus();
+    document.querySelector('.task-filter.active')?.dispatchEvent(new Event('click'));
   },
 
   getIcon(type) {
@@ -1061,12 +1514,14 @@ document.addEventListener('DOMContentLoaded', () => {
   UI.renderDashboard();
   UI.renderPipeline();
   UI.renderCustomers();
+  UI.renderTasks();
 
   // Listen for data changes
   window.addEventListener('flowcrm_data_changed', (e) => {
     UI.renderDashboard();
     UI.renderPipeline();
     UI.renderCustomers();
+    UI.renderTasks();
   });
 
   // Add smooth transitions & animations
