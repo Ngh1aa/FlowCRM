@@ -1510,6 +1510,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Sidebar collapse toggle
+  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+  if (sidebarToggleBtn && sidebar) {
+    const syncSidebarExpandedState = () => {
+      sidebarToggleBtn.setAttribute('aria-expanded', String(!sidebar.classList.contains('collapsed')));
+    };
+
+    sidebarToggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      syncSidebarExpandedState();
+      // Save state to localStorage
+      localStorage.setItem('flowcrm_sidebar_collapsed', sidebar.classList.contains('collapsed'));
+    });
+
+    // Restore saved state
+    const savedCollapsed = localStorage.getItem('flowcrm_sidebar_collapsed');
+    if (savedCollapsed === 'true') {
+      sidebar.classList.add('collapsed');
+    }
+    syncSidebarExpandedState();
+  }
+
   // Initial render based on page
   UI.renderDashboard();
   UI.renderPipeline();

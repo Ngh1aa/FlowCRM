@@ -20,16 +20,21 @@
   </button>
 
   <div class="app-container" id="appContainer">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="32" height="32" rx="8" fill="currentColor"/>
-            <path d="M8 11h8v2H8v-2zm0 5h13v2H8v-2zm0 5h10v2H8v-2z" fill="#050505"/>
-            <circle cx="24" cy="11" r="2" fill="#050505"/>
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="28" height="28" rx="7" fill="currentColor" fill-opacity="0.1"/>
+            <path d="M9 11h10M9 18h14M9 25h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="23" cy="11" r="2.5" fill="currentColor" opacity="0.7"/>
           </svg>
           <span>FlowCRM</span>
         </div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
+          <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
       </div>
 
       <nav class="sidebar-nav">
@@ -128,7 +133,55 @@
 
       <div class="page-content">
         <div class="dashboard">
-          <section class="section-block dashboard-overview">
+          <section class="overview-hero" aria-labelledby="overviewHeroTitle">
+            <div class="overview-hero-content">
+              <span class="section-kicker">FlowCRM command center</span>
+              <h2 id="overviewHeroTitle">Theo dõi doanh thu, pipeline và chăm sóc khách hàng trong một màn hình.</h2>
+              <p>Dashboard tập trung cho đội bán hàng: nhìn nhanh tiến độ, ưu tiên việc cần xử lý và các cơ hội đang nóng.</p>
+              <div class="hero-actions">
+                <a href="pipeline.html" class="btn btn-primary">Xem pipeline</a>
+                <a href="customers.html" class="btn btn-secondary">Khách hàng mới</a>
+              </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="hero-panel panel-chart">
+                <span>Deal velocity</span>
+                <strong>68%</strong>
+                <div class="hero-sparkline">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="hero-panel panel-pipeline">
+                <span>Pipeline value</span>
+                <strong>₫1.9B</strong>
+                <em>+14% tuần này</em>
+              </div>
+            </div>
+            <div class="hero-stat-grid">
+              <div class="hero-stat-card">
+                <span>Tổng doanh thu</span>
+                <strong>₫8.2B</strong>
+                <small>+18.5% so với tháng trước</small>
+              </div>
+              <div class="hero-stat-card">
+                <span>Cơ hội mới</span>
+                <strong>24</strong>
+                <small>+12% so với tuần trước</small>
+              </div>
+              <div class="hero-stat-card">
+                <span>Tỷ lệ chuyển đổi</span>
+                <strong>32%</strong>
+                <small>3 điểm cần theo dõi</small>
+              </div>
+              <div class="hero-stat-card">
+                <span>Khách hàng mới</span>
+                <strong>8</strong>
+                <small>+24% so với tháng trước</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block dashboard-overview overview-kpi-strip">
             <div class="section-heading">
               <div>
                 <span class="section-kicker">Tổng quan</span>
@@ -180,8 +233,8 @@
             </div>
           </section>
 
-          <div class="dashboard-grid">
-            <section class="section-block">
+          <div class="dashboard-grid overview-bento-grid">
+            <section class="section-block revenue-and-deals-card">
               <div class="section-heading">
                 <div>
                   <span class="section-kicker">Doanh thu</span>
@@ -288,8 +341,8 @@
               </div>
             </section>
 
-            <aside class="right-column">
-              <section class="section-block">
+            <aside class="right-column overview-side-cards">
+              <section class="section-block today-tasks-card">
                 <div class="section-heading">
                   <div>
                     <span class="section-kicker">Công việc</span>
@@ -342,7 +395,7 @@
                 </div>
               </section>
 
-              <section class="section-block">
+              <section class="section-block potential-customers-card">
                 <div class="section-heading">
                   <div>
                     <span class="section-kicker">Khách hàng</span>
@@ -375,6 +428,37 @@
                 </div>
               </section>
             </aside>
+            <section class="section-block mini-bento-card success-rate-card">
+              <div class="mini-card-heading">
+                <span class="section-kicker">Hiệu suất</span>
+                <h3 class="card-title">Tỷ lệ thành công</h3>
+              </div>
+              <div class="success-meter">
+                <span>52%</span>
+              </div>
+              <p class="card-subtitle">Deal thắng / tổng deal trong tháng</p>
+            </section>
+            <section class="section-block mini-bento-card appointments-card">
+              <div class="mini-card-heading">
+                <span class="section-kicker">Lịch hẹn</span>
+                <h3 class="card-title">Sắp tới</h3>
+              </div>
+              <strong class="mini-metric">6</strong>
+              <p class="card-subtitle">Cuộc hẹn cần chuẩn bị tuần này</p>
+            </section>
+            <section class="section-block mini-bento-card pipeline-status-card">
+              <div class="mini-card-heading">
+                <span class="section-kicker">Pipeline</span>
+                <h3 class="card-title">Trạng thái</h3>
+              </div>
+              <div class="pipeline-mini-bars">
+                <span style="height: 42%"></span>
+                <span style="height: 68%"></span>
+                <span style="height: 54%"></span>
+                <span style="height: 82%"></span>
+              </div>
+              <p class="card-subtitle">Đàm phán và đề xuất đang tăng</p>
+            </section>
           </div>
         </div>
       </div>

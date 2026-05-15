@@ -1,33 +1,77 @@
 /* ========================================
-   FlowCRM - Monochrome Minimal Design System
+   FlowCRM - Dark Soft Bento Dashboard
    ======================================== */
 
 :root {
-  --bg-primary: #050505;
-  --bg-secondary: #0b0b0b;
-  --bg-tertiary: #141414;
-  --bg-elevated: #1b1b1b;
+  /* Warm Off-Black Background */
+  --bg-primary: #0b0d0c;
+  --bg-secondary: #121513;
+  --bg-tertiary: #1a1f1b;
+  --bg-elevated: #222820;
 
-  --text-primary: #f6f6f6;
-  --text-secondary: #c6c6c6;
-  --text-tertiary: #969696;
-  --text-inverse: #080808;
+  /* Sidebar - Slightly Darker */
+  --shell-bg: #070807;
+  --shell-bg-soft: #0b0d0c;
+  --shell-control: rgba(255, 255, 255, 0.06);
+  --shell-control-hover: rgba(255, 255, 255, 0.1);
+  --shell-line: rgba(255, 255, 255, 0.08);
 
-  --accent: #eeeeee;
-  --accent-light: rgba(238, 238, 238, 0.08);
-  --accent-hover: #ffffff;
+  /* Dark Graphite Card Surfaces */
+  --surface-card: #1a1f1b;
+  --surface-card-strong: #222820;
+  --surface-card-soft: #121513;
+  --surface-card-muted: #283027;
+  --surface-line: rgba(255, 255, 255, 0.08);
+  --surface-line-strong: rgba(255, 255, 255, 0.14);
 
-  --success: #8fd6a4;
-  --warning: #d8bd76;
-  --danger: #ff8d8d;
+  /* Off-White Text */
+  --text-primary: #f4f1ea;
+  --text-secondary: #b8b2a8;
+  --text-tertiary: #7f7a72;
+  --text-inverse: #0b0d0c;
 
-  --border-light: rgba(255, 255, 255, 0.055);
-  --border-medium: rgba(255, 255, 255, 0.105);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  /* Ink variants */
+  --ink-primary: #f4f1ea;
+  --ink-secondary: #b8b2a8;
+  --ink-tertiary: #7f7a72;
+  --ink-muted: #625e57;
 
-  --black: #050505;
-  --white: #ffffff;
-  --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.5);
+  /* Pastel Accents */
+  --accent: #b8e6c3;
+  --accent-light: rgba(184, 230, 195, 0.1);
+  --accent-hover: #eaf78a;
+
+  /* Soft Pastel Status */
+  --success: #b8e6c3;
+  --success-bg: rgba(143, 214, 164, 0.12);
+  --success-border: rgba(143, 214, 164, 0.2);
+  --warning: #f2d16b;
+  --warning-bg: rgba(216, 189, 118, 0.12);
+  --warning-border: rgba(216, 189, 118, 0.2);
+  --danger: #f29c8f;
+  --danger-bg: rgba(255, 141, 141, 0.12);
+  --danger-border: rgba(255, 141, 141, 0.2);
+  --info: #9fc7e8;
+  --info-bg: rgba(141, 189, 255, 0.12);
+  --info-border: rgba(141, 189, 255, 0.2);
+
+  /* Soft Borders */
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Soft Shadows - No Sharp edges */
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* Core */
+  --black: #0b0d0c;
+  --white: #f4f1ea;
+  --shadow-ios: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-ios-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-ios-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
@@ -41,14 +85,6 @@
   --text-4xl: 2.75rem;
   --text-5xl: 4rem;
 
-  --font-normal: 400;
-  --font-medium: 500;
-  --font-semibold: 600;
-  --font-bold: 700;
-
-  --leading-tight: 1.15;
-  --leading-normal: 1.5;
-
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -60,12 +96,15 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 8px;
+  /* Large Rounded Corners */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
   --radius-full: 9999px;
 
-  --transition-fast: 150ms ease;
+  --transition-fast: 180ms ease;
   --transition-normal: 220ms ease;
 
   --header-height: 72px;
@@ -88,64 +127,14 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  color: var(--text-primary);
-  background: var(--bg-primary);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  font-weight: var(--font-normal);
-  line-height: var(--leading-normal);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-  border: 0;
-  background: none;
-}
-
-input,
-textarea,
-select {
-  color: inherit;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-primary);
 }
 
 ::selection {
-  color: var(--text-inverse);
-  background: var(--accent);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text-primary);
 }
