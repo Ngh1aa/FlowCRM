@@ -91,23 +91,34 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  color: var(--text-secondary);
-  background: transparent;
-  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  background: #202020;
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: var(--radius-sm);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
   cursor: pointer;
   transition: all 200ms ease;
 }
 
 .sidebar-toggle-btn:hover {
-  color: var(--text-primary);
-  background: var(--accent-light);
-  border-color: var(--border-medium);
+  color: #ffffff;
+  background: #2d2d2d;
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(255, 255, 255, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .sidebar-toggle-btn svg {
   width: 16px;
   height: 16px;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.28));
   transition: transform 200ms ease;
 }
 
@@ -188,7 +199,9 @@
   white-space: nowrap;
   text-decoration: none;
   position: relative;
-  transition: background 200ms ease, border-color 200ms ease;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
 }
 
 .nav-item:hover,
@@ -373,7 +386,7 @@
   padding: 0 var(--space-8);
   background: rgba(5, 5, 5, 0.92);
   border-bottom: 1px solid var(--border-medium);
-  }
+}
 
 .topbar-left {
   gap: var(--space-3);
@@ -432,17 +445,21 @@
   padding: var(--space-5);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 38%),
-    rgba(14, 14, 14, 0.88);
+    rgba(14, 14, 14, 0.92);
   border-color: rgba(255, 255, 255, 0.085);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
 }
 
 .dashboard-overview::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 26%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05),
+    transparent 26%
+  );
   opacity: 0.5;
 }
 
@@ -542,7 +559,10 @@
 .kpi-card {
   min-height: 148px;
   padding: var(--space-5);
-  transition: border-color var(--transition-normal), background var(--transition-normal), transform var(--transition-normal);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    transform var(--transition-normal);
 }
 
 .dashboard-overview .kpi-card {
@@ -552,7 +572,11 @@
   justify-content: center;
   padding: var(--space-5);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    ),
     rgba(18, 18, 18, 0.9);
   border-color: rgba(255, 255, 255, 0.085);
 }
@@ -566,7 +590,11 @@
 .dashboard-overview .kpi-row .kpi-card:first-child {
   min-height: 152px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035) 56%),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.035) 56%
+    ),
     rgba(24, 24, 24, 0.96);
   border-color: rgba(255, 255, 255, 0.16);
   box-shadow:
@@ -748,7 +776,11 @@
 }
 
 .chart-point:hover .chart-bar {
-  background: linear-gradient(180deg, var(--surface-card-strong), rgba(255, 248, 240, 0.3));
+  background: linear-gradient(
+    180deg,
+    var(--surface-card-strong),
+    rgba(255, 248, 240, 0.3)
+  );
 }
 
 .chart-tooltip {
@@ -763,7 +795,9 @@
   white-space: nowrap;
   opacity: 0;
   transform: translateY(0);
-  transition: opacity 150ms, transform 150ms;
+  transition:
+    opacity 150ms,
+    transform 150ms;
   pointer-events: none;
 }
 
@@ -776,12 +810,12 @@
 }
 
 .chart-point.highlight .chart-bar {
-  background: linear-gradient(180deg, #dddddd, rgba(255, 255, 255, 0.22));
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.5));
 }
 
 .chart-point.highlight-max .chart-bar {
-  background: linear-gradient(180deg, var(--success), rgba(143, 214, 164, 0.4));
-  box-shadow: 0 0 16px rgba(143, 214, 164, 0.3);
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.7));
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
 }
 
 .chart-label {
@@ -812,7 +846,10 @@
   border-radius: var(--radius-md);
   font-size: var(--text-xs);
   font-weight: var(--font-medium);
-  transition: color var(--transition-normal), background var(--transition-normal), border-color var(--transition-normal);
+  transition:
+    color var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal);
 }
 
 .chart-tab.active,
@@ -911,9 +948,15 @@
   margin-right: var(--space-2);
 }
 
-.deal-stage-indicator.qualification { background: #9a9a9a; }
-.deal-stage-indicator.proposal { background: var(--warning); }
-.deal-stage-indicator.closed { background: var(--success); }
+.deal-stage-indicator.qualification {
+  background: #9a9a9a;
+}
+.deal-stage-indicator.proposal {
+  background: var(--warning);
+}
+.deal-stage-indicator.closed {
+  background: var(--success);
+}
 
 .deal-meta {
   display: flex;
@@ -945,8 +988,8 @@
 
 .deal-stage-badge.won {
   color: var(--success);
-  background: rgba(143, 214, 164, 0.1);
-  border: 1px solid rgba(143, 214, 164, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .deal-deadline {
@@ -956,7 +999,7 @@
 }
 
 .list-item.won {
-  background: rgba(143, 214, 164, 0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .task-checkbox {
@@ -1022,7 +1065,11 @@
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  transition: background var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+  transition:
+    background var(--transition-normal),
+    color var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
 }
 
 .btn svg,
@@ -1116,7 +1163,9 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  transition: border-color var(--transition-normal), background var(--transition-normal);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal);
 }
 
 .search-box:focus-within {
@@ -1170,7 +1219,9 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px);
-  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
 }
 
 .nlp-bar.visible {
@@ -1208,7 +1259,9 @@
   background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  transition:
+    opacity var(--transition-normal),
+    visibility var(--transition-normal);
 }
 
 .modal-overlay.active {
@@ -1267,7 +1320,7 @@
 }
 
 .form-label.required::after {
-  content: ' *';
+  content: " *";
   color: var(--text-primary);
 }
 
@@ -1354,22 +1407,22 @@ textarea.form-input {
   padding: var(--space-3);
   display: flex;
   flex-direction: column;
-  background: rgba(13, 13, 13, 0.74);
+  background: rgba(14, 14, 14, 0.86);
   border-color: rgba(255, 255, 255, 0.055);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 .kanban-column[data-stage="closed-won"] {
   background:
-    linear-gradient(135deg, rgba(143, 214, 164, 0.035), transparent 46%),
-    rgba(13, 13, 13, 0.74);
-  border-color: rgba(143, 214, 164, 0.085);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 46%),
+    rgba(14, 14, 14, 0.86);
+  border-color: rgba(255, 255, 255, 0.085);
 }
 
 .kanban-column[data-stage="closed-lost"] {
   background:
     linear-gradient(135deg, rgba(255, 141, 141, 0.032), transparent 46%),
-    rgba(13, 13, 13, 0.74);
+    rgba(14, 14, 14, 0.86);
   border-color: rgba(255, 141, 141, 0.08);
 }
 
@@ -1463,7 +1516,10 @@ textarea.form-input {
   border: 1px solid rgba(255, 255, 255, 0.065);
   border-radius: var(--radius-md);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
-  transition: background var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
 }
 
 .kanban-card:hover {
@@ -1483,7 +1539,10 @@ textarea.form-input {
 .kanban-card-menu {
   color: var(--text-tertiary);
   opacity: 0.42;
-  transition: opacity var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+  transition:
+    opacity var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast);
 }
 
 .kanban-card:hover .kanban-card-menu,
@@ -1589,9 +1648,9 @@ textarea.form-input {
 }
 
 .status-badge.active {
-  color: #8fd6a4;
-  background: rgba(143, 214, 164, 0.1);
-  border-color: rgba(143, 214, 164, 0.2);
+  color: var(--success);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .status-badge.prospect {
@@ -1620,9 +1679,9 @@ textarea.form-input {
 
 .tag-won,
 .status-badge.active {
-  color: #a9d7b6;
-  background: rgba(143, 214, 164, 0.045);
-  border-color: rgba(143, 214, 164, 0.1);
+  color: var(--success);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .tag-lost,
@@ -1862,11 +1921,17 @@ textarea.form-input {
   gap: var(--space-4);
   min-height: 52px;
   padding: var(--space-3) var(--space-5);
-  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(12, 12, 12, 0.98));
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.95),
+    rgba(12, 12, 12, 0.98)
+  );
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   font-size: var(--text-sm);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .task-summary-item {
@@ -1901,7 +1966,11 @@ textarea.form-input {
 .task-summary-item.overdue {
   color: var(--danger);
   background:
-    linear-gradient(135deg, rgba(255, 141, 141, 0.11), rgba(255, 255, 255, 0.026)),
+    linear-gradient(
+      135deg,
+      rgba(255, 141, 141, 0.11),
+      rgba(255, 255, 255, 0.026)
+    ),
     rgba(22, 17, 17, 0.9);
   border-color: rgba(255, 141, 141, 0.18);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
@@ -1932,7 +2001,10 @@ textarea.form-input {
 
 .tasks-kanban {
   display: grid;
-  grid-template-columns: minmax(380px, 1.18fr) minmax(320px, 1fr) minmax(300px, 0.92fr);
+  grid-template-columns: minmax(380px, 1.18fr) minmax(320px, 1fr) minmax(
+      300px,
+      0.92fr
+    );
   gap: var(--space-4);
   align-items: start;
   width: 100%;
@@ -1983,9 +2055,15 @@ textarea.form-input {
   border-radius: var(--radius-full);
 }
 
-.tasks-column-dot.overdue { background: var(--danger); }
-.tasks-column-dot.today { background: var(--warning); }
-.tasks-column-dot.upcoming { background: var(--success); }
+.tasks-column-dot.overdue {
+  background: var(--danger);
+}
+.tasks-column-dot.today {
+  background: var(--warning);
+}
+.tasks-column-dot.upcoming {
+  background: var(--success);
+}
 
 .tasks-column-count {
   font-size: var(--text-xs);
@@ -2283,7 +2361,7 @@ textarea.form-input {
   top: calc(var(--header-height) + var(--space-5));
   max-height: calc(100vh - var(--header-height) - var(--space-8));
   overflow: auto;
-  background: rgba(13, 13, 13, 0.72);
+  background: rgba(14, 14, 14, 0.86);
 }
 
 .tasks-page .tasks-list[data-filter="overdue"],
@@ -2339,7 +2417,10 @@ textarea.form-input {
   background: rgba(255, 255, 255, 0.018);
   border: 1px solid transparent;
   border-radius: var(--radius-md);
-  transition: background var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
 }
 
 .tasks-page .task-item + .task-item {
@@ -2387,7 +2468,9 @@ textarea.form-input {
 .tasks-page .task-actions {
   opacity: 0;
   transform: translateX(4px);
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .tasks-page .task-item:hover .task-actions,
@@ -2497,7 +2580,9 @@ textarea.form-input {
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .calendar-day:hover {
@@ -2550,9 +2635,9 @@ textarea.form-input {
 }
 
 .event-chip.deal {
-  background: rgba(143, 214, 164, 0.15);
-  color: #8fd6a4;
-  border: 1px solid rgba(143, 214, 164, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .event-chip.lead {
@@ -2680,7 +2765,9 @@ textarea.form-input {
   padding: var(--space-3) var(--space-4);
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.045);
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .conversation-item:last-child {
@@ -2791,7 +2878,11 @@ textarea.form-input {
 .chat-input {
   gap: var(--space-3);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.012)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.028),
+      rgba(255, 255, 255, 0.012)
+    ),
     rgba(10, 10, 10, 0.95);
   border-top: 1px solid rgba(255, 255, 255, 0.085);
   border-bottom: 0;
@@ -2883,7 +2974,11 @@ body,
   min-height: 48px;
   border-radius: var(--radius-full);
   color: var(--text-secondary);
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .nav-item:hover {
@@ -2996,7 +3091,11 @@ body,
   min-height: 132px;
   color: var(--ink-primary);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 242, 0.96)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(247, 247, 242, 0.96)
+    ),
     var(--surface-card-strong);
   border-color: var(--surface-line);
   border-radius: var(--radius-lg);
@@ -3026,9 +3125,9 @@ body,
 }
 
 .dashboard-overview .kpi-change.up {
-  color: #1f6b3b;
-  background: #dcf4e4;
-  border-color: rgba(31, 107, 59, 0.18);
+  color: #2a2a2a;
+  background: #f4f1ea;
+  border-color: rgba(0, 0, 0, 0.14);
 }
 
 .dashboard-overview .kpi-change.down {
@@ -3037,28 +3136,81 @@ body,
   border-color: rgba(148, 52, 52, 0.18);
 }
 
-.section-block :where(h1, h2, h3, h4, h5, h6, .section-title, .card-title, .kpi-value, .kpi-label, .table-title, .section-note),
-.dashboard-overview :where(h1, h2, h3, h4, h5, h6, .section-title, .kpi-value, .kpi-label),
+.section-block
+  :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .section-title,
+    .card-title,
+    .kpi-value,
+    .kpi-label,
+    .table-title,
+    .section-note
+  ),
+.dashboard-overview
+  :where(h1, h2, h3, h4, h5, h6, .section-title, .kpi-value, .kpi-label),
 .card :where(h1, h2, h3, h4, h5, h6, .card-title),
 .kpi-card :where(.kpi-value, .kpi-label, .kpi-change),
 .customer-table-wrapper :where(th, td, .customer-name, .customer-company),
-.kanban-column :where(.kanban-column-title, .kanban-card-title, .kanban-card-value, .kanban-card-next strong),
+.kanban-column
+  :where(
+    .kanban-column-title,
+    .kanban-card-title,
+    .kanban-card-value,
+    .kanban-card-next strong
+  ),
 .task-section :where(.task-section-title, .task-card-title),
 .tasks-column :where(.task-section-title, .task-card-title),
 .chat-area :where(.conversation-name, .chat-contact-name),
 .conversations-list :where(.conversation-name),
 .calendar-wrapper :where(.calendar-day-number, .calendar-title),
-.section-block :where(.list-item-title, .task-title, .event-title, .list-item-value, .deal-title, .deal-name, .deal-value) {
+.section-block
+  :where(
+    .list-item-title,
+    .task-title,
+    .event-title,
+    .list-item-value,
+    .deal-title,
+    .deal-name,
+    .deal-value
+  ) {
   color: var(--ink-primary);
 }
 
-.section-block :where(p, .section-subtitle, .card-subtitle, .card-meta, .muted, .text-muted),
+.section-block
+  :where(p, .section-subtitle, .card-subtitle, .card-meta, .muted, .text-muted),
 .dashboard-overview :where(.section-note, .kpi-change, .kpi-caption),
 .card :where(p, .card-subtitle, .card-meta),
-.customer-table-wrapper :where(.customer-email, .customer-phone, .customer-date, .table-meta),
-.kanban-column :where(.kanban-card-customer, .kanban-card-meta, .kanban-card-next span, .kanban-card-probability, .summary-label),
-.task-section :where(.task-card-meta, .task-card-deadline, .task-card-context, .task-card-deal, .task-card-customer),
-.tasks-column :where(.task-card-meta, .task-card-deadline, .task-card-context, .task-card-deal, .task-card-customer),
+.customer-table-wrapper
+  :where(.customer-email, .customer-phone, .customer-date, .table-meta),
+.kanban-column
+  :where(
+    .kanban-card-customer,
+    .kanban-card-meta,
+    .kanban-card-next span,
+    .kanban-card-probability,
+    .summary-label
+  ),
+.task-section
+  :where(
+    .task-card-meta,
+    .task-card-deadline,
+    .task-card-context,
+    .task-card-deal,
+    .task-card-customer
+  ),
+.tasks-column
+  :where(
+    .task-card-meta,
+    .task-card-deadline,
+    .task-card-context,
+    .task-card-deal,
+    .task-card-customer
+  ),
 .chat-area :where(.message-time, .chat-contact-status),
 .conversations-list :where(.conversation-preview, .conversation-time),
 .calendar-wrapper :where(.calendar-day-events, .event-meta, .event-time) {
@@ -3132,7 +3284,12 @@ body,
 .kanban-card-menu,
 .task-card-menu {
   border-radius: var(--radius-full);
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .icon-btn,
@@ -3268,8 +3425,8 @@ body,
 .task-priority.cold,
 .task-priority-badge.cold,
 .deal-stage-badge.won {
-  color: #1f6b3b;
-  background: #dcf4e4;
+  color: #2a2a2a;
+  background: #f4f1ea;
 }
 
 .status-badge.prospect,
@@ -3326,7 +3483,7 @@ body,
 .kanban-dot.closed,
 .kanban-column[data-stage="closed-won"] .kanban-column-dot,
 .kanban-column[data-stage="closed-won"] .stage-dot {
-  background: #76c893;
+  background: #f4f1ea;
 }
 
 .kanban-dot.lost,
@@ -3641,7 +3798,7 @@ body,
 .dashboard-overview {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 38%),
-    rgba(14, 14, 14, 0.88);
+    rgba(14, 14, 14, 0.92);
   border-color: rgba(255, 255, 255, 0.085);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
 }
@@ -3653,7 +3810,7 @@ body,
 .kanban-column,
 .tasks-column,
 .task-section {
-  background: rgba(13, 13, 13, 0.74);
+  background: rgba(14, 14, 14, 0.86);
   border-color: rgba(255, 255, 255, 0.055);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
@@ -3679,12 +3836,40 @@ body,
   background: var(--surface-card-strong);
 }
 
-.section-block :where(h1, h2, h3, h4, h5, h6, .section-title, .card-title, .kpi-value, .kpi-label, .table-title, .section-note, .list-item-title, .task-title, .event-title, .list-item-value, .deal-title, .deal-name, .deal-value),
-.dashboard-overview :where(h1, h2, h3, h4, h5, h6, .section-title, .kpi-value, .kpi-label),
+.section-block
+  :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .section-title,
+    .card-title,
+    .kpi-value,
+    .kpi-label,
+    .table-title,
+    .section-note,
+    .list-item-title,
+    .task-title,
+    .event-title,
+    .list-item-value,
+    .deal-title,
+    .deal-name,
+    .deal-value
+  ),
+.dashboard-overview
+  :where(h1, h2, h3, h4, h5, h6, .section-title, .kpi-value, .kpi-label),
 .card :where(h1, h2, h3, h4, h5, h6, .card-title),
 .kpi-card :where(.kpi-value, .kpi-label, .kpi-change),
 .customer-table-wrapper :where(th, td, .customer-name, .customer-company),
-.kanban-column :where(.kanban-column-title, .kanban-card-title, .kanban-card-value, .kanban-card-next strong),
+.kanban-column
+  :where(
+    .kanban-column-title,
+    .kanban-card-title,
+    .kanban-card-value,
+    .kanban-card-next strong
+  ),
 .task-section :where(.task-section-title, .task-card-title),
 .tasks-column :where(.task-section-title, .task-card-title),
 .chat-area :where(.conversation-name, .chat-contact-name),
@@ -3694,13 +3879,36 @@ body,
   color: var(--text-primary);
 }
 
-.section-block :where(p, .section-subtitle, .card-subtitle, .card-meta, .muted, .text-muted),
+.section-block
+  :where(p, .section-subtitle, .card-subtitle, .card-meta, .muted, .text-muted),
 .dashboard-overview :where(.section-note, .kpi-change, .kpi-caption),
 .card :where(p, .card-subtitle, .card-meta),
-.customer-table-wrapper :where(.customer-email, .customer-phone, .customer-date, .table-meta),
-.kanban-column :where(.kanban-card-customer, .kanban-card-meta, .kanban-card-next span, .kanban-card-probability, .summary-label),
-.task-section :where(.task-card-meta, .task-card-deadline, .task-card-context, .task-card-deal, .task-card-customer),
-.tasks-column :where(.task-card-meta, .task-card-deadline, .task-card-context, .task-card-deal, .task-card-customer),
+.customer-table-wrapper
+  :where(.customer-email, .customer-phone, .customer-date, .table-meta),
+.kanban-column
+  :where(
+    .kanban-card-customer,
+    .kanban-card-meta,
+    .kanban-card-next span,
+    .kanban-card-probability,
+    .summary-label
+  ),
+.task-section
+  :where(
+    .task-card-meta,
+    .task-card-deadline,
+    .task-card-context,
+    .task-card-deal,
+    .task-card-customer
+  ),
+.tasks-column
+  :where(
+    .task-card-meta,
+    .task-card-deadline,
+    .task-card-context,
+    .task-card-deal,
+    .task-card-customer
+  ),
 .chat-area :where(.message-time, .chat-contact-status),
 .conversations-list :where(.conversation-preview, .conversation-time),
 .calendar-wrapper :where(.calendar-day-events, .event-meta, .event-time),
@@ -3732,8 +3940,8 @@ body,
 .kpi-change.up,
 .dashboard-overview .kpi-change.up {
   color: var(--success);
-  background: rgba(143, 214, 164, 0.1);
-  border-color: rgba(143, 214, 164, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .kpi-change.down,
@@ -3888,8 +4096,8 @@ body,
 .status-badge.active,
 .deal-stage-badge.won {
   color: var(--success);
-  background: rgba(143, 214, 164, 0.1);
-  border-color: rgba(143, 214, 164, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .tag-lost,
@@ -3961,7 +4169,7 @@ body,
 
 .task-section-overdue,
 .tasks-column.overdue {
-  background: rgba(13, 13, 13, 0.74);
+  background: rgba(14, 14, 14, 0.86);
   border-color: rgba(255, 141, 141, 0.12);
 }
 
@@ -4238,10 +4446,18 @@ body,
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(circle at 16% 18%, rgba(184, 230, 195, 0.22), transparent 26%),
-    radial-gradient(circle at 82% 10%, rgba(159, 199, 232, 0.24), transparent 30%),
+    radial-gradient(
+      circle at 16% 18%,
+      rgba(255, 255, 255, 0.16),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 10%,
+      rgba(255, 255, 255, 0.14),
+      transparent 30%
+    ),
     linear-gradient(135deg, rgba(0, 0, 0, 0.25), transparent 48%),
-    linear-gradient(135deg, #17241e 0%, #101715 44%, #0b0d0c 100%);
+    linear-gradient(135deg, #222222 0%, #151515 44%, #080808 100%);
   box-shadow: var(--shadow-lg), var(--shadow-inset);
 }
 
@@ -4254,7 +4470,13 @@ body,
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 44px 44px;
-  mask-image: linear-gradient(120deg, transparent 0%, #000 22%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    #000 22%,
+    #000 72%,
+    transparent 100%
+  );
   opacity: 0.55;
 }
 
@@ -4265,11 +4487,15 @@ body,
   bottom: -130px;
   width: 520px;
   height: 320px;
-  border: 1px solid rgba(184, 230, 195, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 50%;
   background:
-    repeating-radial-gradient(ellipse at center, rgba(234, 247, 138, 0.12) 0 2px, transparent 2px 18px),
-    linear-gradient(135deg, rgba(159, 199, 232, 0.14), transparent);
+    repeating-radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.1) 0 2px,
+      transparent 2px 18px
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
   transform: rotate(-10deg);
   opacity: 0.72;
 }
@@ -4321,7 +4547,7 @@ body,
 .hero-stat-card {
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-lg);
-  background: rgba(34, 40, 32, 0.82);
+  background: rgba(34, 34, 34, 0.86);
   box-shadow: var(--shadow-md), var(--shadow-inset);
 }
 
@@ -4373,11 +4599,21 @@ body,
   background: linear-gradient(180deg, var(--accent-hover), var(--accent));
 }
 
-.hero-sparkline i:nth-child(1) { height: 38%; }
-.hero-sparkline i:nth-child(2) { height: 62%; }
-.hero-sparkline i:nth-child(3) { height: 48%; }
-.hero-sparkline i:nth-child(4) { height: 76%; }
-.hero-sparkline i:nth-child(5) { height: 92%; }
+.hero-sparkline i:nth-child(1) {
+  height: 38%;
+}
+.hero-sparkline i:nth-child(2) {
+  height: 62%;
+}
+.hero-sparkline i:nth-child(3) {
+  height: 48%;
+}
+.hero-sparkline i:nth-child(4) {
+  height: 76%;
+}
+.hero-sparkline i:nth-child(5) {
+  height: 92%;
+}
 
 .hero-stat-grid {
   grid-column: 1 / -1;
@@ -4499,12 +4735,16 @@ body,
 }
 
 .overview-bento-grid .chart-bar {
-  background: linear-gradient(180deg, rgba(244, 241, 234, 0.42), rgba(184, 178, 168, 0.08));
+  background: linear-gradient(
+    180deg,
+    rgba(244, 241, 234, 0.42),
+    rgba(184, 178, 168, 0.08)
+  );
 }
 
 .overview-bento-grid .chart-point.highlight .chart-bar,
 .overview-bento-grid .chart-point.highlight-max .chart-bar {
-  background: linear-gradient(180deg, var(--accent), rgba(184, 230, 195, 0.28));
+  background: linear-gradient(180deg, var(--accent), rgba(255, 255, 255, 0.22));
 }
 
 .overview-bento-grid .chart-label,
@@ -4530,7 +4770,11 @@ body,
 
 .today-tasks-card .task-item.urgent {
   border-left: 4px solid var(--danger);
-  background: linear-gradient(90deg, rgba(242, 156, 143, 0.12), var(--surface-card-strong) 42%);
+  background: linear-gradient(
+    90deg,
+    rgba(242, 156, 143, 0.12),
+    var(--surface-card-strong) 42%
+  );
 }
 
 .today-tasks-card .task-item.completed {
@@ -4559,8 +4803,16 @@ body,
   margin: var(--space-6) auto var(--space-3);
   border-radius: 128px 128px 0 0;
   background:
-    radial-gradient(circle at center bottom, var(--surface-card) 0 45%, transparent 46%),
-    conic-gradient(from 270deg at 50% 100%, var(--accent-hover) 0 94deg, rgba(255, 255, 255, 0.12) 94deg 180deg);
+    radial-gradient(
+      circle at center bottom,
+      var(--surface-card) 0 45%,
+      transparent 46%
+    ),
+    conic-gradient(
+      from 270deg at 50% 100%,
+      var(--accent-hover) 0 94deg,
+      rgba(255, 255, 255, 0.12) 94deg 180deg
+    );
 }
 
 .success-meter span {
@@ -4580,7 +4832,217 @@ body,
 .pipeline-mini-bars span {
   flex: 1;
   border-radius: var(--radius-full);
-  background: linear-gradient(180deg, var(--info), rgba(159, 199, 232, 0.18));
+  background: linear-gradient(180deg, var(--info), rgba(255, 255, 255, 0.16));
+}
+
+/* Shared Page Hero - extends the index dashboard language */
+.customers-page .page-content,
+.pipeline-page .page-content,
+.tasks-page .page-content,
+.calendar-page .page-content,
+.messages-page .page-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+}
+
+.page-hero {
+  position: relative;
+  min-height: 248px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+  gap: var(--space-6);
+  align-items: stretch;
+  padding: clamp(24px, 3vw, 36px);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(
+      circle at 14% 16%,
+      rgba(255, 255, 255, 0.15),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 86% 14%,
+      rgba(255, 255, 255, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.25), transparent 48%),
+    linear-gradient(135deg, #222222 0%, #151515 44%, #080808 100%);
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    #000 22%,
+    #000 72%,
+    transparent 100%
+  );
+  opacity: 0.48;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  right: -110px;
+  bottom: -142px;
+  width: 520px;
+  height: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.09) 0 2px,
+      transparent 2px 18px
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
+  opacity: 0.62;
+  transform: rotate(-10deg);
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero-content {
+  align-self: center;
+  max-width: 720px;
+}
+
+.page-hero h2 {
+  max-width: 760px;
+  margin-top: var(--space-3);
+  color: var(--text-primary);
+  font-size: clamp(1.85rem, 3.2vw, 3.25rem);
+  font-weight: var(--font-bold);
+  letter-spacing: 0;
+  line-height: 1.04;
+}
+
+.page-hero p {
+  max-width: 600px;
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+
+.page-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  align-content: end;
+}
+
+.page-hero-metric {
+  min-height: 116px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-5);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-lg);
+  background: rgba(34, 34, 34, 0.86);
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+}
+
+.page-hero-metric:first-child {
+  grid-column: 1 / -1;
+  min-height: 132px;
+}
+
+.page-hero-metric span {
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+}
+
+.page-hero-metric strong {
+  margin-top: var(--space-2);
+  color: var(--text-primary);
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1;
+}
+
+.page-hero-metric.danger {
+  border-color: rgba(255, 141, 141, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 141, 141, 0.105), transparent 58%),
+    rgba(34, 34, 34, 0.86);
+}
+
+.customers-page .customer-table-wrapper,
+.calendar-page .calendar-wrapper,
+.calendar-page .upcoming-events,
+.messages-page .conversations-list,
+.messages-page .chat-area,
+.pipeline-page .kanban-column,
+.tasks-page .tasks-column {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.016)
+    ),
+    rgba(18, 18, 18, 0.96);
+  border-color: rgba(255, 255, 255, 0.085);
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.customers-page .customer-table-wrapper,
+.calendar-page .calendar-wrapper,
+.messages-page .chat-area {
+  min-height: 560px;
+}
+
+.pipeline-page .kanban-board,
+.tasks-page .tasks-kanban {
+  padding: 4px 2px var(--space-2);
+}
+
+.pipeline-page .kanban-column,
+.tasks-page .tasks-column {
+  height: clamp(520px, calc(100vh - 420px), 720px);
+}
+
+.messages-page .messages-container,
+.calendar-page .calendar-container {
+  align-items: stretch;
+}
+
+.messages-page .messages-container {
+  min-height: 660px;
+}
+
+.calendar-page .calendar-container {
+  grid-template-columns: minmax(0, 1.42fr) minmax(300px, 0.88fr);
+}
+
+.customers-page .table-toolbar,
+.calendar-page .calendar-header,
+.messages-page .conversations-header,
+.pipeline-page .kanban-column-header,
+.tasks-page .tasks-column-header {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.customers-page .table-toolbar {
+  margin-bottom: var(--space-2);
 }
 
 /* Floating Rounded Sidebar Rail */
@@ -4592,7 +5054,8 @@ body,
 
 @media (min-width: 901px) {
   .sidebar {
-    inset: var(--sidebar-rail-gap) auto var(--sidebar-rail-gap) var(--sidebar-rail-gap);
+    inset: var(--sidebar-rail-gap) auto var(--sidebar-rail-gap)
+      var(--sidebar-rail-gap);
     width: var(--sidebar-expanded-width);
     height: calc(100vh - (var(--sidebar-rail-gap) * 2));
     margin: 0;
@@ -4601,7 +5064,7 @@ body,
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg), var(--shadow-inset);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .sidebar.collapsed {
@@ -4611,19 +5074,24 @@ body,
   }
 
   .main-content {
-    margin-left: calc(var(--sidebar-expanded-width) + (var(--sidebar-rail-gap) * 2));
+    margin-left: calc(
+      var(--sidebar-expanded-width) + (var(--sidebar-rail-gap) * 2)
+    );
   }
 
   .sidebar.collapsed ~ .main-content {
-    margin-left: calc(var(--sidebar-rail-width) + (var(--sidebar-rail-gap) * 2));
+    margin-left: calc(
+      var(--sidebar-rail-width) + (var(--sidebar-rail-gap) * 2)
+    );
   }
 
   .sidebar-header {
+    position: static;
     width: 100%;
     height: auto;
     min-height: 56px;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 12px;
     padding: 0 0 16px;
     border-bottom: 0;
@@ -4636,18 +5104,38 @@ body,
   }
 
   .sidebar-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    transform: translateY(-50%);
+    z-index: 3;
     width: 42px;
     height: 42px;
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm), var(--shadow-inset);
+    background: #242424;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 14px 34px rgba(0, 0, 0, 0.55),
+      0 0 20px rgba(255, 255, 255, 0.13),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  .sidebar-toggle-btn:hover {
+    transform: translateY(-50%) scale(1.04);
+  }
+
+  .sidebar-toggle-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 3px;
   }
 
   .sidebar.collapsed .sidebar-toggle-btn {
-    order: -1;
+    order: 0;
   }
 
   .sidebar-logo {
-    width: auto;
+    width: 100%;
     height: 48px;
     justify-content: flex-start;
     gap: var(--space-3);
@@ -4709,11 +5197,12 @@ body,
   }
 
   .nav-item {
-    width: 100%;
+    width: calc(100% - 18px);
     height: 48px;
     min-height: 48px;
     justify-content: flex-start;
     gap: var(--space-3);
+    margin-right: 18px;
     padding: 0 var(--space-3);
     border-radius: var(--radius-lg);
   }
@@ -4724,6 +5213,7 @@ body,
     min-height: 46px;
     justify-content: center;
     gap: 0;
+    margin-right: 0;
     padding: 0;
     border-radius: var(--radius-full);
     box-shadow: none;
@@ -4750,8 +5240,28 @@ body,
   .user-profile {
     width: 100%;
     height: 56px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 12px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm), var(--shadow-inset);
+  }
+
+  .user-profile .user-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .user-profile .user-name,
+  .user-profile .user-role {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .sidebar.collapsed .user-profile {
@@ -4763,7 +5273,7 @@ body,
     box-shadow: var(--shadow-sm), var(--shadow-inset);
   }
 
-  .user-avatar {
+  .sidebar .user-avatar {
     width: 40px;
     height: 40px;
   }
@@ -4868,8 +5378,32 @@ body,
     padding: var(--space-5);
   }
 
+  .page-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: var(--space-5);
+  }
+
+  .page-hero-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-hero-metric:first-child {
+    grid-column: auto;
+  }
+
+  .pipeline-page .kanban-column,
+  .tasks-page .tasks-column {
+    height: auto;
+    min-height: 420px;
+  }
+
   .overview-hero h2 {
     font-size: clamp(1.8rem, 9vw, 2.6rem);
+  }
+
+  .page-hero h2 {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
   }
 
   .hero-visual {
@@ -4974,6 +5508,7 @@ body,
   }
 
   .hero-stat-grid,
+  .page-hero-metrics,
   .overview-kpi-strip .kpi-row,
   .overview-bento-grid {
     grid-template-columns: 1fr;

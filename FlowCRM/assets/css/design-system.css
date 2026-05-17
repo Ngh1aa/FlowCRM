@@ -4,23 +4,23 @@
 
 :root {
   /* Warm Off-Black Background */
-  --bg-primary: #0b0d0c;
-  --bg-secondary: #121513;
-  --bg-tertiary: #1a1f1b;
-  --bg-elevated: #222820;
+  --bg-primary: #080808;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --bg-elevated: #242424;
 
   /* Sidebar - Slightly Darker */
   --shell-bg: #070807;
-  --shell-bg-soft: #0b0d0c;
+  --shell-bg-soft: #080808;
   --shell-control: rgba(255, 255, 255, 0.06);
   --shell-control-hover: rgba(255, 255, 255, 0.1);
   --shell-line: rgba(255, 255, 255, 0.08);
 
   /* Dark Graphite Card Surfaces */
-  --surface-card: #1a1f1b;
-  --surface-card-strong: #222820;
-  --surface-card-soft: #121513;
-  --surface-card-muted: #283027;
+  --surface-card: #171717;
+  --surface-card-strong: #222222;
+  --surface-card-soft: #111111;
+  --surface-card-muted: #2a2a2a;
   --surface-line: rgba(255, 255, 255, 0.08);
   --surface-line-strong: rgba(255, 255, 255, 0.14);
 
@@ -28,7 +28,7 @@
   --text-primary: #f4f1ea;
   --text-secondary: #b8b2a8;
   --text-tertiary: #7f7a72;
-  --text-inverse: #0b0d0c;
+  --text-inverse: #080808;
 
   /* Ink variants */
   --ink-primary: #f4f1ea;
@@ -36,24 +36,24 @@
   --ink-tertiary: #7f7a72;
   --ink-muted: #625e57;
 
-  /* Pastel Accents */
-  --accent: #b8e6c3;
-  --accent-light: rgba(184, 230, 195, 0.1);
-  --accent-hover: #eaf78a;
+  /* Monochrome Accents */
+  --accent: #f4f1ea;
+  --accent-light: rgba(255, 255, 255, 0.1);
+  --accent-hover: #ffffff;
 
-  /* Soft Pastel Status */
-  --success: #b8e6c3;
-  --success-bg: rgba(143, 214, 164, 0.12);
-  --success-border: rgba(143, 214, 164, 0.2);
+  /* Soft Status */
+  --success: #f4f1ea;
+  --success-bg: rgba(255, 255, 255, 0.12);
+  --success-border: rgba(255, 255, 255, 0.2);
   --warning: #f2d16b;
   --warning-bg: rgba(216, 189, 118, 0.12);
   --warning-border: rgba(216, 189, 118, 0.2);
   --danger: #f29c8f;
   --danger-bg: rgba(255, 141, 141, 0.12);
   --danger-border: rgba(255, 141, 141, 0.2);
-  --info: #9fc7e8;
-  --info-bg: rgba(141, 189, 255, 0.12);
-  --info-border: rgba(141, 189, 255, 0.2);
+  --info: #f4f1ea;
+  --info-bg: rgba(255, 255, 255, 0.12);
+  --info-border: rgba(255, 255, 255, 0.2);
 
   /* Soft Borders */
   --border-light: rgba(255, 255, 255, 0.06);
@@ -67,13 +67,14 @@
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   /* Core */
-  --black: #0b0d0c;
+  --black: #080808;
   --white: #f4f1ea;
   --shadow-ios: 0 8px 32px rgba(0, 0, 0, 0.35);
   --shadow-ios-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
   --shadow-ios-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;

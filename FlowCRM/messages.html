@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="messages-page">
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
@@ -115,7 +115,10 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left">
-          <h1 class="page-title">Tin nhắn</h1>
+          <div>
+            <h1 class="page-title">Tin nhắn</h1>
+            <p class="page-subtitle">Tập trung phản hồi khách hàng và theo dõi ngữ cảnh deal.</p>
+          </div>
         </div>
         <div class="topbar-right">
           <button class="btn btn-primary" id="newMessageBtn">
@@ -129,6 +132,28 @@
       </header>
 
       <div class="page-content">
+        <section class="page-hero page-hero-messages" aria-labelledby="messagesHeroTitle">
+          <div class="page-hero-content">
+            <span class="section-kicker">FlowCRM conversation desk</span>
+            <h2 id="messagesHeroTitle">Giữ mọi trao đổi với khách hàng trong một không gian rõ ngữ cảnh.</h2>
+            <p>Danh sách hội thoại và khung chat được tổ chức để phản hồi nhanh mà vẫn thấy trạng thái chăm sóc.</p>
+          </div>
+          <div class="page-hero-metrics" aria-hidden="true">
+            <div class="page-hero-metric">
+              <span>Chưa đọc</span>
+              <strong>2</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Hội thoại</span>
+              <strong>5</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Đang xử lý</span>
+              <strong>3</strong>
+            </div>
+          </div>
+        </section>
+
         <div class="messages-container">
           <!-- Conversations List -->
           <div class="conversations-list">

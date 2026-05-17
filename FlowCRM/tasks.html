@@ -115,7 +115,10 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left">
-          <h1 class="page-title">Nhiệm vụ</h1>
+          <div>
+            <h1 class="page-title">Nhiệm vụ</h1>
+            <p class="page-subtitle">Ưu tiên việc quá hạn, việc hôm nay và các follow-up sắp tới.</p>
+          </div>
         </div>
         <div class="topbar-right">
           <button class="btn btn-primary" id="addTaskBtn">
@@ -129,6 +132,28 @@
       </header>
 
       <div class="page-content">
+        <section class="page-hero page-hero-tasks" aria-labelledby="tasksHeroTitle">
+          <div class="page-hero-content">
+            <span class="section-kicker">FlowCRM task focus</span>
+            <h2 id="tasksHeroTitle">Xử lý việc quan trọng trước, giảm khoảng cách từ cảnh báo đến hành động.</h2>
+            <p>Luồng nhiệm vụ được chia theo mức khẩn cấp để đội sales biết ngay việc nào cần chốt, gọi hoặc gửi tài liệu.</p>
+          </div>
+          <div class="page-hero-metrics" aria-hidden="true">
+            <div class="page-hero-metric danger">
+              <span>Quá hạn</span>
+              <strong>2</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Hôm nay</span>
+              <strong>3</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Sắp tới</span>
+              <strong>4</strong>
+            </div>
+          </div>
+        </section>
+
         <div class="task-summary-row">
           <div class="task-summary-item overdue">
             <span class="count">2</span>

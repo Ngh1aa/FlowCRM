@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="calendar-page">
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
@@ -115,7 +115,10 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left">
-          <h1 class="page-title">Lịch hẹn</h1>
+          <div>
+            <h1 class="page-title">Lịch hẹn</h1>
+            <p class="page-subtitle">Quản lý lịch demo, follow-up và các cuộc hẹn bán hàng.</p>
+          </div>
         </div>
         <div class="topbar-right">
           <div class="search-box">
@@ -136,6 +139,28 @@
       </header>
 
       <div class="page-content">
+        <section class="page-hero page-hero-calendar" aria-labelledby="calendarHeroTitle">
+          <div class="page-hero-content">
+            <span class="section-kicker">FlowCRM schedule desk</span>
+            <h2 id="calendarHeroTitle">Nhìn nhanh tuần làm việc để chuẩn bị đúng cuộc hẹn và đúng khách hàng.</h2>
+            <p>Lịch được đặt cạnh danh sách sự kiện để dễ chuyển từ kế hoạch sang hành động tiếp theo.</p>
+          </div>
+          <div class="page-hero-metrics" aria-hidden="true">
+            <div class="page-hero-metric">
+              <span>Tuần này</span>
+              <strong>6</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Hôm nay</span>
+              <strong>2</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Cần chuẩn bị</span>
+              <strong>4</strong>
+            </div>
+          </div>
+        </section>
+
         <div class="calendar-container">
           <!-- Calendar View -->
           <div class="calendar-wrapper">

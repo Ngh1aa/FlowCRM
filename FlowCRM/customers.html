@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="customers-page">
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
@@ -115,7 +115,10 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left">
-          <h1 class="page-title">Khách hàng</h1>
+          <div>
+            <h1 class="page-title">Khách hàng</h1>
+            <p class="page-subtitle">Quản lý danh sách, trạng thái chăm sóc và cơ hội mới.</p>
+          </div>
         </div>
         <div class="topbar-right">
           <div class="search-box">
@@ -143,6 +146,28 @@
       </header>
 
       <div class="page-content">
+        <section class="page-hero page-hero-customers" aria-labelledby="customersHeroTitle">
+          <div class="page-hero-content">
+            <span class="section-kicker">FlowCRM customer hub</span>
+            <h2 id="customersHeroTitle">Theo dõi khách hàng, phân nhóm ưu tiên và giữ nhịp chăm sóc nhất quán.</h2>
+            <p>Một màn hình để lọc nhanh khách đang hoạt động, khách tiềm năng và các liên hệ cần xử lý trước.</p>
+          </div>
+          <div class="page-hero-metrics" aria-hidden="true">
+            <div class="page-hero-metric">
+              <span>Đang hoạt động</span>
+              <strong>32</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Tiềm năng</span>
+              <strong>12</strong>
+            </div>
+            <div class="page-hero-metric">
+              <span>Cần chăm sóc</span>
+              <strong>4</strong>
+            </div>
+          </div>
+        </section>
+
         <!-- Customer Table -->
         <div class="customer-table-wrapper">
           <div class="table-toolbar">
