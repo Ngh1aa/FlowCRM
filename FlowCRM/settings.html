@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowCRM - Cài đặt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="settings-page">
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="app-container" id="appContainer">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="28" height="28" rx="7" fill="currentColor" fill-opacity="0.1"/>
+            <path d="M9 11h10M9 18h14M9 25h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="23" cy="11" r="2.5" fill="currentColor" opacity="0.7"/>
+          </svg>
+          <span>FlowCRM</span>
+        </div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
+          <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Tổng quan</div>
+          <a href="index.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="7" height="9" rx="1"/>
+              <rect x="14" y="3" width="7" height="5" rx="1"/>
+              <rect x="14" y="12" width="7" height="9" rx="1"/>
+              <rect x="3" y="16" width="7" height="5" rx="1"/>
+            </svg>
+            <span>Tổng quan</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Quản lý</div>
+          <a href="pipeline.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
+            </svg>
+            <span>Bán hàng</span>
+            <span class="badge">12</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Khách hàng</span>
+            <span class="badge">48</span>
+          </a>
+          <a href="messages.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>Tin nhắn</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Công việc</div>
+          <a href="tasks.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            <span>Nhiệm vụ</span>
+            <span class="badge">5</span>
+          </a>
+          <a href="calendar.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span>Lịch hẹn</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">KHÁC</div>
+          <a href="reports.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <span>Báo cáo</span>
+          </a>
+          <a href="settings.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Cài đặt</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AN</div>
+          <div class="user-info">
+            <div class="user-name">An Nguyen</div>
+            <div class="user-role">Quản lý bán hàng</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title">Cài đặt</h1>
+          <p class="page-subtitle">Quản lý tài khoản và tùy chọn hệ thống.</p>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="settings-grid">
+          <section class="section-block settings-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Tài khoản</span>
+                <h2 class="section-title">Thông tin tài khoản</h2>
+              </div>
+            </div>
+            <div class="card">
+              <div class="settings-profile">
+                <div class="user-avatar large">AN</div>
+                <div class="settings-profile-info">
+                  <div class="form-group">
+                    <label class="form-label">Họ và tên</label>
+                    <input type="text" class="form-input" value="An Nguyen" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" value="an.nguyen@flowcrm.vn" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Vai trò</label>
+                    <input type="text" class="form-input" value="Quản lý bán hàng" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block settings-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Hệ thống</span>
+                <h2 class="section-title">Thông báo</h2>
+              </div>
+            </div>
+            <div class="card">
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Email thông báo</span>
+                    <span class="settings-item-description">Nhận thông báo qua email về deal mới và cập nhật</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Thông báo push</span>
+                    <span class="settings-item-description">Nhận thông báo trên trình duyệt</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Nhắc nhở công việc</span>
+                    <span class="settings-item-description">Thông báo trước khi cuộc hẹn bắt đầu 15 phút</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Báo cáo hàng tuần</span>
+                    <span class="settings-item-description">Gửi email tổng hợp doanh thu mỗi thứ Hai</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block settings-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Giao diện</span>
+                <h2 class="section-title">Tùy chọn hiển thị</h2>
+              </div>
+            </div>
+            <div class="card">
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Thu gọn sidebar</span>
+                    <span class="settings-item-description">Mặc định thu gọn thanh điều hướng bên trái</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="sidebarCollapseDefault">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Chế độ tối</span>
+                    <span class="settings-item-description">Sử dụng giao diện tối (hiện tại luôn bật)</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Hiện số liệu trên icon</span>
+                    <span class="settings-item-description">Hiển thị số badge trên các mục điều hướng</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block settings-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Bảo mật</span>
+                <h2 class="section-title">Quyền truy cập</h2>
+              </div>
+            </div>
+            <div class="card">
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Vai trò hiện tại</span>
+                    <span class="settings-item-description">Quản lý bán hàng</span>
+                  </div>
+                  <span class="role-badge">Quản lý</span>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Xem báo cáo</span>
+                    <span class="settings-item-description">Truy cập trang báo cáo và xuất dữ liệu</span>
+                  </div>
+                  <span class="permission-status allowed">Được phép</span>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Quản lý khách hàng</span>
+                    <span class="settings-item-description">Thêm, sửa, xóa thông tin khách hàng</span>
+                  </div>
+                  <span class="permission-status allowed">Được phép</span>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Quản lý team</span>
+                    <span class="settings-item-description">Thêm thành viên mới và phân công công việc</span>
+                  </div>
+                  <span class="permission-status denied">Bị hạn chế</span>
+                </div>
+                <div class="settings-item">
+                  <div class="settings-item-info">
+                    <span class="settings-item-title">Cài đặt hệ thống</span>
+                    <span class="settings-item-description">Thay đổi cấu hình toàn cục</span>
+                  </div>
+                  <span class="permission-status denied">Bị hạn chế</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
