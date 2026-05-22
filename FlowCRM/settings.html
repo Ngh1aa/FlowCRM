@@ -122,7 +122,7 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="user-profile">
+        <div class="user-profile" id="userProfile">
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
@@ -141,183 +141,506 @@
       </header>
 
       <div class="page-content">
-        <div class="settings-grid">
-          <section class="section-block settings-section">
-            <div class="section-heading">
-              <div>
-                <span class="section-kicker">Tài khoản</span>
-                <h2 class="section-title">Thông tin tài khoản</h2>
-              </div>
-            </div>
-            <div class="card">
-              <div class="settings-profile">
-                <div class="user-avatar large">AN</div>
-                <div class="settings-profile-info">
-                  <div class="form-group">
-                    <label class="form-label">Họ và tên</label>
-                    <input type="text" class="form-input" value="An Nguyen" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" value="an.nguyen@flowcrm.vn" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Vai trò</label>
-                    <input type="text" class="form-input" value="Quản lý bán hàng" readonly>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block settings-section">
-            <div class="section-heading">
-              <div>
-                <span class="section-kicker">Hệ thống</span>
-                <h2 class="section-title">Thông báo</h2>
-              </div>
-            </div>
-            <div class="card">
-              <div class="settings-list">
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Email thông báo</span>
-                    <span class="settings-item-description">Nhận thông báo qua email về deal mới và cập nhật</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Thông báo push</span>
-                    <span class="settings-item-description">Nhận thông báo trên trình duyệt</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Nhắc nhở công việc</span>
-                    <span class="settings-item-description">Thông báo trước khi cuộc hẹn bắt đầu 15 phút</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Báo cáo hàng tuần</span>
-                    <span class="settings-item-description">Gửi email tổng hợp doanh thu mỗi thứ Hai</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox">
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block settings-section">
-            <div class="section-heading">
-              <div>
-                <span class="section-kicker">Giao diện</span>
-                <h2 class="section-title">Tùy chọn hiển thị</h2>
-              </div>
-            </div>
-            <div class="card">
-              <div class="settings-list">
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Thu gọn sidebar</span>
-                    <span class="settings-item-description">Mặc định thu gọn thanh điều hướng bên trái</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="sidebarCollapseDefault">
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Chế độ tối</span>
-                    <span class="settings-item-description">Sử dụng giao diện tối (hiện tại luôn bật)</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Hiện số liệu trên icon</span>
-                    <span class="settings-item-description">Hiển thị số badge trên các mục điều hướng</span>
-                  </div>
-                  <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block settings-section">
-            <div class="section-heading">
-              <div>
-                <span class="section-kicker">Bảo mật</span>
-                <h2 class="section-title">Quyền truy cập</h2>
-              </div>
-            </div>
-            <div class="card">
-              <div class="settings-list">
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Vai trò hiện tại</span>
-                    <span class="settings-item-description">Quản lý bán hàng</span>
-                  </div>
-                  <span class="role-badge">Quản lý</span>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Xem báo cáo</span>
-                    <span class="settings-item-description">Truy cập trang báo cáo và xuất dữ liệu</span>
-                  </div>
-                  <span class="permission-status allowed">Được phép</span>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Quản lý khách hàng</span>
-                    <span class="settings-item-description">Thêm, sửa, xóa thông tin khách hàng</span>
-                  </div>
-                  <span class="permission-status allowed">Được phép</span>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Quản lý team</span>
-                    <span class="settings-item-description">Thêm thành viên mới và phân công công việc</span>
-                  </div>
-                  <span class="permission-status denied">Bị hạn chế</span>
-                </div>
-                <div class="settings-item">
-                  <div class="settings-item-info">
-                    <span class="settings-item-title">Cài đặt hệ thống</span>
-                    <span class="settings-item-description">Thay đổi cấu hình toàn cục</span>
-                  </div>
-                  <span class="permission-status denied">Bị hạn chế</span>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div class="settings-grid" id="settingsContent">
+          <!-- Content loaded dynamically -->
         </div>
       </div>
     </main>
   </div>
 
+  <!-- User Edit Modal -->
+  <div class="modal-overlay" id="userModal" style="display: none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="userModalTitle">Thêm người dùng</h2>
+        <button class="modal-close" id="closeUserModalBtn" aria-label="Đóng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="userForm">
+          <input type="hidden" id="editUserId">
+          <div class="form-group">
+            <label class="form-label required" for="userName">Họ và tên</label>
+            <input type="text" id="userName" class="form-input" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label required" for="userEmail">Email</label>
+            <input type="email" id="userEmail" class="form-input" placeholder="email@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="userRole">Vai trò</label>
+            <select id="userRole" class="form-select">
+              <option value="sales">Nhân viên bán hàng</option>
+              <option value="manager">Quản lý</option>
+              <option value="admin">Quản trị viên</option>
+            </select>
+          </div>
+          <div class="form-group" id="passwordGroup">
+            <label class="form-label required" for="userPassword">Mật khẩu</label>
+            <input type="password" id="userPassword" class="form-input" placeholder="Ít nhất 6 ký tự" minlength="6">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelUserBtn">Hủy</button>
+        <button class="btn btn-primary" id="saveUserBtn">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/app.js"></script>
+  <script>
+    function renderUserProfile() {
+      const user = Auth.getCurrentUser();
+      const profileEl = document.getElementById('userProfile');
+      if (!user || !profileEl) return;
+
+      profileEl.innerHTML = `
+        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-info">
+          <div class="user-name">${user.name}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      `;
+
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          Auth.logout();
+        });
+      }
+    }
+
+    window.addEventListener('auth_state_changed', renderUserProfile);
+
+    // Toast notification
+    function showToast(message, type = 'error') {
+      const container = document.getElementById('toastContainer') || (() => {
+        const c = document.createElement('div');
+        c.id = 'toastContainer';
+        c.className = 'toast-container';
+        document.body.appendChild(c);
+        return c;
+      })();
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toast-icon">
+          ${type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'}
+        </svg>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('toast-out');
+        setTimeout(() => toast.remove(), 200);
+      }, 4000);
+    }
+
+    // Render settings content based on user role
+    function renderSettingsContent() {
+      const user = Auth.getCurrentUser();
+      const container = document.getElementById('settingsContent');
+      if (!user || !container) return;
+
+      const isAdmin = Auth.isAdmin();
+
+      container.innerHTML = `
+        <!-- Edit Profile Section -->
+        <section class="section-block settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Tài khoản</span>
+              <h2 class="section-title">Chỉnh sửa hồ sơ</h2>
+            </div>
+          </div>
+          <div class="card">
+            <form id="editProfileForm" class="form">
+              <div class="form-group">
+                <label class="form-label">Họ và tên</label>
+                <input type="text" id="profileName" class="form-input" value="${user.name}" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="profileEmail" class="form-input" value="${user.email}" readonly>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Vai trò</label>
+                <input type="text" class="form-input" value="${Auth.getRoleDisplayName(user.role)}" readonly>
+              </div>
+              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Change Password Section -->
+        <section class="section-block settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Bảo mật</span>
+              <h2 class="section-title">Đổi mật khẩu</h2>
+            </div>
+          </div>
+          <div class="card">
+            <form id="changePasswordForm" class="form">
+              <div class="form-group">
+                <label class="form-label">Mật khẩu hiện tại</label>
+                <input type="password" id="currentPassword" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mật khẩu mới</label>
+                <input type="password" id="newPassword" class="form-input" required minlength="6" placeholder="Ít nhất 6 ký tự">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Xác nhận mật khẩu mới</label>
+                <input type="password" id="confirmNewPassword" class="form-input" required minlength="6">
+              </div>
+              <button type="submit" class="btn btn-primary">Cập nhật mật khẩu</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- User Management Section (Admin only) -->
+        ${isAdmin ? `
+        <section class="section-block settings-section" id="userManagementSection">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Quản lý</span>
+              <h2 class="section-title">Người dùng</h2>
+            </div>
+            <button class="btn btn-primary" id="addUserBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Thêm người dùng
+            </button>
+          </div>
+          <div class="card">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>Người dùng</th>
+                  <th>Email</th>
+                  <th>Vai trò</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+        ` : ''}
+
+        <!-- Notifications Section -->
+        <section class="section-block settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Hệ thống</span>
+              <h2 class="section-title">Thông báo</h2>
+            </div>
+          </div>
+          <div class="card">
+            <div class="settings-list">
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Email thông báo</span>
+                  <span class="settings-item-description">Nhận thông báo qua email về deal mới và cập nhật</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Thông báo push</span>
+                  <span class="settings-item-description">Nhận thông báo trên trình duyệt</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Nhắc nhở công việc</span>
+                  <span class="settings-item-description">Thông báo trước khi cuộc hẹn bắt đầu 15 phút</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Báo cáo hàng tuần</span>
+                  <span class="settings-item-description">Gửi email tổng hợp doanh thu mỗi thứ Hai</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Display Options Section -->
+        <section class="section-block settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Giao diện</span>
+              <h2 class="section-title">Tùy chọn hiển thị</h2>
+            </div>
+          </div>
+          <div class="card">
+            <div class="settings-list">
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Thu gọn sidebar</span>
+                  <span class="settings-item-description">Mặc định thu gọn thanh điều hướng bên trái</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="sidebarCollapseDefault">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Chế độ tối</span>
+                  <span class="settings-item-description">Sử dụng giao diện tối (hiện tại luôn bật)</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <span class="settings-item-title">Hiện số liệu trên icon</span>
+                  <span class="settings-item-description">Hiển thị số badge trên các mục điều hướng</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+
+      // Attach form handlers
+      attachFormHandlers();
+
+      // Render user table if admin
+      if (isAdmin) {
+        renderUserTable();
+        attachUserModalHandlers();
+      }
+    }
+
+    function attachFormHandlers() {
+      // Edit profile form
+      const editProfileForm = document.getElementById('editProfileForm');
+      if (editProfileForm) {
+        editProfileForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const user = Auth.getCurrentUser();
+          const newName = document.getElementById('profileName').value;
+
+          try {
+            Auth.updateProfile(user.id, { name: newName });
+            showToast('Cập nhật hồ sơ thành công', 'success');
+            renderUserProfile();
+          } catch (err) {
+            showToast(err.message);
+          }
+        });
+      }
+
+      // Change password form
+      const changePasswordForm = document.getElementById('changePasswordForm');
+      if (changePasswordForm) {
+        changePasswordForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const user = Auth.getCurrentUser();
+          const currentPassword = document.getElementById('currentPassword').value;
+          const newPassword = document.getElementById('newPassword').value;
+          const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+          if (newPassword !== confirmPassword) {
+            showToast('Mật khẩu xác nhận không khớp');
+            return;
+          }
+
+          try {
+            await Auth.changePassword(user.id, currentPassword, newPassword);
+            showToast('Đổi mật khẩu thành công', 'success');
+            changePasswordForm.reset();
+          } catch (err) {
+            showToast(err.message);
+          }
+        });
+      }
+    }
+
+    function renderUserTable() {
+      const tbody = document.getElementById('userTableBody');
+      if (!tbody) return;
+
+      const users = Auth.getUsers();
+      const currentUser = Auth.getCurrentUser();
+
+      tbody.innerHTML = users.map(user => `
+        <tr>
+          <td>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="user-avatar" style="width: 32px; height: 32px; font-size: 12px;">${user.avatar}</div>
+              <span>${user.name}</span>
+            </div>
+          </td>
+          <td>${user.email}</td>
+          <td><span class="role-badge">${Auth.getRoleDisplayName(user.role)}</span></td>
+          <td>
+            <button class="btn btn-ghost btn-sm" onclick="editUser('${user.id}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+            ${user.id !== currentUser?.id ? `
+              <button class="btn btn-ghost btn-sm" onclick="deleteUser('${user.id}')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </button>
+            ` : ''}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function attachUserModalHandlers() {
+      const modal = document.getElementById('userModal');
+      const addUserBtn = document.getElementById('addUserBtn');
+      const closeBtn = document.getElementById('closeUserModalBtn');
+      const cancelBtn = document.getElementById('cancelUserBtn');
+      const saveBtn = document.getElementById('saveUserBtn');
+      const form = document.getElementById('userForm');
+      const passwordGroup = document.getElementById('passwordGroup');
+
+      if (addUserBtn) {
+        addUserBtn.addEventListener('click', () => {
+          document.getElementById('userModalTitle').textContent = 'Thêm người dùng';
+          document.getElementById('editUserId').value = '';
+          document.getElementById('userName').value = '';
+          document.getElementById('userEmail').value = '';
+          document.getElementById('userRole').value = 'sales';
+          document.getElementById('userPassword').value = '';
+          document.getElementById('userPassword').parentElement.querySelector('.form-label').classList.add('required');
+          document.getElementById('userPassword').required = true;
+          modal.style.display = 'flex';
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', async () => {
+          const editId = document.getElementById('editUserId').value;
+          const name = document.getElementById('userName').value;
+          const email = document.getElementById('userEmail').value;
+          const role = document.getElementById('userRole').value;
+          const password = document.getElementById('userPassword').value;
+
+          if (!name || !email) {
+            showToast('Vui lòng điền đầy đủ thông tin');
+            return;
+          }
+
+          try {
+            if (editId) {
+              // Update existing user
+              Auth.updateUser(editId, { name, email, role });
+              showToast('Cập nhật người dùng thành công', 'success');
+            } else {
+              // Add new user
+              if (!password) {
+                showToast('Vui lòng nhập mật khẩu');
+                return;
+              }
+              await Auth.addUser(name, email, password, role);
+              showToast('Thêm người dùng thành công', 'success');
+            }
+            modal.style.display = 'none';
+            renderUserTable();
+          } catch (err) {
+            showToast(err.message);
+          }
+        });
+      }
+    }
+
+    window.editUser = function(id) {
+      const user = Auth.getUserById(id);
+      if (!user) return;
+
+      const modal = document.getElementById('userModal');
+      document.getElementById('userModalTitle').textContent = 'Sửa người dùng';
+      document.getElementById('editUserId').value = id;
+      document.getElementById('userName').value = user.name;
+      document.getElementById('userEmail').value = user.email;
+      document.getElementById('userRole').value = user.role;
+      document.getElementById('userPassword').value = '';
+      document.getElementById('userPassword').parentElement.querySelector('.form-label').classList.remove('required');
+      document.getElementById('userPassword').required = false;
+      modal.style.display = 'flex';
+    };
+
+    window.deleteUser = function(id) {
+      if (!confirm('Bạn có chắc muốn xóa người dùng này?')) return;
+
+      try {
+        Auth.deleteUser(id);
+        showToast('Xóa người dùng thành công', 'success');
+        renderUserTable();
+      } catch (err) {
+        showToast(err.message);
+      }
+    };
+
+    // Initial render
+    renderUserProfile();
+    renderSettingsContent();
+  </script>
 </body>
 </html>

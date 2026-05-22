@@ -122,12 +122,19 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="user-profile">
+        <div class="user-profile" id="userProfile">
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
             <div class="user-role">Quản lý bán hàng</div>
           </div>
+          <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
         </div>
       </div>
     </aside>
@@ -555,6 +562,39 @@
     </div>
   </div>
 
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/app.js"></script>
-</body>
+  <script>
+    // Render dynamic user profile
+    function renderUserProfile() {
+      const user = Auth.getCurrentUser();
+      const profileEl = document.getElementById('userProfile');
+      if (!user || !profileEl) return;
+
+      profileEl.innerHTML = `
+        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-info">
+          <div class="user-name">${user.name}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      `;
+
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        Auth.logout();
+      });
+    }
+
+    // Listen for auth state changes
+    window.addEventListener('auth_state_changed', renderUserProfile);
+
+    // Initial render
+    renderUserProfile();
+  </script></body>
 </html>
