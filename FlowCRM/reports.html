@@ -1,368 +1,775 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Báo cáo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/design-system.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body class="reports-page">
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-      <line x1="3" y1="12" x2="21" y2="12"/>
-      <line x1="3" y1="6" x2="21" y2="6"/>
-      <line x1="3" y1="18" x2="21" y2="18"/>
-    </svg>
-  </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowCRM - Báo cáo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/design-system.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="reports-page">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        width="20"
+        height="20"
+      >
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
 
-  <div class="app-container" id="appContainer">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="4" width="28" height="28" rx="7" fill="currentColor" fill-opacity="0.1"/>
-            <path d="M9 11h10M9 18h14M9 25h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="23" cy="11" r="2.5" fill="currentColor" opacity="0.7"/>
-          </svg>
-          <span>FlowCRM</span>
-        </div>
-        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
-          <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"/>
-          </svg>
-        </button>
-      </div>
-
-      <nav class="sidebar-nav">
-        <div class="nav-section">
-          <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="3" width="7" height="9" rx="1"/>
-              <rect x="14" y="3" width="7" height="5" rx="1"/>
-              <rect x="14" y="12" width="7" height="9" rx="1"/>
-              <rect x="3" y="16" width="7" height="5" rx="1"/>
+    <div class="app-container" id="appContainer">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="4"
+                width="28"
+                height="28"
+                rx="7"
+                fill="currentColor"
+                fill-opacity="0.1"
+              />
+              <path
+                d="M9 11h10M9 18h14M9 25h8"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="23"
+                cy="11"
+                r="2.5"
+                fill="currentColor"
+                opacity="0.7"
+              />
             </svg>
-            <span>Tổng quan</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Quản lý</div>
-          <a href="pipeline.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
-            </svg>
-            <span>Bán hàng</span>
-            <span class="badge">12</span>
-          </a>
-          <a href="customers.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-            <span>Khách hàng</span>
-            <span class="badge">48</span>
-          </a>
-          <a href="messages.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            <span>Tin nhắn</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M9 11l3 3L22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Nhiệm vụ</span>
-            <span class="badge">5</span>
-          </a>
-          <a href="calendar.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            <span>Lịch hẹn</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
-            </svg>
-            <span>Báo cáo</span>
-          </a>
-          <a href="settings.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-            </svg>
-            <span>Cài đặt</span>
-          </a>
-        </div>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="user-profile" id="userProfile">
-          <div class="user-avatar">AN</div>
-          <div class="user-info">
-            <div class="user-name">An Nguyen</div>
-            <div class="user-role">Quản lý bán hàng</div>
+            <span>FlowCRM</span>
           </div>
-        </div>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <h1 class="page-title">Báo cáo</h1>
-          <p class="page-subtitle">Theo dõi doanh thu, hiệu suất và hoạt động kinh doanh.</p>
-        </div>
-        <div class="topbar-right">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Thu gọn sidebar"
+            aria-expanded="true"
+          >
+            <svg
+              class="toggle-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15 18 9 12 15 6" />
             </svg>
-            <input type="text" placeholder="Tìm kiếm báo cáo...">
-          </div>
-          <button class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Xuất báo cáo
           </button>
         </div>
-      </header>
 
-      <div class="page-content">
-        <section class="section-block reports-kpi-strip">
-          <div class="kpi-row">
-            <div class="kpi-card">
-              <span class="kpi-label">Tổng doanh thu</span>
-              <div class="kpi-value">₫8.2B</div>
-              <span class="kpi-change up">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-                +18.5% so với tháng trước
-              </span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-label">Số deal mới</span>
-              <div class="kpi-value accent">24</div>
-              <span class="kpi-change up">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-                +12% so với tuần trước
-              </span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-label">Tỷ lệ chuyển đổi</span>
-              <div class="kpi-value">32%</div>
-              <span class="kpi-change up">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-                +3% so với tháng trước
-              </span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-label">Khách hàng mới</span>
-              <div class="kpi-value">8</div>
-              <span class="kpi-change up">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-                +24% so với tháng trước
-              </span>
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title">Tổng quan</div>
+            <a href="index.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="3" width="7" height="9" rx="1" />
+                <rect x="14" y="3" width="7" height="5" rx="1" />
+                <rect x="14" y="12" width="7" height="9" rx="1" />
+                <rect x="3" y="16" width="7" height="5" rx="1" />
+              </svg>
+              <span>Tổng quan</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Quản lý</div>
+            <a href="pipeline.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
+              </svg>
+              <span>Bán hàng</span>
+              <span class="badge">12</span>
+            </a>
+            <a href="customers.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>Khách hàng</span>
+              <span class="badge">48</span>
+            </a>
+            <a href="messages.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              <span>Tin nhắn</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Công việc</div>
+            <a href="tasks.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M9 11l3 3L22 4" />
+                <path
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                />
+              </svg>
+              <span>Nhiệm vụ</span>
+              <span class="badge">5</span>
+            </a>
+            <a href="calendar.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <span>Lịch hẹn</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">KHÁC</div>
+            <a href="reports.html" class="nav-item active">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              <span>Báo cáo</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                />
+              </svg>
+              <span>Cài đặt</span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar">AN</div>
+            <div class="user-info">
+              <div class="user-name">An Nguyen</div>
+              <div class="user-role">Quản lý bán hàng</div>
             </div>
           </div>
-        </section>
+        </div>
+      </aside>
 
-        <section class="section-block">
-          <div class="section-heading">
+      <main class="main-content">
+        <header class="topbar">
+          <div class="topbar-left">
             <div>
-              <span class="section-kicker">Báo cáo</span>
-              <h2 class="section-title">Theo loại báo cáo</h2>
+              <h1 class="page-title">Báo cáo</h1>
+              <p class="page-subtitle">
+                Theo dõi doanh thu, hiệu suất và hoạt động kinh doanh.
+              </p>
             </div>
           </div>
-          <div class="chart-tabs">
-            <button class="chart-tab active">Báo cáo doanh thu</button>
-            <button class="chart-tab">Báo cáo pipeline</button>
-            <button class="chart-tab">Báo cáo team</button>
+          <div class="topbar-right">
+            <button class="btn btn-secondary">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Xuất báo cáo
+            </button>
           </div>
-        </section>
+        </header>
 
-        <div class="reports-grid">
-          <section class="section-block revenue-chart-card">
-            <div class="section-heading">
-              <div>
-                <span class="section-kicker">Doanh thu</span>
-                <h2 class="section-title">Xu hướng doanh thu theo tháng</h2>
+        <div class="page-content">
+          <!-- KPI Summary Strip -->
+          <div class="report-kpi-grid">
+            <div class="report-kpi-card revenue">
+              <div class="report-kpi-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
               </div>
-              <div class="chart-tabs">
-                <button class="chart-tab active">6 tháng</button>
-                <button class="chart-tab">12 tháng</button>
+              <div class="report-kpi-data">
+                <span class="report-kpi-label">Tổng doanh thu</span>
+                <strong class="report-kpi-value">₫8.2B</strong>
+                <span class="report-kpi-change up">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="m18 15-6-6-6 6" />
+                  </svg>
+                  +18.5% so với tháng trước
+                </span>
               </div>
             </div>
-            <div class="card">
-              <div class="chart-wrapper">
-                <div class="chart-scale">
-                  <span>3B</span>
-                  <span>2.25B</span>
-                  <span>1.5B</span>
-                  <span>0.75B</span>
-                  <span>0</span>
+
+            <div class="report-kpi-card deals">
+              <div class="report-kpi-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
+                </svg>
+              </div>
+              <div class="report-kpi-data">
+                <span class="report-kpi-label">Số deal mới</span>
+                <strong class="report-kpi-value">24</strong>
+                <span class="report-kpi-change up">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="m18 15-6-6-6 6" />
+                  </svg>
+                  +12% so với tuần trước
+                </span>
+              </div>
+            </div>
+
+            <div class="report-kpi-card conversion">
+              <div class="report-kpi-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div class="report-kpi-data">
+                <span class="report-kpi-label">Tỷ lệ chuyển đổi</span>
+                <strong class="report-kpi-value">32%</strong>
+                <span class="report-kpi-change up">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="m18 15-6-6-6 6" />
+                  </svg>
+                  +3% so với tháng trước
+                </span>
+              </div>
+            </div>
+
+            <div class="report-kpi-card customers">
+              <div class="report-kpi-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="report-kpi-data">
+                <span class="report-kpi-label">Khách hàng mới</span>
+                <strong class="report-kpi-value">8</strong>
+                <span class="report-kpi-change up">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="m18 15-6-6-6 6" />
+                  </svg>
+                  +24% so với tháng trước
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Report Type Tabs -->
+          <div class="report-tabs-wrapper">
+            <div class="report-tabs">
+              <button class="report-tab active" data-report="revenue">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Doanh thu
+              </button>
+              <button class="report-tab" data-report="pipeline">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
+                </svg>
+                Pipeline
+              </button>
+              <button class="report-tab" data-report="team">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Team
+              </button>
+            </div>
+            <div class="report-period-selector">
+              <button class="period-btn active">6 tháng</button>
+              <button class="period-btn">12 tháng</button>
+              <button class="period-btn">YTD</button>
+            </div>
+          </div>
+
+          <!-- Main Chart Card -->
+          <div class="report-chart-card">
+            <div class="report-chart-header">
+              <div>
+                <span class="report-chart-kicker">Doanh thu theo tháng</span>
+                <h2 class="report-chart-title">Xu hướng doanh thu</h2>
+              </div>
+              <div class="report-chart-legend">
+                <span class="legend-item"
+                  ><span class="legend-dot primary"></span>Doanh thu</span
+                >
+                <span class="legend-item"
+                  ><span class="legend-dot secondary"></span>Mục tiêu</span
+                >
+              </div>
+            </div>
+            <div class="report-chart-area">
+              <div class="chart-y-axis">
+                <span>3B</span>
+                <span>2B</span>
+                <span>1B</span>
+                <span>0</span>
+              </div>
+              <div class="chart-content">
+                <div class="chart-grid-line"></div>
+                <div class="chart-grid-line"></div>
+                <div class="chart-grid-line"></div>
+                <div class="chart-grid-line"></div>
+                <svg
+                  class="chart-svg"
+                  viewBox="0 0 600 200"
+                  preserveAspectRatio="none"
+                >
+                  <!-- Target line -->
+                  <path
+                    class="chart-target-line"
+                    d="M0 140 L100 130 L200 120 L300 110 L400 100 L500 90 L600 80"
+                    fill="none"
+                  />
+                  <!-- Revenue area fill -->
+                  <path
+                    class="chart-area-fill"
+                    d="M0 180 L0 150 L100 130 L200 145 L300 100 L400 85 L500 60 L600 40 L600 200 L0 200 Z"
+                  />
+                  <!-- Revenue line -->
+                  <path
+                    class="chart-line"
+                    d="M0 150 L100 130 L200 145 L300 100 L400 85 L500 60 L600 40"
+                    fill="none"
+                  />
+                  <!-- Data points -->
+                  <circle
+                    class="chart-dot"
+                    cx="0"
+                    cy="150"
+                    r="5"
+                    data-value="1.2B"
+                  />
+                  <circle
+                    class="chart-dot"
+                    cx="100"
+                    cy="130"
+                    r="5"
+                    data-value="1.5B"
+                  />
+                  <circle
+                    class="chart-dot"
+                    cx="200"
+                    cy="145"
+                    r="5"
+                    data-value="1.35B"
+                  />
+                  <circle
+                    class="chart-dot"
+                    cx="300"
+                    cy="100"
+                    r="5"
+                    data-value="2B"
+                  />
+                  <circle
+                    class="chart-dot"
+                    cx="400"
+                    cy="85"
+                    r="5"
+                    data-value="2.3B"
+                  />
+                  <circle
+                    class="chart-dot"
+                    cx="500"
+                    cy="60"
+                    r="5"
+                    data-value="2.8B"
+                  />
+                  <circle
+                    class="chart-dot highlight"
+                    cx="600"
+                    cy="40"
+                    r="7"
+                    data-value="3.2B"
+                  />
+                </svg>
+                <div class="chart-x-labels">
+                  <span>T10</span>
+                  <span>T11</span>
+                  <span>T12</span>
+                  <span>T1</span>
+                  <span>T2</span>
+                  <span>T3</span>
+                  <span>T4</span>
                 </div>
-                <div class="chart-area">
-                  <div class="line-chart">
-                    <div class="chart-point" data-value="1.35B" data-month="T10">
-                      <div class="chart-bar" style="height: 45%"></div>
-                      <span class="chart-label">T10</span>
-                      <span class="chart-tooltip">1.35B</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Stats Grid -->
+          <div class="report-stats-grid">
+            <!-- Pipeline Performance -->
+            <div class="report-stat-card">
+              <div class="report-stat-header">
+                <span class="report-stat-kicker">Pipeline</span>
+                <h3 class="report-stat-title">Hiệu suất theo giai đoạn</h3>
+              </div>
+              <div class="pipeline-funnel">
+                <div class="funnel-stage">
+                  <span class="funnel-label">Tiếp cận</span>
+                  <div class="funnel-bar">
+                    <div class="funnel-fill" style="width: 100%"></div>
+                  </div>
+                  <span class="funnel-value">156</span>
+                </div>
+                <div class="funnel-stage">
+                  <span class="funnel-label">Qualify</span>
+                  <div class="funnel-bar">
+                    <div class="funnel-fill" style="width: 72%"></div>
+                  </div>
+                  <span class="funnel-value">112</span>
+                </div>
+                <div class="funnel-stage">
+                  <span class="funnel-label">Đề xuất</span>
+                  <div class="funnel-bar">
+                    <div class="funnel-fill" style="width: 48%"></div>
+                  </div>
+                  <span class="funnel-value">75</span>
+                </div>
+                <div class="funnel-stage">
+                  <span class="funnel-label">Đàm phán</span>
+                  <div class="funnel-bar">
+                    <div class="funnel-fill" style="width: 32%"></div>
+                  </div>
+                  <span class="funnel-value">50</span>
+                </div>
+                <div class="funnel-stage">
+                  <span class="funnel-label">Đóng deal</span>
+                  <div class="funnel-bar">
+                    <div class="funnel-fill success" style="width: 18%"></div>
+                  </div>
+                  <span class="funnel-value">28</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conversion Rates -->
+            <div class="report-stat-card">
+              <div class="report-stat-header">
+                <span class="report-stat-kicker">Conversion</span>
+                <h3 class="report-stat-title">Tỷ lệ chuyển đổi</h3>
+              </div>
+              <div class="conversion-list">
+                <div class="conversion-item">
+                  <span class="conversion-label">Lead → Qualified</span>
+                  <div class="conversion-bar-wrapper">
+                    <div class="conversion-bar">
+                      <div class="conversion-fill" style="width: 72%"></div>
                     </div>
-                    <div class="chart-point" data-value="1.8B" data-month="T11">
-                      <div class="chart-bar" style="height: 60%"></div>
-                      <span class="chart-label">T11</span>
-                      <span class="chart-tooltip">1.8B</span>
+                    <span class="conversion-value">72%</span>
+                  </div>
+                </div>
+                <div class="conversion-item">
+                  <span class="conversion-label">Qualified → Proposal</span>
+                  <div class="conversion-bar-wrapper">
+                    <div class="conversion-bar">
+                      <div class="conversion-fill" style="width: 67%"></div>
                     </div>
-                    <div class="chart-point" data-value="1.2B" data-month="T12">
-                      <div class="chart-bar" style="height: 40%"></div>
-                      <span class="chart-label">T12</span>
-                      <span class="chart-tooltip">1.2B</span>
+                    <span class="conversion-value">67%</span>
+                  </div>
+                </div>
+                <div class="conversion-item">
+                  <span class="conversion-label">Proposal → Negotiation</span>
+                  <div class="conversion-bar-wrapper">
+                    <div class="conversion-bar">
+                      <div class="conversion-fill" style="width: 66%"></div>
                     </div>
-                    <div class="chart-point highlight" data-value="2.25B" data-month="T1">
-                      <div class="chart-bar" style="height: 75%"></div>
-                      <span class="chart-label">T1</span>
-                      <span class="chart-tooltip">2.25B</span>
+                    <span class="conversion-value">66%</span>
+                  </div>
+                </div>
+                <div class="conversion-item">
+                  <span class="conversion-label">Negotiation → Won</span>
+                  <div class="conversion-bar-wrapper">
+                    <div class="conversion-bar">
+                      <div
+                        class="conversion-fill success"
+                        style="width: 56%"
+                      ></div>
                     </div>
-                    <div class="chart-point" data-value="2.55B" data-month="T2">
-                      <div class="chart-bar" style="height: 85%"></div>
-                      <span class="chart-label">T2</span>
-                      <span class="chart-tooltip">2.55B</span>
-                    </div>
-                    <div class="chart-point highlight-max" data-value="3B" data-month="T3">
-                      <div class="chart-bar" style="height: 100%"></div>
-                      <span class="chart-label">T3</span>
-                      <span class="chart-tooltip">3B — Cao nhất</span>
-                    </div>
+                    <span class="conversion-value">56%</span>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
 
-          <section class="section-block recent-reports-card">
-            <div class="section-heading">
+            <!-- Team Performance -->
+            <div class="report-stat-card">
+              <div class="report-stat-header">
+                <span class="report-stat-kicker">Team</span>
+                <h3 class="report-stat-title">Top performers tháng này</h3>
+              </div>
+              <div class="team-performers">
+                <div class="performer-item">
+                  <div class="performer-rank gold">1</div>
+                  <div class="performer-avatar">AN</div>
+                  <div class="performer-info">
+                    <span class="performer-name">An Nguyễn</span>
+                    <span class="performer-stat">₫1.2B · 12 deals</span>
+                  </div>
+                </div>
+                <div class="performer-item">
+                  <div class="performer-rank silver">2</div>
+                  <div class="performer-avatar">MN</div>
+                  <div class="performer-info">
+                    <span class="performer-name">Minh Nguyễn</span>
+                    <span class="performer-stat">₫980M · 9 deals</span>
+                  </div>
+                </div>
+                <div class="performer-item">
+                  <div class="performer-rank bronze">3</div>
+                  <div class="performer-avatar">LN</div>
+                  <div class="performer-info">
+                    <span class="performer-name">Lan Nguyễn</span>
+                    <span class="performer-stat">₫850M · 8 deals</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Reports -->
+          <div class="recent-reports-section">
+            <div class="recent-reports-header">
               <div>
-                <span class="section-kicker">Hoạt động</span>
-                <h2 class="section-title">Báo cáo gần đây</h2>
+                <span class="recent-reports-kicker">Hoạt động</span>
+                <h2 class="recent-reports-title">Báo cáo đã tạo gần đây</h2>
               </div>
-              <a href="#" class="card-action">Xem tất cả</a>
+              <button class="btn btn-ghost">Xem tất cả</button>
             </div>
-            <div class="reports-list">
-              <div class="list-item report-item">
-                <div class="report-type-icon revenue">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            <div class="recent-reports-grid">
+              <div class="recent-report-card">
+                <div class="recent-report-icon revenue">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    />
                   </svg>
                 </div>
-                <div class="list-item-content">
-                  <span class="list-item-title">Báo cáo doanh thu tháng 4/2026</span>
-                  <span class="list-item-subtitle">Đã tạo: 18/05/2026 · 2.5MB</span>
+                <div class="recent-report-info">
+                  <h4>Báo cáo doanh thu tháng 4/2026</h4>
+                  <p>Đã tạo: 18/05/2026 · 2.5MB</p>
                 </div>
-                <div class="report-meta">
-                  <span class="report-status ready">Sẵn sàng</span>
-                </div>
+                <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
-              <div class="list-item report-item">
-                <div class="report-type-icon pipeline">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
+
+              <div class="recent-report-card">
+                <div class="recent-report-icon pipeline">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
                   </svg>
                 </div>
-                <div class="list-item-content">
-                  <span class="list-item-title">Báo cáo pipeline Q2 2026</span>
-                  <span class="list-item-subtitle">Đã tạo: 15/05/2026 · 1.8MB</span>
+                <div class="recent-report-info">
+                  <h4>Báo cáo pipeline Q2 2026</h4>
+                  <p>Đã tạo: 15/05/2026 · 1.8MB</p>
                 </div>
-                <div class="report-meta">
-                  <span class="report-status ready">Sẵn sàng</span>
-                </div>
+                <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
-              <div class="list-item report-item">
-                <div class="report-type-icon team">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+
+              <div class="recent-report-card">
+                <div class="recent-report-icon team">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <div class="list-item-content">
-                  <span class="list-item-title">Báo cáo hiệu suất team tháng 4</span>
-                  <span class="list-item-subtitle">Đã tạo: 10/05/2026 · 3.2MB</span>
+                <div class="recent-report-info">
+                  <h4>Báo cáo hiệu suất team tháng 4</h4>
+                  <p>Đã tạo: 10/05/2026 · 3.2MB</p>
                 </div>
-                <div class="report-meta">
-                  <span class="report-status ready">Sẵn sàng</span>
-                </div>
+                <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
-              <div class="list-item report-item">
-                <div class="report-type-icon revenue">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+
+              <div class="recent-report-card">
+                <div class="recent-report-icon revenue">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    />
                   </svg>
                 </div>
-                <div class="list-item-content">
-                  <span class="list-item-title">Báo cáo doanh thu Q1 2026</span>
-                  <span class="list-item-subtitle">Đã tạo: 05/04/2026 · 4.1MB</span>
+                <div class="recent-report-info">
+                  <h4>Báo cáo doanh thu Q1 2026</h4>
+                  <p>Đã tạo: 05/04/2026 · 4.1MB</p>
                 </div>
-                <div class="report-meta">
-                  <span class="report-status archived">Lưu trữ</span>
-                </div>
+                <span class="recent-report-status archived">Lưu trữ</span>
               </div>
             </div>
-          </section>
+          </div>
         </div>
-      </div>
-    </main>
-  </div>
+      </main>
+    </div>
 
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script>
-    function renderUserProfile() {
-      const user = Auth.getCurrentUser();
-      const profileEl = document.getElementById('userProfile');
-      if (!user || !profileEl) return;
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+      function renderUserProfile() {
+        const user = Auth.getCurrentUser();
+        const profileEl = document.getElementById("userProfile");
+        if (!user || !profileEl) return;
 
-      profileEl.innerHTML = `
+        profileEl.innerHTML = `
         <div class="user-avatar">${user.avatar}</div>
         <div class="user-info">
           <div class="user-name">${user.name}</div>
@@ -377,15 +784,44 @@
         </button>
       `;
 
-      const logoutBtn = document.getElementById('logoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-          Auth.logout();
-        });
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", () => {
+            Auth.logout();
+          });
+        }
       }
-    }
-    window.addEventListener('auth_state_changed', renderUserProfile);
-    renderUserProfile();
-  </script>
-</body>
+      window.addEventListener("auth_state_changed", renderUserProfile);
+      renderUserProfile();
+
+      // Report tab switching
+      const reportTabs = document.querySelectorAll(".report-tab");
+      reportTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          reportTabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+        });
+      });
+
+      // Period selector
+      const periodBtns = document.querySelectorAll(".period-btn");
+      periodBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          periodBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+      });
+
+      // Chart dots hover effect
+      const chartDots = document.querySelectorAll(".chart-dot");
+      chartDots.forEach((dot) => {
+        dot.addEventListener("mouseenter", () => {
+          const value = dot.dataset.value;
+          if (value) {
+            dot.setAttribute("data-tooltip", value);
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

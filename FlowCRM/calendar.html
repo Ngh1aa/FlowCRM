@@ -162,7 +162,7 @@
       <div class="page-content">
         <section class="page-hero page-hero-calendar" aria-labelledby="calendarHeroTitle">
           <div class="page-hero-content">
-            <span class="section-kicker">FlowCRM schedule desk</span>
+            <span class="section-kicker">Bàn lịch FlowCRM</span>
             <h2 id="calendarHeroTitle">Nhìn nhanh tuần làm việc để chuẩn bị đúng cuộc hẹn và đúng khách hàng.</h2>
             <p>Lịch được đặt cạnh danh sách sự kiện để dễ chuyển từ kế hoạch sang hành động tiếp theo.</p>
           </div>
@@ -186,6 +186,42 @@
           <!-- Calendar View -->
           <div class="calendar-wrapper">
             <div class="calendar-header">
+              <div class="calendar-filters">
+                <div class="filter-group">
+                  <label class="filter-label">Năm</label>
+                  <select class="filter-select" id="yearSelect">
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label">Tháng</label>
+                  <select class="filter-select" id="monthSelect">
+                    <option value="0">Tháng 1</option>
+                    <option value="1">Tháng 2</option>
+                    <option value="2">Tháng 3</option>
+                    <option value="3">Tháng 4</option>
+                    <option value="4">Tháng 5</option>
+                    <option value="5">Tháng 6</option>
+                    <option value="6">Tháng 7</option>
+                    <option value="7">Tháng 8</option>
+                    <option value="8">Tháng 9</option>
+                    <option value="9">Tháng 10</option>
+                    <option value="10">Tháng 11</option>
+                    <option value="11">Tháng 12</option>
+                  </select>
+                </div>
+                <div class="filter-group view-filter">
+                  <label class="filter-label">Xem</label>
+                  <div class="view-toggle">
+                    <button class="view-btn active" data-view="month" id="viewMonth">Tháng</button>
+                    <button class="view-btn" data-view="week" id="viewWeek">Tuần</button>
+                    <button class="view-btn" data-view="day" id="viewDay">Ngày</button>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-nav">
                 <button class="calendar-nav-btn" id="prevMonth">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -198,26 +234,12 @@
                     <path d="m9 18 6-6-6-6"/>
                   </svg>
                 </button>
-              </div>
-              <div class="calendar-actions">
-                <div class="view-toggle">
-                  <button class="view-btn active" data-view="month">Tháng</button>
-                  <button class="view-btn" data-view="week">Tuần</button>
-                  <button class="view-btn" data-view="day">Ngày</button>
-                </div>
                 <button class="btn btn-secondary btn-sm" id="todayBtn">Hôm nay</button>
               </div>
             </div>
 
             <div class="calendar-grid" id="calendarGrid">
-              <div class="calendar-weekday">CN</div>
-              <div class="calendar-weekday">T2</div>
-              <div class="calendar-weekday">T3</div>
-              <div class="calendar-weekday">T4</div>
-              <div class="calendar-weekday">T5</div>
-              <div class="calendar-weekday">T6</div>
-              <div class="calendar-weekday">T7</div>
-              <!-- Calendar days will be rendered by JS -->
+              <!-- Calendar content will be rendered by JS -->
             </div>
           </div>
 
@@ -363,12 +385,41 @@
     const prevMonthBtn = document.getElementById('prevMonth');
     const nextMonthBtn = document.getElementById('nextMonth');
     const todayBtn = document.getElementById('todayBtn');
+    const yearSelect = document.getElementById('yearSelect');
+    const monthSelect = document.getElementById('monthSelect');
 
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
 
     const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+
+    // Initialize year and month selects
+    yearSelect.value = currentYear;
+    monthSelect.value = currentMonth;
+
+    // Year and Month filter change handlers
+    yearSelect.addEventListener('change', function() {
+      currentYear = parseInt(this.value);
+      if (currentView === 'day') {
+        showDayView();
+      } else if (currentView === 'week') {
+        showWeekView();
+      } else {
+        showMonthView();
+      }
+    });
+
+    monthSelect.addEventListener('change', function() {
+      currentMonth = parseInt(this.value);
+      if (currentView === 'day') {
+        showDayView();
+      } else if (currentView === 'week') {
+        showWeekView();
+      } else {
+        showMonthView();
+      }
+    });
 
     // Event data with CRM context
     const eventsData = {
@@ -426,6 +477,22 @@
       const existingDays = calendarGrid.querySelectorAll('.calendar-day');
       existingDays.forEach(day => day.remove());
 
+      // Remove week row if exists
+      const existingWeekRow = calendarGrid.querySelector('.calendar-week-row');
+      if (existingWeekRow) existingWeekRow.remove();
+
+      // Restore weekday headers if switching from day/week view
+      const existingWeekdays = calendarGrid.querySelectorAll('.calendar-weekday');
+      if (existingWeekdays.length === 0) {
+        const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+        weekDays.forEach(day => {
+          const dayHeader = document.createElement('div');
+          dayHeader.className = 'calendar-weekday';
+          dayHeader.textContent = day;
+          calendarGrid.insertBefore(dayHeader, calendarGrid.firstChild.nextSibling);
+        });
+      }
+
       // Add empty cells for days before the first day
       for (let i = 0; i < firstDay; i++) {
         const emptyCell = document.createElement('div');
@@ -472,36 +539,224 @@
     }
 
     prevMonthBtn.addEventListener('click', () => {
-      currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
+      if (currentView === 'day') {
+        currentDate.setDate(currentDate.getDate() - 1);
+        yearSelect.value = currentDate.getFullYear();
+        monthSelect.value = currentDate.getMonth();
+        renderDayView();
+      } else if (currentView === 'week') {
+        currentDate.setDate(currentDate.getDate() - 7);
+        yearSelect.value = currentDate.getFullYear();
+        monthSelect.value = currentDate.getMonth();
+        renderWeekView();
+      } else {
+        currentMonth--;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+          yearSelect.value = currentYear;
+        }
+        monthSelect.value = currentMonth;
+        showMonthView();
       }
-      renderCalendar();
     });
 
     nextMonthBtn.addEventListener('click', () => {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
+      if (currentView === 'day') {
+        currentDate.setDate(currentDate.getDate() + 1);
+        yearSelect.value = currentDate.getFullYear();
+        monthSelect.value = currentDate.getMonth();
+        renderDayView();
+      } else if (currentView === 'week') {
+        currentDate.setDate(currentDate.getDate() + 7);
+        yearSelect.value = currentDate.getFullYear();
+        monthSelect.value = currentDate.getMonth();
+        renderWeekView();
+      } else {
+        currentMonth++;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+          yearSelect.value = currentYear;
+        }
+        monthSelect.value = currentMonth;
+        showMonthView();
       }
-      renderCalendar();
     });
 
     todayBtn.addEventListener('click', () => {
-      currentMonth = new Date().getMonth();
-      currentYear = new Date().getFullYear();
-      renderCalendar();
+      currentDate = new Date();
+      currentMonth = currentDate.getMonth();
+      currentYear = currentDate.getFullYear();
+      yearSelect.value = currentYear;
+      monthSelect.value = currentMonth;
+      if (currentView === 'day') {
+        showDayView();
+      } else if (currentView === 'week') {
+        showWeekView();
+      } else {
+        showMonthView();
+      }
     });
 
     // View toggle functionality
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    let currentView = 'month';
+    const viewMonthBtn = document.getElementById('viewMonth');
+    const viewWeekBtn = document.getElementById('viewWeek');
+    const viewDayBtn = document.getElementById('viewDay');
+
+    function showMonthView() {
+      currentView = 'month';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      viewMonthBtn.classList.add('active');
+      yearSelect.value = currentYear;
+      monthSelect.value = currentMonth;
+      renderCalendar();
+    }
+
+    function showWeekView() {
+      currentView = 'week';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      viewWeekBtn.classList.add('active');
+      yearSelect.value = currentDate.getFullYear();
+      monthSelect.value = currentDate.getMonth();
+      renderWeekView();
+    }
+
+    function showDayView() {
+      currentView = 'day';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      viewDayBtn.classList.add('active');
+      yearSelect.value = currentDate.getFullYear();
+      monthSelect.value = currentDate.getMonth();
+      renderDayView();
+    }
+
+    function renderWeekView() {
+      const startOfWeek = new Date(currentDate);
+      startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
+
+      calendarTitle.textContent = `Tuần ${getWeekNumber(currentDate)}, ${currentYear}`;
+
+      // Clear existing days (keep weekdays)
+      const existingDays = calendarGrid.querySelectorAll('.calendar-day');
+      existingDays.forEach(day => day.remove());
+
+      // Remove week row if exists
+      const existingWeekRow = calendarGrid.querySelector('.calendar-week-row');
+      if (existingWeekRow) existingWeekRow.remove();
+
+      // Clear weekday headers
+      const weekdays = calendarGrid.querySelectorAll('.calendar-weekday');
+      weekdays.forEach(w => w.remove());
+
+      // Add week days header
+      const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+      weekDays.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-weekday';
+        dayHeader.textContent = day;
+        calendarGrid.appendChild(dayHeader);
       });
-    });
+
+      // Create week row with 7 day cells
+      const weekRow = document.createElement('div');
+      weekRow.className = 'calendar-week-row';
+      calendarGrid.appendChild(weekRow);
+
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(startOfWeek);
+        date.setDate(startOfWeek.getDate() + i);
+        const day = date.getDate();
+
+        const dayCell = document.createElement('div');
+        dayCell.className = 'calendar-day week-view-day';
+
+        const dayNumber = document.createElement('span');
+        dayNumber.className = 'day-number';
+        dayNumber.textContent = day;
+        dayCell.appendChild(dayNumber);
+
+        if (day === currentDate.getDate() && date.getMonth() === currentDate.getMonth() && date.getFullYear() === currentDate.getFullYear()) {
+          dayCell.classList.add('today');
+        }
+
+        if (eventsData[day]) {
+          dayCell.classList.add('has-event');
+          const eventsList = document.createElement('div');
+          eventsList.className = 'day-events';
+
+          eventsData[day].forEach(event => {
+            const chip = document.createElement('div');
+            chip.className = `event-chip ${event.type}`;
+            chip.textContent = event.title;
+            eventsList.appendChild(chip);
+          });
+
+          dayCell.appendChild(eventsList);
+        }
+
+        weekRow.appendChild(dayCell);
+      }
+    }
+
+    function renderDayView() {
+      const dayNames = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+
+      calendarTitle.textContent = `${dayNames[currentDate.getDay()]}, ${currentDate.getDate()} ${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+      // Clear existing days
+      const existingDays = calendarGrid.querySelectorAll('.calendar-day');
+      existingDays.forEach(day => day.remove());
+
+      // Clear weekday headers
+      const weekdays = calendarGrid.querySelectorAll('.calendar-weekday');
+      weekdays.forEach(w => w.remove());
+
+      // Remove week row if exists
+      const existingWeekRow = calendarGrid.querySelector('.calendar-week-row');
+      if (existingWeekRow) existingWeekRow.remove();
+
+      // Create all-day cell
+      const dayCell = document.createElement('div');
+      dayCell.className = 'calendar-day day-view-day today';
+      dayCell.style.minHeight = '400px';
+
+      const dayNumber = document.createElement('div');
+      dayNumber.className = 'day-number large';
+      dayNumber.textContent = currentDate.getDate();
+      dayCell.appendChild(dayNumber);
+
+      // Show all events for the day
+      const day = currentDate.getDate();
+      if (eventsData[day]) {
+        const eventsList = document.createElement('div');
+        eventsList.className = 'day-events';
+
+        eventsData[day].forEach(event => {
+          const chip = document.createElement('div');
+          chip.className = `event-chip ${event.type}`;
+          chip.textContent = `${event.time} - ${event.title}`;
+          eventsList.appendChild(chip);
+        });
+
+        dayCell.appendChild(eventsList);
+      }
+
+      calendarGrid.appendChild(dayCell);
+    }
+
+    function getWeekNumber(date) {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const dayNum = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    viewMonthBtn.addEventListener('click', showMonthView);
+    viewWeekBtn.addEventListener('click', showWeekView);
+    viewDayBtn.addEventListener('click', showDayView);
 
     try {
       Storage.get(Storage.KEYS.EVENTS).forEach(event => addEventToCalendar(event, false));

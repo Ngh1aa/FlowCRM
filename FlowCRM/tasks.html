@@ -1,847 +1,1221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Nhiệm vụ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/design-system.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body class="tasks-page">
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-      <line x1="3" y1="12" x2="21" y2="12"/>
-      <line x1="3" y1="6" x2="21" y2="6"/>
-      <line x1="3" y1="18" x2="21" y2="18"/>
-    </svg>
-  </button>
-  <div class="app-container" id="appContainer">
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="4" width="28" height="28" rx="7" fill="currentColor" fill-opacity="0.1"/>
-            <path d="M9 11h10M9 18h14M9 25h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="23" cy="11" r="2.5" fill="currentColor" opacity="0.7"/>
-          </svg>
-          <span>FlowCRM</span>
-        </div>
-        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
-          <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"/>
-          </svg>
-        </button>
-      </div>
-
-      <nav class="sidebar-nav">
-        <div class="nav-section">
-          <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="3" width="7" height="9" rx="1"/>
-              <rect x="14" y="3" width="7" height="5" rx="1"/>
-              <rect x="14" y="12" width="7" height="9" rx="1"/>
-              <rect x="3" y="16" width="7" height="5" rx="1"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowCRM - Nhiệm vụ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/design-system.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="tasks-page">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        width="20"
+        height="20"
+      >
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+    <div class="app-container" id="appContainer">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="4"
+                width="28"
+                height="28"
+                rx="7"
+                fill="currentColor"
+                fill-opacity="0.1"
+              />
+              <path
+                d="M9 11h10M9 18h14M9 25h8"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="23"
+                cy="11"
+                r="2.5"
+                fill="currentColor"
+                opacity="0.7"
+              />
             </svg>
-            <span>Tổng quan</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Quản lý</div>
-          <a href="pipeline.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
-            </svg>
-            <span>Quy trình bán hàng</span>
-            <span class="badge">12</span>
-          </a>
-          <a href="customers.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-            <span>Khách hàng</span>
-            <span class="badge">48</span>
-          </a>
-          <a href="messages.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            <span>Tin nhắn</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M9 11l3 3L22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Nhiệm vụ</span>
-            <span class="badge">5</span>
-          </a>
-          <a href="calendar.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            <span>Lịch hẹn</span>
-          </a>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
-            </svg>
-            <span>Báo cáo</span>
-          </a>
-          <a href="settings.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-            </svg>
-            <span>Cài đặt</span>
-          </a>
-        </div>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="user-profile" id="userProfile">
-          <div class="user-avatar">AN</div>
-          <div class="user-info">
-            <div class="user-name">An Nguyen</div>
-            <div class="user-role">Quản lý bán hàng</div>
+            <span>FlowCRM</span>
           </div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <div>
-            <h1 class="page-title">Nhiệm vụ</h1>
-            <p class="page-subtitle">Ưu tiên việc quá hạn, việc hôm nay và các follow-up sắp tới.</p>
-          </div>
-        </div>
-        <div class="topbar-right">
-          <button class="btn btn-primary" id="addTaskBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Thu gọn sidebar"
+            aria-expanded="true"
+          >
+            <svg
+              class="toggle-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15 18 9 12 15 6" />
             </svg>
-            Thêm nhiệm vụ
           </button>
         </div>
-      </header>
 
-      <div class="page-content">
-        <section class="task-dashboard-redesign" aria-label="Bảng nhiệm vụ CRM">
-          <div class="task-summary-row" aria-label="Tổng quan nhiệm vụ">
-            <article class="task-summary-item overdue">
-              <span class="task-summary-dot" aria-hidden="true"></span>
-              <span class="task-summary-label">Quá hạn</span>
-              <strong class="count">2</strong>
-            </article>
-            <article class="task-summary-item today">
-              <span class="task-summary-dot" aria-hidden="true"></span>
-              <span class="task-summary-label">Hôm nay</span>
-              <strong class="count">5</strong>
-            </article>
-            <article class="task-summary-item upcoming">
-              <span class="task-summary-dot" aria-hidden="true"></span>
-              <span class="task-summary-label">Sắp tới</span>
-              <strong class="count">8</strong>
-            </article>
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title">Tổng quan</div>
+            <a href="index.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="3" width="7" height="9" rx="1" />
+                <rect x="14" y="3" width="7" height="5" rx="1" />
+                <rect x="14" y="12" width="7" height="9" rx="1" />
+                <rect x="3" y="16" width="7" height="5" rx="1" />
+              </svg>
+              <span>Tổng quan</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Quản lý</div>
+            <a href="pipeline.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
+              </svg>
+              <span>Quy trình bán hàng</span>
+              <span class="badge">12</span>
+            </a>
+            <a href="customers.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>Khách hàng</span>
+              <span class="badge">48</span>
+            </a>
+            <a href="messages.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              <span>Tin nhắn</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Công việc</div>
+            <a href="tasks.html" class="nav-item active">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M9 11l3 3L22 4" />
+                <path
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                />
+              </svg>
+              <span>Nhiệm vụ</span>
+              <span class="badge">5</span>
+            </a>
+            <a href="calendar.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <span>Lịch hẹn</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">KHÁC</div>
+            <a href="reports.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              <span>Báo cáo</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                />
+              </svg>
+              <span>Cài đặt</span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar">AN</div>
+            <div class="user-info">
+              <div class="user-name">An Nguyen</div>
+              <div class="user-role">Quản lý bán hàng</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div>
+              <h1 class="page-title">Nhiệm vụ</h1>
+              <p class="page-subtitle">
+                Ưu tiên việc quá hạn, việc hôm nay và các follow-up sắp tới.
+              </p>
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="btn btn-primary" id="addTaskBtn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Thêm nhiệm vụ
+            </button>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section
+            class="task-dashboard-redesign"
+            aria-label="Bảng nhiệm vụ CRM"
+          >
+            <section
+              class="task-command-center"
+              aria-label="Điều phối nhiệm vụ"
+            >
+              <div class="task-command-head">
+                <div class="task-command-copy">
+                  <span class="task-command-kicker">Bàn ưu tiên</span>
+                  <h2>Nhiệm vụ cần xử lý</h2>
+                  <p>
+                    Tập trung vào việc quá hạn, việc đến hạn hôm nay và các
+                    follow-up gần nhất.
+                  </p>
+                </div>
+                <div class="task-command-pulse" aria-label="Tình trạng ưu tiên">
+                  <span
+                    class="task-command-pulse-dot"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <strong>2 việc đang quá hạn</strong>
+                    <span>Cần xử lý trước khi mở pipeline mới</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="task-summary-row" aria-label="Tổng quan nhiệm vụ">
+                <article class="task-summary-item overdue">
+                  <span class="card-header"
+                    ><span class="task-summary-dot" aria-hidden="true"></span
+                    ><span class="task-summary-label">Quá hạn</span></span
+                  >
+                  <strong class="count">2</strong>
+                  <span class="count-subtitle">Cần xử lý ngay</span>
+                </article>
+                <article class="task-summary-item today">
+                  <span class="card-header"
+                    ><span class="task-summary-dot" aria-hidden="true"></span
+                    ><span class="task-summary-label">Hôm nay</span></span
+                  >
+                  <strong class="count">5</strong>
+                  <span class="count-subtitle">Việc trong hôm nay</span>
+                </article>
+                <article class="task-summary-item upcoming">
+                  <span class="card-header"
+                    ><span class="task-summary-dot" aria-hidden="true"></span
+                    ><span class="task-summary-label">Sắp tới</span></span
+                  >
+                  <strong class="count">8</strong>
+                  <span class="count-subtitle">Follow-up sắp tới</span>
+                </article>
+              </div>
+
+              <div class="task-command-footer">
+                <div class="task-dashboard-tabs" aria-label="Lọc nhiệm vụ">
+                  <button
+                    class="task-dashboard-tab active"
+                    type="button"
+                    data-task-view="all"
+                  >
+                    Tất cả
+                  </button>
+                  <button
+                    class="task-dashboard-tab"
+                    type="button"
+                    data-task-view="overdue"
+                  >
+                    Quá hạn
+                  </button>
+                  <button
+                    class="task-dashboard-tab"
+                    type="button"
+                    data-task-view="today"
+                  >
+                    Hôm nay
+                  </button>
+                  <button
+                    class="task-dashboard-tab"
+                    type="button"
+                    data-task-view="upcoming"
+                  >
+                    Sắp tới
+                  </button>
+                  <button
+                    class="task-dashboard-tab"
+                    type="button"
+                    data-task-view="completed"
+                  >
+                    Hoàn thành
+                  </button>
+                </div>
+                <div class="task-command-meta" aria-label="Tóm tắt quy trình">
+                  <span>Độ ưu tiên: Cao</span>
+                  <span>Chu kỳ: Tuần này</span>
+                </div>
+              </div>
+            </section>
+
+            <div class="task-workspace">
+              <section class="task-list-panel" aria-label="Danh sách nhiệm vụ">
+                <article class="task-list-section" data-task-section="overdue">
+                  <div class="task-section-header">
+                    <div>
+                      <span class="task-section-kicker overdue"></span>
+                      <h2>Quá hạn</h2>
+                    </div>
+                    <span class="task-section-count">2</span>
+                  </div>
+                  <div class="task-rows">
+                    <div
+                      class="task-row overdue is-selected"
+                      data-task-status="overdue"
+                    >
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Gọi điện cho Alpha Corp</h3>
+                        <p>
+                          <span>Cloud Migration</span><span>Alpha Corp</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">Đã hạn 10/05</span>
+                      <span class="stage-badge">Đàm phán</span>
+                      <span class="priority-badge high">Cao</span>
+                      <span class="assignee-avatar">AN</span>
+                    </div>
+                    <div class="task-row overdue" data-task-status="overdue">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Gửi báo giá cho Beta Industries</h3>
+                        <p>
+                          <span>Security Audit</span
+                          ><span>Beta Industries</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">Đã hạn 11/05</span>
+                      <span class="stage-badge">Báo giá</span>
+                      <span class="priority-badge high">Cao</span>
+                      <span class="assignee-avatar">MN</span>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="task-list-section" data-task-section="today">
+                  <div class="task-section-header">
+                    <div>
+                      <span class="task-section-kicker today"></span>
+                      <h2>Hôm nay</h2>
+                    </div>
+                    <span class="task-section-count">5</span>
+                  </div>
+                  <div class="task-rows">
+                    <div class="task-row completed" data-task-status="today">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Gửi báo giá cho Tech Solutions</h3>
+                        <p>
+                          <span>Mobile App</span><span>Tech Solutions</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">10:30</span>
+                      <span class="stage-badge">Đã gửi</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">LN</span>
+                    </div>
+                    <div class="task-row" data-task-status="today">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Họp nhóm về quy trình Q2</h3>
+                        <p><span>Nội bộ</span><span>Sales Ops</span></p>
+                      </div>
+                      <span class="task-row-deadline">14:00</span>
+                      <span class="stage-badge">Review</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">AN</span>
+                    </div>
+                    <div class="task-row" data-task-status="today">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Follow up deal với Design Co</h3>
+                        <p>
+                          <span>CRM Integration</span><span>Design Co</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">16:30</span>
+                      <span class="stage-badge">Follow-up</span>
+                      <span class="priority-badge high">Cao</span>
+                      <span class="assignee-avatar">BN</span>
+                    </div>
+                    <div class="task-row" data-task-status="today">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Xác nhận lịch demo với Gamma Ltd</h3>
+                        <p>
+                          <span>Data Analytics Suite</span
+                          ><span>Gamma Ltd</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">17:15</span>
+                      <span class="stage-badge">Demo</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">AN</span>
+                    </div>
+                    <div class="task-row" data-task-status="today">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Cập nhật pipeline cho Zeta Group</h3>
+                        <p>
+                          <span>SEO Optimization</span><span>Zeta Group</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">18:00</span>
+                      <span class="stage-badge">Pipeline</span>
+                      <span class="priority-badge low">Thấp</span>
+                      <span class="assignee-avatar">BN</span>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="task-list-section" data-task-section="tomorrow">
+                  <div class="task-section-header">
+                    <div>
+                      <span class="task-section-kicker upcoming"></span>
+                      <h2>Ngày mai</h2>
+                    </div>
+                    <span class="task-section-count">2</span>
+                  </div>
+                  <div class="task-rows">
+                    <div class="task-row" data-task-status="tomorrow">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Gửi hợp đồng cho Delta Inc</h3>
+                        <p>
+                          <span>Marketing Automation</span
+                          ><span>Delta Inc</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">15/05</span>
+                      <span class="stage-badge">Hợp đồng</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">MN</span>
+                    </div>
+                    <div class="task-row" data-task-status="tomorrow">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Demo sản phẩm cho Epsilon Co</h3>
+                        <p>
+                          <span>Inventory System</span><span>Epsilon Co</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">18/05</span>
+                      <span class="stage-badge">Demo</span>
+                      <span class="priority-badge low">Thấp</span>
+                      <span class="assignee-avatar">LN</span>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="task-list-section" data-task-section="week">
+                  <div class="task-section-header">
+                    <div>
+                      <span class="task-section-kicker upcoming"></span>
+                      <h2>Tuần này</h2>
+                    </div>
+                    <span class="task-section-count">6</span>
+                  </div>
+                  <div class="task-rows">
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Xem lại đề xuất với Gamma Ltd</h3>
+                        <p>
+                          <span>Data Analytics Suite</span
+                          ><span>Gamma Ltd</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">20/05</span>
+                      <span class="stage-badge">Đề xuất</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">AN</span>
+                    </div>
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Chốt deal với Zeta Group</h3>
+                        <p>
+                          <span>SEO Optimization</span><span>Zeta Group</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">25/05</span>
+                      <span class="stage-badge">Closing</span>
+                      <span class="priority-badge high">Cao</span>
+                      <span class="assignee-avatar">BN</span>
+                    </div>
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Chuẩn bị tài liệu onboarding</h3>
+                        <p>
+                          <span>Customer Success</span><span>Delta Inc</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">26/05</span>
+                      <span class="stage-badge">Onboarding</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">LN</span>
+                    </div>
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Gửi recap sau buổi discovery</h3>
+                        <p><span>Discovery</span><span>Omega Retail</span></p>
+                      </div>
+                      <span class="task-row-deadline">27/05</span>
+                      <span class="stage-badge">Recap</span>
+                      <span class="priority-badge low">Thấp</span>
+                      <span class="assignee-avatar">MN</span>
+                    </div>
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Kiểm tra điều khoản thanh toán</h3>
+                        <p>
+                          <span>Contract Review</span
+                          ><span>Beta Industries</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">28/05</span>
+                      <span class="stage-badge">Legal</span>
+                      <span class="priority-badge high">Cao</span>
+                      <span class="assignee-avatar">AN</span>
+                    </div>
+                    <div class="task-row" data-task-status="upcoming">
+                      <span class="task-row-check" aria-hidden="true"></span>
+                      <div class="task-row-main">
+                        <h3>Lên kế hoạch QBR cho Alpha Corp</h3>
+                        <p>
+                          <span>Account Review</span><span>Alpha Corp</span>
+                        </p>
+                      </div>
+                      <span class="task-row-deadline">30/05</span>
+                      <span class="stage-badge">QBR</span>
+                      <span class="priority-badge medium">TB</span>
+                      <span class="assignee-avatar">BN</span>
+                    </div>
+                  </div>
+                </article>
+              </section>
+
+              <aside
+                class="task-detail-panel"
+                aria-label="Chi tiết nhiệm vụ đang chọn"
+              >
+                <div class="task-detail-head">
+                  <span class="task-detail-status"><span></span> Quá hạn</span>
+                  <button
+                    class="task-detail-more"
+                    type="button"
+                    aria-label="Tùy chọn nhiệm vụ"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="12" cy="5" r="1" />
+                      <circle cx="12" cy="19" r="1" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="task-detail-title">
+                  <h2>Gọi điện cho Alpha Corp</h2>
+                  <p>
+                    Nhắc lại phần báo giá, xác nhận timeline triển khai và chốt
+                    lịch phản hồi.
+                  </p>
+                </div>
+
+                <div class="task-detail-grid">
+                  <div class="task-detail-field">
+                    <span>Hạn chót</span>
+                    <strong class="overdue-text">10/05</strong>
+                  </div>
+                  <div class="task-detail-field">
+                    <span>Giai đoạn</span>
+                    <strong>Đàm phán</strong>
+                  </div>
+                  <div class="task-detail-field">
+                    <span>Độ ưu tiên</span>
+                    <strong>Cao</strong>
+                  </div>
+                  <div class="task-detail-field">
+                    <span>Công ty</span>
+                    <strong>Alpha Corp</strong>
+                  </div>
+                </div>
+
+                <div class="task-detail-assignee">
+                  <span class="assignee-avatar">AN</span>
+                  <div>
+                    <span>Người phụ trách</span>
+                    <strong>An Nguyễn</strong>
+                  </div>
+                </div>
+
+                <div class="task-detail-block">
+                  <h3>Nhãn</h3>
+                  <div class="task-tags">
+                    <span>Cloud Migration</span>
+                    <span>Enterprise</span>
+                    <span>Follow-up</span>
+                  </div>
+                </div>
+
+                <div class="task-detail-block">
+                  <h3>Công việc con</h3>
+                  <label class="task-subtask completed"
+                    ><span></span>Kiểm tra báo giá đã gửi</label
+                  >
+                  <label class="task-subtask"
+                    ><span></span>Gọi lại người phụ trách mua hàng</label
+                  >
+                  <label class="task-subtask"
+                    ><span></span>Cập nhật next step trong pipeline</label
+                  >
+                </div>
+
+                <div class="task-detail-block">
+                  <h3>Hoạt động / Ghi chú</h3>
+                  <div class="task-note">
+                    <strong>09:20</strong>
+                    <p>
+                      Khách muốn xác nhận lại phạm vi triển khai trước khi duyệt
+                      hợp đồng.
+                    </p>
+                  </div>
+                  <textarea
+                    class="task-note-input"
+                    rows="3"
+                    placeholder="Thêm ghi chú..."
+                  ></textarea>
+                </div>
+
+                <div class="task-detail-actions">
+                  <button class="task-action-secondary" type="button">
+                    Hoàn thành
+                  </button>
+                  <button class="task-action-primary" type="button">
+                    Lưu thay đổi
+                  </button>
+                </div>
+              </aside>
+            </div>
+          </section>
+          <section
+            class="page-hero page-hero-tasks"
+            aria-labelledby="tasksHeroTitle"
+          >
+            <div class="page-hero-content">
+              <span class="section-kicker">Trọng tâm nhiệm vụ FlowCRM</span>
+              <h2 id="tasksHeroTitle">
+                Xử lý việc quan trọng trước, giảm khoảng cách từ cảnh báo đến
+                hành động.
+              </h2>
+              <p>
+                Luồng nhiệm vụ được chia theo mức khẩn cấp để đội sales biết
+                ngay việc nào cần chốt, gọi hoặc gửi tài liệu.
+              </p>
+            </div>
+            <div class="page-hero-metrics" aria-hidden="true">
+              <div class="page-hero-metric danger">
+                <span>Quá hạn</span>
+                <strong>2</strong>
+              </div>
+              <div class="page-hero-metric">
+                <span>Hôm nay</span>
+                <strong>3</strong>
+              </div>
+              <div class="page-hero-metric">
+                <span>Sắp tới</span>
+                <strong>4</strong>
+              </div>
+            </div>
+          </section>
+
+          <div class="task-summary-row">
+            <div class="task-summary-item overdue">
+              <span class="count">2</span>
+              <span>quá hạn</span>
+            </div>
+            <div class="task-summary-item today">
+              <span class="count">3</span>
+              <span>hôm nay</span>
+            </div>
+            <div class="task-summary-item upcoming">
+              <span class="count">8</span>
+              <span>sắp tới</span>
+            </div>
           </div>
 
           <div class="task-dashboard-tabs" aria-label="Lọc nhiệm vụ">
-            <button class="task-dashboard-tab active" type="button" data-task-view="all">Tất cả</button>
-            <button class="task-dashboard-tab" type="button" data-task-view="overdue">Quá hạn</button>
-            <button class="task-dashboard-tab" type="button" data-task-view="today">Hôm nay</button>
-            <button class="task-dashboard-tab" type="button" data-task-view="upcoming">Sắp tới</button>
-            <button class="task-dashboard-tab" type="button" data-task-view="completed">Hoàn thành</button>
+            <button
+              class="task-dashboard-tab active"
+              type="button"
+              data-task-view="all"
+            >
+              Tất cả
+            </button>
+            <button
+              class="task-dashboard-tab"
+              type="button"
+              data-task-view="overdue"
+            >
+              Quá hạn
+            </button>
+            <button
+              class="task-dashboard-tab"
+              type="button"
+              data-task-view="today"
+            >
+              Hôm nay
+            </button>
+            <button
+              class="task-dashboard-tab"
+              type="button"
+              data-task-view="upcoming"
+            >
+              Sắp tới
+            </button>
+            <button
+              class="task-dashboard-tab"
+              type="button"
+              data-task-view="completed"
+            >
+              Hoàn thành
+            </button>
           </div>
 
-          <div class="task-workspace">
-            <section class="task-list-panel" aria-label="Danh sách nhiệm vụ">
-              <article class="task-list-section" data-task-section="overdue">
-                <div class="task-section-header">
-                  <div>
-                    <span class="task-section-kicker overdue"></span>
-                    <h2>Quá hạn</h2>
-                  </div>
-                  <span class="task-section-count">2</span>
+          <div class="tasks-kanban">
+            <!-- Overdue Column -->
+            <div class="tasks-column overdue">
+              <div class="tasks-column-header">
+                <div class="tasks-column-title">
+                  <span class="tasks-column-dot overdue"></span>
+                  <span>Quá hạn</span>
                 </div>
-                <div class="task-rows">
-                  <div class="task-row overdue is-selected" data-task-status="overdue">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Gọi điện cho Alpha Corp</h3>
-                      <p><span>Cloud Migration</span><span>Alpha Corp</span></p>
-                    </div>
-                    <span class="task-row-deadline">Đã hạn 10/05</span>
-                    <span class="stage-badge">Đàm phán</span>
-                    <span class="priority-badge high">Cao</span>
-                    <span class="assignee-avatar">AN</span>
-                  </div>
-                  <div class="task-row overdue" data-task-status="overdue">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Gửi báo giá cho Beta Industries</h3>
-                      <p><span>Security Audit</span><span>Beta Industries</span></p>
-                    </div>
-                    <span class="task-row-deadline">Đã hạn 11/05</span>
-                    <span class="stage-badge">Báo giá</span>
-                    <span class="priority-badge high">Cao</span>
-                    <span class="assignee-avatar">MN</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="task-list-section" data-task-section="today">
-                <div class="task-section-header">
-                  <div>
-                    <span class="task-section-kicker today"></span>
-                    <h2>Hôm nay</h2>
-                  </div>
-                  <span class="task-section-count">5</span>
-                </div>
-                <div class="task-rows">
-                  <div class="task-row completed" data-task-status="today">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Gửi báo giá cho Tech Solutions</h3>
-                      <p><span>Mobile App</span><span>Tech Solutions</span></p>
-                    </div>
-                    <span class="task-row-deadline">10:30</span>
-                    <span class="stage-badge">Đã gửi</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">LN</span>
-                  </div>
-                  <div class="task-row" data-task-status="today">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Họp nhóm về quy trình Q2</h3>
-                      <p><span>Nội bộ</span><span>Sales Ops</span></p>
-                    </div>
-                    <span class="task-row-deadline">14:00</span>
-                    <span class="stage-badge">Review</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">AN</span>
-                  </div>
-                  <div class="task-row" data-task-status="today">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Follow up deal với Design Co</h3>
-                      <p><span>CRM Integration</span><span>Design Co</span></p>
-                    </div>
-                    <span class="task-row-deadline">16:30</span>
-                    <span class="stage-badge">Follow-up</span>
-                    <span class="priority-badge high">Cao</span>
-                    <span class="assignee-avatar">BN</span>
-                  </div>
-                  <div class="task-row" data-task-status="today">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Xác nhận lịch demo với Gamma Ltd</h3>
-                      <p><span>Data Analytics Suite</span><span>Gamma Ltd</span></p>
-                    </div>
-                    <span class="task-row-deadline">17:15</span>
-                    <span class="stage-badge">Demo</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">AN</span>
-                  </div>
-                  <div class="task-row" data-task-status="today">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Cập nhật pipeline cho Zeta Group</h3>
-                      <p><span>SEO Optimization</span><span>Zeta Group</span></p>
-                    </div>
-                    <span class="task-row-deadline">18:00</span>
-                    <span class="stage-badge">Pipeline</span>
-                    <span class="priority-badge low">Thấp</span>
-                    <span class="assignee-avatar">BN</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="task-list-section" data-task-section="tomorrow">
-                <div class="task-section-header">
-                  <div>
-                    <span class="task-section-kicker upcoming"></span>
-                    <h2>Ngày mai</h2>
-                  </div>
-                  <span class="task-section-count">2</span>
-                </div>
-                <div class="task-rows">
-                  <div class="task-row" data-task-status="tomorrow">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Gửi hợp đồng cho Delta Inc</h3>
-                      <p><span>Marketing Automation</span><span>Delta Inc</span></p>
-                    </div>
-                    <span class="task-row-deadline">15/05</span>
-                    <span class="stage-badge">Hợp đồng</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">MN</span>
-                  </div>
-                  <div class="task-row" data-task-status="tomorrow">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Demo sản phẩm cho Epsilon Co</h3>
-                      <p><span>Inventory System</span><span>Epsilon Co</span></p>
-                    </div>
-                    <span class="task-row-deadline">18/05</span>
-                    <span class="stage-badge">Demo</span>
-                    <span class="priority-badge low">Thấp</span>
-                    <span class="assignee-avatar">LN</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="task-list-section" data-task-section="week">
-                <div class="task-section-header">
-                  <div>
-                    <span class="task-section-kicker upcoming"></span>
-                    <h2>Tuần này</h2>
-                  </div>
-                  <span class="task-section-count">6</span>
-                </div>
-                <div class="task-rows">
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Xem lại đề xuất với Gamma Ltd</h3>
-                      <p><span>Data Analytics Suite</span><span>Gamma Ltd</span></p>
-                    </div>
-                    <span class="task-row-deadline">20/05</span>
-                    <span class="stage-badge">Đề xuất</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">AN</span>
-                  </div>
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Chốt deal với Zeta Group</h3>
-                      <p><span>SEO Optimization</span><span>Zeta Group</span></p>
-                    </div>
-                    <span class="task-row-deadline">25/05</span>
-                    <span class="stage-badge">Closing</span>
-                    <span class="priority-badge high">Cao</span>
-                    <span class="assignee-avatar">BN</span>
-                  </div>
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Chuẩn bị tài liệu onboarding</h3>
-                      <p><span>Customer Success</span><span>Delta Inc</span></p>
-                    </div>
-                    <span class="task-row-deadline">26/05</span>
-                    <span class="stage-badge">Onboarding</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">LN</span>
-                  </div>
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Gửi recap sau buổi discovery</h3>
-                      <p><span>Discovery</span><span>Omega Retail</span></p>
-                    </div>
-                    <span class="task-row-deadline">27/05</span>
-                    <span class="stage-badge">Recap</span>
-                    <span class="priority-badge low">Thấp</span>
-                    <span class="assignee-avatar">MN</span>
-                  </div>
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Kiểm tra điều khoản thanh toán</h3>
-                      <p><span>Contract Review</span><span>Beta Industries</span></p>
-                    </div>
-                    <span class="task-row-deadline">28/05</span>
-                    <span class="stage-badge">Legal</span>
-                    <span class="priority-badge high">Cao</span>
-                    <span class="assignee-avatar">AN</span>
-                  </div>
-                  <div class="task-row" data-task-status="upcoming">
-                    <span class="task-row-check" aria-hidden="true"></span>
-                    <div class="task-row-main">
-                      <h3>Lên kế hoạch QBR cho Alpha Corp</h3>
-                      <p><span>Account Review</span><span>Alpha Corp</span></p>
-                    </div>
-                    <span class="task-row-deadline">30/05</span>
-                    <span class="stage-badge">QBR</span>
-                    <span class="priority-badge medium">TB</span>
-                    <span class="assignee-avatar">BN</span>
-                  </div>
-                </div>
-              </article>
-            </section>
-
-            <aside class="task-detail-panel" aria-label="Chi tiết nhiệm vụ đang chọn">
-              <div class="task-detail-head">
-                <span class="task-detail-status"><span></span> Quá hạn</span>
-                <button class="task-detail-more" type="button" aria-label="Tùy chọn nhiệm vụ">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                  </svg>
-                </button>
+                <span class="tasks-column-count danger">2</span>
               </div>
-
-              <div class="task-detail-title">
-                <h2>Gọi điện cho Alpha Corp</h2>
-                <p>Nhắc lại phần báo giá, xác nhận timeline triển khai và chốt lịch phản hồi.</p>
+              <div class="task-table-head" aria-hidden="true">
+                <span></span>
+                <span>Nhiệm vụ</span>
+                <span>Hạn</span>
+                <span>Giai đoạn</span>
+                <span>Ưu tiên</span>
+                <span>Nhóm</span>
+                <span>Người phụ trách</span>
               </div>
-
-              <div class="task-detail-grid">
-                <div class="task-detail-field">
-                  <span>Due date</span>
-                  <strong class="overdue-text">10/05</strong>
+              <div class="tasks-column-body">
+                <div class="task-card" data-id="1">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge hot">Cao</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Gọi điện cho Alpha Corp</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline overdue"
+                      >Đã hạn: 10/05</span
+                    >
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Cloud Migration</span>
+                    <span class="task-card-customer">Alpha Corp</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">AN</div>
+                  </div>
                 </div>
-                <div class="task-detail-field">
-                  <span>Stage</span>
-                  <strong>Đàm phán</strong>
-                </div>
-                <div class="task-detail-field">
-                  <span>Priority</span>
-                  <strong>Cao</strong>
-                </div>
-                <div class="task-detail-field">
-                  <span>Company</span>
-                  <strong>Alpha Corp</strong>
-                </div>
-              </div>
-
-              <div class="task-detail-assignee">
-                <span class="assignee-avatar">AN</span>
-                <div>
-                  <span>Assignee</span>
-                  <strong>An Nguyễn</strong>
-                </div>
-              </div>
-
-              <div class="task-detail-block">
-                <h3>Tags</h3>
-                <div class="task-tags">
-                  <span>Cloud Migration</span>
-                  <span>Enterprise</span>
-                  <span>Follow-up</span>
-                </div>
-              </div>
-
-              <div class="task-detail-block">
-                <h3>Subtasks</h3>
-                <label class="task-subtask completed"><span></span>Kiểm tra báo giá đã gửi</label>
-                <label class="task-subtask"><span></span>Gọi lại người phụ trách mua hàng</label>
-                <label class="task-subtask"><span></span>Cập nhật next step trong pipeline</label>
-              </div>
-
-              <div class="task-detail-block">
-                <h3>Activity / notes</h3>
-                <div class="task-note">
-                  <strong>09:20</strong>
-                  <p>Khách muốn xác nhận lại phạm vi triển khai trước khi duyệt hợp đồng.</p>
-                </div>
-                <textarea class="task-note-input" rows="3" placeholder="Thêm ghi chú..."></textarea>
-              </div>
-
-              <div class="task-detail-actions">
-                <button class="task-action-secondary" type="button">Hoàn thành</button>
-                <button class="task-action-primary" type="button">Lưu thay đổi</button>
-              </div>
-            </aside>
-          </div>
-        </section>
-        <section class="page-hero page-hero-tasks" aria-labelledby="tasksHeroTitle">
-          <div class="page-hero-content">
-            <span class="section-kicker">FlowCRM task focus</span>
-            <h2 id="tasksHeroTitle">Xử lý việc quan trọng trước, giảm khoảng cách từ cảnh báo đến hành động.</h2>
-            <p>Luồng nhiệm vụ được chia theo mức khẩn cấp để đội sales biết ngay việc nào cần chốt, gọi hoặc gửi tài liệu.</p>
-          </div>
-          <div class="page-hero-metrics" aria-hidden="true">
-            <div class="page-hero-metric danger">
-              <span>Quá hạn</span>
-              <strong>2</strong>
-            </div>
-            <div class="page-hero-metric">
-              <span>Hôm nay</span>
-              <strong>3</strong>
-            </div>
-            <div class="page-hero-metric">
-              <span>Sắp tới</span>
-              <strong>4</strong>
-            </div>
-          </div>
-        </section>
-
-        <div class="task-summary-row">
-          <div class="task-summary-item overdue">
-            <span class="count">2</span>
-            <span>quá hạn</span>
-          </div>
-          <div class="task-summary-item today">
-            <span class="count">3</span>
-            <span>hôm nay</span>
-          </div>
-          <div class="task-summary-item upcoming">
-            <span class="count">8</span>
-            <span>sắp tới</span>
-          </div>
-        </div>
-
-        <div class="task-dashboard-tabs" aria-label="Lọc nhiệm vụ">
-          <button class="task-dashboard-tab active" type="button" data-task-view="all">Tất cả</button>
-          <button class="task-dashboard-tab" type="button" data-task-view="overdue">Quá hạn</button>
-          <button class="task-dashboard-tab" type="button" data-task-view="today">Hôm nay</button>
-          <button class="task-dashboard-tab" type="button" data-task-view="upcoming">Sắp tới</button>
-          <button class="task-dashboard-tab" type="button" data-task-view="completed">Hoàn thành</button>
-        </div>
-
-        <div class="tasks-kanban">
-          <!-- Overdue Column -->
-          <div class="tasks-column overdue">
-            <div class="tasks-column-header">
-              <div class="tasks-column-title">
-                <span class="tasks-column-dot overdue"></span>
-                <span>Quá hạn</span>
-              </div>
-              <span class="tasks-column-count danger">2</span>
-            </div>
-            <div class="task-table-head" aria-hidden="true">
-              <span></span>
-              <span>Nhiệm vụ</span>
-              <span>Hạn</span>
-              <span>Stage</span>
-              <span>Priority</span>
-              <span>Team</span>
-              <span>Assignee</span>
-            </div>
-            <div class="tasks-column-body">
-              <div class="task-card" data-id="1">
-                <div class="task-card-header">
-                  <span class="task-priority-badge hot">Cao</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Gọi điện cho Alpha Corp</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline overdue">Đã hạn: 10/05</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Cloud Migration</span>
-                  <span class="task-card-customer">Alpha Corp</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">AN</div>
-                </div>
-              </div>
-              <div class="task-card" data-id="2">
-                <div class="task-card-header">
-                  <span class="task-priority-badge hot">Cao</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Gửi báo giá cho Beta Industries</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline overdue">Đã hạn: 11/05</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Security Audit</span>
-                  <span class="task-card-customer">Beta Industries</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">MN</div>
+                <div class="task-card" data-id="2">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge hot">Cao</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">
+                    Gửi báo giá cho Beta Industries
+                  </h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline overdue"
+                      >Đã hạn: 11/05</span
+                    >
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Security Audit</span>
+                    <span class="task-card-customer">Beta Industries</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">MN</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Today Column -->
-          <div class="tasks-column today">
-            <div class="tasks-column-header">
-              <div class="tasks-column-title">
-                <span class="tasks-column-dot today"></span>
-                <span>Hôm nay</span>
+            <!-- Today Column -->
+            <div class="tasks-column today">
+              <div class="tasks-column-header">
+                <div class="tasks-column-title">
+                  <span class="tasks-column-dot today"></span>
+                  <span>Hôm nay</span>
+                </div>
+                <span class="tasks-column-count">3</span>
               </div>
-              <span class="tasks-column-count">3</span>
-            </div>
-            <div class="task-table-head" aria-hidden="true">
-              <span></span>
-              <span>Nhiệm vụ</span>
-              <span>Hạn</span>
-              <span>Stage</span>
-              <span>Priority</span>
-              <span>Team</span>
-              <span>Assignee</span>
-            </div>
-            <div class="tasks-column-body">
-              <div class="task-card completed" data-id="3">
-                <div class="task-card-header">
-                  <span class="task-priority-badge warm">TB</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
+              <div class="task-table-head" aria-hidden="true">
+                <span></span>
+                <span>Nhiệm vụ</span>
+                <span>Hạn</span>
+                <span>Giai đoạn</span>
+                <span>Ưu tiên</span>
+                <span>Nhóm</span>
+                <span>Người phụ trách</span>
+              </div>
+              <div class="tasks-column-body">
+                <div class="task-card completed" data-id="3">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge warm">TB</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">
+                    Gửi báo giá cho Tech Solutions
+                  </h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">10:30</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Mobile App</span>
+                    <span class="task-card-customer">Tech Solutions</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">LN</div>
+                    <div class="task-card-check">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                      >
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-                <h4 class="task-card-title">Gửi báo giá cho Tech Solutions</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">10:30</span>
+                <div class="task-card" data-id="4">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge warm">TB</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Họp nhóm về quy trình Q2</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">14:00</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Nội bộ</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">AN</div>
+                  </div>
                 </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Mobile App</span>
-                  <span class="task-card-customer">Tech Solutions</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">LN</div>
-                  <div class="task-card-check">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                      <path d="M20 6L9 17l-5-5"/>
-                    </svg>
+                <div class="task-card" data-id="5">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge hot">Cao</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Follow up deal với Design Co</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">16:30</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">CRM Integration</span>
+                    <span class="task-card-customer">Design Co</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">BN</div>
                   </div>
                 </div>
               </div>
-              <div class="task-card" data-id="4">
-                <div class="task-card-header">
-                  <span class="task-priority-badge warm">TB</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Họp nhóm về quy trình Q2</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">14:00</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Nội bộ</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">AN</div>
-                </div>
-              </div>
-              <div class="task-card" data-id="5">
-                <div class="task-card-header">
-                  <span class="task-priority-badge hot">Cao</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Follow up deal với Design Co</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">16:30</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">CRM Integration</span>
-                  <span class="task-card-customer">Design Co</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">BN</div>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <!-- Upcoming Column -->
-          <div class="tasks-column upcoming">
-            <div class="tasks-column-header">
-              <div class="tasks-column-title">
-                <span class="tasks-column-dot upcoming"></span>
-                <span>Sắp tới</span>
+            <!-- Upcoming Column -->
+            <div class="tasks-column upcoming">
+              <div class="tasks-column-header">
+                <div class="tasks-column-title">
+                  <span class="tasks-column-dot upcoming"></span>
+                  <span>Sắp tới</span>
+                </div>
+                <span class="tasks-column-count">4</span>
               </div>
-              <span class="tasks-column-count">4</span>
-            </div>
-            <div class="task-table-head" aria-hidden="true">
-              <span></span>
-              <span>Nhiệm vụ</span>
-              <span>Hạn</span>
-              <span>Stage</span>
-              <span>Priority</span>
-              <span>Team</span>
-              <span>Assignee</span>
-            </div>
-            <div class="tasks-column-body">
-              <div class="task-card" data-id="6">
-                <div class="task-card-header">
-                  <span class="task-priority-badge warm">TB</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Gửi hợp đồng cho Delta Inc</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">15/05</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Marketing Automation</span>
-                  <span class="task-card-customer">Delta Inc</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">MN</div>
-                </div>
+              <div class="task-table-head" aria-hidden="true">
+                <span></span>
+                <span>Nhiệm vụ</span>
+                <span>Hạn</span>
+                <span>Giai đoạn</span>
+                <span>Ưu tiên</span>
+                <span>Nhóm</span>
+                <span>Người phụ trách</span>
               </div>
-              <div class="task-card" data-id="7">
-                <div class="task-card-header">
-                  <span class="task-priority-badge cold">Thấp</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
+              <div class="tasks-column-body">
+                <div class="task-card" data-id="6">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge warm">TB</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Gửi hợp đồng cho Delta Inc</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">15/05</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Marketing Automation</span>
+                    <span class="task-card-customer">Delta Inc</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">MN</div>
+                  </div>
                 </div>
-                <h4 class="task-card-title">Demo sản phẩm cho Epsilon Co</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">18/05</span>
+                <div class="task-card" data-id="7">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge cold">Thấp</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Demo sản phẩm cho Epsilon Co</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">18/05</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Inventory System</span>
+                    <span class="task-card-customer">Epsilon Co</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">LN</div>
+                  </div>
                 </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Inventory System</span>
-                  <span class="task-card-customer">Epsilon Co</span>
+                <div class="task-card" data-id="8">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge warm">TB</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Xem lại Đề xuất với Gamma Ltd</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">20/05</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">Data Analytics Suite</span>
+                    <span class="task-card-customer">Gamma Ltd</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">AN</div>
+                  </div>
                 </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">LN</div>
-                </div>
-              </div>
-              <div class="task-card" data-id="8">
-                <div class="task-card-header">
-                  <span class="task-priority-badge warm">TB</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Xem lại Đề xuất với Gamma Ltd</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">20/05</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">Data Analytics Suite</span>
-                  <span class="task-card-customer">Gamma Ltd</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">AN</div>
-                </div>
-              </div>
-              <div class="task-card" data-id="9">
-                <div class="task-card-header">
-                  <span class="task-priority-badge hot">Cao</span>
-                  <button class="task-card-menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
-                    </svg>
-                  </button>
-                </div>
-                <h4 class="task-card-title">Chốt deal với Zeta Group</h4>
-                <div class="task-card-meta">
-                  <span class="task-card-deadline">25/05</span>
-                </div>
-                <div class="task-card-context">
-                  <span class="task-card-deal">SEO Optimization</span>
-                  <span class="task-card-customer">Zeta Group</span>
-                </div>
-                <div class="task-card-footer">
-                  <div class="task-card-owner">BN</div>
+                <div class="task-card" data-id="9">
+                  <div class="task-card-header">
+                    <span class="task-priority-badge hot">Cao</span>
+                    <button class="task-card-menu">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      >
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="5" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h4 class="task-card-title">Chốt deal với Zeta Group</h4>
+                  <div class="task-card-meta">
+                    <span class="task-card-deadline">25/05</span>
+                  </div>
+                  <div class="task-card-context">
+                    <span class="task-card-deal">SEO Optimization</span>
+                    <span class="task-card-customer">Zeta Group</span>
+                  </div>
+                  <div class="task-card-footer">
+                    <div class="task-card-owner">BN</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-  </div>
+      </main>
+    </div>
 
-  <!-- Add Task Modal -->
-  <div class="modal-overlay" id="addTaskModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h2 class="modal-title">Thêm nhiệm vụ mới</h2>
-        <button class="modal-close" id="closeModalBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="addTaskForm">
-          <div class="form-group">
-            <label class="form-label required">Tên nhiệm vụ</label>
-            <input type="text" class="form-input" id="taskTitle" placeholder="Nhập tên nhiệm vụ..." required>
-          </div>
-
-          <div class="form-row">
+    <!-- Add Task Modal -->
+    <div class="modal-overlay" id="addTaskModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Thêm nhiệm vụ mới</h2>
+          <button class="modal-close" id="closeModalBtn">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="addTaskForm">
             <div class="form-group">
-              <label class="form-label">Hạn chót</label>
-              <input type="date" class="form-input" id="taskDeadline">
+              <label class="form-label required">Tên nhiệm vụ</label>
+              <input
+                type="text"
+                class="form-input"
+                id="taskTitle"
+                placeholder="Nhập tên nhiệm vụ..."
+                required
+              />
             </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Hạn chót</label>
+                <input type="date" class="form-input" id="taskDeadline" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Giờ</label>
+                <input type="time" class="form-input" id="taskTime" />
+              </div>
+            </div>
+
             <div class="form-group">
-              <label class="form-label">Giờ</label>
-              <input type="time" class="form-input" id="taskTime">
+              <label class="form-label">Cơ hội liên quan</label>
+              <select class="form-select" id="taskDeal">
+                <option value="">Chọn deal...</option>
+                <option value="1">Thiết kế lại website - Công ty ABC</option>
+                <option value="2">
+                  Phát triển ứng dụng di động - Tech Solutions
+                </option>
+                <option value="3">Tích hợp CRM - Design Co</option>
+                <option value="4">Chuyển đổi lên đám mây - Alpha Corp</option>
+              </select>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label">Cơ hội liên quan</label>
-            <select class="form-select" id="taskDeal">
-              <option value="">Chọn deal...</option>
-              <option value="1">Thiết kế lại website - Công ty ABC</option>
-              <option value="2">Phát triển ứng dụng di động - Tech Solutions</option>
-              <option value="3">Tích hợp CRM - Design Co</option>
-              <option value="4">Chuyển đổi lên đám mây - Alpha Corp</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Mô tả</label>
-            <textarea class="form-input" id="taskDescription" rows="3" placeholder="Mô tả nhiệm vụ..."></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
-        <button class="btn btn-primary" id="saveTaskBtn">Tạo nhiệm vụ</button>
+            <div class="form-group">
+              <label class="form-label">Mô tả</label>
+              <textarea
+                class="form-input"
+                id="taskDescription"
+                rows="3"
+                placeholder="Mô tả nhiệm vụ..."
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
+          <button class="btn btn-primary" id="saveTaskBtn">Tạo nhiệm vụ</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script>
-    function renderUserProfile() {
-      const user = Auth.getCurrentUser();
-      const profileEl = document.getElementById('userProfile');
-      if (!user || !profileEl) return;
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+      function renderUserProfile() {
+        const user = Auth.getCurrentUser();
+        const profileEl = document.getElementById("userProfile");
+        if (!user || !profileEl) return;
 
-      profileEl.innerHTML = `
+        profileEl.innerHTML = `
         <div class="user-avatar">${user.avatar}</div>
         <div class="user-info">
           <div class="user-name">${user.name}</div>
@@ -856,46 +1230,50 @@
         </button>
       `;
 
-      const logoutBtn = document.getElementById('logoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-          Auth.logout();
-        });
-      }
-    }
-    window.addEventListener('auth_state_changed', renderUserProfile);
-    renderUserProfile();
-
-    const taskTabs = document.querySelectorAll('.task-dashboard-redesign .task-dashboard-tab');
-    const taskSections = document.querySelectorAll('.task-dashboard-redesign .task-list-section');
-
-    taskTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const view = tab.dataset.taskView;
-
-        taskTabs.forEach(item => item.classList.remove('active'));
-        tab.classList.add('active');
-
-        taskSections.forEach(section => {
-          const rows = section.querySelectorAll('.task-row');
-
-          rows.forEach(row => {
-            const status = row.dataset.taskStatus || '';
-            const showRow =
-              view === 'all' ||
-              (view === 'overdue' && status === 'overdue') ||
-              (view === 'today' && status === 'today') ||
-              (view === 'upcoming' && (status === 'tomorrow' || status === 'upcoming')) ||
-              (view === 'completed' && row.classList.contains('completed'));
-            row.hidden = !showRow;
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", () => {
+            Auth.logout();
           });
+        }
+      }
+      window.addEventListener("auth_state_changed", renderUserProfile);
+      renderUserProfile();
 
-          const hasVisibleRows = Array.from(rows).some(row => !row.hidden);
-          section.hidden = !hasVisibleRows;
+      const taskTabs = document.querySelectorAll(
+        ".task-dashboard-redesign .task-dashboard-tab",
+      );
+      const taskSections = document.querySelectorAll(
+        ".task-dashboard-redesign .task-list-section",
+      );
+
+      taskTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const view = tab.dataset.taskView;
+
+          taskTabs.forEach((item) => item.classList.remove("active"));
+          tab.classList.add("active");
+
+          taskSections.forEach((section) => {
+            const rows = section.querySelectorAll(".task-row");
+
+            rows.forEach((row) => {
+              const status = row.dataset.taskStatus || "";
+              const showRow =
+                view === "all" ||
+                (view === "overdue" && status === "overdue") ||
+                (view === "today" && status === "today") ||
+                (view === "upcoming" &&
+                  (status === "tomorrow" || status === "upcoming")) ||
+                (view === "completed" && row.classList.contains("completed"));
+              row.hidden = !showRow;
+            });
+
+            const hasVisibleRows = Array.from(rows).some((row) => !row.hidden);
+            section.hidden = !hasVisibleRows;
+          });
         });
       });
-    });
-  </script>
-</body>
-</html>
+    </script>
+  </body>
 </html>
