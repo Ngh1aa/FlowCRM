@@ -1,0 +1,56 @@
+/* FlowCRM motion — pipeline momentum / deal progression / task handoff */
+:root{
+  --flow-motion-ease:cubic-bezier(.2,.8,.2,1);
+  --flow-motion-fast:180ms;
+  --flow-motion-med:360ms;
+  --flow-motion-slow:620ms;
+}
+
+@keyframes flowcrm-hero-in{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:none}}
+@keyframes flowcrm-bar-rise{from{transform:scaleY(.2);opacity:.35}to{transform:scaleY(1);opacity:1}}
+@keyframes flowcrm-focus-ring{0%{box-shadow:0 0 0 0 rgba(79,70,229,.22)}100%{box-shadow:0 0 0 10px rgba(79,70,229,0)}}
+@keyframes flowcrm-dot-travel{from{transform:translateX(-35%);opacity:0}35%{opacity:1}to{transform:translateX(135%);opacity:0}}
+
+.overview-hero{animation:flowcrm-hero-in var(--flow-motion-slow) var(--flow-motion-ease) both}
+.overview-hero-content>*{animation:flowcrm-hero-in 520ms var(--flow-motion-ease) both}
+.overview-hero-content>*:nth-child(2){animation-delay:55ms}.overview-hero-content>*:nth-child(3){animation-delay:100ms}.overview-hero-content>*:nth-child(4){animation-delay:145ms}
+.hero-panel{transition:transform var(--flow-motion-med) var(--flow-motion-ease),box-shadow var(--flow-motion-med) var(--flow-motion-ease),border-color var(--flow-motion-fast) ease}
+.hero-panel:hover{transform:translate3d(0,-4px,0)}
+.hero-sparkline i{transform-origin:center bottom;animation:flowcrm-bar-rise 560ms var(--flow-motion-ease) both}
+.hero-sparkline i:nth-child(2){animation-delay:45ms}.hero-sparkline i:nth-child(3){animation-delay:90ms}.hero-sparkline i:nth-child(4){animation-delay:135ms}.hero-sparkline i:nth-child(5){animation-delay:180ms}
+
+.nav-item,.btn,.kpi-card,.hero-stat-card,.deal-card,.task-card,.customer-card,.calendar-event,.message-item,.report-card{
+  transition:transform var(--flow-motion-fast) var(--flow-motion-ease),box-shadow var(--flow-motion-med) var(--flow-motion-ease),background-color var(--flow-motion-fast) ease,border-color var(--flow-motion-fast) ease,opacity var(--flow-motion-fast) ease;
+}
+.nav-item:hover{transform:translateX(3px)}
+.nav-item.active{position:relative}
+.nav-item.active::after{content:"";position:absolute;right:8px;width:5px;height:5px;border-radius:999px;background:currentColor;animation:flowcrm-focus-ring 900ms ease-out 1}
+.btn:active{transform:translateY(1px) scale(.985)}
+.kpi-card:hover,.hero-stat-card:hover{transform:translateY(-3px)}
+
+/* Pipeline should feel like work moving forward, not decorative card lifting. */
+.pipeline-column{position:relative;overflow:hidden}
+.pipeline-column::before{content:"";position:absolute;top:0;left:12px;right:12px;height:2px;background:linear-gradient(90deg,transparent,currentColor,transparent);opacity:.16;pointer-events:none}
+.pipeline-column:hover::before{animation:flowcrm-dot-travel 1.15s var(--flow-motion-ease) 1}
+.deal-card:hover{transform:translateX(4px)}
+.deal-card.dragging,.deal-card[aria-grabbed="true"]{transform:scale(1.018);box-shadow:0 18px 44px rgba(20,30,55,.14)}
+
+.task-card:hover,.message-item:hover,.customer-row:hover,.calendar-event:hover{transform:translateX(3px)}
+input:focus,select:focus,textarea:focus{transition:box-shadow var(--flow-motion-fast) ease,border-color var(--flow-motion-fast) ease}
+.modal,.drawer,.dropdown-menu,.popover{transform-origin:top right}
+.modal.show,.drawer.open,.dropdown-menu.show,.popover.show{animation:flowcrm-hero-in 260ms var(--flow-motion-ease) both}
+
+/* Progress / pipeline indicators acknowledge state changes without looping forever. */
+.progress-fill,.pipeline-progress,.chart-bar,.conversion-bar{transform-origin:left center;transition:width 680ms var(--flow-motion-ease),transform 680ms var(--flow-motion-ease)}
+.badge,.status-badge{transition:background-color var(--flow-motion-fast) ease,color var(--flow-motion-fast) ease,transform var(--flow-motion-fast) var(--flow-motion-ease)}
+.badge:hover,.status-badge:hover{transform:translateY(-1px)}
+
+@media (max-width:768px){
+  .overview-hero,.overview-hero-content>*{animation-duration:380ms}
+  .kpi-card:hover,.hero-stat-card:hover,.deal-card:hover,.task-card:hover,.message-item:hover,.customer-row:hover,.calendar-event:hover,.nav-item:hover{transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .overview-hero,.overview-hero-content>*,.hero-sparkline i{opacity:1!important;transform:none!important}
+}
