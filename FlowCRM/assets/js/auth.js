@@ -224,16 +224,16 @@ const Auth = {
   },
 
   /**
-   * Redirect to login if not authenticated
+   * Start a session for the public demo
    */
-  requireAuth() {
-    if (!this.isAuthenticated()) {
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      const destination = currentPage + window.location.search + window.location.hash;
-      window.location.replace(`login.html?redirect=${encodeURIComponent(destination)}`);
-      return false;
-    }
-    return true;
+  startDemo() {
+    this.createSession({
+      id: 'demo',
+      email: 'demo@flowcrm.vn',
+      name: 'Người dùng Demo',
+      role: this.ROLES.ADMIN,
+      avatar: 'DM'
+    });
   },
 
   /**
@@ -399,14 +399,8 @@ const Auth = {
   }
 };
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-  // If on login/register page, don't require auth
-  const currentPage = window.location.pathname.split('/').pop() || '';
-  if (currentPage === 'login.html' || currentPage === 'register.html') {
-    return;
-  }
-
-  // Protect all other pages
-  Auth.requireAuth();
-});
+// Open demo pages directly while keeping the account pages available by their own URLs.
+const currentAuthPage = window.location.pathname.split('/').pop();
+if (currentAuthPage !== 'login.html' && currentAuthPage !== 'register.html' && !Auth.isAuthenticated()) {
+  Auth.startDemo();
+}

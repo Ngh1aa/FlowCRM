@@ -13,10 +13,12 @@ const editedAppointment = 'Duyệt phạm vi website';
 const editedTask = 'Gửi đề xuất cuối';
 
 async function enterDemo(page, route = 'pipeline.html') {
-  await page.goto(new URL(route, base).href, { waitUntil: 'domcontentloaded' });
-  await expect(page).toHaveURL(/login\.html\?redirect=/);
-  await page.locator('#demoLoginBtn').click();
-  await expect(page).toHaveURL(new URL(route, base).href);
+  const url = new URL(route, base).href;
+  const response = await page.goto(url, { waitUntil: 'domcontentloaded' });
+  assert.equal(response.url(), url);
+  await expect(page).toHaveURL(url);
+  await expect(page.locator('#loginForm')).toHaveCount(0);
+  await expect(page.locator('#userProfile')).toContainText('Người dùng Demo');
 }
 
 async function verifyFlow(browser, width) {
@@ -164,6 +166,10 @@ async function verifyLegacy(browser) {
     await enterDemo(page, 'pipeline.html?deal=1');
     const dialog = page.getByRole('dialog', { name: 'Website Redesign' });
     await expect(dialog).toBeVisible();
+    await page.evaluate(() => localStorage.removeItem('flowcrm_session'));
+    await page.goto(new URL('login.html?redirect=pipeline.html%3Fdeal%3D1', base).href, { waitUntil: 'domcontentloaded' });
+    await expect(page).toHaveURL(new URL('pipeline.html?deal=1', base).href);
+    await expect(dialog).toBeVisible();
     const { violations } = await new AxeBuilder({ page }).include('#dealPlan').analyze();
     assert.deepEqual(violations.map(violation => violation.id), []);
     await page.keyboard.press('Escape');
@@ -207,7 +213,7 @@ async function verifyLegacy(browser) {
     await expect(row.getByRole('button', { name: 'Đã hoàn thành' })).toBeVisible();
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.flowcrm_deals).length), 1);
     assert.equal(await page.evaluate(() => localStorage.flowcrm_tasks), '[]');
-    console.log('PASS legacy · signed-out deep link, numeric ID, same-column drop, saved drag, existing event and empty task list');
+    console.log('PASS legacy · direct entry, old login link, numeric ID, same-column drop, saved drag, existing event and empty task list');
     console.log('PASS axe-core · planning dialog');
   } finally {
     await context.close();
