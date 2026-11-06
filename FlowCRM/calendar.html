@@ -188,7 +188,7 @@
             <div class="calendar-header">
               <div class="calendar-filters">
                 <div class="filter-group">
-                  <label class="filter-label">Năm</label>
+                  <label class="filter-label" for="yearSelect">Năm</label>
                   <select class="filter-select" id="yearSelect">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
@@ -197,7 +197,7 @@
                   </select>
                 </div>
                 <div class="filter-group">
-                  <label class="filter-label">Tháng</label>
+                  <label class="filter-label" for="monthSelect">Tháng</label>
                   <select class="filter-select" id="monthSelect">
                     <option value="0">Tháng 1</option>
                     <option value="1">Tháng 2</option>
@@ -223,13 +223,13 @@
                 </div>
               </div>
               <div class="calendar-nav">
-                <button class="calendar-nav-btn" id="prevMonth">
+                <button class="calendar-nav-btn" id="prevMonth" aria-label="Kỳ trước">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="m15 18-6-6 6-6"/>
                   </svg>
                 </button>
                 <h2 class="calendar-title" id="calendarTitle">Tháng 5, 2026</h2>
-                <button class="calendar-nav-btn" id="nextMonth">
+                <button class="calendar-nav-btn" id="nextMonth" aria-label="Kỳ sau">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="m9 18 6-6-6-6"/>
                   </svg>
@@ -246,8 +246,8 @@
           <!-- Upcoming Events -->
           <div class="upcoming-events">
             <div class="events-header">
-              <h3 class="events-title">Lịch hẹn sắp tới</h3>
-              <span class="events-count">5 cuộc hẹn</span>
+              <h3 class="events-title">Lịch hẹn đã lên</h3>
+              <span class="events-count" id="eventsCount"></span>
             </div>
             <div class="events-list" id="eventsList">
               <div class="event-item" data-id="1">
@@ -394,32 +394,14 @@
 
     const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
-    // Initialize year and month selects
-    yearSelect.value = currentYear;
-    monthSelect.value = currentMonth;
+    function selectMonth(year, month) {
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      currentDate = new Date(year, month, Math.min(currentDate.getDate(), daysInMonth));
+      renderCurrentView();
+    }
 
-    // Year and Month filter change handlers
-    yearSelect.addEventListener('change', function() {
-      currentYear = parseInt(this.value);
-      if (currentView === 'day') {
-        showDayView();
-      } else if (currentView === 'week') {
-        showWeekView();
-      } else {
-        showMonthView();
-      }
-    });
-
-    monthSelect.addEventListener('change', function() {
-      currentMonth = parseInt(this.value);
-      if (currentView === 'day') {
-        showDayView();
-      } else if (currentView === 'week') {
-        showWeekView();
-      } else {
-        showMonthView();
-      }
-    });
+    yearSelect.addEventListener('change', () => selectMonth(Number(yearSelect.value), currentMonth));
+    monthSelect.addEventListener('change', () => selectMonth(currentYear, Number(monthSelect.value)));
 
     // Event data with CRM context
     const eventsData = {
@@ -430,20 +412,25 @@
       20: [{ title: 'Xem lại Gamma', time: '11:00', type: 'deal', context: 'Phân tích dữ liệu' }]
     };
 
-    function addEventToCalendar(event, shouldRender = true) {
+    const savedEvents = Storage.get(Storage.KEYS.EVENTS);
+    const linkedEvents = Storage.get(Storage.KEYS.DEALS).flatMap(deal => deal.plan ? [{
+      title: deal.plan.appointment, date: deal.plan.date, startTime: deal.plan.time, customer: deal.customer
+    }] : []);
+    const datedEvents = [...savedEvents, ...linkedEvents];
+
+    function eventsFor(date) {
+      const key = localDateKey(date);
+      const examples = key.startsWith('2026-05-') ? (eventsData[date.getDate()] || []) : [];
+      return [...examples, ...datedEvents.filter(event => event.date === key).map(event => ({
+        title: event.title, type: 'deal', time: event.startTime || 'Cả ngày'
+      }))];
+    }
+
+    function addEventToCalendar(event) {
       if (!event?.date) return;
-
-      const eventDate = new Date(event.date);
+      const eventDate = new Date(event.date + 'T00:00:00');
       if (Number.isNaN(eventDate.getTime())) return;
-
       const day = eventDate.getDate();
-      eventsData[day] = eventsData[day] || [];
-      eventsData[day].push({
-        title: event.title,
-        time: event.startTime || 'Cả ngày',
-        type: 'deal',
-        context: event.customer || event.location || ''
-      });
 
       const upcomingList = document.getElementById('eventsList');
       if (upcomingList) {
@@ -455,15 +442,14 @@
             <span class="event-month">T${eventDate.getMonth() + 1}</span>
           </div>
           <div class="event-content">
-            <span class="event-title">${event.title}</span>
-            <span class="event-slot">${event.startTime || ''}${event.endTime ? ` - ${event.endTime}` : ''}</span>
-            <span class="event-customer">${event.customer || event.location || ''}</span>
+            <span class="event-title">${escapeText(event.title)}</span>
+            <span class="event-slot">${escapeText(event.startTime || '')}${event.endTime ? ` - ${escapeText(event.endTime)}` : ''}</span>
+            <span class="event-customer">${escapeText(event.customer || event.location || '')}</span>
           </div>
         `;
         upcomingList.prepend(item);
       }
 
-      if (shouldRender) renderCalendar();
     }
 
     function renderCalendar() {
@@ -485,12 +471,12 @@
       const existingWeekdays = calendarGrid.querySelectorAll('.calendar-weekday');
       if (existingWeekdays.length === 0) {
         const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-        weekDays.forEach(day => {
+        calendarGrid.prepend(...weekDays.map(day => {
           const dayHeader = document.createElement('div');
           dayHeader.className = 'calendar-weekday';
           dayHeader.textContent = day;
-          calendarGrid.insertBefore(dayHeader, calendarGrid.firstChild.nextSibling);
-        });
+          return dayHeader;
+        }));
       }
 
       // Add empty cells for days before the first day
@@ -518,12 +504,13 @@
         }
 
         // Add event chips if there are events
-        if (eventsData[day]) {
+        const dayEvents = eventsFor(new Date(currentYear, currentMonth, day));
+        if (dayEvents.length) {
           dayCell.classList.add('has-event');
           const eventsList = document.createElement('div');
           eventsList.className = 'day-events';
 
-          eventsData[day].forEach(event => {
+          dayEvents.forEach(event => {
             const chip = document.createElement('div');
             chip.className = `event-chip ${event.type}`;
             chip.textContent = event.title;
@@ -538,65 +525,21 @@
       }
     }
 
-    prevMonthBtn.addEventListener('click', () => {
-      if (currentView === 'day') {
-        currentDate.setDate(currentDate.getDate() - 1);
-        yearSelect.value = currentDate.getFullYear();
-        monthSelect.value = currentDate.getMonth();
-        renderDayView();
-      } else if (currentView === 'week') {
-        currentDate.setDate(currentDate.getDate() - 7);
-        yearSelect.value = currentDate.getFullYear();
-        monthSelect.value = currentDate.getMonth();
-        renderWeekView();
-      } else {
-        currentMonth--;
-        if (currentMonth < 0) {
-          currentMonth = 11;
-          currentYear--;
-          yearSelect.value = currentYear;
-        }
-        monthSelect.value = currentMonth;
-        showMonthView();
+    function stepCalendar(direction) {
+      if (currentView === 'month') {
+        selectMonth(currentYear, currentMonth + direction);
+        return;
       }
-    });
+      currentDate.setDate(currentDate.getDate() + direction * (currentView === 'week' ? 7 : 1));
+      renderCurrentView();
+    }
 
-    nextMonthBtn.addEventListener('click', () => {
-      if (currentView === 'day') {
-        currentDate.setDate(currentDate.getDate() + 1);
-        yearSelect.value = currentDate.getFullYear();
-        monthSelect.value = currentDate.getMonth();
-        renderDayView();
-      } else if (currentView === 'week') {
-        currentDate.setDate(currentDate.getDate() + 7);
-        yearSelect.value = currentDate.getFullYear();
-        monthSelect.value = currentDate.getMonth();
-        renderWeekView();
-      } else {
-        currentMonth++;
-        if (currentMonth > 11) {
-          currentMonth = 0;
-          currentYear++;
-          yearSelect.value = currentYear;
-        }
-        monthSelect.value = currentMonth;
-        showMonthView();
-      }
-    });
+    prevMonthBtn.addEventListener('click', () => stepCalendar(-1));
+    nextMonthBtn.addEventListener('click', () => stepCalendar(1));
 
     todayBtn.addEventListener('click', () => {
       currentDate = new Date();
-      currentMonth = currentDate.getMonth();
-      currentYear = currentDate.getFullYear();
-      yearSelect.value = currentYear;
-      monthSelect.value = currentMonth;
-      if (currentView === 'day') {
-        showDayView();
-      } else if (currentView === 'week') {
-        showWeekView();
-      } else {
-        showMonthView();
-      }
+      renderCurrentView();
     });
 
     // View toggle functionality
@@ -605,31 +548,17 @@
     const viewWeekBtn = document.getElementById('viewWeek');
     const viewDayBtn = document.getElementById('viewDay');
 
-    function showMonthView() {
-      currentView = 'month';
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      viewMonthBtn.classList.add('active');
+    function renderCurrentView() {
+      currentYear = currentDate.getFullYear();
+      currentMonth = currentDate.getMonth();
+      if (![...yearSelect.options].some(option => Number(option.value) === currentYear)) {
+        yearSelect.add(new Option(currentYear, currentYear));
+      }
       yearSelect.value = currentYear;
       monthSelect.value = currentMonth;
-      renderCalendar();
-    }
-
-    function showWeekView() {
-      currentView = 'week';
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      viewWeekBtn.classList.add('active');
-      yearSelect.value = currentDate.getFullYear();
-      monthSelect.value = currentDate.getMonth();
-      renderWeekView();
-    }
-
-    function showDayView() {
-      currentView = 'day';
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      viewDayBtn.classList.add('active');
-      yearSelect.value = currentDate.getFullYear();
-      monthSelect.value = currentDate.getMonth();
-      renderDayView();
+      if (currentView === 'day') renderDayView();
+      else if (currentView === 'week') renderWeekView();
+      else renderCalendar();
     }
 
     function renderWeekView() {
@@ -681,12 +610,13 @@
           dayCell.classList.add('today');
         }
 
-        if (eventsData[day]) {
+        const dayEvents = eventsFor(date);
+        if (dayEvents.length) {
           dayCell.classList.add('has-event');
           const eventsList = document.createElement('div');
           eventsList.className = 'day-events';
 
-          eventsData[day].forEach(event => {
+          dayEvents.forEach(event => {
             const chip = document.createElement('div');
             chip.className = `event-chip ${event.type}`;
             chip.textContent = event.title;
@@ -720,7 +650,6 @@
       // Create all-day cell
       const dayCell = document.createElement('div');
       dayCell.className = 'calendar-day day-view-day today';
-      dayCell.style.minHeight = '400px';
 
       const dayNumber = document.createElement('div');
       dayNumber.className = 'day-number large';
@@ -728,12 +657,12 @@
       dayCell.appendChild(dayNumber);
 
       // Show all events for the day
-      const day = currentDate.getDate();
-      if (eventsData[day]) {
+      const dayEvents = eventsFor(currentDate);
+      if (dayEvents.length) {
         const eventsList = document.createElement('div');
         eventsList.className = 'day-events';
 
-        eventsData[day].forEach(event => {
+        dayEvents.forEach(event => {
           const chip = document.createElement('div');
           chip.className = `event-chip ${event.type}`;
           chip.textContent = `${event.time} - ${event.title}`;
@@ -754,24 +683,35 @@
       return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
     }
 
-    viewMonthBtn.addEventListener('click', showMonthView);
-    viewWeekBtn.addEventListener('click', showWeekView);
-    viewDayBtn.addEventListener('click', showDayView);
+    const viewButtons = [viewMonthBtn, viewWeekBtn, viewDayBtn];
+    viewButtons.forEach(button => button.addEventListener('click', () => {
+      currentView = button.dataset.view;
+      viewButtons.forEach(view => view.classList.toggle('active', view === button));
+      renderCurrentView();
+    }));
 
-    try {
-      Storage.get(Storage.KEYS.EVENTS).forEach(event => addEventToCalendar(event, false));
-    } catch (error) {
-      // Calendar can still run as a static page if storage is unavailable.
+    const requestedDate = new URLSearchParams(location.search).get('date');
+    if (requestedDate && /^\d{4}-\d{2}-\d{2}$/.test(requestedDate)) {
+      const selected = new Date(requestedDate + 'T00:00:00');
+      if (!Number.isNaN(selected.getTime()) && localDateKey(selected) === requestedDate) {
+        currentDate = selected;
+      }
     }
 
-    window.addEventListener('flowcrm_event_created', (event) => {
-      addEventToCalendar(event.detail);
+    const upcomingList = document.getElementById('eventsList');
+    const eventsCount = document.getElementById('eventsCount');
+    if (currentDate.getFullYear() !== 2026 || currentDate.getMonth() !== 4) upcomingList.replaceChildren();
+    [...datedEvents].sort((a, b) => (b.date || '').localeCompare(a.date || '')).forEach(addEventToCalendar);
+    eventsCount.textContent = upcomingList.childElementCount + ' cuộc hẹn';
+    window.addEventListener('flowcrm_event_created', ({ detail }) => {
+      datedEvents.push(detail);
+      addEventToCalendar(detail);
+      eventsCount.textContent = upcomingList.childElementCount + ' cuộc hẹn';
+      renderCurrentView();
     });
-
-    renderCalendar();
+    renderCurrentView();
   </script>
   <script src="assets/js/auth.js"></script>
-  <script src="assets/js/app.js"></script>
   <script>
     function renderUserProfile() {
       const user = Auth.getCurrentUser();

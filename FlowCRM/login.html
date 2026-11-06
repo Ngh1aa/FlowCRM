@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowCRM - Đăng nhập</title>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const requestedPage = new URLSearchParams(window.location.search).get('redirect') || '';
+    const demoPages = ['index.html', 'pipeline.html', 'calendar.html', 'tasks.html', 'customers.html', 'messages.html', 'reports.html', 'settings.html'];
+    const demoDestination = demoPages.includes(requestedPage.split(/[?#]/, 1)[0]) ? requestedPage : '';
+    const destination = demoDestination || 'index.html';
+    if (demoDestination || Auth.isAuthenticated()) {
+      window.location.replace(destination);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -107,23 +117,7 @@
 
   <div class="toast-container" id="toastContainer"></div>
 
-  <script src="assets/js/auth.js"></script>
   <script>
-    // Check if already logged in
-    if (Auth.isAuthenticated()) {
-      const params = new URLSearchParams(window.location.search);
-      const redirect = params.get('redirect') || 'index.html';
-      window.location.href = redirect;
-    }
-
-    // Show register link only if users exist (not first-time setup)
-    const hasUsers = Auth.getUsers().length > 0;
-    if (!hasUsers) {
-      document.getElementById('registerLink').href = 'register.html';
-    } else {
-      document.getElementById('registerLink').href = 'register.html';
-    }
-
     // Login form submission
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
@@ -160,12 +154,8 @@
       loginBtn.disabled = true;
 
       try {
-        const user = await Auth.login(email, password);
-
-        // Success - redirect
-        const params = new URLSearchParams(window.location.search);
-        const redirect = params.get('redirect') || 'index.html';
-        window.location.href = redirect;
+        await Auth.login(email, password);
+        window.location.replace(destination);
       } catch (error) {
         showToast(error.message);
         btnText.style.display = 'inline';
@@ -178,18 +168,8 @@
     const demoLoginBtn = document.getElementById('demoLoginBtn');
     if (demoLoginBtn) {
       demoLoginBtn.addEventListener('click', () => {
-        // Create demo session without password
-        const demoSession = {
-          userId: 'demo',
-          email: 'demo@flowcrm.vn',
-          name: 'Người dùng Demo',
-          role: 'admin',
-          avatar: 'DM',
-          loginTime: new Date().toISOString(),
-          isDemo: true
-        };
-        localStorage.setItem('flowcrm_session', JSON.stringify(demoSession));
-        window.location.href = 'index.html';
+        Auth.startDemo();
+        window.location.replace(destination);
       });
     }
   </script>

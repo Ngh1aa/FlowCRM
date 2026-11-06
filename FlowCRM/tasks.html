@@ -256,6 +256,11 @@
             class="task-dashboard-redesign"
             aria-label="Bảng nhiệm vụ CRM"
           >
+            <section class="deal-follow-ups" id="dealFollowUps" aria-labelledby="dealFollowUpsTitle">
+              <h2 id="dealFollowUpsTitle">Theo dõi cơ hội</h2>
+              <p id="dealFollowUpsEmpty">Chưa có kế hoạch theo dõi. <a href="pipeline.html">Chọn một cơ hội để lên lịch</a>.</p>
+              <div id="dealFollowUpsList"></div>
+            </section>
             <section
               class="task-command-center"
               aria-label="Điều phối nhiệm vụ"
@@ -1208,6 +1213,7 @@
     </div>
 
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/deal-follow-up.js" defer></script>
     <script src="assets/js/auth.js"></script>
     <script>
       function renderUserProfile() {
