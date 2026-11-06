@@ -15,28 +15,6 @@ const Storage = {
   },
 
   init() {
-    if (!localStorage.getItem(this.KEYS.DEALS)) {
-      this.save(this.KEYS.DEALS, [
-        { id: '1', title: 'Thiết kế website thương mại điện tử', customer: 'Cty Alpha', value: 25000000, stage: 'qualification', tag: 'hot', date: '2023-10-25' },
-        { id: '2', title: 'Gói SEO Tổng thể', customer: 'Nha khoa Smile', value: 12000000, stage: 'proposal', tag: 'warm', date: '2023-10-24' },
-        { id: '3', title: 'Chạy Quảng cáo Facebook', customer: 'Shop Fashionista', value: 8000000, stage: 'negotiation', tag: 'hot', date: '2023-10-23' },
-        { id: '4', title: 'Phần mềm Quản lý Kho', customer: 'Logistics Beta', value: 45000000, stage: 'closed', tag: 'won', date: '2023-10-20' },
-        { id: '5', title: 'Tư vấn Chuyển đổi số', customer: 'Gỗ Việt', value: 30000000, stage: 'lost', tag: 'lost', date: '2023-10-15' }
-      ]);
-    }
-    if (!localStorage.getItem(this.KEYS.CUSTOMERS)) {
-      this.save(this.KEYS.CUSTOMERS, [
-        { id: '1', name: 'Nguyễn Văn A', email: 'vanc@example.com', phone: '0901234567', status: 'active', company: 'Cty Alpha' },
-        { id: '2', name: 'Trần Thị B', email: 'tranb@example.com', phone: '0912345678', status: 'prospect', company: 'Nha khoa Smile' },
-        { id: '3', name: 'Lê Văn C', email: 'levanc@example.com', phone: '0987654321', status: 'inactive', company: 'Shop Fashionista' }
-      ]);
-    }
-    if (!localStorage.getItem(this.KEYS.TASKS)) {
-      this.save(this.KEYS.TASKS, [
-        { id: '1', title: 'Gọi điện tư vấn khách hàng Alpha', deadline: '2023-10-26', priority: 'high', completed: false },
-        { id: '2', title: 'Gửi báo giá cho Nha khoa Smile', deadline: '2023-10-26', priority: 'medium', completed: true }
-      ]);
-    }
     if (!localStorage.getItem(this.KEYS.ACTIVITIES)) {
       this.save(this.KEYS.ACTIVITIES, [
         { id: '1', type: 'deal', text: 'Bạn đã tạo deal <strong>Thiết kế Website</strong>', time: '10 phút trước' },
@@ -68,7 +46,7 @@ const Storage = {
 
   updateItem(key, id, updates) {
     let data = this.get(key);
-    data = data.map(item => item.id === id ? { ...item, ...updates } : item);
+    data = data.map(item => String(item.id) === String(id) ? { ...item, ...updates } : item);
     this.save(key, data);
   },
 
@@ -84,13 +62,13 @@ const Storage = {
     let type = 'info';
     
     if (key === this.KEYS.DEALS) {
-      text = `Bạn đã tạo deal <strong>${item.title}</strong>`;
+      text = `Bạn đã tạo deal <strong>${escapeText(item.title)}</strong>`;
       type = 'deal';
     } else if (key === this.KEYS.CUSTOMERS) {
-      text = `Khách hàng <strong>${item.name}</strong> đã được thêm`;
+      text = `Khách hàng <strong>${escapeText(item.name)}</strong> đã được thêm`;
       type = 'customer';
     } else if (key === this.KEYS.TASKS) {
-      text = `Nhiệm vụ <strong>${item.title}</strong> đã được tạo`;
+      text = `Nhiệm vụ <strong>${escapeText(item.title)}</strong> đã được tạo`;
       type = 'task';
     }
 
@@ -103,11 +81,7 @@ const Storage = {
 Storage.init();
 
 function hydrateDemoData() {
-  const deals = Storage.get(Storage.KEYS.DEALS);
-  const customers = Storage.get(Storage.KEYS.CUSTOMERS);
-  const tasks = Storage.get(Storage.KEYS.TASKS);
-
-  if (deals.length < 6) {
+  if (localStorage.getItem(Storage.KEYS.DEALS) === null) {
     Storage.save(Storage.KEYS.DEALS, [
       { id: '1', title: 'Website Redesign', customer: 'Công ty ABC', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Xác nhận phạm vi' },
       { id: '2', title: 'Mobile App Development', customer: 'Tech Solutions', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Chốt ngân sách' },
@@ -124,7 +98,7 @@ function hydrateDemoData() {
     ]);
   }
 
-  if (customers.length < 6) {
+  if (localStorage.getItem(Storage.KEYS.CUSTOMERS) === null) {
     Storage.save(Storage.KEYS.CUSTOMERS, [
       { id: '1', name: 'Nguyễn Văn An', email: 'an@alpha.vn', phone: '0901234567', status: 'active', company: 'Alpha Corp', latestDeal: 'Cloud Migration' },
       { id: '2', name: 'Trần Minh', email: 'minh@techsolutions.vn', phone: '0912345678', status: 'active', company: 'Tech Solutions', latestDeal: 'Mobile App Development' },
@@ -137,7 +111,7 @@ function hydrateDemoData() {
     ]);
   }
 
-  if (tasks.length < 5) {
+  if (localStorage.getItem(Storage.KEYS.TASKS) === null) {
     Storage.save(Storage.KEYS.TASKS, [
       { id: '1', title: 'Gọi điện cho Alpha Corp', deadline: '2026-05-10', dueLabel: 'Đã hạn: 10/05/2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Alpha Corp', owner: 'An', priority: 'hot', completed: false },
       { id: '2', title: 'Gửi báo giá cho Beta Industries', deadline: '2026-05-11', dueLabel: 'Đã hạn: 11/05/2026', category: 'overdue', deal: 'Security Audit', customer: 'Beta Industries', owner: 'Minh', priority: 'hot', completed: false },
@@ -161,6 +135,18 @@ hydrateDemoData();
 // ========================================
 // Utility Functions
 // ========================================
+function escapeText(value) {
+  const characters = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  return String(value ?? '').replace(/[&<>"']/g, character => characters[character]);
+}
+
+function localDateKey(date) {
+  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+    .map((part, index) => index === 0 ? String(part) : String(part).padStart(2, '0'))
+    .join('-');
+}
+
+
 function formatCurrency(amount) {
   return new Intl.NumberFormat('vi-VN', {
     style: 'currency',
@@ -203,7 +189,7 @@ const PIPELINE_OWNERS = ['An Nguyen', 'Minh Tran', 'Linh Pham', 'Bao Le'];
 function formatShortDate(value) {
   if (!value) return 'Chưa có ngày';
 
-  const date = new Date(value);
+  const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? value + "T00:00:00" : value);
   if (Number.isNaN(date.getTime())) return value;
 
   return date.toLocaleDateString('vi-VN', {
@@ -220,8 +206,8 @@ function getPipelineColumn(stage) {
 }
 
 function normalizePipelineStage(stage) {
-  if (PIPELINE_STAGE_CONFIG[stage]) return stage;
-  return 'proposal';
+  if (Object.hasOwn(PIPELINE_STAGE_CONFIG, stage)) return stage;
+  return Object.keys(PIPELINE_STAGE_CONFIG).find(key => PIPELINE_STAGE_CONFIG[key].selector === stage) || 'proposal';
 }
 
 function getDealPipelineMeta(deal, index, stage) {
@@ -229,9 +215,9 @@ function getDealPipelineMeta(deal, index, stage) {
 
   return {
     owner: deal.owner || PIPELINE_OWNERS[index % PIPELINE_OWNERS.length],
-    followUp: deal.followUp || deal.date,
+    followUp: deal.plan?.dueDate || deal.followUp || deal.date,
     probability: Number.isFinite(deal.probability) ? deal.probability : config.probability,
-    nextAction: deal.nextAction || config.nextAction
+    nextAction: deal.plan ? (deal.plan.completed ? 'Đã hoàn tất theo dõi' : deal.plan.task) : (deal.nextAction || config.nextAction)
   };
 }
 
@@ -756,13 +742,14 @@ let sourceColumn = null;
 
 function handleDragStart(e) {
   draggedCard = this;
-  sourceColumn = this.parentElement;
+  sourceColumn = this.closest('.kanban-column');
   this.classList.add('dragging');
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/plain', this.dataset.id);
 }
 
 function handleDragEnd(e) {
+  draggedCard = sourceColumn = null;
   this.classList.remove('dragging');
   document.querySelectorAll('.kanban-column').forEach(col => {
     col.classList.remove('drag-over');
@@ -789,14 +776,14 @@ function handleDrop(e) {
   e.preventDefault();
   this.classList.remove('drag-over');
 
-  if (draggedCard && sourceColumn !== this) {
-    const cardsContainer = this.querySelector('.kanban-cards');
-    if (cardsContainer) {
-      cardsContainer.appendChild(draggedCard);
-      updateColumnCounts();
-      Toast.show('Cơ hội đã được chuyển sang ' + this.querySelector('.kanban-column-title').textContent.trim());
-    }
-  }
+  if (!draggedCard || sourceColumn === this) return;
+
+  Storage.updateItem(Storage.KEYS.DEALS, draggedCard.dataset.id, {
+    stage: normalizePipelineStage(this.dataset.stage),
+    probability: undefined
+  });
+  draggedCard = sourceColumn = null;
+  Toast.show('Đã lưu giai đoạn của cơ hội.');
 }
 
 function updateColumnCounts() {
@@ -1035,7 +1022,7 @@ document.querySelectorAll('.task-filter').forEach(filter => {
 // Dropdown Menus
 // ========================================
 function initActionMenus() {
-  document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
+  document.querySelectorAll('.kanban-card-menu:not([data-deal-open]), .action-btn').forEach(menuBtn => {
     if (menuBtn.dataset.menuBound === 'true') return;
     menuBtn.dataset.menuBound = 'true';
 
@@ -1324,27 +1311,27 @@ const UI = {
       const column = getPipelineColumn(stage);
       const stageContainer = column?.querySelector('.kanban-cards');
       if (stageContainer) {
-        const stageDeals = deals.filter(d => d.stage === stage);
+        const stageDeals = deals.filter(d => normalizePipelineStage(d.stage) === stage);
         stageContainer.innerHTML = stageDeals.map((deal, index) => {
           const meta = getDealPipelineMeta(deal, index, stage);
-          const tag = deal.tag || 'warm';
+          const tag = ['hot', 'warm', 'cold', 'won', 'lost'].includes(deal.tag) ? deal.tag : 'warm';
 
           return `
-          <div class="kanban-card" draggable="true" data-id="${deal.id}" data-value="${deal.value || 0}" data-probability="${meta.probability}">
+          <div class="kanban-card" draggable="true" data-id="${escapeText(deal.id)}" data-value="${Number(deal.value) || 0}" data-probability="${meta.probability}">
             <div class="kanban-card-header">
-              <span class="kanban-card-title">${deal.title}</span>
-              <button class="kanban-card-menu">
+              <button class="kanban-card-title deal-open" type="button" data-deal-open>${escapeText(deal.title)}</button>
+              <button class="kanban-card-menu" type="button" aria-label="Mở kế hoạch theo dõi" data-deal-open>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
               </button>
             </div>
-            <div class="kanban-card-customer">${deal.customer}</div>
+            <div class="kanban-card-customer">${escapeText(deal.customer)}</div>
             <div class="kanban-card-meta">
-              <span>Phụ trách: ${meta.owner}</span>
-              <span>Theo dõi: ${formatShortDate(meta.followUp)}</span>
+              <span>Phụ trách: ${escapeText(meta.owner)}</span>
+              <span>Theo dõi: ${escapeText(formatShortDate(meta.followUp))}</span>
             </div>
             <div class="kanban-card-next">
               <span>Việc tiếp theo</span>
-              <strong>${meta.nextAction}</strong>
+              <strong>${escapeText(meta.nextAction)}</strong>
             </div>
             <div class="kanban-card-footer">
               <span class="kanban-card-value">${formatCurrency(deal.value || 0)}</span>

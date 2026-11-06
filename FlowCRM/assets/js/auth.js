@@ -229,7 +229,8 @@ const Auth = {
   requireAuth() {
     if (!this.isAuthenticated()) {
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      window.location.href = `login.html?redirect=${currentPage}`;
+      const destination = currentPage + window.location.search + window.location.hash;
+      window.location.replace(`login.html?redirect=${encodeURIComponent(destination)}`);
       return false;
     }
     return true;

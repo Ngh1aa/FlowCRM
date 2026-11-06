@@ -109,11 +109,13 @@
 
   <script src="assets/js/auth.js"></script>
   <script>
+    const requestedPage = new URLSearchParams(window.location.search).get('redirect') || '';
+    const demoPages = ['index.html', 'pipeline.html', 'calendar.html', 'tasks.html', 'customers.html', 'messages.html', 'reports.html', 'settings.html'];
+    const destination = demoPages.includes(requestedPage.split(/[?#]/, 1)[0]) ? requestedPage : 'index.html';
+
     // Check if already logged in
     if (Auth.isAuthenticated()) {
-      const params = new URLSearchParams(window.location.search);
-      const redirect = params.get('redirect') || 'index.html';
-      window.location.href = redirect;
+      window.location.replace(destination);
     }
 
     // Show register link only if users exist (not first-time setup)
@@ -160,12 +162,8 @@
       loginBtn.disabled = true;
 
       try {
-        const user = await Auth.login(email, password);
-
-        // Success - redirect
-        const params = new URLSearchParams(window.location.search);
-        const redirect = params.get('redirect') || 'index.html';
-        window.location.href = redirect;
+        await Auth.login(email, password);
+        window.location.replace(destination);
       } catch (error) {
         showToast(error.message);
         btnText.style.display = 'inline';
@@ -189,7 +187,7 @@
           isDemo: true
         };
         localStorage.setItem('flowcrm_session', JSON.stringify(demoSession));
-        window.location.href = 'index.html';
+        window.location.replace(destination);
       });
     }
   </script>
