@@ -14,12 +14,12 @@
 .auth-container {
   display: flex;
   width: 100%;
-  max-width: 960px;
+  max-width: 460px;
   background: var(--bg-elevated);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--surface-line-strong);
 }
 
 .auth-card {
@@ -30,54 +30,9 @@
   justify-content: center;
 }
 
-.auth-info {
-  flex: 1;
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-  padding: var(--space-12) var(--space-8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.auth-info-content h2 {
-  font-size: var(--text-xl);
-  font-weight: 700;
-  margin-bottom: var(--space-3);
-  color: white;
-}
-
-.auth-info-content p {
-  font-size: var(--text-sm);
-  opacity: 0.9;
-  margin-bottom: var(--space-6);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.auth-features {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.auth-feature {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.auth-feature svg {
-  width: 20px;
-  height: 20px;
-  color: white;
-  flex-shrink: 0;
-}
-
 .auth-header {
-  text-align: center;
-  margin-bottom: var(--space-8);
+  text-align: start;
+  margin-bottom: var(--space-6);
 }
 
 .auth-logo {
@@ -93,7 +48,7 @@
 .auth-logo svg {
   width: 32px;
   height: 32px;
-  color: var(--accent-primary);
+  color: var(--accent);
 }
 
 .auth-title {
@@ -182,8 +137,8 @@
 }
 
 .checkbox-label input:checked + .checkbox-custom {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .checkbox-label input:checked + .checkbox-custom::after {
@@ -202,7 +157,7 @@
   text-align: center;
   margin-top: var(--space-6);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--surface-line-strong);
 }
 
 .auth-register-prompt {
@@ -211,7 +166,7 @@
 }
 
 .auth-register-prompt a {
-  color: var(--accent-primary);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
@@ -232,7 +187,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border-subtle);
+  background: var(--surface-line-strong);
 }
 
 .auth-divider span {
@@ -250,7 +205,7 @@
 
 .auth-form .btn-secondary:hover {
   background: var(--bg-elevated);
-  border-color: var(--accent-primary);
+  border-color: var(--accent);
   color: var(--text-primary);
 }
 
@@ -271,7 +226,7 @@
   gap: 12px;
   padding: 14px 18px;
   background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--surface-line-strong);
   color: var(--text-primary);
   border-radius: var(--radius-lg);
   font-size: var(--text-sm);
@@ -336,10 +291,6 @@
     max-width: 420px;
   }
 
-  .auth-info {
-    display: none;
-  }
-
   .auth-card {
     padding: var(--space-8) var(--space-6);
   }
@@ -350,7 +301,7 @@
   width: 64px;
   height: 64px;
   border-radius: var(--radius-lg);
-  background: var(--accent-primary);
+  background: var(--accent);
   color: white;
   display: flex;
   align-items: center;
@@ -359,3 +310,14 @@
   font-weight: 700;
   margin: 0 auto var(--space-4);
 }
+.auth-form .form-label { display: block; margin-bottom: 6px; font-size: var(--text-sm); color: var(--text-primary); }
+.auth-form .form-input, .auth-form .btn {
+  width: 100%; min-height: 44px; border-radius: var(--radius-xs);
+  padding: 10px 12px; border: 1px solid #817b71; font: inherit;
+}
+.auth-form .form-input { color: var(--text-primary); background: var(--bg-primary); }
+.auth-form .btn-primary { background: var(--accent); color: var(--text-inverse); cursor: pointer; }
+.auth-form .btn-secondary { color: var(--text-primary); cursor: pointer; }
+.auth-page :is(a, button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.checkbox-label input { display: inline-block; accent-color: var(--accent); }
+.checkbox-label .checkbox-custom { display: none; }

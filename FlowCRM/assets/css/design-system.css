@@ -4,13 +4,13 @@
 
 :root {
   /* Warm Off-Black Background */
-  --bg-primary: #080808;
+  --bg-primary: #121212;
   --bg-secondary: #111111;
   --bg-tertiary: #1a1a1a;
   --bg-elevated: #242424;
 
   /* Sidebar - Slightly Darker */
-  --shell-bg: #070807;
+  --shell-bg: #171717;
   --shell-bg-soft: #080808;
   --shell-control: rgba(255, 255, 255, 0.06);
   --shell-control-hover: rgba(255, 255, 255, 0.1);
@@ -23,11 +23,12 @@
   --surface-card-muted: #2a2a2a;
   --surface-line: rgba(255, 255, 255, 0.08);
   --surface-line-strong: rgba(255, 255, 255, 0.14);
+  --control-line: #79746a;
 
   /* Off-White Text */
   --text-primary: #f4f1ea;
   --text-secondary: #b8b2a8;
-  --text-tertiary: #7f7a72;
+  --text-tertiary: #a49e94;
   --text-inverse: #080808;
 
   /* Ink variants */
@@ -37,7 +38,9 @@
   --ink-muted: #625e57;
 
   /* Monochrome Accents */
-  --accent: #f4f1ea;
+  --accent: #e9d8af;
+  --stage-proposal: #9ebcf2;
+  --stage-won: #9dd1b2;
   --accent-light: rgba(255, 255, 255, 0.1);
   --accent-hover: #ffffff;
 
@@ -100,9 +103,9 @@
   /* Large Rounded Corners */
   --radius-xs: 8px;
   --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
 
   --transition-fast: 180ms ease;

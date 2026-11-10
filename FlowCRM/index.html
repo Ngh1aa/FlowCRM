@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+    <a class="skip-link" href="#mainContent">Tới nội dung</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -37,10 +38,10 @@
         </button>
       </div>
 
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Điều hướng chính">
         <div class="nav-section">
           <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item active">
+          <a href="index.html" class="nav-item active" aria-label="Tổng quan" aria-current="page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
@@ -53,14 +54,14 @@
 
         <div class="nav-section">
           <div class="nav-section-title">Quản lý</div>
-          <a href="pipeline.html" class="nav-item">
+          <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            <span>Bán hàng</span>
-            <span class="badge">12</span>
+            <span>Pipeline</span>
+
           </a>
-          <a href="customers.html" class="nav-item">
+          <a href="customers.html" class="nav-item" aria-label="Khách hàng">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
@@ -68,9 +69,9 @@
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
             <span>Khách hàng</span>
-            <span class="badge">48</span>
+
           </a>
-          <a href="messages.html" class="nav-item">
+          <a href="messages.html" class="nav-item" aria-label="Tin nhắn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
@@ -80,15 +81,15 @@
 
         <div class="nav-section">
           <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item">
+          <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
             <span>Nhiệm vụ</span>
-            <span class="badge">5</span>
+
           </a>
-          <a href="calendar.html" class="nav-item">
+          <a href="calendar.html" class="nav-item" aria-label="Lịch hẹn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
@@ -101,7 +102,7 @@
 
         <div class="nav-section">
           <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item">
+          <a href="reports.html" class="nav-item" aria-label="Báo cáo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -111,7 +112,7 @@
             </svg>
             <span>Báo cáo</span>
           </a>
-          <a href="settings.html" class="nav-item">
+          <a href="settings.html" class="nav-item" aria-label="Cài đặt">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -128,7 +129,7 @@
             <div class="user-name">An Nguyen</div>
             <div class="user-role">Quản lý bán hàng</div>
           </div>
-          <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+          <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
               <polyline points="16 17 21 12 16 7"/>
@@ -139,80 +140,31 @@
       </div>
     </aside>
 
-    <main class="main-content">
+    <main class="main-content" id="mainContent" tabindex="-1">
       <header class="topbar">
         <div class="topbar-left">
           <div>
             <h1 class="page-title">Tổng quan</h1>
-            <p class="page-subtitle">Tổng hợp bán hàng, công việc và khách hàng trong ngày.</p>
           </div>
         </div>
         <div class="topbar-right">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" placeholder="Tìm kiếm deal, khách hàng...">
-          </div>
+          <a href="pipeline.html" class="btn btn-primary">Mở pipeline</a>
         </div>
       </header>
 
       <div class="page-content">
         <div class="dashboard">
-          <section class="overview-hero" aria-labelledby="overviewHeroTitle">
-            <div class="overview-hero-content">
-              <span class="section-kicker">FlowCRM command center</span>
-              <h2 id="overviewHeroTitle">Theo dõi doanh thu, pipeline và chăm sóc khách hàng trong một màn hình.</h2>
-              <p>Dashboard tập trung cho đội bán hàng: nhìn nhanh tiến độ, ưu tiên việc cần xử lý và các cơ hội đang nóng.</p>
-              <div class="hero-actions">
-                <a href="pipeline.html" class="btn btn-primary">Xem pipeline</a>
-                <a href="customers.html" class="btn btn-secondary">Khách hàng mới</a>
-              </div>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-              <div class="hero-panel panel-chart">
-                <span>Deal velocity</span>
-                <strong>68%</strong>
-                <div class="hero-sparkline">
-                  <i></i><i></i><i></i><i></i><i></i>
-                </div>
-              </div>
-              <div class="hero-panel panel-pipeline">
-                <span>Pipeline value</span>
-                <strong>₫1.9B</strong>
-                <em>+14% tuần này</em>
-              </div>
-            </div>
-            <div class="hero-stat-grid">
-              <div class="hero-stat-card">
-                <span>Tổng doanh thu</span>
-                <strong>₫8.2B</strong>
-                <small>+18.5% so với tháng trước</small>
-              </div>
-              <div class="hero-stat-card">
-                <span>Cơ hội mới</span>
-                <strong>24</strong>
-                <small>+12% so với tuần trước</small>
-              </div>
-              <div class="hero-stat-card">
-                <span>Tỷ lệ chuyển đổi</span>
-                <strong>32%</strong>
-                <small>3 điểm cần theo dõi</small>
-              </div>
-              <div class="hero-stat-card">
-                <span>Khách hàng mới</span>
-                <strong>8</strong>
-                <small>+24% so với tháng trước</small>
-              </div>
-            </div>
+          <section class="dashboard-work" aria-labelledby="dashboardWorkTitle">
+            <div><h2 id="dashboardWorkTitle">Việc cần xử lý</h2>
+              <p id="dashboardPendingTasks"></p></div>
+            <a href="tasks.html" class="btn btn-secondary">Mở nhiệm vụ</a>
           </section>
 
           <section class="section-block dashboard-overview overview-kpi-strip">
             <div class="section-heading">
               <div>
                 <span class="section-kicker">Tổng quan</span>
-                <h2 class="section-title">Các chỉ số cần nhìn trước</h2>
+                <h2 class="section-title">Chỉ số bán hàng</h2>
               </div>
             </div>
 
@@ -272,11 +224,7 @@
               <div class="left-column">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Doanh thu theo tháng</h3>
-                    <div class="chart-tabs">
-                      <button class="chart-tab active">6 tháng</button>
-                      <button class="chart-tab">12 tháng</button>
-                    </div>
+                    <h3 class="card-title">Doanh thu 6 tháng</h3>
                   </div>
                   <div class="chart-wrapper">
                     <div class="chart-scale">
@@ -356,7 +304,7 @@
                       <div class="deal-stage-indicator proposal"></div>
                       <div class="list-item-content">
                         <span class="list-item-title">Triển khai CRM</span>
-                        <span class="list-item-subtitle">Fashion Store · 5 ngày trước</span>
+                        <span class="list-item-subtitle">Fashion Store, 5 ngày trước</span>
                       </div>
                       <div class="deal-meta">
                         <span class="deal-stage-badge proposal">Gửi báo giá</span>
@@ -368,7 +316,7 @@
               </div>
             </section>
 
-            <aside class="right-column overview-side-cards">
+            <aside class="right-column overview-side-cards" aria-label="Công việc và khách hàng">
               <section class="section-block today-tasks-card">
                 <div class="section-heading">
                   <div>
@@ -434,21 +382,21 @@
                   <div class="list-item">
                     <div class="list-item-content">
                       <span class="list-item-title">Alpha Corporation</span>
-                      <span class="list-item-subtitle">Sản xuất · Tuần này</span>
+                      <span class="list-item-subtitle">Sản xuất, Tuần này</span>
                     </div>
                     <span class="list-item-meta">Mới</span>
                   </div>
                   <div class="list-item">
                     <div class="list-item-content">
                       <span class="list-item-title">Beta Industries</span>
-                      <span class="list-item-subtitle">Công nghệ · 3 ngày trước</span>
+                      <span class="list-item-subtitle">Công nghệ, 3 ngày trước</span>
                     </div>
                     <span class="list-item-meta">Khách tiềm năng</span>
                   </div>
                   <div class="list-item">
                     <div class="list-item-content">
                       <span class="list-item-title">Gamma Solutions</span>
-                      <span class="list-item-subtitle">Tài chính · 1 tuần trước</span>
+                      <span class="list-item-subtitle">Tài chính, 1 tuần trước</span>
                     </div>
                     <span class="list-item-meta">Khách tiềm năng</span>
                   </div>
@@ -496,7 +444,7 @@
     <div class="modal">
       <div class="modal-header">
         <h2 class="modal-title">Tạo deal mới</h2>
-        <button class="modal-close" id="closeModalBtn" aria-label="Đóng">
+        <button class="modal-close" id="closeModalBtn" aria-label="Đóng hộp thoại">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -572,12 +520,12 @@
       if (!user || !profileEl) return;
 
       profileEl.innerHTML = `
-        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
-          <div class="user-name">${user.name}</div>
+          <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>

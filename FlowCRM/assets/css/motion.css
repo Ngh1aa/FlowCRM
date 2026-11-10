@@ -54,3 +54,12 @@ input:focus,select:focus,textarea:focus{transition:box-shadow var(--flow-motion-
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .overview-hero,.overview-hero-content>*,.hero-sparkline i{opacity:1!important;transform:none!important}
 }
+
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: .001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: .001ms !important;
+}

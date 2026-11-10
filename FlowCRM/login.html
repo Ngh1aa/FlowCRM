@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowCRM - Đăng nhập</title>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const requestedPage = new URLSearchParams(window.location.search).get('redirect') || '';
+    const demoPages = ['index.html', 'pipeline.html', 'calendar.html', 'tasks.html', 'customers.html', 'messages.html', 'reports.html', 'settings.html'];
+    const demoDestination = demoPages.includes(requestedPage.split(/[?#]/, 1)[0]) ? requestedPage : '';
+    const destination = demoDestination || 'index.html';
+    if (demoDestination || Auth.isAuthenticated()) {
+      window.location.replace(destination);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,7 +21,7 @@
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body class="auth-page">
-  <div class="auth-container">
+  <main class="auth-container">
     <div class="auth-card">
       <div class="auth-header">
         <div class="auth-logo">
@@ -22,8 +32,7 @@
           </svg>
           <span>FlowCRM</span>
         </div>
-        <h1 class="auth-title">Chào mừng trở lại</h1>
-        <p class="auth-subtitle">Đăng nhập để quản lý pipeline và khách hàng của bạn</p>
+        <h1 class="auth-title">Đăng nhập</h1>
       </div>
 
       <form class="auth-form" id="loginForm">
@@ -63,7 +72,7 @@
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
             <circle cx="12" cy="12" r="3"/>
           </svg>
-          <span>Xem giao diện (Demo)</span>
+          <span>Mở Demo</span>
         </button>
       </form>
 
@@ -73,57 +82,11 @@
         </p>
       </div>
     </div>
+  </main>
 
-    <div class="auth-info">
-      <div class="auth-info-content">
-        <h2>Quản lý bán hàng thông minh</h2>
-        <p>Theo dõi pipeline, khách hàng và công việc trong một giao diện trực quan.</p>
-        <div class="auth-features">
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Pipeline trực quan với Kanban</span>
-          </div>
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Quản lý khách hàng tập trung</span>
-          </div>
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Theo dõi công việc và lịch hẹn</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="toast-container" id="toastContainer" role="status"></div>
 
-  <div class="toast-container" id="toastContainer"></div>
-
-  <script src="assets/js/auth.js"></script>
   <script>
-    // Check if already logged in
-    if (Auth.isAuthenticated()) {
-      const params = new URLSearchParams(window.location.search);
-      const redirect = params.get('redirect') || 'index.html';
-      window.location.href = redirect;
-    }
-
-    // Show register link only if users exist (not first-time setup)
-    const hasUsers = Auth.getUsers().length > 0;
-    if (!hasUsers) {
-      document.getElementById('registerLink').href = 'register.html';
-    } else {
-      document.getElementById('registerLink').href = 'register.html';
-    }
-
     // Login form submission
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
@@ -160,12 +123,8 @@
       loginBtn.disabled = true;
 
       try {
-        const user = await Auth.login(email, password);
-
-        // Success - redirect
-        const params = new URLSearchParams(window.location.search);
-        const redirect = params.get('redirect') || 'index.html';
-        window.location.href = redirect;
+        await Auth.login(email, password);
+        window.location.replace(destination);
       } catch (error) {
         showToast(error.message);
         btnText.style.display = 'inline';
@@ -178,18 +137,8 @@
     const demoLoginBtn = document.getElementById('demoLoginBtn');
     if (demoLoginBtn) {
       demoLoginBtn.addEventListener('click', () => {
-        // Create demo session without password
-        const demoSession = {
-          userId: 'demo',
-          email: 'demo@flowcrm.vn',
-          name: 'Người dùng Demo',
-          role: 'admin',
-          avatar: 'DM',
-          loginTime: new Date().toISOString(),
-          isDemo: true
-        };
-        localStorage.setItem('flowcrm_session', JSON.stringify(demoSession));
-        window.location.href = 'index.html';
+        Auth.startDemo();
+        window.location.replace(destination);
       });
     }
   </script>

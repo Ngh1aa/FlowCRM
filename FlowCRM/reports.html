@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body class="reports-page">
-    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+    <a class="skip-link" href="#mainContent">Tới nội dung</a>
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -81,10 +82,10 @@
           </button>
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" aria-label="Điều hướng chính">
           <div class="nav-section">
             <div class="nav-section-title">Tổng quan</div>
-            <a href="index.html" class="nav-item">
+            <a href="index.html" class="nav-item" aria-label="Tổng quan">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -102,7 +103,7 @@
 
           <div class="nav-section">
             <div class="nav-section-title">Quản lý</div>
-            <a href="pipeline.html" class="nav-item">
+            <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -111,10 +112,10 @@
               >
                 <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
               </svg>
-              <span>Bán hàng</span>
-              <span class="badge">12</span>
+              <span>Pipeline</span>
+
             </a>
-            <a href="customers.html" class="nav-item">
+            <a href="customers.html" class="nav-item" aria-label="Khách hàng">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -127,9 +128,9 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
               <span>Khách hàng</span>
-              <span class="badge">48</span>
+
             </a>
-            <a href="messages.html" class="nav-item">
+            <a href="messages.html" class="nav-item" aria-label="Tin nhắn">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -146,7 +147,7 @@
 
           <div class="nav-section">
             <div class="nav-section-title">Công việc</div>
-            <a href="tasks.html" class="nav-item">
+            <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -159,9 +160,9 @@
                 />
               </svg>
               <span>Nhiệm vụ</span>
-              <span class="badge">5</span>
+
             </a>
-            <a href="calendar.html" class="nav-item">
+            <a href="calendar.html" class="nav-item" aria-label="Lịch hẹn">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -179,7 +180,7 @@
 
           <div class="nav-section">
             <div class="nav-section-title">KHÁC</div>
-            <a href="reports.html" class="nav-item active">
+            <a href="reports.html" class="nav-item active" aria-label="Báo cáo" aria-current="page">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -196,7 +197,7 @@
               </svg>
               <span>Báo cáo</span>
             </a>
-            <a href="settings.html" class="nav-item">
+            <a href="settings.html" class="nav-item" aria-label="Cài đặt">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -224,18 +225,15 @@
         </div>
       </aside>
 
-      <main class="main-content">
+      <main class="main-content" id="mainContent" tabindex="-1">
         <header class="topbar">
           <div class="topbar-left">
             <div>
               <h1 class="page-title">Báo cáo</h1>
-              <p class="page-subtitle">
-                Theo dõi doanh thu, hiệu suất và hoạt động kinh doanh.
-              </p>
             </div>
           </div>
           <div class="topbar-right">
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" id="exportReport">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -246,7 +244,7 @@
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Xuất báo cáo
+              Xuất chỉ số
             </button>
           </div>
         </header>
@@ -373,59 +371,11 @@
           </div>
 
           <!-- Report Type Tabs -->
-          <div class="report-tabs-wrapper">
-            <div class="report-tabs">
-              <button class="report-tab active" data-report="revenue">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <line x1="12" y1="1" x2="12" y2="23" />
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </svg>
-                Doanh thu
-              </button>
-              <button class="report-tab" data-report="pipeline">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3" />
-                </svg>
-                Pipeline
-              </button>
-              <button class="report-tab" data-report="team">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                Team
-              </button>
-            </div>
-            <div class="report-period-selector">
-              <button class="period-btn active">6 tháng</button>
-              <button class="period-btn">12 tháng</button>
-              <button class="period-btn">YTD</button>
-            </div>
-          </div>
-
           <!-- Main Chart Card -->
           <div class="report-chart-card">
             <div class="report-chart-header">
               <div>
-                <span class="report-chart-kicker">Doanh thu theo tháng</span>
-                <h2 class="report-chart-title">Xu hướng doanh thu</h2>
+                <h2 class="report-chart-title">Doanh thu theo tháng</h2>
               </div>
               <div class="report-chart-legend">
                 <span class="legend-item"
@@ -642,7 +592,7 @@
                   <div class="performer-avatar">AN</div>
                   <div class="performer-info">
                     <span class="performer-name">An Nguyễn</span>
-                    <span class="performer-stat">₫1.2B · 12 deals</span>
+                    <span class="performer-stat">₫1.2B, 12 cơ hội</span>
                   </div>
                 </div>
                 <div class="performer-item">
@@ -650,7 +600,7 @@
                   <div class="performer-avatar">MN</div>
                   <div class="performer-info">
                     <span class="performer-name">Minh Nguyễn</span>
-                    <span class="performer-stat">₫980M · 9 deals</span>
+                    <span class="performer-stat">₫980M, 9 cơ hội</span>
                   </div>
                 </div>
                 <div class="performer-item">
@@ -658,7 +608,7 @@
                   <div class="performer-avatar">LN</div>
                   <div class="performer-info">
                     <span class="performer-name">Lan Nguyễn</span>
-                    <span class="performer-stat">₫850M · 8 deals</span>
+                    <span class="performer-stat">₫850M, 8 cơ hội</span>
                   </div>
                 </div>
               </div>
@@ -669,10 +619,9 @@
           <div class="recent-reports-section">
             <div class="recent-reports-header">
               <div>
-                <span class="recent-reports-kicker">Hoạt động</span>
                 <h2 class="recent-reports-title">Báo cáo đã tạo gần đây</h2>
               </div>
-              <button class="btn btn-ghost">Xem tất cả</button>
+
             </div>
             <div class="recent-reports-grid">
               <div class="recent-report-card">
@@ -690,8 +639,8 @@
                   </svg>
                 </div>
                 <div class="recent-report-info">
-                  <h4>Báo cáo doanh thu tháng 4/2026</h4>
-                  <p>Đã tạo: 18/05/2026 · 2.5MB</p>
+                  <h3>Báo cáo doanh thu tháng 4/2026</h3>
+                  <p>Đã tạo: 18/05/2026, 2.5MB</p>
                 </div>
                 <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
@@ -708,8 +657,8 @@
                   </svg>
                 </div>
                 <div class="recent-report-info">
-                  <h4>Báo cáo pipeline Q2 2026</h4>
-                  <p>Đã tạo: 15/05/2026 · 1.8MB</p>
+                  <h3>Báo cáo pipeline Q2 2026</h3>
+                  <p>Đã tạo: 15/05/2026, 1.8MB</p>
                 </div>
                 <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
@@ -729,8 +678,8 @@
                   </svg>
                 </div>
                 <div class="recent-report-info">
-                  <h4>Báo cáo hiệu suất team tháng 4</h4>
-                  <p>Đã tạo: 10/05/2026 · 3.2MB</p>
+                  <h3>Báo cáo hiệu suất team tháng 4</h3>
+                  <p>Đã tạo: 10/05/2026, 3.2MB</p>
                 </div>
                 <span class="recent-report-status ready">Sẵn sàng</span>
               </div>
@@ -750,8 +699,8 @@
                   </svg>
                 </div>
                 <div class="recent-report-info">
-                  <h4>Báo cáo doanh thu Q1 2026</h4>
-                  <p>Đã tạo: 05/04/2026 · 4.1MB</p>
+                  <h3>Báo cáo doanh thu Q1 2026</h3>
+                  <p>Đã tạo: 05/04/2026, 4.1MB</p>
                 </div>
                 <span class="recent-report-status archived">Lưu trữ</span>
               </div>
@@ -770,12 +719,12 @@
         if (!user || !profileEl) return;
 
         profileEl.innerHTML = `
-        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
-          <div class="user-name">${user.name}</div>
+          <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>
@@ -794,22 +743,16 @@
       window.addEventListener("auth_state_changed", renderUserProfile);
       renderUserProfile();
 
-      // Report tab switching
-      const reportTabs = document.querySelectorAll(".report-tab");
-      reportTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          reportTabs.forEach((t) => t.classList.remove("active"));
-          tab.classList.add("active");
-        });
-      });
-
-      // Period selector
-      const periodBtns = document.querySelectorAll(".period-btn");
-      periodBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          periodBtns.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-        });
+      document.getElementById('exportReport').addEventListener('click', () => {
+        const rows = [...document.querySelectorAll('.report-kpi-card')].map(card =>
+          [card.querySelector('.report-kpi-label').textContent.trim(), card.querySelector('.report-kpi-value').textContent.trim()]);
+        const csv = [['Chỉ số', 'Giá trị'], ...rows].map(row => row.map(value => '"' + value.replaceAll('"', '""') + '"').join(',')).join('\r\n');
+        const url = URL.createObjectURL(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'flowcrm-chi-so.csv';
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       });
 
       // Chart dots hover effect
