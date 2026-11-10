@@ -56,7 +56,8 @@
       updateDealLink(null);
       const card = [...board.querySelectorAll('.kanban-card')].find(item => item.dataset.id === dealId);
       const focusTarget = opener?.isConnected ? opener : card?.querySelector('.deal-open');
-      focusTarget?.focus();
+      if (focusTarget?.getClientRects().length) focusTarget.focus();
+      else document.getElementById('pipelineStageFilter')?.focus();
       opener = null;
     });
     fields.date.addEventListener('input', () => fields.dueDate.setCustomValidity(''));
@@ -105,7 +106,7 @@
         const title = document.createElement('h3');
         title.textContent = deal.plan.task;
         const context = document.createElement('p');
-        context.textContent = deal.title + ' · ' + deal.customer + ' · Hạn ' + formatShortDate(deal.plan.dueDate);
+        context.textContent = deal.title + ' (' + deal.customer + '). Hạn ' + formatShortDate(deal.plan.dueDate);
         const link = document.createElement('a');
         link.href = 'pipeline.html?deal=' + encodeURIComponent(deal.id);
         link.textContent = 'Mở cơ hội';

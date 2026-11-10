@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body class="auth-page">
-  <div class="auth-container">
+  <main class="auth-container">
     <div class="auth-card">
       <div class="auth-header">
         <div class="auth-logo">
@@ -23,7 +23,6 @@
           <span>FlowCRM</span>
         </div>
         <h1 class="auth-title">Thiết lập tài khoản</h1>
-        <p class="auth-subtitle">Tạo tài khoản quản trị để bắt đầu sử dụng FlowCRM</p>
       </div>
 
       <form class="auth-form" id="registerForm">
@@ -63,39 +62,9 @@
         </p>
       </div>
     </div>
+  </main>
 
-    <div class="auth-info">
-      <div class="auth-info-content">
-        <h2>Bắt đầu quản lý bán hàng</h2>
-        <p>Tài khoản đầu tiên sẽ được phân quyền Quản trị viên và có toàn quyền truy cập hệ thống.</p>
-        <div class="auth-features">
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Tạo pipeline bán hàng riêng</span>
-          </div>
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Thêm và quản lý khách hàng</span>
-          </div>
-          <div class="auth-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-            </svg>
-            <span>Theo dõi công việc hàng ngày</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast-container" id="toastContainer"></div>
+  <div class="toast-container" id="toastContainer" role="status"></div>
 
   <script src="assets/js/auth.js"></script>
   <script>

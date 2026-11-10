@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="messages-page">
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu">
+    <a class="skip-link" href="#mainContent">Tới nội dung</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -37,10 +38,10 @@
         </button>
       </div>
 
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Điều hướng chính">
         <div class="nav-section">
           <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item">
+          <a href="index.html" class="nav-item" aria-label="Tổng quan">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
@@ -53,14 +54,14 @@
 
         <div class="nav-section">
           <div class="nav-section-title">Quản lý</div>
-          <a href="pipeline.html" class="nav-item">
+          <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
             </svg>
-            <span>Quy trình bán hàng</span>
-            <span class="badge">12</span>
+            <span>Pipeline</span>
+
           </a>
-          <a href="customers.html" class="nav-item">
+          <a href="customers.html" class="nav-item" aria-label="Khách hàng">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
@@ -68,9 +69,9 @@
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
             <span>Khách hàng</span>
-            <span class="badge">48</span>
+
           </a>
-          <a href="messages.html" class="nav-item active">
+          <a href="messages.html" class="nav-item active" aria-label="Tin nhắn" aria-current="page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
@@ -80,15 +81,15 @@
 
         <div class="nav-section">
           <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item">
+          <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
             <span>Nhiệm vụ</span>
-            <span class="badge">5</span>
+
           </a>
-          <a href="calendar.html" class="nav-item">
+          <a href="calendar.html" class="nav-item" aria-label="Lịch hẹn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
@@ -101,7 +102,7 @@
 
         <div class="nav-section">
           <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item">
+          <a href="reports.html" class="nav-item" aria-label="Báo cáo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -111,7 +112,7 @@
             </svg>
             <span>Báo cáo</span>
           </a>
-          <a href="settings.html" class="nav-item">
+          <a href="settings.html" class="nav-item" aria-label="Cài đặt">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -133,12 +134,11 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="mainContent" tabindex="-1">
       <header class="topbar">
         <div class="topbar-left">
           <div>
             <h1 class="page-title">Tin nhắn</h1>
-            <p class="page-subtitle">Trả lời khách cho gọn, biết ngay đang nói tới deal nào.</p>
           </div>
         </div>
         <div class="topbar-right">
@@ -153,27 +153,6 @@
       </header>
 
       <div class="page-content">
-        <section class="page-hero page-hero-messages" aria-labelledby="messagesHeroTitle">
-          <div class="page-hero-content">
-            <span class="section-kicker">FlowCRM conversation desk</span>
-            <h2 id="messagesHeroTitle">Nói chuyện với khách tự nhiên hơn, vẫn không mất ngữ cảnh.</h2>
-            <p>Xem nhanh ai đang nhắn, khách cần gì và mình nên trả lời tiếp ra sao.</p>
-          </div>
-          <div class="page-hero-metrics" aria-hidden="true">
-            <div class="page-hero-metric">
-              <span>Chưa đọc</span>
-              <strong>2</strong>
-            </div>
-            <div class="page-hero-metric">
-              <span>Hội thoại</span>
-              <strong>5</strong>
-            </div>
-            <div class="page-hero-metric">
-              <span>Đang xử lý</span>
-              <strong>3</strong>
-            </div>
-          </div>
-        </section>
 
         <div class="messages-container">
           <!-- Conversations List -->
@@ -184,142 +163,119 @@
                   <circle cx="11" cy="11" r="8"/>
                   <path d="m21 21-4.35-4.35"/>
                 </svg>
-                <input type="text" placeholder="Tìm khách hoặc đoạn chat...">
+                <input type="text" id="conversationSearch" aria-label="Tìm hội thoại" placeholder="Tìm hội thoại">
               </div>
             </div>
 
             <div class="conversations-scroll" id="conversationsScroll">
-            <div class="conversation-item active is-online" data-id="1">
-              <div class="conversation-avatar">AC</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+              <p id="conversationsEmpty" class="workspace-empty" role="status" hidden>Không tìm thấy hội thoại.</p>
+            <button type="button" class="conversation-item active is-online" data-id="1" aria-pressed="true">
+              <span class="conversation-avatar">AC</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Alpha Corp</span>
                   <span class="conversation-time">10:30</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Cảm ơn anh nhé, bên em sẽ xem lại rồi báo anh sớm...</span>
-              </div>
+              </span>
               <span class="conversation-badge">2</span>
-            </div>
+            </button>
 
-            <div class="conversation-item is-online" data-id="2">
-              <div class="conversation-avatar">TS</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-online" data-id="2" aria-pressed="false">
+              <span class="conversation-avatar">TS</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Tech Solutions</span>
                   <span class="conversation-time">Hôm qua</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Deal app đang ổn đó anh. Mình hẹn demo luôn được không...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-offline" data-id="3">
-              <div class="conversation-avatar">DC</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-offline" data-id="3" aria-pressed="false">
+              <span class="conversation-avatar">DC</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Design Co</span>
                   <span class="conversation-time">Hôm qua</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Mai Linh hỏi thêm chút về tiến độ tích hợp CRM...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-online" data-id="4">
-              <div class="conversation-avatar">GL</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-online" data-id="4" aria-pressed="false">
+              <span class="conversation-avatar">GL</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Gamma Ltd</span>
                   <span class="conversation-time">2 ngày trước</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Hoàng Diệp xác nhận tuần sau tham gia demo nhé...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-offline" data-id="5">
-              <div class="conversation-avatar">BI</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-offline" data-id="5" aria-pressed="false">
+              <span class="conversation-avatar">BI</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Beta Industries</span>
                   <span class="conversation-time">3 ngày trước</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Vũ Nam nhận được proposal audit rồi, đang xem lại...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-offline" data-id="6">
-              <div class="conversation-avatar">DI</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-offline" data-id="6" aria-pressed="false">
+              <span class="conversation-avatar">DI</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Delta Inc</span>
                   <span class="conversation-time">4 ngày trước</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Bên Delta đang xem lại điều khoản triển khai automation...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-online" data-id="7">
-              <div class="conversation-avatar">EC</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-online" data-id="7" aria-pressed="false">
+              <span class="conversation-avatar">EC</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Epsilon Co</span>
                   <span class="conversation-time">Tuần trước</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Lịch demo hệ thống kho chốt vào thứ năm rồi...</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
-            <div class="conversation-item is-offline" data-id="8">
-              <div class="conversation-avatar">ZG</div>
-              <div class="conversation-content">
-                <div class="conversation-header">
+            <button type="button" class="conversation-item is-offline" data-id="8" aria-pressed="false">
+              <span class="conversation-avatar">ZG</span>
+              <span class="conversation-content">
+                <span class="conversation-header">
                   <span class="conversation-name">Zeta Group</span>
                   <span class="conversation-time">Tuần trước</span>
-                </div>
+                </span>
                 <span class="conversation-preview">Mình gửi biên bản bàn giao chiến dịch SEO rồi nhé...</span>
-              </div>
-            </div>
+              </span>
+            </button>
             </div>
 
-            <button class="conversation-scroll-btn" id="conversationScrollBtn" type="button" aria-label="Lướt xuống xem thêm đối tác">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-              <span>Xem thêm</span>
-            </button>
+
           </div>
 
           <!-- Chat Area -->
           <div class="chat-area">
             <div class="chat-header">
               <div class="chat-header-info">
+                <button id="chatBack" type="button" class="btn btn-secondary chat-back">Quay lại</button>
                 <div class="chat-avatar">AC</div>
                 <div class="chat-info">
                   <span class="chat-name">Alpha Corp</span>
                   <span class="chat-status">Đang hoạt động</span>
                 </div>
               </div>
-              <div class="chat-actions">
-                <button class="icon-btn" title="Gọi điện">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                </button>
-                <button class="icon-btn" title="Gọi video">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <polygon points="23 7 16 12 23 17 23 7"/>
-                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                  </svg>
-                </button>
-                <button class="icon-btn" title="Thông tin">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="16" x2="12" y2="12"/>
-                    <line x1="12" y1="8" x2="12.01" y2="8"/>
-                  </svg>
-                </button>
-              </div>
             </div>
 
-            <div class="chat-messages" id="chatMessages">
+            <div class="chat-messages" id="chatMessages" role="log" aria-label="Nội dung hội thoại">
               <div class="message received">
                 <div class="message-content">
                   <p>Chào anh An, em nhận được báo giá cloud rồi nhé. Cảm ơn anh đã gửi nhanh.</p>
@@ -389,13 +345,8 @@
             </div>
 
             <div class="chat-input">
-              <button class="icon-btn" title="Đính kèm">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
-                </svg>
-              </button>
-              <input type="text" class="chat-message-input" placeholder="Nhắn gì đó cho khách..." id="messageInput">
-              <button class="icon-btn" title="Gửi" id="sendMessageBtn">
+              <input type="text" class="chat-message-input" placeholder="Nhập tin nhắn" id="messageInput" aria-label="Tin nhắn">
+              <button class="icon-btn" title="Gửi" aria-label="Gửi tin nhắn" id="sendMessageBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -413,7 +364,7 @@
     <div class="modal">
       <div class="modal-header">
         <h2 class="modal-title">Nhắn khách</h2>
-        <button class="modal-close" id="closeModalBtn">
+        <button class="modal-close" id="closeModalBtn" aria-label="Đóng hộp thoại">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -423,7 +374,7 @@
       <div class="modal-body">
         <form id="newMessageForm">
           <div class="form-group">
-            <label class="form-label required">Người nhận</label>
+            <label class="form-label required" for="messageRecipient">Người nhận</label>
             <select class="form-select" id="messageRecipient" required>
               <option value="">Chọn khách hàng...</option>
               <option value="1">Alpha Corp - Phạm Hương</option>
@@ -436,8 +387,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Nội dung</label>
-            <textarea class="form-input" id="messageContent" rows="5" placeholder="Viết tin nhắn ngắn gọn, tự nhiên..."></textarea>
+            <label class="form-label" for="messageContent">Nội dung</label>
+            <textarea class="form-input" id="messageContent" required rows="5" placeholder="Viết tin nhắn ngắn gọn, tự nhiên..."></textarea>
           </div>
         </form>
       </div>
@@ -451,97 +402,99 @@
   <script src="assets/js/app.js"></script>
   <script>
   {
-    // Message functionality
-    const newMessageBtn = document.getElementById('newMessageBtn');
-    const newMessageModal = document.getElementById('newMessageModal');
-    const messageInput = document.getElementById('messageInput');
-    const sendMessageBtn = document.getElementById('sendMessageBtn');
-    const chatMessages = document.getElementById('chatMessages');
-    const conversationsScroll = document.getElementById('conversationsScroll');
-    const conversationScrollBtn = document.getElementById('conversationScrollBtn');
+    const layout = document.querySelector('.messages-container');
+    const items = [...document.querySelectorAll('.conversation-item')];
+    const thread = document.getElementById('chatMessages');
+    const search = document.getElementById('conversationSearch');
+    const input = document.getElementById('messageInput');
+    const composer = document.getElementById('newMessageForm');
+    const composeModal = document.getElementById('newMessageModal');
+    const firstThread = [...thread.children].map(node => node.cloneNode(true));
+    let current = items[0];
 
-    if (newMessageBtn) {
-      newMessageBtn.addEventListener('click', () => openModal(newMessageModal));
+    function messageElement(text, time, sent) {
+      const row = document.createElement('div');
+      row.className = 'message ' + (sent ? 'sent' : 'received');
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      const body = document.createElement('p');
+      body.textContent = text;
+      const stamp = document.createElement('span');
+      stamp.className = 'message-time';
+      stamp.textContent = time;
+      content.append(body, stamp);
+      row.append(content);
+      return row;
     }
 
-    if (sendMessageBtn) {
-      sendMessageBtn.addEventListener('click', () => {
-        const text = messageInput.value.trim();
-        if (text) {
-          const now = new Date();
-          const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-
-          const messageDiv = document.createElement('div');
-          messageDiv.className = 'message sent';
-          messageDiv.innerHTML = `
-            <div class="message-content">
-              <p>${text}</p>
-              <span class="message-time">${time}</span>
-              <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </button>
-            </div>
-          `;
-          chatMessages.appendChild(messageDiv);
-          messageInput.value = '';
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+    function showThread(item, open = true) {
+      current = item;
+      items.forEach(row => {
+        row.classList.toggle('active', row === item);
+        row.setAttribute('aria-pressed', String(row === item));
       });
+      document.querySelector('.chat-name').textContent = item.querySelector('.conversation-name').textContent;
+      document.querySelector('.chat-avatar').textContent = item.querySelector('.conversation-avatar').textContent;
+      document.querySelector('.chat-status').textContent = item.classList.contains('is-online') ? 'Đang hoạt động' : 'Ngoại tuyến';
+      const preview = item.querySelector('.conversation-preview').textContent;
+      const time = item.querySelector('.conversation-time').textContent;
+      const initial = item === items[0] ? firstThread.map(node => node.cloneNode(true)) : [messageElement(preview, time, false)];
+      const messages = Storage.get(Storage.KEYS.MESSAGES).filter(message => message.conversation === item.dataset.id);
+      thread.replaceChildren(...initial, ...messages.map(message => messageElement(message.text, message.time, true)));
+      layout.classList.toggle('chat-open', open);
+      thread.scrollTop = thread.scrollHeight;
+      if (open && window.matchMedia('(max-width: 900px)').matches) document.getElementById('chatBack').focus();
     }
 
-    if (messageInput) {
-      messageInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          sendMessageBtn?.click();
-        }
-      });
+    function send(text, item) {
+      const value = text.trim();
+      if (!value || !item) return;
+      const time = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+      Storage.save(Storage.KEYS.MESSAGES, [...Storage.get(Storage.KEYS.MESSAGES), { conversation: item.dataset.id, text: value, time }]);
+      showThread(item);
+      input.value = '';
+      input.focus();
     }
 
-    if (chatMessages) {
-      chatMessages.addEventListener('click', (event) => {
-        const reactionBtn = event.target.closest('.message-reaction-btn');
-        if (!reactionBtn) return;
-
-        const isReacted = reactionBtn.classList.toggle('is-reacted');
-        reactionBtn.setAttribute('aria-pressed', isReacted ? 'true' : 'false');
-        reactionBtn.title = isReacted ? 'Bỏ tim' : 'Thả tim';
-      });
-    }
-
-    // Conversation item click
-    document.querySelectorAll('.conversation-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-      });
+    items.forEach(item => item.addEventListener('click', () => showThread(item)));
+    document.getElementById('chatBack').addEventListener('click', () => {
+      layout.classList.remove('chat-open');
+      if (current.hidden) search.focus();
+      else current.focus();
     });
-
-    const updateConversationScrollState = () => {
-      if (!conversationsScroll) return;
-      const list = conversationsScroll.closest('.conversations-list');
-      const atBottom = conversationsScroll.scrollTop + conversationsScroll.clientHeight >= conversationsScroll.scrollHeight - 8;
-      list?.classList.toggle('is-at-bottom', atBottom);
-    };
-
-    if (conversationsScroll && conversationScrollBtn) {
-      conversationScrollBtn.addEventListener('click', () => {
-        conversationsScroll.scrollBy({
-          top: Math.max(140, conversationsScroll.clientHeight * 0.65),
-          behavior: 'smooth'
-        });
-      });
-
-      conversationsScroll.addEventListener('scroll', updateConversationScrollState);
-      window.addEventListener('resize', updateConversationScrollState);
-      updateConversationScrollState();
-    }
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLocaleLowerCase('vi');
+      items.forEach(item => { item.hidden = !item.textContent.toLocaleLowerCase('vi').includes(query); });
+      document.getElementById('conversationsEmpty').hidden = items.some(item => !item.hidden);
+    });
+    document.getElementById('sendMessageBtn').addEventListener('click', () => send(input.value, current));
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.isComposing) {
+        event.preventDefault();
+        send(input.value, current);
+      }
+    });
+    document.getElementById('newMessageBtn').addEventListener('click', () => openModal(composeModal));
+    document.getElementById('sendBtn').addEventListener('click', () => {
+      if (!composer.reportValidity()) return;
+      const item = items.find(row => row.dataset.id === document.getElementById('messageRecipient').value);
+      const message = document.getElementById('messageContent').value;
+      if (!message.trim()) return;
+      closeModal(composeModal);
+      send(message, item);
+      composer.reset();
+    });
+    thread.addEventListener('click', event => {
+      const button = event.target.closest('.message-reaction-btn');
+      if (!button) return;
+      const reacted = button.classList.toggle('is-reacted');
+      button.setAttribute('aria-pressed', String(reacted));
+      button.setAttribute('aria-label', reacted ? 'Bỏ tim tin nhắn' : 'Thả tim tin nhắn');
+    });
+    showThread(current, false);
   }
   </script>
   <script src="assets/js/auth.js"></script>
-  <script src="assets/js/app.js"></script>
   <script>
     function renderUserProfile() {
       const user = Auth.getCurrentUser();
@@ -549,12 +502,12 @@
       if (!user || !profileEl) return;
 
       profileEl.innerHTML = `
-        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
-          <div class="user-name">${user.name}</div>
+          <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>

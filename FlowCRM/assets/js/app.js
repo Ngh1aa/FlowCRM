@@ -1,6 +1,35 @@
 // FlowCRM - Main Application JavaScript
 // UX Optimized Version with LocalStorage Persistence
 
+const WorkspacePreferences = {
+  options: {
+    pipeline: [
+      ['', 'Tất cả giai đoạn'], ['qualification', 'Chào hàng'], ['proposal', 'Đề xuất'],
+      ['negotiation', 'Đàm phán'], ['closed-won', 'Chốt'], ['closed-lost', 'Thất bại']
+    ],
+    tasks: [
+      ['all', 'Tất cả nhiệm vụ'], ['overdue', 'Quá hạn'], ['today', 'Hôm nay'],
+      ['upcoming', 'Sắp tới'], ['completed', 'Đã hoàn thành']
+    ],
+    calendar: [['month', 'Tháng'], ['week', 'Tuần'], ['day', 'Ngày']],
+    motion: [['system', 'Theo hệ thống'], ['reduce', 'Giảm chuyển động']]
+  },
+
+  get(name) {
+    const options = this.options[name];
+    const saved = localStorage.getItem('flowcrm_preference_' + name);
+    return options.find(([value]) => value === saved)?.[0] ?? options[0][0];
+  },
+
+  set(name, value) {
+    if (!this.options[name].some(([option]) => option === value)) return;
+    localStorage.setItem('flowcrm_preference_' + name, value);
+    if (name === 'motion') document.documentElement.dataset.motion = value;
+  }
+};
+
+document.documentElement.dataset.motion = WorkspacePreferences.get('motion');
+
 /**
  * Storage Utility - Single Source of Truth
  */
@@ -338,30 +367,30 @@ const Toast = {
 // ========================================
 // Modal Functions with UX improvements
 // ========================================
+const modalOpeners = new WeakMap();
+
 function openModal(modal) {
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // Auto-focus first input
-    setTimeout(() => {
-      const firstInput = modal.querySelector('input:not([type="hidden"]), textarea, select');
-      if (firstInput) firstInput.focus();
-    }, 100);
-
-    // Animate in
-    modal.style.opacity = '0';
-    requestAnimationFrame(() => {
-      modal.style.opacity = '1';
-    });
+  if (!modal || modal.classList.contains('active')) return;
+  modalOpeners.set(modal, document.activeElement);
+  modal.classList.add('active');
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  const title = modal.querySelector('.modal-title');
+  if (title) {
+    title.id ||= modal.id + 'Title';
+    modal.setAttribute('aria-labelledby', title.id);
   }
+  document.body.style.overflow = 'hidden';
+  const initial = modal.querySelector('input:not([type="hidden"]), textarea, select') || modal.querySelector('button');
+  initial?.focus();
 }
 
 function closeModal(modal) {
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  if (!modal?.classList.contains('active')) return;
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  modalOpeners.get(modal)?.focus();
+  modalOpeners.delete(modal);
 }
 
 // ========================================
@@ -381,7 +410,7 @@ const saveCustomerBtn = document.getElementById('saveCustomerBtn');
 const addCustomerForm = document.getElementById('addCustomerForm');
 const customerTableBody = document.getElementById('customerTableBody');
 const tableSearch = document.getElementById('tableSearch') || document.getElementById('searchInput');
-const selectAllCheckbox = document.getElementById('selectAll');
+let editingCustomerId = null;
 
 // Add Task Modal
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -429,9 +458,26 @@ if (quickCreateModal) {
 // ========================================
 // Add Customer Modal
 // ========================================
-if (addCustomerBtn) {
-  addCustomerBtn.addEventListener('click', () => openModal(addCustomerModal));
+function openCustomerForm(customer) {
+  editingCustomerId = customer?.id ?? null;
+  addCustomerForm.reset();
+  addCustomerModal.querySelector('.modal-title').textContent = customer ? 'Sửa khách hàng' : 'Thêm khách hàng';
+  if (customer) {
+    for (const key of ['name', 'email', 'phone', 'company', 'status', 'notes']) {
+      const field = document.getElementById('customer' + key[0].toUpperCase() + key.slice(1));
+      field.value = customer[key] ?? field.value;
+    }
+  }
+  openModal(addCustomerModal);
 }
+
+addCustomerBtn?.addEventListener('click', () => openCustomerForm());
+customerTableBody?.addEventListener('click', event => {
+  const edit = event.target.closest('[data-edit-customer]');
+  if (!edit) return;
+  const customer = Storage.get(Storage.KEYS.CUSTOMERS).find(item => String(item.id) === edit.dataset.editCustomer);
+  if (customer) openCustomerForm(customer);
+});
 
 if (addCustomerModal) {
   const closeBtn = addCustomerModal.querySelector('#closeModalBtn');
@@ -470,7 +516,7 @@ if (addTaskModal) {
 if (addEventBtn) {
   addEventBtn.addEventListener('click', () => {
     // Set default date to today
-    const today = new Date().toISOString().split('T')[0];
+    const today = localDateKey(new Date());
     const eventDateInput = document.getElementById('eventDate');
     if (eventDateInput) eventDateInput.value = today;
 
@@ -592,34 +638,34 @@ if (createDealBtn) {
 // ========================================
 // Customer Creation with Toast
 // ========================================
-if (saveCustomerBtn) {
-  saveCustomerBtn.addEventListener('click', () => {
-    if (validateForm(addCustomerForm)) {
-      const formData = new FormData(addCustomerForm);
-      const firstName = getFieldValue(formData, 'customerFirstName', 'customerFirstName');
-      const lastName = getFieldValue(formData, 'customerLastName', 'customerLastName');
-      const newCustomer = {
-        name: `${firstName} ${lastName}`.trim() || getFieldValue(formData, 'custName', 'customerFirstName', 'Khách hàng mới'),
-        email: getFieldValue(formData, 'customerEmail', 'customerEmail') || formData.get('custEmail') || '',
-        phone: getFieldValue(formData, 'customerPhone', 'customerPhone') || formData.get('custPhone') || '',
-        company: getFieldValue(formData, 'customerCompany', 'customerCompany') || formData.get('custCompany') || '',
-        status: getFieldValue(formData, 'customerStatus', 'customerStatus', 'active'),
-        latestDeal: 'Chưa có cơ hội'
-      };
-
-      saveCustomerBtn.disabled = true;
-      saveCustomerBtn.textContent = 'Đang lưu...';
-
-      setTimeout(() => {
-        Storage.addItem(Storage.KEYS.CUSTOMERS, newCustomer);
-        saveCustomerBtn.disabled = false;
-        saveCustomerBtn.textContent = 'Lưu khách hàng';
-        addCustomerForm.reset();
-        closeModal(addCustomerModal);
-        Toast.show('Khách hàng đã được thêm thành công!');
-      }, 500);
+if (saveCustomerBtn && addCustomerForm) {
+  const saveCustomer = event => {
+    event.preventDefault();
+    const name = document.getElementById('customerName');
+    name.value = name.value.trim();
+    if (!addCustomerForm.reportValidity()) return;
+    const customer = {
+      name: name.value,
+      email: document.getElementById('customerEmail').value,
+      phone: document.getElementById('customerPhone').value,
+      company: document.getElementById('customerCompany').value,
+      status: document.getElementById('customerStatus').value,
+      notes: document.getElementById('customerNotes').value
+    };
+    closeModal(addCustomerModal);
+    if (editingCustomerId === null) {
+      Storage.addItem(Storage.KEYS.CUSTOMERS, { ...customer, latestDeal: 'Chưa có cơ hội' });
+      Toast.show('Đã thêm khách hàng.');
+    } else {
+      Storage.updateItem(Storage.KEYS.CUSTOMERS, editingCustomerId, customer);
+      const editButton = [...customerTableBody.querySelectorAll('[data-edit-customer]')]
+        .find(button => button.dataset.editCustomer === String(editingCustomerId) && button.getClientRects().length);
+      (editButton || tableSearch)?.focus();
+      Toast.show('Đã lưu khách hàng.');
     }
-  });
+  };
+  saveCustomerBtn.addEventListener('click', saveCustomer);
+  addCustomerForm.addEventListener('submit', saveCustomer);
 }
 
 // ========================================
@@ -637,7 +683,8 @@ if (saveTaskBtn) {
         title: getFieldValue(formData, 'taskTitle', 'taskTitle', 'Nhiệm vụ mới'),
         deadline,
         dueLabel: deadline ? `${formatShortDate(deadline)}${time ? `, ${time}` : ''}` : 'Chưa có hạn',
-        category: deadline === '2026-05-14' ? 'today' : 'upcoming',
+        category: deadline === localDateKey(new Date()) ? 'today'
+          : deadline && deadline < localDateKey(new Date()) ? 'overdue' : 'upcoming',
         deal: selectedDeal && !selectedDeal.includes('Chọn') ? selectedDeal : 'Chưa liên kết',
         customer: selectedDeal.includes('-') ? selectedDeal.split('-').pop().trim() : 'Chưa gán',
         owner: 'An',
@@ -663,27 +710,9 @@ if (saveTaskBtn) {
 // ========================================
 // Event Creation
 // ========================================
-if (saveEventBtn) {
-  saveEventBtn.addEventListener('click', () => {
-    if (validateForm(addEventForm)) {
-      saveEventBtn.disabled = true;
-      saveEventBtn.textContent = 'Đang tạo...';
-
-      setTimeout(() => {
-        saveEventBtn.disabled = false;
-        saveEventBtn.textContent = 'Tạo lịch hẹn';
-        addEventForm.reset();
-        closeModal(addEventModal);
-        Toast.show('Lịch hẹn mới đã được tạo!');
-      }, 500);
-    }
-  });
-}
-
 if (saveEventBtn && addEventForm) {
   saveEventBtn.addEventListener('click', (eventClick) => {
     eventClick.preventDefault();
-    eventClick.stopImmediatePropagation();
 
     if (!validateForm(addEventForm)) return;
 
@@ -719,6 +748,11 @@ if (saveEventBtn && addEventForm) {
 // Kanban Drag and Drop with visual feedback
 // ========================================
 const kanbanBoard = document.getElementById('kanbanBoard');
+const pipelineSearch = document.getElementById('pipelineSearch');
+const pipelineStageFilter = document.getElementById('pipelineStageFilter');
+
+pipelineSearch?.addEventListener('input', () => UI.renderPipeline());
+pipelineStageFilter?.addEventListener('change', () => UI.renderPipeline());
 
 if (kanbanBoard) {
   const cards = kanbanBoard.querySelectorAll('.kanban-card');
@@ -809,67 +843,29 @@ function updateColumnCounts() {
     }
 
     const totalValue = Array.from(cards).reduce((sum, card) => sum + parseCardValue(card), 0);
-    const probabilities = Array.from(cards)
-      .map(card => Number(card.dataset.probability))
-      .filter(Number.isFinite);
-    const avgProbability = probabilities.length
-      ? Math.round(probabilities.reduce((sum, value) => sum + value, 0) / probabilities.length)
-      : 0;
     let summary = column.querySelector('.kanban-column-summary');
-
     if (!summary) {
       summary = document.createElement('div');
       summary.className = 'kanban-column-summary';
       column.appendChild(summary);
     }
-
-    summary.innerHTML = `
-      <div class="kanban-summary-row">
-        <span>Tổng giá trị</span>
-        <strong>${formatCurrency(totalValue)}</strong>
-      </div>
-      <div class="kanban-summary-row">
-        <span>Xác suất TB</span>
-        <strong>${avgProbability}%</strong>
-      </div>
-    `;
+    summary.textContent = formatCurrency(totalValue);
   });
 }
 
 // ========================================
-// Task Checkbox with animation
+// Task completion
 // ========================================
-document.querySelectorAll('.task-item').forEach(item => {
-  item.addEventListener('click', function(e) {
-    if (e.target.closest('.task-checkbox') || e.target.closest('.task-actions')) return;
-
-    const checkbox = this.querySelector('.task-checkbox');
-    if (checkbox) {
-      checkbox.classList.toggle('checked');
-      this.classList.toggle('completed');
-
-      if (this.classList.contains('completed')) {
-        Toast.show('Nhiệm vụ đã hoàn thành!');
-      }
-    }
-  });
-});
-
-document.addEventListener('click', (e) => {
-  const taskItem = e.target.closest('.tasks-page .task-item');
-  if (!taskItem || e.target.closest('.task-actions')) return;
-
-  const checkbox = taskItem.querySelector('.task-checkbox');
-  const isCompleted = !taskItem.classList.contains('completed');
-  taskItem.classList.toggle('completed', isCompleted);
-  checkbox?.classList.toggle('checked', isCompleted);
-
-  const tasks = Storage.get(Storage.KEYS.TASKS).map(task =>
-    task.id === taskItem.dataset.id ? { ...task, completed: isCompleted } : task
-  );
-  Storage.save(Storage.KEYS.TASKS, tasks);
-
-  if (isCompleted) Toast.show('Nhiệm vụ đã hoàn thành!');
+document.getElementById('tasksList')?.addEventListener('click', event => {
+  const button = event.target.closest('.task-complete');
+  if (!button) return;
+  const id = button.closest('.task-item').dataset.id;
+  const completed = button.getAttribute('aria-pressed') !== 'true';
+  Storage.updateItem(Storage.KEYS.TASKS, id, { completed });
+  const nextButton = [...document.querySelectorAll('.task-item')].find(item => item.dataset.id === id)?.querySelector('.task-complete');
+  if (nextButton?.getClientRects().length) nextButton.focus();
+  else document.querySelector('.task-filter.active')?.focus();
+  Toast.show(completed ? 'Đã hoàn thành nhiệm vụ.' : 'Đã mở lại nhiệm vụ.');
 });
 
 // ========================================
@@ -899,14 +895,6 @@ if (tableSearch) {
 // ========================================
 // Select All Checkbox
 // ========================================
-if (selectAllCheckbox) {
-  selectAllCheckbox.addEventListener('change', function() {
-    const checkboxes = customerTableBody?.querySelectorAll('input[type="checkbox"]');
-    checkboxes?.forEach(cb => {
-      cb.checked = this.checked;
-    });
-  });
-}
 
 function getCustomerStatusLabel(status = 'active') {
   const labels = {
@@ -924,17 +912,23 @@ function applyCustomerTableState() {
   const searchTerm = (tableSearch?.value || '').toLowerCase();
   const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
 
+  let count = 0;
   rows.forEach(row => {
-    const matchesSearch = row.textContent.toLowerCase().includes(searchTerm);
+    const matchesSearch = row.textContent.toLowerCase().includes(searchTerm.trim());
     const matchesFilter = activeFilter === 'all' || row.dataset.status === activeFilter;
-    row.style.display = matchesSearch && matchesFilter ? '' : 'none';
+    row.hidden = !matchesSearch || !matchesFilter;
+    if (!row.hidden) count++;
   });
+  document.getElementById('customerCount').textContent = count + ' khách hàng';
+  document.getElementById('customersEmpty').hidden = count > 0;
 }
 
 document.querySelectorAll('.filter-btn').forEach(button => {
   button.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    this.classList.add('active');
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn === this);
+      btn.setAttribute('aria-pressed', String(btn === this));
+    });
     applyCustomerTableState();
   });
 });
@@ -947,7 +941,11 @@ document.querySelectorAll('.customer-table th.sortable').forEach(header => {
     const direction = this.classList.contains('asc') ? 'desc' : 'asc';
     const rows = Array.from(customerTableBody.querySelectorAll('tr'));
 
-    document.querySelectorAll('.customer-table th.sortable').forEach(th => th.classList.remove('sorted', 'asc', 'desc'));
+    document.querySelectorAll('.customer-table th.sortable').forEach(th => {
+      th.classList.remove('sorted', 'asc', 'desc');
+      th.removeAttribute('aria-sort');
+    });
+    this.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : 'descending');
     this.classList.add('sorted', direction);
 
     rows.sort((a, b) => {
@@ -975,46 +973,25 @@ document.querySelectorAll('.chart-tabs').forEach(tabContainer => {
 });
 
 // ========================================
-// Task Filter Buttons
+// Task filters
 // ========================================
 document.querySelectorAll('.task-filter').forEach(filter => {
   filter.addEventListener('click', function() {
-    document.querySelectorAll('.task-filter').forEach(f => f.classList.remove('active'));
-    this.classList.add('active');
-
+    document.querySelectorAll('.task-filter').forEach(item => {
+      item.classList.toggle('active', item === this);
+      item.setAttribute('aria-pressed', String(item === this));
+    });
     const filterType = this.dataset.filter;
-    const taskItems = document.querySelectorAll('.task-item');
-    const taskList = document.querySelector('.tasks-list');
-
-    if (taskList) taskList.dataset.filter = filterType;
-
+    const taskItems = [...document.querySelectorAll('#tasksList .task-item')];
     taskItems.forEach(item => {
-      const deadline = item.querySelector('.task-deadline');
-      const deadlineText = deadline?.textContent || '';
-      const isOverdue = item.querySelector('.task-deadline.overdue');
-      const isTodayText = deadlineText.includes('Hôm nay') || deadlineText.includes('HÃ´m nay');
-      const isOverdueTask = item.classList.contains('task-overdue') || isOverdue;
-      const isTodayTask = item.classList.contains('task-today') || (!isOverdueTask && isTodayText);
-      const isUpcomingTask = item.classList.contains('task-upcoming') || (!isOverdueTask && !isTodayTask);
-
-      if (filterType === 'all') {
-        item.style.display = '';
-      } else if (filterType === 'overdue') {
-        item.style.display = isOverdueTask ? '' : 'none';
-      } else if (filterType === 'today') {
-        const isToday = item.querySelector('.task-deadline:not(.overdue)') &&
-                       item.querySelector('.task-deadline').textContent.includes('Hôm nay');
-        item.style.display = isTodayTask ? '' : 'none';
-      } else if (filterType === 'upcoming') {
-        item.style.display = isUpcomingTask ? '' : 'none';
-      }
+      item.hidden = filterType !== 'all' && (filterType === 'completed'
+        ? !item.classList.contains('completed')
+        : !item.classList.contains('task-' + filterType) || item.classList.contains('completed'));
     });
-
-    document.querySelectorAll('.task-section').forEach(section => {
-      const hasVisibleTasks = Array.from(section.querySelectorAll('.task-item'))
-        .some(item => item.style.display !== 'none');
-      section.style.display = hasVisibleTasks ? '' : 'none';
+    document.querySelectorAll('#tasksList .task-section').forEach(section => {
+      section.hidden = !section.querySelector('.task-item:not([hidden])');
     });
+    document.getElementById('tasksEmpty').hidden = taskItems.some(item => !item.hidden);
   });
 });
 
@@ -1178,80 +1155,34 @@ document.addEventListener('keydown', (e) => {
     });
   }
 
+  if (e.key === 'Tab') {
+    const modal = document.querySelector('.modal-overlay.active');
+    const controls = [...(modal?.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]') || [])]
+      .filter(control => control.getClientRects().length);
+    const boundary = e.shiftKey ? controls.at(0) : controls.at(-1);
+    if (boundary && boundary === document.activeElement) {
+      e.preventDefault();
+      (e.shiftKey ? controls.at(-1) : controls.at(0)).focus();
+    }
+  }
+
   // Ctrl/Cmd + N to open quick create on the pipeline page
-  if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'n' && quickCreateModal) {
     e.preventDefault();
-    if (quickCreateModal) openModal(quickCreateModal);
+    openModal(quickCreateModal);
   }
 
   // Ctrl/Cmd + K to focus search
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    const searchInput = document.querySelector('.search-box input, .table-search input');
-    if (searchInput) searchInput.focus();
+    const searchInput = document.querySelector('#pipelineSearch, .search-box input, .table-search input');
+    if (searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
   }
 });
 
 // ========================================
-// Conversation item click (Messages)
-// ========================================
-document.querySelectorAll('.conversation-item').forEach(item => {
-  item.addEventListener('click', function() {
-    document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-// ========================================
-// Message sending
-// ========================================
-const messageInput = document.getElementById('messageInput');
-const chatMessages = document.getElementById('chatMessages');
-
-if (sendMessageBtn && messageInput) {
-  sendMessageBtn.addEventListener('click', () => {
-    const text = messageInput.value.trim();
-    if (text) {
-      sendMessage(text);
-    }
-  });
-
-  messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      const text = messageInput.value.trim();
-      if (text) {
-        sendMessage(text);
-      }
-    }
-  });
-}
-
-function sendMessage(text) {
-  const now = new Date();
-  const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-
-  const messageDiv = document.createElement('div');
-  messageDiv.className = 'message sent';
-  messageDiv.innerHTML = `
-    <div class="message-content">
-      <p>${text}</p>
-      <span class="message-time">${time}</span>
-      <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-      </button>
-    </div>
-  `;
-  chatMessages.appendChild(messageDiv);
-  messageInput.value = '';
-  chatMessages.scrollTo({
-    top: chatMessages.scrollHeight,
-    behavior: 'smooth'
-  });
-}
-
 // ========================================
 // Global Search (Cmd/Ctrl + K hint)
 // ========================================
@@ -1286,6 +1217,12 @@ const UI = {
     if (customersEl) customersEl.textContent = customers.length;
     if (tasksEl) tasksEl.textContent = tasks.filter(t => !t.completed).length;
 
+    const pending = document.getElementById('dashboardPendingTasks');
+    if (pending) {
+      const followUps = deals.filter(deal => deal.plan && !deal.plan.completed).length;
+      pending.textContent = (tasks.filter(task => !task.completed).length + followUps) + ' nhiệm vụ chưa hoàn thành';
+    }
+
     // Render Recent Activities
     const activityList = document.querySelector('.activity-list');
     if (activityList) {
@@ -1304,85 +1241,72 @@ const UI = {
   },
 
   renderPipeline() {
+    if (!kanbanBoard) return;
     const deals = Storage.get(Storage.KEYS.DEALS);
-    const stages = Object.keys(PIPELINE_STAGE_CONFIG);
-    
-    stages.forEach(stage => {
-      const column = getPipelineColumn(stage);
-      const stageContainer = column?.querySelector('.kanban-cards');
-      if (stageContainer) {
-        const stageDeals = deals.filter(d => normalizePipelineStage(d.stage) === stage);
-        stageContainer.innerHTML = stageDeals.map((deal, index) => {
-          const meta = getDealPipelineMeta(deal, index, stage);
-          const tag = ['hot', 'warm', 'cold', 'won', 'lost'].includes(deal.tag) ? deal.tag : 'warm';
+    const query = pipelineSearch.value.trim().toLocaleLowerCase('vi');
+    const selectedStage = pipelineStageFilter.value;
+    const matchingDeals = deals.filter(deal => [deal.title, deal.customer].join(' ').toLocaleLowerCase('vi').includes(query));
+    const visibleDeals = selectedStage ? matchingDeals.filter(deal => normalizePipelineStage(deal.stage) === normalizePipelineStage(selectedStage)) : matchingDeals;
+    document.getElementById('pipelineTotal').textContent = formatCurrency(deals.reduce((sum, deal) => sum + (Number(deal.value) || 0), 0));
+    document.getElementById('pipelineOpen').textContent = deals.filter(deal => !['closed', 'lost'].includes(normalizePipelineStage(deal.stage))).length;
+    document.getElementById('pipelineWon').textContent = deals.filter(deal => normalizePipelineStage(deal.stage) === 'closed').length;
+    document.getElementById('pipelineEmpty').hidden = visibleDeals.length > 0;
+    document.querySelector('.pipeline-stage-links').hidden = Boolean(selectedStage) || !visibleDeals.length;
+    kanbanBoard.classList.toggle('filtered', Boolean(selectedStage));
 
-          return `
-          <div class="kanban-card" draggable="true" data-id="${escapeText(deal.id)}" data-value="${Number(deal.value) || 0}" data-probability="${meta.probability}">
-            <div class="kanban-card-header">
-              <button class="kanban-card-title deal-open" type="button" data-deal-open>${escapeText(deal.title)}</button>
-              <button class="kanban-card-menu" type="button" aria-label="Mở kế hoạch theo dõi" data-deal-open>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-              </button>
-            </div>
-            <div class="kanban-card-customer">${escapeText(deal.customer)}</div>
-            <div class="kanban-card-meta">
-              <span>Phụ trách: ${escapeText(meta.owner)}</span>
-              <span>Theo dõi: ${escapeText(formatShortDate(meta.followUp))}</span>
+    Object.keys(PIPELINE_STAGE_CONFIG).forEach(stage => {
+      const column = getPipelineColumn(stage);
+      if (!column) return;
+      const stageDeals = visibleDeals.filter(deal => normalizePipelineStage(deal.stage) === stage);
+      column.hidden = (selectedStage && selectedStage !== column.dataset.stage) || (query && !stageDeals.length);
+      column.querySelector('.kanban-cards').innerHTML = stageDeals.map((deal, index) => {
+        const meta = getDealPipelineMeta(deal, index, stage);
+        return `
+          <article class="kanban-card" draggable="true" data-id="${escapeText(deal.id)}" data-value="${Number(deal.value) || 0}" data-probability="${meta.probability}">
+            <button class="kanban-card-title deal-open" type="button" data-deal-open>${escapeText(deal.title)}</button>
+            <p class="kanban-card-customer">${escapeText(deal.customer)}</p>
+            <div class="kanban-card-footer">
+              <strong class="kanban-card-value">${formatCurrency(deal.value || 0)}</strong>
+              <span class="kanban-card-probability" aria-label="Xác suất chốt ${meta.probability}%">${meta.probability}% chốt</span>
             </div>
             <div class="kanban-card-next">
-              <span>Việc tiếp theo</span>
-              <strong>${escapeText(meta.nextAction)}</strong>
+              <span>${escapeText(meta.nextAction)}</span>
+              <time datetime="${escapeText(meta.followUp)}">${escapeText(formatShortDate(meta.followUp))}</time>
             </div>
-            <div class="kanban-card-footer">
-              <span class="kanban-card-value">${formatCurrency(deal.value || 0)}</span>
-              <span class="kanban-card-probability">${meta.probability}%</span>
-              <span class="kanban-card-tag tag-${tag}">${tag.toUpperCase()}</span>
-            </div>
-          </div>
-        `;
-        }).join('');
-      }
+          </article>`;
+      }).join('');
     });
     updateColumnCounts();
     this.initDragAndDrop();
-    initActionMenus();
   },
 
   renderCustomers() {
     const customers = Storage.get(Storage.KEYS.CUSTOMERS);
     const tbody = document.getElementById('customerTableBody');
     if (tbody) {
-      tbody.innerHTML = customers.map(cust => `
-        <tr data-status="${cust.status || 'active'}">
-          <td><input type="checkbox" data-id="${cust.id}"></td>
-          <td>
-            <div class="customer-name-cell">
-              <div class="customer-avatar">${(cust.name || 'KH').split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
-              <div>
-                <div class="customer-name">${cust.name || 'Khách hàng mới'}</div>
-                <div class="customer-email">${cust.email}</div>
-              </div>
-            </div>
-          </td>
-          <td>${cust.company}</td>
-          <td>${cust.email || ''}</td>
-          <td>${cust.phone || ''}</td>
-          <td><span class="status-badge ${cust.status || 'active'}">${getCustomerStatusLabel(cust.status)}</span></td>
-          <td>${cust.latestDeal || 'Chưa có cơ hội'}</td>
-          <td>
-            <div class="action-btns">
-              <button class="action-btn" title="Chỉnh sửa">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-              </button>
-              <button class="action-btn" title="Xóa" data-action="delete" data-id="${cust.id}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = customers.map(customer => {
+        const name = customer.name || 'Khách hàng mới';
+        const status = ['active', 'prospect', 'inactive'].includes(customer.status) ? customer.status : 'active';
+        return `
+        <tr data-status="${status}">
+          <td><div class="customer-name-cell">
+            <div class="customer-avatar" aria-hidden="true">${escapeText(Auth.getInitials(name))}</div>
+            <div><div class="customer-name">${escapeText(name)}</div>
+              <div class="customer-email">${escapeText(customer.email)}</div></div>
+          </div></td>
+          <td data-label="Công ty">${escapeText(customer.company || 'Chưa có')}</td>
+          <td data-label="Điện thoại">${escapeText(customer.phone || 'Chưa có')}</td>
+          <td data-label="Trạng thái"><span class="status-badge ${status}">${getCustomerStatusLabel(status)}</span></td>
+          <td data-label="Cơ hội">${escapeText(customer.latestDeal || 'Chưa có cơ hội')}</td>
+          <td><button type="button" class="btn btn-secondary btn-sm" aria-label="Sửa ${escapeText(name)}" data-edit-customer="${escapeText(customer.id)}">Sửa</button></td>
+        </tr>`;
+      }).join('');
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        const filter = button.dataset.filter;
+        const count = filter === 'all' ? customers.length : customers.filter(customer => (customer.status || 'active') === filter).length;
+        button.querySelector('.filter-count').textContent = count;
+      });
       applyCustomerTableState();
-      initActionMenus();
     }
   },
 
@@ -1394,42 +1318,37 @@ const UI = {
     const groups = [
       { key: 'overdue', title: 'Quá hạn' },
       { key: 'today', title: 'Hôm nay' },
-      { key: 'upcoming', title: 'Sắp tới' }
+      { key: 'upcoming', title: 'Sắp tới' },
+      { key: 'completed', title: 'Đã hoàn thành' }
     ];
-    const priorityLabel = { hot: 'High', warm: 'Medium', cold: 'Low', high: 'High', medium: 'Medium', low: 'Low' };
+    const priorityLabel = { hot: 'Cao', warm: 'Vừa', cold: 'Thấp', high: 'Cao', medium: 'Vừa', low: 'Thấp' };
 
     taskList.innerHTML = groups.map(group => {
-      const groupTasks = tasks.filter(task => (task.category || 'upcoming') === group.key);
+      const groupTasks = tasks.filter(task => (task.completed ? 'completed' : (task.category || 'upcoming')) === group.key);
       return `
         <div class="task-section task-section-${group.key}">
           <div class="task-section-header">
-            <span class="task-section-title">${group.title}</span>
+            <h3 class="task-section-title">${group.title}</h3>
             <span class="task-count">${groupTasks.length}</span>
           </div>
           ${groupTasks.map(task => `
-            <div class="task-item task-${group.key} ${task.completed ? 'completed' : ''}" data-id="${task.id}">
-              <div class="task-checkbox ${task.completed ? 'checked' : ''}">
+            <div class="task-item task-${group.key} ${task.completed ? 'completed' : ''}" data-id="${escapeText(task.id)}">
+              <button class="task-complete" type="button" aria-pressed="${Boolean(task.completed)}" aria-label="${task.completed ? 'Mở lại' : 'Hoàn thành'} ${escapeText(task.title)}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
-              </div>
+              </button>
               <div class="task-content">
-                <span class="task-title">${task.title || 'Nhiệm vụ mới'}</span>
+                <span class="task-title">${escapeText(task.title || 'Nhiệm vụ mới')}</span>
                 <div class="task-meta">
-                  <span class="task-deadline ${group.key === 'overdue' ? 'overdue' : ''}">${task.dueLabel || formatShortDate(task.deadline)}</span>
-                  <span class="task-deal">${task.deal || 'Chưa liên kết'}</span>
-                  <span class="task-customer">${task.customer || 'Chưa gán'}</span>
-                  <span class="task-owner">Owner: ${task.owner || 'An'}</span>
-                  <span class="task-priority ${task.priority || 'warm'}">${priorityLabel[task.priority] || 'Medium'}</span>
+                  ${task.deal && task.deal !== 'Chưa liên kết' ? `<span class="task-deal">${escapeText(task.deal)}</span>` : ''}
+                  ${task.customer && task.customer !== 'Chưa gán' && !task.deal?.includes(task.customer) ? `<span class="task-customer">${escapeText(task.customer)}</span>` : ''}
+                  ${task.owner ? `<span class="task-owner">Phụ trách: ${escapeText(task.owner)}</span>` : ''}
                 </div>
               </div>
-              <div class="task-actions">
-                <button class="action-btn" title="Chỉnh sửa">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                </button>
-                <button class="action-btn" title="Xóa">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                </button>
+              <div class="task-timing">
+                <span class="task-deadline ${group.key === 'overdue' ? 'overdue' : ''}">${escapeText(task.dueLabel || formatShortDate(task.deadline))}</span>
+                <span class="task-priority ${Object.hasOwn(priorityLabel, task.priority) ? task.priority : 'warm'}">Ưu tiên ${(priorityLabel[task.priority] || 'Vừa').toLowerCase()}</span>
               </div>
             </div>
           `).join('')}
@@ -1437,18 +1356,6 @@ const UI = {
       `;
     }).join('');
 
-    const overdue = tasks.filter(task => (task.category || 'upcoming') === 'overdue').length;
-    const today = tasks.filter(task => (task.category || 'upcoming') === 'today').length;
-    const completed = tasks.filter(task => task.completed).length;
-    const values = document.querySelectorAll('.tasks-page .kpi-value');
-    const subtitles = document.querySelectorAll('.tasks-page .kpi-subtitle');
-
-    if (values[0]) values[0].textContent = overdue;
-    if (values[1]) values[1].textContent = today;
-    if (values[2]) values[2].textContent = `${tasks.length ? Math.round((completed / tasks.length) * 100) : 0}%`;
-    if (subtitles[2]) subtitles[2].textContent = `${completed}/${tasks.length} nhiệm vụ`;
-
-    initActionMenus();
     document.querySelector('.task-filter.active')?.dispatchEvent(new Event('click'));
   },
 
@@ -1483,46 +1390,54 @@ const UI = {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('FlowCRM initialized');
 
-  // Sidebar toggle for mobile
   const sidebarToggle = document.getElementById('sidebarToggle');
   const sidebar = document.querySelector('.sidebar');
-
-  if (sidebarToggle && sidebar) {
-    sidebarToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 992 &&
-          sidebar.classList.contains('open') &&
-          !sidebar.contains(e.target) &&
-          !sidebarToggle.contains(e.target)) {
-        sidebar.classList.remove('open');
+  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+  const mobile = window.matchMedia('(max-width: 900px)');
+  const main = document.getElementById('mainContent');
+  const setMenu = (open, restoreFocus = false) => {
+    sidebar.classList.toggle('open', open);
+    sidebarToggle.setAttribute('aria-expanded', String(open));
+    sidebarToggle.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+    main.inert = open;
+    if (open) sidebar.querySelector('.nav-item[aria-current="page"], .nav-item')?.focus();
+    else if (restoreFocus) sidebarToggle.focus();
+  };
+  if (sidebarToggle && sidebar && main) {
+    sidebarToggle.addEventListener('click', () => setMenu(!sidebar.classList.contains('open'), true));
+    document.addEventListener('click', event => {
+      if (sidebar.classList.contains('open') && !sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+        setMenu(false, true);
       }
     });
-  }
-
-  // Sidebar collapse toggle
-  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
-  if (sidebarToggleBtn && sidebar) {
-    const syncSidebarExpandedState = () => {
-      sidebarToggleBtn.setAttribute('aria-expanded', String(!sidebar.classList.contains('collapsed')));
-    };
-
-    sidebarToggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      syncSidebarExpandedState();
-      // Save state to localStorage
-      localStorage.setItem('flowcrm_sidebar_collapsed', sidebar.classList.contains('collapsed'));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && sidebar.classList.contains('open')) setMenu(false, true);
     });
-
-    // Restore saved state
-    const savedCollapsed = localStorage.getItem('flowcrm_sidebar_collapsed');
-    if (savedCollapsed === 'true') {
-      sidebar.classList.add('collapsed');
-    }
-    syncSidebarExpandedState();
   }
+  if (sidebarToggleBtn && sidebar) {
+    const applyCollapsed = () => {
+      const collapsed = !mobile.matches && localStorage.getItem('flowcrm_sidebar_collapsed') === 'true';
+      sidebar.classList.toggle('collapsed', collapsed);
+      sidebarToggleBtn.setAttribute('aria-expanded', String(!collapsed));
+      sidebarToggleBtn.setAttribute('aria-label', collapsed ? 'Mở rộng điều hướng' : 'Thu gọn điều hướng');
+    };
+    sidebarToggleBtn.addEventListener('click', () => {
+      localStorage.setItem('flowcrm_sidebar_collapsed', String(!sidebar.classList.contains('collapsed')));
+      window.dispatchEvent(new Event('flowcrm_sidebar_changed'));
+    });
+    window.addEventListener('flowcrm_sidebar_changed', applyCollapsed);
+    mobile.addEventListener('change', () => {
+      if (!mobile.matches && sidebarToggle && main) setMenu(false);
+      applyCollapsed();
+    });
+    applyCollapsed();
+  }
+
+  // Keep a direct link to a deal visible regardless of the preferred filter.
+  if (pipelineStageFilter && !new URLSearchParams(location.search).has('deal')) {
+    pipelineStageFilter.value = WorkspacePreferences.get('pipeline');
+  }
+  document.querySelector(`.task-filter[data-filter="${WorkspacePreferences.get('tasks')}"]`)?.click();
 
   // Initial render based on page
   UI.renderDashboard();
