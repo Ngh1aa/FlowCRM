@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Tin nhắn</title>
+  <title>FlowCRM - Messages</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="messages-page">
-    <a class="skip-link" href="#mainContent">Tới nội dung</a>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -31,29 +31,29 @@
           </svg>
           <span>FlowCRM</span>
         </div>
-        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Collapse navigation" aria-expanded="true">
           <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
         </button>
       </div>
 
-      <nav class="sidebar-nav" aria-label="Điều hướng chính">
+      <nav class="sidebar-nav" aria-label="Main navigation">
         <div class="nav-section">
-          <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item" aria-label="Tổng quan">
+          <div class="nav-section-title">Overview</div>
+          <a href="index.html" class="nav-item" aria-label="Dashboard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            <span>Tổng quan</span>
+            <span>Dashboard</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Quản lý</div>
+          <div class="nav-section-title">Sales</div>
           <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
@@ -61,48 +61,48 @@
             <span>Pipeline</span>
 
           </a>
-          <a href="customers.html" class="nav-item" aria-label="Khách hàng">
+          <a href="customers.html" class="nav-item" aria-label="Customers">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            <span>Khách hàng</span>
+            <span>Customers</span>
 
           </a>
-          <a href="messages.html" class="nav-item active" aria-label="Tin nhắn" aria-current="page">
+          <a href="messages.html" class="nav-item active" aria-label="Messages" aria-current="page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
-            <span>Tin nhắn</span>
+            <span>Messages</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
+          <div class="nav-section-title">Work</div>
+          <a href="tasks.html" class="nav-item" aria-label="Tasks">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
-            <span>Nhiệm vụ</span>
+            <span>Tasks</span>
 
           </a>
-          <a href="calendar.html" class="nav-item" aria-label="Lịch hẹn">
+          <a href="calendar.html" class="nav-item" aria-label="Calendar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <span>Lịch hẹn</span>
+            <span>Calendar</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item" aria-label="Báo cáo">
+          <div class="nav-section-title">More</div>
+          <a href="reports.html" class="nav-item" aria-label="Reports">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -110,14 +110,14 @@
               <line x1="16" y1="17" x2="8" y2="17"/>
               <polyline points="10 9 9 9 8 9"/>
             </svg>
-            <span>Báo cáo</span>
+            <span>Reports</span>
           </a>
-          <a href="settings.html" class="nav-item" aria-label="Cài đặt">
+          <a href="settings.html" class="nav-item" aria-label="Settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
-            <span>Cài đặt</span>
+            <span>Settings</span>
           </a>
         </div>
       </nav>
@@ -127,7 +127,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Quản lý bán hàng</div>
+            <div class="user-role">Sales manager</div>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
       <header class="topbar">
         <div class="topbar-left">
           <div>
-            <h1 class="page-title">Tin nhắn</h1>
+            <h1 class="page-title">Messages</h1>
           </div>
         </div>
         <div class="topbar-right">
@@ -147,7 +147,7 @@
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-            Tin nhắn mới
+            New message
           </button>
         </div>
       </header>
@@ -163,12 +163,12 @@
                   <circle cx="11" cy="11" r="8"/>
                   <path d="m21 21-4.35-4.35"/>
                 </svg>
-                <input type="text" id="conversationSearch" aria-label="Tìm hội thoại" placeholder="Tìm hội thoại">
+                <input type="text" id="conversationSearch" aria-label="Search conversations" placeholder="Search conversations">
               </div>
             </div>
 
             <div class="conversations-scroll" id="conversationsScroll">
-              <p id="conversationsEmpty" class="workspace-empty" role="status" hidden>Không tìm thấy hội thoại.</p>
+              <p id="conversationsEmpty" class="workspace-empty" role="status" hidden>No conversations found.</p>
             <button type="button" class="conversation-item active is-online" data-id="1" aria-pressed="true">
               <span class="conversation-avatar">AC</span>
               <span class="conversation-content">
@@ -176,7 +176,7 @@
                   <span class="conversation-name">Alpha Corp</span>
                   <span class="conversation-time">10:30</span>
                 </span>
-                <span class="conversation-preview">Cảm ơn anh nhé, bên em sẽ xem lại rồi báo anh sớm...</span>
+                <span class="conversation-preview">Thanks! We'll review it and get back to you soon...</span>
               </span>
               <span class="conversation-badge">2</span>
             </button>
@@ -186,9 +186,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Tech Solutions</span>
-                  <span class="conversation-time">Hôm qua</span>
+                  <span class="conversation-time">Yesterday</span>
                 </span>
-                <span class="conversation-preview">Deal app đang ổn đó anh. Mình hẹn demo luôn được không...</span>
+                <span class="conversation-preview">The app deal is looking good. Can we book the demo now...</span>
               </span>
             </button>
 
@@ -197,9 +197,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Design Co</span>
-                  <span class="conversation-time">Hôm qua</span>
+                  <span class="conversation-time">Yesterday</span>
                 </span>
-                <span class="conversation-preview">Mai Linh hỏi thêm chút về tiến độ tích hợp CRM...</span>
+                <span class="conversation-preview">Mai Linh has a few more questions about the CRM integration timeline...</span>
               </span>
             </button>
 
@@ -208,9 +208,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Gamma Ltd</span>
-                  <span class="conversation-time">2 ngày trước</span>
+                  <span class="conversation-time">2 days ago</span>
                 </span>
-                <span class="conversation-preview">Hoàng Diệp xác nhận tuần sau tham gia demo nhé...</span>
+                <span class="conversation-preview">Hoàng Diệp confirmed she will join the demo next week...</span>
               </span>
             </button>
 
@@ -219,9 +219,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Beta Industries</span>
-                  <span class="conversation-time">3 ngày trước</span>
+                  <span class="conversation-time">3 days ago</span>
                 </span>
-                <span class="conversation-preview">Vũ Nam nhận được proposal audit rồi, đang xem lại...</span>
+                <span class="conversation-preview">Vũ Nam received the audit proposal and is reviewing it...</span>
               </span>
             </button>
 
@@ -230,9 +230,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Delta Inc</span>
-                  <span class="conversation-time">4 ngày trước</span>
+                  <span class="conversation-time">4 days ago</span>
                 </span>
-                <span class="conversation-preview">Bên Delta đang xem lại điều khoản triển khai automation...</span>
+                <span class="conversation-preview">Delta is reviewing the automation rollout terms...</span>
               </span>
             </button>
 
@@ -241,9 +241,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Epsilon Co</span>
-                  <span class="conversation-time">Tuần trước</span>
+                  <span class="conversation-time">Last week</span>
                 </span>
-                <span class="conversation-preview">Lịch demo hệ thống kho chốt vào thứ năm rồi...</span>
+                <span class="conversation-preview">The inventory system demo is confirmed for Thursday...</span>
               </span>
             </button>
 
@@ -252,9 +252,9 @@
               <span class="conversation-content">
                 <span class="conversation-header">
                   <span class="conversation-name">Zeta Group</span>
-                  <span class="conversation-time">Tuần trước</span>
+                  <span class="conversation-time">Last week</span>
                 </span>
-                <span class="conversation-preview">Mình gửi biên bản bàn giao chiến dịch SEO rồi nhé...</span>
+                <span class="conversation-preview">We have sent over the SEO campaign handover notes...</span>
               </span>
             </button>
             </div>
@@ -266,21 +266,21 @@
           <div class="chat-area">
             <div class="chat-header">
               <div class="chat-header-info">
-                <button id="chatBack" type="button" class="btn btn-secondary chat-back">Quay lại</button>
+                <button id="chatBack" type="button" class="btn btn-secondary chat-back">Back</button>
                 <div class="chat-avatar">AC</div>
                 <div class="chat-info">
                   <span class="chat-name">Alpha Corp</span>
-                  <span class="chat-status">Đang hoạt động</span>
+                  <span class="chat-status">Online</span>
                 </div>
               </div>
             </div>
 
-            <div class="chat-messages" id="chatMessages" role="log" aria-label="Nội dung hội thoại">
+            <div class="chat-messages" id="chatMessages" role="log" aria-label="Conversation">
               <div class="message received">
                 <div class="message-content">
-                  <p>Chào anh An, em nhận được báo giá cloud rồi nhé. Cảm ơn anh đã gửi nhanh.</p>
+                  <p>Hi An, I received the cloud quote. Thanks for sending it so quickly.</p>
                   <span class="message-time">09:15</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -289,9 +289,9 @@
               </div>
               <div class="message sent">
                 <div class="message-content">
-                  <p>Dạ vâng chị Hương. Chị xem qua nếu có chỗ nào cần em giải thích thêm thì nhắn em nhé.</p>
+                  <p>You're welcome, Hương. Have a look, and message me if anything needs more explanation.</p>
                   <span class="message-time">09:18</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -300,9 +300,9 @@
               </div>
               <div class="message received">
                 <div class="message-content">
-                  <p>Em muốn hỏi thêm về tiến độ ạ. Bên em cần xong trong Q3, không biết có kịp không anh?</p>
+                  <p>I have a question about the timeline. We need this done in Q3. Is that feasible?</p>
                   <span class="message-time">09:20</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -311,9 +311,9 @@
               </div>
               <div class="message sent">
                 <div class="message-content">
-                  <p>Kịp chị nhé. Phần chuyển đổi dự kiến khoảng 8-10 tuần. Khi mình ký hợp đồng xong là team em bắt đầu được luôn.</p>
+                  <p>Yes, that works. The migration should take about 8-10 weeks, and my team can start as soon as the contract is signed.</p>
                   <span class="message-time">09:25</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -322,9 +322,9 @@
               </div>
               <div class="message received">
                 <div class="message-content">
-                  <p>Tốt quá. Để em trao đổi lại với team rồi phản hồi anh trong tuần này nhé.</p>
+                  <p>Great. I'll discuss it with my team and get back to you this week.</p>
                   <span class="message-time">09:30</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -333,9 +333,9 @@
               </div>
               <div class="message received">
                 <div class="message-content">
-                  <p>Cảm ơn anh đã gửi báo giá. Bên em xem lại xong sẽ phản hồi anh sớm nhé.</p>
+                  <p>Thanks for the quote. We'll review it and get back to you soon.</p>
                   <span class="message-time">10:30</span>
-                  <button class="message-reaction-btn" type="button" aria-label="Thả tim tin nhắn" aria-pressed="false" title="Thả tim">
+                  <button class="message-reaction-btn" type="button" aria-label="Like message" aria-pressed="false" title="Like">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
@@ -345,8 +345,8 @@
             </div>
 
             <div class="chat-input">
-              <input type="text" class="chat-message-input" placeholder="Nhập tin nhắn" id="messageInput" aria-label="Tin nhắn">
-              <button class="icon-btn" title="Gửi" aria-label="Gửi tin nhắn" id="sendMessageBtn">
+              <input type="text" class="chat-message-input" placeholder="Type a message" id="messageInput" aria-label="Message">
+              <button class="icon-btn" title="Send" aria-label="Send message" id="sendMessageBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -363,8 +363,8 @@
   <div class="modal-overlay" id="newMessageModal">
     <div class="modal">
       <div class="modal-header">
-        <h2 class="modal-title">Nhắn khách</h2>
-        <button class="modal-close" id="closeModalBtn" aria-label="Đóng hộp thoại">
+        <h2 class="modal-title">Message a customer</h2>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close dialog">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -374,9 +374,9 @@
       <div class="modal-body">
         <form id="newMessageForm">
           <div class="form-group">
-            <label class="form-label required" for="messageRecipient">Người nhận</label>
+            <label class="form-label required" for="messageRecipient">Recipient</label>
             <select class="form-select" id="messageRecipient" required>
-              <option value="">Chọn khách hàng...</option>
+              <option value="">Select a customer...</option>
               <option value="1">Alpha Corp - Phạm Hương</option>
               <option value="2">Tech Solutions - Trần Hoàng</option>
               <option value="3">Design Co - Mai Linh</option>
@@ -387,14 +387,14 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="messageContent">Nội dung</label>
-            <textarea class="form-input" id="messageContent" required rows="5" placeholder="Viết tin nhắn ngắn gọn, tự nhiên..."></textarea>
+            <label class="form-label" for="messageContent">Message</label>
+            <textarea class="form-input" id="messageContent" required rows="5" placeholder="Write a short, friendly message..."></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
-        <button class="btn btn-primary" id="sendBtn">Gửi ngay</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="sendBtn">Send now</button>
       </div>
     </div>
   </div>
@@ -435,7 +435,7 @@
       });
       document.querySelector('.chat-name').textContent = item.querySelector('.conversation-name').textContent;
       document.querySelector('.chat-avatar').textContent = item.querySelector('.conversation-avatar').textContent;
-      document.querySelector('.chat-status').textContent = item.classList.contains('is-online') ? 'Đang hoạt động' : 'Ngoại tuyến';
+      document.querySelector('.chat-status').textContent = item.classList.contains('is-online') ? 'Online' : 'Offline';
       const preview = item.querySelector('.conversation-preview').textContent;
       const time = item.querySelector('.conversation-time').textContent;
       const initial = item === items[0] ? firstThread.map(node => node.cloneNode(true)) : [messageElement(preview, time, false)];
@@ -449,7 +449,7 @@
     function send(text, item) {
       const value = text.trim();
       if (!value || !item) return;
-      const time = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+      const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
       Storage.save(Storage.KEYS.MESSAGES, [...Storage.get(Storage.KEYS.MESSAGES), { conversation: item.dataset.id, text: value, time }]);
       showThread(item);
       input.value = '';
@@ -489,7 +489,7 @@
       if (!button) return;
       const reacted = button.classList.toggle('is-reacted');
       button.setAttribute('aria-pressed', String(reacted));
-      button.setAttribute('aria-label', reacted ? 'Bỏ tim tin nhắn' : 'Thả tim tin nhắn');
+      button.setAttribute('aria-label', reacted ? 'Unlike message' : 'Like message');
     });
     showThread(current, false);
   }
@@ -507,7 +507,7 @@
           <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>

@@ -7,10 +7,10 @@ const { AxeBuilder } = require('@axe-core/playwright');
 const base = new URL(process.env.FLOWCRM_BASE_URL || 'http://127.0.0.1:8000/FlowCRM/');
 const evidence = process.env.FLOWCRM_EVIDENCE_DIR;
 const widths = [1440, 1280, 768, 390, 375];
-const appointment = 'Chốt phạm vi website';
-const taskName = 'Gửi đề xuất đã cập nhật';
-const editedAppointment = 'Duyệt phạm vi website';
-const editedTask = 'Gửi đề xuất cuối';
+const appointment = 'Confirm website scope';
+const taskName = 'Send updated proposal';
+const editedAppointment = 'Approve website scope';
+const editedTask = 'Send final proposal';
 
 async function enterDemo(page, route = 'pipeline.html') {
   const url = new URL(route, base).href;
@@ -18,7 +18,7 @@ async function enterDemo(page, route = 'pipeline.html') {
   assert.equal(response.url(), url);
   await expect(page).toHaveURL(url);
   await expect(page.locator('#loginForm')).toHaveCount(0);
-  await expect(page.locator('#userProfile')).toContainText('Người dùng Demo');
+  await expect(page.locator('#userProfile')).toContainText('Demo User');
 }
 
 async function verifyFlow(browser, width) {
@@ -27,7 +27,7 @@ async function verifyFlow(browser, width) {
     viewport: { width, height: mobile ? 812 : 900 },
     hasTouch: mobile,
     isMobile: mobile,
-    locale: 'vi-VN',
+    locale: 'en-US',
     timezoneId: 'America/Los_Angeles',
     reducedMotion: 'reduce',
   });
@@ -60,36 +60,36 @@ async function verifyFlow(browser, width) {
     await enterDemo(page);
     const deal = page.getByRole('button', { name: 'Website Redesign', exact: true });
     const dialog = page.getByRole('dialog', { name: 'Website Redesign' });
-    const stage = dialog.getByLabel('Giai đoạn');
-    const date = dialog.getByLabel('Ngày hẹn');
-    const dueDate = dialog.getByLabel('Hạn hoàn thành');
-    const save = dialog.getByRole('button', { name: 'Lưu kế hoạch' });
+    const stage = dialog.getByLabel('Stage');
+    const date = dialog.getByLabel('Appointment date');
+    const dueDate = dialog.getByLabel('Due date');
+    const save = dialog.getByRole('button', { name: 'Save plan' });
     await checkWidth();
     if (mobile) {
       await activate(deal);
     } else {
       await deal.focus();
       await page.keyboard.press('Enter');
-      await expect(dialog.getByRole('button', { name: 'Đóng' })).toBeFocused();
+      await expect(dialog.getByRole('button', { name: 'Close' })).toBeFocused();
       await page.keyboard.press('Tab');
       await expect(stage).toBeFocused();
     }
-    await stage.selectOption({ label: 'Đề xuất' });
-    await dialog.getByLabel('Tên lịch hẹn').fill(appointment);
+    await stage.selectOption({ label: 'Proposal' });
+    await dialog.getByLabel('Appointment name').fill(appointment);
     await date.fill('2026-11-18');
-    await dialog.getByLabel('Giờ hẹn').fill('10:00');
-    await dialog.getByLabel('Việc cần làm sau cuộc hẹn').fill(taskName);
+    await dialog.getByLabel('Appointment time').fill('10:00');
+    await dialog.getByLabel('Follow-up task').fill(taskName);
     await dueDate.fill('2026-11-17');
     await activate(save);
     assert.equal(await dueDate.evaluate(input => input.validity.customError), true);
-    await expect(dialog.getByRole('link', { name: 'Xem lịch hẹn' })).toBeHidden();
+    await expect(dialog.getByRole('link', { name: 'View appointment' })).toBeHidden();
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.flowcrm_deals).some(deal => deal.plan)), false);
     await dueDate.fill('2026-11-18');
     if (mobile) await activate(save);
     else await save.press('Enter');
-    await expect(dialog.getByRole('status')).toHaveText(/^Đã lưu/);
-    await screenshot('ke-hoach');
-    await activate(dialog.getByRole('link', { name: 'Xem lịch hẹn' }));
+    await expect(dialog.getByRole('status')).toHaveText(/^Saved/);
+    await screenshot('plan');
+    await activate(dialog.getByRole('link', { name: 'View appointment' }));
     await expect(page).toHaveURL(/calendar\.html\?date=2026-11-18$/);
     await checkWidth();
     const chip = page.locator('.event-chip').filter({ hasText: appointment });
@@ -97,20 +97,20 @@ async function verifyFlow(browser, width) {
     await expect(page.locator('.calendar-day').filter({ has: chip }).locator('.day-number')).toHaveText('18');
     await activate(page.locator('#viewDay'));
     await expect(page.locator('#calendarGrid')).toContainText('10:00 - ' + appointment);
-    await screenshot('lich-hen');
+    await screenshot('appointment');
     await activate(page.locator('#nextMonth'));
     await expect(page.locator('#calendarGrid')).not.toContainText(appointment);
     await activate(page.locator('#viewMonth'));
-    await expect(page.locator('#calendarGrid .calendar-weekday')).toHaveText(['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']);
+    await expect(page.locator('#calendarGrid .calendar-weekday')).toHaveText(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
     await activate(page.locator('#nextMonth'));
     await expect(chip).toHaveCount(0);
     await page.goBack({ waitUntil: 'domcontentloaded' });
     await expect(dialog).toBeVisible();
     const proposal = page.locator('[data-stage="proposal"]');
-    await expect(proposal.locator('.kanban-column-title')).toHaveText('Đề xuất');
+    await expect(proposal.locator('.kanban-column-title')).toHaveText('Proposal');
     await expect(proposal.getByRole('button', { name: 'Website Redesign', exact: true })).toHaveCount(1);
 
-    await activate(dialog.getByRole('link', { name: 'Xem nhiệm vụ' }));
+    await activate(dialog.getByRole('link', { name: 'View task' }));
     const rows = page.locator('#dealFollowUpsList article');
     await expect(rows).toHaveCount(1);
     await checkWidth();
@@ -118,36 +118,36 @@ async function verifyFlow(browser, width) {
       title.getBoundingClientRect().top >= document.querySelector('.topbar').getBoundingClientRect().bottom
     ), true, 'Follow-up heading must clear the sticky header');
     await expect(rows).toContainText(taskName);
-    await expect(rows).toContainText('Hạn 18-11');
-    await activate(rows.getByRole('button', { name: 'Đánh dấu hoàn thành' }));
+    await expect(rows).toContainText('Due Nov 18');
+    await activate(rows.getByRole('button', { name: 'Mark complete' }));
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await expect(rows.getByRole('button', { name: 'Đã hoàn thành' })).toHaveAttribute('aria-pressed', 'true');
-    await screenshot('nhiem-vu');
-    await activate(rows.getByRole('link', { name: 'Mở cơ hội' }));
-    await expect(dialog.getByRole('status')).toHaveText('Nhiệm vụ đã hoàn thành.');
+    await expect(rows.getByRole('button', { name: 'Completed' })).toHaveAttribute('aria-pressed', 'true');
+    await screenshot('task');
+    await activate(rows.getByRole('link', { name: 'Open deal' }));
+    await expect(dialog.getByRole('status')).toHaveText('Task completed.');
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(date).toHaveValue('2026-11-18');
     await expect(stage).toHaveValue('proposal');
 
-    await dialog.getByLabel('Tên lịch hẹn').fill(editedAppointment);
+    await dialog.getByLabel('Appointment name').fill(editedAppointment);
     await date.fill('2027-01-07');
     await dueDate.fill('2027-01-08');
-    await dialog.getByLabel('Việc cần làm sau cuộc hẹn').fill(editedTask);
+    await dialog.getByLabel('Follow-up task').fill(editedTask);
     await activate(save);
-    await expect(dialog.getByRole('status')).toHaveText(/^Đã lưu/);
-    await activate(dialog.getByRole('link', { name: 'Xem lịch hẹn' }));
+    await expect(dialog.getByRole('status')).toHaveText(/^Saved/);
+    await activate(dialog.getByRole('link', { name: 'View appointment' }));
     await expect(page).toHaveURL(/date=2027-01-07$/);
-    await expect(page.getByLabel('Năm', { exact: true })).toHaveValue('2027');
+    await expect(page.getByLabel('Year', { exact: true })).toHaveValue('2027');
     await expect(page.locator('#calendarGrid')).toContainText(editedAppointment);
     await expect(page.locator('#eventsList')).not.toContainText(appointment);
     await page.goBack({ waitUntil: 'domcontentloaded' });
-    await activate(dialog.getByRole('link', { name: 'Xem nhiệm vụ' }));
+    await activate(dialog.getByRole('link', { name: 'View task' }));
     await expect(rows).toHaveCount(1);
     await expect(rows).toContainText(editedTask);
-    await expect(rows.getByRole('button', { name: 'Đánh dấu hoàn thành' })).toHaveAttribute('aria-pressed', 'false');
-    await activate(rows.getByRole('link', { name: 'Mở cơ hội' }));
+    await expect(rows.getByRole('button', { name: 'Mark complete' })).toHaveAttribute('aria-pressed', 'false');
+    await activate(rows.getByRole('link', { name: 'Open deal' }));
     await expect(dialog).toBeVisible();
-    if (mobile) await activate(dialog.getByRole('button', { name: 'Đóng' }));
+    if (mobile) await activate(dialog.getByRole('button', { name: 'Close' }));
     else await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
     await expect(deal).toBeFocused();
@@ -176,10 +176,10 @@ async function verifyLegacy(browser) {
     await expect(dialog).toBeHidden();
     await page.evaluate(() => {
       localStorage.flowcrm_deals = JSON.stringify([
-        { id: 42, title: 'Cơ hội cũ', customer: 'Khách cũ', stage: 'closed-won', probability: 81 },
+        { id: 42, title: 'Old deal', customer: 'Old customer', stage: 'closed-won', probability: 81 },
       ]);
       localStorage.flowcrm_events = JSON.stringify([
-        { title: 'Lịch cũ', date: '2026-11-18', startTime: '09:00' },
+        { title: 'Old appointment', date: '2026-11-18', startTime: '09:00' },
       ]);
       localStorage.flowcrm_tasks = '[]';
     });
@@ -193,24 +193,24 @@ async function verifyLegacy(browser) {
     await card.dragTo(target.locator('.kanban-column-title'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(target.locator('.kanban-card')).toHaveCount(1);
-    await card.getByRole('button', { name: 'Cơ hội cũ' }).click();
-    const legacyDialog = page.getByRole('dialog', { name: 'Cơ hội cũ' });
-    await expect(legacyDialog.getByLabel('Giai đoạn')).toHaveValue('negotiation');
-    await legacyDialog.getByLabel('Tên lịch hẹn').fill('Lịch theo dõi mới');
-    await legacyDialog.getByLabel('Ngày hẹn').fill('2026-11-18');
-    await legacyDialog.getByLabel('Giờ hẹn').fill('10:00');
-    await legacyDialog.getByLabel('Việc cần làm sau cuộc hẹn').fill('Việc mới');
-    await legacyDialog.getByLabel('Hạn hoàn thành').fill('2026-11-18');
-    await legacyDialog.getByRole('button', { name: 'Lưu kế hoạch' }).click();
-    await legacyDialog.getByRole('link', { name: 'Xem lịch hẹn' }).click();
-    await expect(page.locator('#calendarGrid')).toContainText('Lịch theo dõi mới');
-    await expect(page.locator('#calendarGrid')).toContainText('Lịch cũ');
+    await card.getByRole('button', { name: 'Old deal' }).click();
+    const legacyDialog = page.getByRole('dialog', { name: 'Old deal' });
+    await expect(legacyDialog.getByLabel('Stage')).toHaveValue('negotiation');
+    await legacyDialog.getByLabel('Appointment name').fill('New follow-up appointment');
+    await legacyDialog.getByLabel('Appointment date').fill('2026-11-18');
+    await legacyDialog.getByLabel('Appointment time').fill('10:00');
+    await legacyDialog.getByLabel('Follow-up task').fill('New follow-up task');
+    await legacyDialog.getByLabel('Due date').fill('2026-11-18');
+    await legacyDialog.getByRole('button', { name: 'Save plan' }).click();
+    await legacyDialog.getByRole('link', { name: 'View appointment' }).click();
+    await expect(page.locator('#calendarGrid')).toContainText('New follow-up appointment');
+    await expect(page.locator('#calendarGrid')).toContainText('Old appointment');
     await page.goBack({ waitUntil: 'domcontentloaded' });
-    await legacyDialog.getByRole('link', { name: 'Xem nhiệm vụ' }).click();
+    await legacyDialog.getByRole('link', { name: 'View task' }).click();
     const row = page.locator('#dealFollowUpsList article');
-    await row.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+    await row.getByRole('button', { name: 'Mark complete' }).click();
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await expect(row.getByRole('button', { name: 'Đã hoàn thành' })).toBeVisible();
+    await expect(row.getByRole('button', { name: 'Completed' })).toBeVisible();
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.flowcrm_deals).length), 1);
     assert.equal(await page.evaluate(() => localStorage.flowcrm_tasks), '[]');
     console.log('PASS legacy · direct entry, old login link, numeric ID, same-column drop, saved drag, existing event and empty task list');

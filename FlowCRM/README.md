@@ -1,143 +1,143 @@
-# FlowCRM – Hệ thống quản lý bán hàng và khách hàng
+# FlowCRM – Sales and Customer Management System
 
-## Mô tả
+## Overview
 
-FlowCRM là hệ thống CRM dashboard và quản lý bán hàng, được thiết kế để hỗ trợ đội ngũ kinh doanh quản lý leads, khách hàng, deals, tasks, appointments, messages và reports. Project tập trung chuyển đổi quy trình bán hàng rời rạc thành hệ thống yêu cầu rõ ràng, user flow có cấu trúc và giao diện quản lý dễ sử dụng.
+FlowCRM is a CRM dashboard and sales management system designed to help sales teams manage leads, customers, deals, tasks, appointments, messages and reports. The project focuses on turning a fragmented sales process into clear requirements, structured user flows and an easy-to-use management interface.
 
-### Mục tiêu chính
+### Key goals
 
-- Cung cấp dashboard KPI trực quan, giúp đội ngũ kinh doanh theo dõi hiệu suất theo thời gian thực
-- Quản lý leads và khách hàng tập trung, dễ dàng cập nhật và tra cứu
-- Trực quan hóa sales pipeline qua Kanban board
-- Sắp xếp task theo mức độ ưu tiên để đảm bảo công việc quan trọng được xử lý trước
-- Quản lý lịch hẹn và tin nhắn giúp nâng cao hiệu quả giao tiếp với khách hàng
-- Tổng hợp báo cáo để đưa ra quyết định kinh doanh dựa trên dữ liệu
+- Provide a clear KPI dashboard so the sales team can track performance in real time
+- Manage leads and customers in one place, easy to update and look up
+- Visualize the sales pipeline on a Kanban board
+- Sort tasks by priority so important work gets done first
+- Manage appointments and messages to improve communication with customers
+- Consolidate reports to support data-driven business decisions
 
-### Các module chính
+### Main modules
 
-| Module | Mô tả |
+| Module | Description |
 |--------|--------|
-| **KPI Dashboard** | Theo dõi các chỉ số hiệu suất kinh doanh chủ chốt |
-| **Kanban Pipeline** | Trực quan hóa deals theo từng giai đoạn bán hàng |
-| **Customers** | Quản lý thông tin và lịch sử khách hàng |
-| **Tasks** | Quản lý công việc theo mức độ ưu tiên |
-| **Calendar** | Lịch hẹn với khách hàng và nội bộ |
-| **Messages** | Giao tiếp với khách hàng trong hệ thống |
-| **Reports** | Báo cáo tổng hợp và phân tích |
+| **KPI Dashboard** | Track the key sales performance metrics |
+| **Kanban Pipeline** | Visualize deals by sales stage |
+| **Customers** | Manage customer details and history |
+| **Tasks** | Manage work by priority |
+| **Calendar** | Customer and internal appointments |
+| **Messages** | Communicate with customers inside the system |
+| **Reports** | Summary reports and analysis |
 
-### Vấn đề nghiệp vụ được giải quyết
+### Business problems addressed
 
-- Thiếu tầm nhìn tổng quan về pipeline bán hàng
-- Khó theo dõi tiến độ xử lý leads và deals
-- Giao tiếp rời rạc giữa các thành viên trong đội ngũ
-- Khó phân biệt task quan trọng và không quan trọng
-- Thiếu báo cáo dữ liệu để đánh giá hiệu suất
+- No overall view of the sales pipeline
+- Hard to track progress on leads and deals
+- Fragmented communication between team members
+- Hard to tell important tasks from unimportant ones
+- No data reports to evaluate performance
 
 ---
 
-## Cài đặt
+## Installation
 
-### Yêu cầu
+### Requirements
 
-- Trình duyệt hiện đại (Chrome, Firefox, Edge, Safari)
-- VS Code (tùy chọn, để sử dụng Live Server)
+- A modern browser (Chrome, Firefox, Edge, Safari)
+- VS Code (optional, for Live Server)
 
-### Các bước cài đặt
+### Setup steps
 
-**1. Clone repository**
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/username/FlowCRM.git
 ```
 
-**2. Di chuyển vào thư mục project**
+**2. Go to the project folder**
 
 ```bash
 cd FlowCRM/FlowCRM
 ```
 
-**3. Mở project**
+**3. Open the project**
 
-Cách 1 – Mở trực tiếp bằng trình duyệt:
+Option 1 – Open directly in a browser:
 ```bash
-# Mở file index.html trong thư mục FlowCRM
+# Open index.html in the FlowCRM folder
 ```
 
-Cách 2 – Sử dụng Live Server trong VS Code:
-1. Cài đặt extension **Live Server** trong VS Code
-2. Click chuột phải vào file `index.html`
-3. Chọn **"Open with Live Server"**
+Option 2 – Use Live Server in VS Code:
+1. Install the **Live Server** extension in VS Code
+2. Right-click `index.html`
+3. Choose **"Open with Live Server"**
 
 ---
 
-## Cách sử dụng
+## Usage
 
-### Khám phá các tính năng
+### Explore the features
 
-1. **KPI Dashboard** – Truy cập trang chủ để xem tổng quan các chỉ số kinh doanh
-2. **Quản lý Leads & Khách hàng** – Xem và cập nhật thông tin khách hàng trong mục Customers
-3. **Kanban Sales Pipeline** – Kéo thả deals qua các giai đoạn bán hàng trong Pipeline
-4. **Task theo ưu tiên** – Xem và sắp xếp công việc theo mức độ ưu tiên trong Tasks
-5. **Lịch hẹn** – Kiểm tra và quản lý lịch hẹn trong Calendar
-6. **Tin nhắn** – Giao tiếp với khách hàng qua Messages
-7. **Báo cáo** – Xem các báo cáo tổng hợp trong Reports
+1. **KPI Dashboard** – Open the home page for an overview of sales metrics
+2. **Leads & Customers** – View and update customer details in Customers
+3. **Kanban Sales Pipeline** – Drag deals between sales stages in Pipeline
+4. **Tasks by priority** – View and sort work by priority in Tasks
+5. **Appointments** – Review and manage appointments in Calendar
+6. **Messages** – Communicate with customers in Messages
+7. **Reports** – View summary reports in Reports
 
-### Đăng nhập
+### Logging in
 
-Sử dụng tài khoản mặc định hoặc đăng ký tài khoản mới:
-- Trang đăng nhập: `login.html`
-- Trang đăng ký: `register.html`
+Use the demo account or sign up for a new account:
+- Log in page: `login.html`
+- Sign up page: `register.html`
 
 ---
 
-## Cấu trúc project
+## Project structure
 
 ```
 FlowCRM/
 ├── index.html          # KPI Dashboard
-├── login.html          # Trang đăng nhập
-├── register.html       # Trang đăng ký
+├── login.html          # Log in page
+├── register.html       # Sign up page
 ├── pipeline.html       # Kanban Sales Pipeline
-├── customers.html      # Quản lý khách hàng
-├── tasks.html          # Quản lý công việc
-├── calendar.html       # Lịch hẹn
-├── messages.html       # Tin nhắn
-├── reports.html        # Báo cáo
-├── settings.html       # Cài đặt
+├── customers.html      # Customer management
+├── tasks.html          # Task management
+├── calendar.html       # Appointments
+├── messages.html       # Messages
+├── reports.html        # Reports
+├── settings.html       # Settings
 └── assets/
     ├── css/
-    │   ├── styles.css        # Styles chính
-    │   ├── design-system.css # Hệ thống thiết kế
-    │   └── auth.css          # Styles đăng nhập/đăng ký
+    │   ├── styles.css        # Main styles
+    │   ├── design-system.css # Design system
+    │   └── auth.css          # Log in / sign up styles
     └── js/
-        ├── app.js            # Logic ứng dụng
-        └── auth.js           # Logic xác thực
+        ├── app.js            # Application logic
+        └── auth.js           # Authentication logic
 ```
 
 ---
 
-## Công nghệ sử dụng
+## Tech stack
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Không phụ thuộc framework** – Dễ dàng mở rộng và tích hợp
+- **No framework dependencies** – easy to extend and integrate
 
-## Công cụ thiết kế
+## Design tools
 
-- **Figma** – Thiết kế giao diện và prototype
+- **Figma** – UI design and prototyping
 
 ---
 
 ## Portfolio
 
-Project này phù hợp để showcase trong portfolio của:
+This project is suited to a portfolio for:
 
-- **Business Analyst** – Phân tích nghiệp vụ, thiết kế user flow và wireframe
-- **UI/UX Designer** – Thiết kế giao diện, hệ thống thiết kế và prototype trên Figma
-- **Front-end Developer** – Xây dựng giao diện web với HTML, CSS, JavaScript thuần
+- **Business Analyst** – Business analysis, user flow and wireframe design
+- **UI/UX Designer** – UI design, design system and Figma prototypes
+- **Front-end Developer** – Building web interfaces with plain HTML, CSS and JavaScript
 
 ---
 
-## Tác giả
+## Author
 
-- **Vai trò**: Business Analyst & UI/UX Designer
+- **Role**: Business Analyst & UI/UX Designer
 - **GitHub**: [username](https://github.com/username)

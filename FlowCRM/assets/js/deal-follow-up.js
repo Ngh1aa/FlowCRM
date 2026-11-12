@@ -35,7 +35,7 @@
       fields.task.value = plan?.task || '';
       fields.dueDate.value = plan?.dueDate || fields.date.value;
       fields.dueDate.setCustomValidity('');
-      feedback.textContent = plan?.completed ? 'Nhiệm vụ đã hoàn thành.' : '';
+      feedback.textContent = plan?.completed ? 'Task completed.' : '';
       calendarLink.hidden = tasksLink.hidden = !plan;
       if (plan) calendarLink.href = 'calendar.html?date=' + encodeURIComponent(plan.date);
       if (!dialog.open) {
@@ -66,12 +66,12 @@
       event.preventDefault();
       const deal = findDeal(dealId);
       if (!deal) {
-        feedback.textContent = 'Cơ hội này không còn trong pipeline.';
+        feedback.textContent = 'This deal is no longer in the pipeline.';
         return;
       }
       for (const field of [fields.appointment, fields.task]) field.value = field.value.trim();
       if (fields.dueDate.value < fields.date.value) {
-        fields.dueDate.setCustomValidity('Hạn hoàn thành phải từ ngày hẹn trở đi.');
+        fields.dueDate.setCustomValidity('The due date must be on or after the appointment date.');
       }
       if (!form.reportValidity()) return;
 
@@ -88,7 +88,7 @@
         plan: { appointment, date, time, task, dueDate, completed: unchangedTask && Boolean(deal.plan.completed) }
       });
       openDeal(dealId);
-      feedback.textContent = 'Đã lưu. Bạn có thể mở lịch hẹn hoặc nhiệm vụ của cơ hội này.';
+      feedback.textContent = 'Saved. You can now open this deal\'s appointment or task.';
     });
     const linkedDeal = new URLSearchParams(location.search).get('deal');
     if (linkedDeal) document.addEventListener('DOMContentLoaded', () => openDeal(linkedDeal));
@@ -106,17 +106,17 @@
         const title = document.createElement('h3');
         title.textContent = deal.plan.task;
         const context = document.createElement('p');
-        context.textContent = deal.title + ' (' + deal.customer + '). Hạn ' + formatShortDate(deal.plan.dueDate);
+        context.textContent = deal.title + ' (' + deal.customer + '). Due ' + formatShortDate(deal.plan.dueDate);
         const link = document.createElement('a');
         link.href = 'pipeline.html?deal=' + encodeURIComponent(deal.id);
-        link.textContent = 'Mở cơ hội';
+        link.textContent = 'Open deal';
         copy.append(title, context, link);
         const status = document.createElement('button');
         status.type = 'button';
         status.className = 'btn btn-secondary';
         status.dataset.completeDeal = deal.id;
         status.setAttribute('aria-pressed', String(Boolean(deal.plan.completed)));
-        status.textContent = deal.plan.completed ? 'Đã hoàn thành' : 'Đánh dấu hoàn thành';
+        status.textContent = deal.plan.completed ? 'Completed' : 'Mark complete';
         row.append(copy, status);
         taskList.append(row);
       });
@@ -129,7 +129,7 @@
       const completed = !deal.plan.completed;
       Storage.updateItem(Storage.KEYS.DEALS, deal.id, { plan: { ...deal.plan, completed } });
       button.setAttribute('aria-pressed', String(completed));
-      button.textContent = completed ? 'Đã hoàn thành' : 'Đánh dấu hoàn thành';
+      button.textContent = completed ? 'Completed' : 'Mark complete';
     });
     renderFollowUps();
   }

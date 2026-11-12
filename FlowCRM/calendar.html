@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Lịch hẹn</title>
+  <title>FlowCRM - Calendar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="calendar-page">
-    <a class="skip-link" href="#mainContent">Tới nội dung</a>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -31,29 +31,29 @@
           </svg>
           <span>FlowCRM</span>
         </div>
-        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Collapse navigation" aria-expanded="true">
           <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
         </button>
       </div>
 
-      <nav class="sidebar-nav" aria-label="Điều hướng chính">
+      <nav class="sidebar-nav" aria-label="Main navigation">
         <div class="nav-section">
-          <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item" aria-label="Tổng quan">
+          <div class="nav-section-title">Overview</div>
+          <a href="index.html" class="nav-item" aria-label="Dashboard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            <span>Tổng quan</span>
+            <span>Dashboard</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Quản lý</div>
+          <div class="nav-section-title">Sales</div>
           <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
@@ -61,48 +61,48 @@
             <span>Pipeline</span>
 
           </a>
-          <a href="customers.html" class="nav-item" aria-label="Khách hàng">
+          <a href="customers.html" class="nav-item" aria-label="Customers">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            <span>Khách hàng</span>
+            <span>Customers</span>
 
           </a>
-          <a href="messages.html" class="nav-item" aria-label="Tin nhắn">
+          <a href="messages.html" class="nav-item" aria-label="Messages">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
-            <span>Tin nhắn</span>
+            <span>Messages</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
+          <div class="nav-section-title">Work</div>
+          <a href="tasks.html" class="nav-item" aria-label="Tasks">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
-            <span>Nhiệm vụ</span>
+            <span>Tasks</span>
 
           </a>
-          <a href="calendar.html" class="nav-item active" aria-label="Lịch hẹn" aria-current="page">
+          <a href="calendar.html" class="nav-item active" aria-label="Calendar" aria-current="page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <span>Lịch hẹn</span>
+            <span>Calendar</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item" aria-label="Báo cáo">
+          <div class="nav-section-title">More</div>
+          <a href="reports.html" class="nav-item" aria-label="Reports">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -110,14 +110,14 @@
               <line x1="16" y1="17" x2="8" y2="17"/>
               <polyline points="10 9 9 9 8 9"/>
             </svg>
-            <span>Báo cáo</span>
+            <span>Reports</span>
           </a>
-          <a href="settings.html" class="nav-item" aria-label="Cài đặt">
+          <a href="settings.html" class="nav-item" aria-label="Settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
-            <span>Cài đặt</span>
+            <span>Settings</span>
           </a>
         </div>
       </nav>
@@ -127,7 +127,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Quản lý bán hàng</div>
+            <div class="user-role">Sales manager</div>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
       <header class="topbar">
         <div class="topbar-left">
           <div>
-            <h1 class="page-title">Lịch hẹn</h1>
+            <h1 class="page-title">Calendar</h1>
           </div>
         </div>
         <div class="topbar-right">
@@ -147,7 +147,7 @@
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-            Thêm lịch hẹn
+            Add appointment
           </button>
         </div>
       </header>
@@ -160,7 +160,7 @@
             <div class="calendar-header">
               <div class="calendar-filters">
                 <div class="filter-group">
-                  <label class="filter-label" for="yearSelect">Năm</label>
+                  <label class="filter-label" for="yearSelect">Year</label>
                   <select class="filter-select" id="yearSelect">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
@@ -169,44 +169,44 @@
                   </select>
                 </div>
                 <div class="filter-group">
-                  <label class="filter-label" for="monthSelect">Tháng</label>
+                  <label class="filter-label" for="monthSelect">Month</label>
                   <select class="filter-select" id="monthSelect">
-                    <option value="0">Tháng 1</option>
-                    <option value="1">Tháng 2</option>
-                    <option value="2">Tháng 3</option>
-                    <option value="3">Tháng 4</option>
-                    <option value="4">Tháng 5</option>
-                    <option value="5">Tháng 6</option>
-                    <option value="6">Tháng 7</option>
-                    <option value="7">Tháng 8</option>
-                    <option value="8">Tháng 9</option>
-                    <option value="9">Tháng 10</option>
-                    <option value="10">Tháng 11</option>
-                    <option value="11">Tháng 12</option>
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
                   </select>
                 </div>
                 <div class="filter-group view-filter">
-                  <label class="filter-label">Xem</label>
+                  <label class="filter-label">View</label>
                   <div class="view-toggle">
-                    <button class="view-btn active" data-view="month" id="viewMonth">Tháng</button>
-                    <button class="view-btn" data-view="week" id="viewWeek">Tuần</button>
-                    <button class="view-btn" data-view="day" id="viewDay">Ngày</button>
+                    <button class="view-btn active" data-view="month" id="viewMonth">Month</button>
+                    <button class="view-btn" data-view="week" id="viewWeek">Week</button>
+                    <button class="view-btn" data-view="day" id="viewDay">Day</button>
                   </div>
                 </div>
               </div>
               <div class="calendar-nav">
-                <button class="calendar-nav-btn" id="prevMonth" aria-label="Kỳ trước">
+                <button class="calendar-nav-btn" id="prevMonth" aria-label="Previous period">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="m15 18-6-6 6-6"/>
                   </svg>
                 </button>
-                <h2 class="calendar-title" id="calendarTitle">Tháng 5, 2026</h2>
-                <button class="calendar-nav-btn" id="nextMonth" aria-label="Kỳ sau">
+                <h2 class="calendar-title" id="calendarTitle">May 2026</h2>
+                <button class="calendar-nav-btn" id="nextMonth" aria-label="Next period">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="m9 18 6-6-6-6"/>
                   </svg>
                 </button>
-                <button class="btn btn-secondary btn-sm" id="todayBtn">Hôm nay</button>
+                <button class="btn btn-secondary btn-sm" id="todayBtn">Today</button>
               </div>
             </div>
 
@@ -218,64 +218,64 @@
           <!-- Upcoming Events -->
           <div class="upcoming-events">
             <div class="events-header">
-              <h3 class="events-title">Lịch hẹn đã lên</h3>
+              <h3 class="events-title">Scheduled appointments</h3>
               <span class="events-count" id="eventsCount"></span>
             </div>
-            <p class="workspace-empty" id="calendarEmpty" hidden>Chưa có lịch hẹn đã lên.</p>
+            <p class="workspace-empty" id="calendarEmpty" hidden>No appointments scheduled yet.</p>
             <div class="events-list" id="eventsList">
               <div class="event-item" data-id="1">
                 <div class="event-time">
                   <span class="event-day">12</span>
-                  <span class="event-month">Th05</span>
+                  <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Họp nhóm về quy trình bán hàng Q2</span>
+                  <span class="event-title">Team meeting: Q2 sales process</span>
                   <span class="event-slot">14:00 - 15:00</span>
-                  <span class="event-context">Nội bộ</span>
+                  <span class="event-context">Internal</span>
                 </div>
               </div>
               <div class="event-item" data-id="2">
                 <div class="event-time">
                   <span class="event-day">13</span>
-                  <span class="event-month">Th05</span>
+                  <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Gọi cho Alpha Corp</span>
+                  <span class="event-title">Call Alpha Corp</span>
                   <span class="event-slot">10:00 - 10:30</span>
-                  <span class="event-context">Cơ hội: Chuyển đổi lên đám mây</span>
+                  <span class="event-context">Deal: Cloud Migration</span>
                 </div>
               </div>
               <div class="event-item" data-id="3">
                 <div class="event-time">
                   <span class="event-day">15</span>
-                  <span class="event-month">Th05</span>
+                  <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Gửi hợp đồng Delta Inc</span>
+                  <span class="event-title">Send contract to Delta Inc</span>
                   <span class="event-slot">09:00 - 09:30</span>
-                  <span class="event-context">Cơ hội: Tự động hóa tiếp thị</span>
+                  <span class="event-context">Deal: Marketing Automation</span>
                 </div>
               </div>
               <div class="event-item" data-id="4">
                 <div class="event-time">
                   <span class="event-day">18</span>
-                  <span class="event-month">Th05</span>
+                  <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Demo cho Epsilon Co</span>
+                  <span class="event-title">Demo for Epsilon Co</span>
                   <span class="event-slot">14:00 - 15:00</span>
-                  <span class="event-context">Khách tiềm năng: Epsilon Co</span>
+                  <span class="event-context">Lead: Epsilon Co</span>
                 </div>
               </div>
               <div class="event-item" data-id="5">
                 <div class="event-time">
                   <span class="event-day">20</span>
-                  <span class="event-month">Th05</span>
+                  <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Xem lại đề xuất Gamma Ltd</span>
+                  <span class="event-title">Review Gamma Ltd proposal</span>
                   <span class="event-slot">11:00 - 12:00</span>
-                  <span class="event-context">Cơ hội: Bộ phân tích dữ liệu</span>
+                  <span class="event-context">Deal: Data Analytics Suite</span>
                 </div>
               </div>
             </div>
@@ -289,8 +289,8 @@
   <div class="modal-overlay" id="addEventModal">
     <div class="modal">
       <div class="modal-header">
-        <h2 class="modal-title">Thêm lịch hẹn mới</h2>
-        <button class="modal-close" id="closeModalBtn" aria-label="Đóng hộp thoại">
+        <h2 class="modal-title">New appointment</h2>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close dialog">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -300,20 +300,20 @@
       <div class="modal-body">
         <form id="addEventForm">
           <div class="form-group">
-            <label class="form-label required" for="eventTitle">Tiêu đề</label>
-            <input type="text" class="form-input" id="eventTitle" placeholder="Tên lịch hẹn..." required>
+            <label class="form-label required" for="eventTitle">Title</label>
+            <input type="text" class="form-input" id="eventTitle" placeholder="Appointment name..." required>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label required" for="eventDate">Ngày</label>
+              <label class="form-label required" for="eventDate">Date</label>
               <input type="date" class="form-input" id="eventDate" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="eventCustomer">Khách hàng</label>
+              <label class="form-label" for="eventCustomer">Customer</label>
               <select class="form-select" id="eventCustomer">
-                <option value="">Chọn khách hàng...</option>
-                <option value="1">Công ty ABC</option>
+                <option value="">Select a customer...</option>
+                <option value="1">ABC Company</option>
                 <option value="2">Tech Solutions</option>
                 <option value="3">Alpha Corp</option>
                 <option value="4">Design Co</option>
@@ -323,29 +323,29 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label required" for="eventStartTime">Giờ bắt đầu</label>
+              <label class="form-label required" for="eventStartTime">Start time</label>
               <input type="time" class="form-input" id="eventStartTime" required>
             </div>
             <div class="form-group">
-              <label class="form-label required" for="eventEndTime">Giờ kết thúc</label>
+              <label class="form-label required" for="eventEndTime">End time</label>
               <input type="time" class="form-input" id="eventEndTime" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="eventLocation">Địa điểm</label>
-            <input type="text" class="form-input" id="eventLocation" placeholder="Phòng họp / Zoom / Địa chỉ...">
+            <label class="form-label" for="eventLocation">Location</label>
+            <input type="text" class="form-input" id="eventLocation" placeholder="Meeting room / Zoom / Address...">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="eventNotes">Ghi chú</label>
-            <textarea class="form-input" id="eventNotes" rows="3" placeholder="Nội dung cuộc họp..."></textarea>
+            <label class="form-label" for="eventNotes">Notes</label>
+            <textarea class="form-input" id="eventNotes" rows="3" placeholder="Meeting agenda..."></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
-        <button class="btn btn-primary" id="saveEventBtn">Tạo lịch hẹn</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveEventBtn">Create appointment</button>
       </div>
     </div>
   </div>
@@ -365,7 +365,7 @@
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
 
-    const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     function selectMonth(year, month) {
       const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -378,11 +378,11 @@
 
     // Event data with CRM context
     const eventsData = {
-      12: [{ title: 'Họp quy trình bán hàng Q2', time: '14:00', type: 'internal' }],
-      13: [{ title: 'Gọi Alpha Corp', time: '10:00', type: 'deal', context: 'Chuyển đổi lên đám mây' }],
-      15: [{ title: 'Hợp đồng Delta', time: '09:00', type: 'deal', context: 'Tự động hóa tiếp thị' }],
+      12: [{ title: 'Q2 sales process meeting', time: '14:00', type: 'internal' }],
+      13: [{ title: 'Call Alpha Corp', time: '10:00', type: 'deal', context: 'Cloud Migration' }],
+      15: [{ title: 'Delta contract', time: '09:00', type: 'deal', context: 'Marketing Automation' }],
       18: [{ title: 'Demo Epsilon', time: '14:00', type: 'lead', context: 'Epsilon Co' }],
-      20: [{ title: 'Xem lại Gamma', time: '11:00', type: 'deal', context: 'Phân tích dữ liệu' }]
+      20: [{ title: 'Gamma review', time: '11:00', type: 'deal', context: 'Data Analytics Suite' }]
     };
 
     const savedEvents = Storage.get(Storage.KEYS.EVENTS);
@@ -395,7 +395,7 @@
       const key = localDateKey(date);
       const examples = key.startsWith('2026-05-') ? (eventsData[date.getDate()] || []) : [];
       return [...examples, ...datedEvents.filter(event => event.date === key).map(event => ({
-        title: event.title, type: 'deal', time: event.startTime || 'Cả ngày'
+        title: event.title, type: 'deal', time: event.startTime || 'All day'
       }))];
     }
 
@@ -412,7 +412,7 @@
         item.innerHTML = `
           <div class="event-time">
             <span class="event-day">${day}</span>
-            <span class="event-month">T${eventDate.getMonth() + 1}</span>
+            <span class="event-month">${eventDate.toLocaleDateString('en-US', { month: 'short' })}</span>
           </div>
           <div class="event-content">
             <span class="event-title">${escapeText(event.title)}</span>
@@ -430,7 +430,7 @@
       const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
       const today = new Date();
 
-      calendarTitle.textContent = `${monthNames[currentMonth]}, ${currentYear}`;
+      calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
       // Clear existing days (keep weekdays)
       const existingDays = calendarGrid.querySelectorAll('.calendar-day');
@@ -443,7 +443,7 @@
       // Restore weekday headers if switching from day/week view
       const existingWeekdays = calendarGrid.querySelectorAll('.calendar-weekday');
       if (existingWeekdays.length === 0) {
-        const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+        const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         calendarGrid.prepend(...weekDays.map(day => {
           const dayHeader = document.createElement('div');
           dayHeader.className = 'calendar-weekday';
@@ -466,7 +466,7 @@
         const date = new Date(currentYear, currentMonth, day);
         dayCell.tabIndex = 0;
         dayCell.setAttribute('role', 'button');
-        dayCell.setAttribute('aria-label', 'Thêm lịch hẹn ngày ' + date.toLocaleDateString('vi-VN'));
+        dayCell.setAttribute('aria-label', 'Add appointment on ' + date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
 
         // Add day number
         const dayNumber = document.createElement('span');
@@ -552,7 +552,7 @@
       const startOfWeek = new Date(currentDate);
       startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
 
-      calendarTitle.textContent = `Tuần ${getWeekNumber(currentDate)}, ${currentYear}`;
+      calendarTitle.textContent = `Week ${getWeekNumber(currentDate)}, ${currentYear}`;
 
       // Clear existing days (keep weekdays)
       const existingDays = calendarGrid.querySelectorAll('.calendar-day');
@@ -567,7 +567,7 @@
       weekdays.forEach(w => w.remove());
 
       // Add week days header
-      const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+      const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       weekDays.forEach(day => {
         const dayHeader = document.createElement('div');
         dayHeader.className = 'calendar-weekday';
@@ -618,9 +618,9 @@
     }
 
     function renderDayView() {
-      const dayNames = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-      calendarTitle.textContent = `${dayNames[currentDate.getDay()]}, ${currentDate.getDate()} ${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+      calendarTitle.textContent = `${dayNames[currentDate.getDay()]}, ${monthNames[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
 
       // Clear existing days
       const existingDays = calendarGrid.querySelectorAll('.calendar-day');
@@ -696,7 +696,7 @@
     const eventsCount = document.getElementById('eventsCount');
     const calendarEmpty = document.getElementById('calendarEmpty');
     function renderEventCount() {
-      eventsCount.textContent = upcomingList.childElementCount + ' cuộc hẹn';
+      eventsCount.textContent = upcomingList.childElementCount + (upcomingList.childElementCount === 1 ? ' appointment' : ' appointments');
       calendarEmpty.hidden = upcomingList.childElementCount > 0;
     }
     if (currentDate.getFullYear() !== 2026 || currentDate.getMonth() !== 4) upcomingList.replaceChildren();
@@ -723,7 +723,7 @@
           <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>

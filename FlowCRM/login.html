@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Đăng nhập</title>
+  <title>FlowCRM - Log in</title>
   <script src="assets/js/auth.js"></script>
   <script>
     const requestedPage = new URLSearchParams(window.location.search).get('redirect') || '';
@@ -32,7 +32,7 @@
           </svg>
           <span>FlowCRM</span>
         </div>
-        <h1 class="auth-title">Đăng nhập</h1>
+        <h1 class="auth-title">Log in</h1>
       </div>
 
       <form class="auth-form" id="loginForm">
@@ -42,20 +42,20 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" class="form-input" placeholder="Nhập mật khẩu" required autocomplete="current-password">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
         </div>
 
         <div class="form-row-between">
           <label class="checkbox-label">
             <input type="checkbox" id="remember" name="remember">
             <span class="checkbox-custom"></span>
-            <span>Ghi nhớ đăng nhập</span>
+            <span>Remember me</span>
           </label>
         </div>
 
         <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
-          <span class="btn-text">Đăng nhập</span>
+          <span class="btn-text">Log in</span>
           <span class="btn-loader" style="display: none;">
             <svg class="spinner" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" transform="rotate(-90 12 12)"/>
@@ -64,7 +64,7 @@
         </button>
 
         <div class="auth-divider">
-          <span>hoặc</span>
+          <span>or</span>
         </div>
 
         <button type="button" class="btn btn-secondary btn-full" id="demoLoginBtn">
@@ -72,13 +72,13 @@
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
             <circle cx="12" cy="12" r="3"/>
           </svg>
-          <span>Mở Demo</span>
+          <span>Open demo</span>
         </button>
       </form>
 
       <div class="auth-footer">
         <p class="auth-register-prompt">
-          Chưa có tài khoản? <a href="register.html" id="registerLink">Đăng ký ngay</a>
+          No account yet? <a href="register.html" id="registerLink">Sign up</a>
         </p>
       </div>
     </div>

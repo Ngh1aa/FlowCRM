@@ -1,18 +1,33 @@
 // FlowCRM - Main Application JavaScript
+// One-time reset of demo data seeded by the earlier Vietnamese build, so returning
+// visitors see the English sample data. Runs from app.js or auth.js, whichever loads first.
+(function migrateFlowcrmLocale() {
+  try {
+    if (localStorage.getItem('flowcrm_locale') === 'en') return;
+    ['flowcrm_deals', 'flowcrm_customers', 'flowcrm_tasks', 'flowcrm_events', 'flowcrm_messages', 'flowcrm_activities']
+      .forEach(key => localStorage.removeItem(key));
+    const session = JSON.parse(localStorage.getItem('flowcrm_session') || 'null');
+    if (session && (session.isDemo || session.userId === 'demo')) localStorage.removeItem('flowcrm_session');
+    localStorage.setItem('flowcrm_locale', 'en');
+  } catch (error) {
+    // Storage unavailable: nothing to migrate.
+  }
+})();
+
 // UX Optimized Version with LocalStorage Persistence
 
 const WorkspacePreferences = {
   options: {
     pipeline: [
-      ['', 'Tất cả giai đoạn'], ['qualification', 'Chào hàng'], ['proposal', 'Đề xuất'],
-      ['negotiation', 'Đàm phán'], ['closed-won', 'Chốt'], ['closed-lost', 'Thất bại']
+      ['', 'All stages'], ['qualification', 'Qualification'], ['proposal', 'Proposal'],
+      ['negotiation', 'Negotiation'], ['closed-won', 'Won'], ['closed-lost', 'Lost']
     ],
     tasks: [
-      ['all', 'Tất cả nhiệm vụ'], ['overdue', 'Quá hạn'], ['today', 'Hôm nay'],
-      ['upcoming', 'Sắp tới'], ['completed', 'Đã hoàn thành']
+      ['all', 'All tasks'], ['overdue', 'Overdue'], ['today', 'Today'],
+      ['upcoming', 'Upcoming'], ['completed', 'Completed']
     ],
-    calendar: [['month', 'Tháng'], ['week', 'Tuần'], ['day', 'Ngày']],
-    motion: [['system', 'Theo hệ thống'], ['reduce', 'Giảm chuyển động']]
+    calendar: [['month', 'Month'], ['week', 'Week'], ['day', 'Day']],
+    motion: [['system', 'Match system'], ['reduce', 'Reduce motion']]
   },
 
   get(name) {
@@ -46,9 +61,9 @@ const Storage = {
   init() {
     if (!localStorage.getItem(this.KEYS.ACTIVITIES)) {
       this.save(this.KEYS.ACTIVITIES, [
-        { id: '1', type: 'deal', text: 'Bạn đã tạo deal <strong>Thiết kế Website</strong>', time: '10 phút trước' },
-        { id: '2', type: 'customer', text: '<strong>Nguyễn Văn A</strong> đã được thêm vào hệ thống', time: '2 giờ trước' },
-        { id: '3', type: 'task', text: 'Nhiệm vụ <strong>Gửi báo giá</strong> đã hoàn thành', time: '5 giờ trước' }
+        { id: '1', type: 'deal', text: 'You created the deal <strong>Website Redesign</strong>', time: '10 min ago' },
+        { id: '2', type: 'customer', text: 'Customer <strong>Nguyễn Văn An</strong> was added', time: '2 hours ago' },
+        { id: '3', type: 'task', text: 'Task <strong>Send quote</strong> was completed', time: '5 hours ago' }
       ]);
     }
   },
@@ -91,17 +106,17 @@ const Storage = {
     let type = 'info';
     
     if (key === this.KEYS.DEALS) {
-      text = `Bạn đã tạo deal <strong>${escapeText(item.title)}</strong>`;
+      text = `You created the deal <strong>${escapeText(item.title)}</strong>`;
       type = 'deal';
     } else if (key === this.KEYS.CUSTOMERS) {
-      text = `Khách hàng <strong>${escapeText(item.name)}</strong> đã được thêm`;
+      text = `Customer <strong>${escapeText(item.name)}</strong> was added`;
       type = 'customer';
     } else if (key === this.KEYS.TASKS) {
-      text = `Nhiệm vụ <strong>${escapeText(item.title)}</strong> đã được tạo`;
+      text = `Task <strong>${escapeText(item.title)}</strong> was created`;
       type = 'task';
     }
 
-    activities.unshift({ id: Date.now().toString(), type, text, time: 'Vừa xong' });
+    activities.unshift({ id: Date.now().toString(), type, text, time: 'Just now' });
     this.save(this.KEYS.ACTIVITIES, activities.slice(0, 20)); // Keep only last 20
   }
 };
@@ -112,18 +127,18 @@ Storage.init();
 function hydrateDemoData() {
   if (localStorage.getItem(Storage.KEYS.DEALS) === null) {
     Storage.save(Storage.KEYS.DEALS, [
-      { id: '1', title: 'Website Redesign', customer: 'Công ty ABC', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Xác nhận phạm vi' },
-      { id: '2', title: 'Mobile App Development', customer: 'Tech Solutions', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Chốt ngân sách' },
-      { id: '3', title: 'CRM Integration', customer: 'Design Co', value: 85000000, stage: 'qualification', tag: 'cold', date: '2026-05-15', owner: 'Bao Le', nextAction: 'Xác minh nhu cầu' },
-      { id: '4', title: 'E-commerce Platform', customer: 'Fashion Store', value: 125000000, stage: 'qualification', tag: 'warm', date: '2026-05-16', owner: 'An Nguyen', nextAction: 'Gửi proposal mẫu' },
-      { id: '5', title: 'Cloud Migration', customer: 'Alpha Corp', value: 480000000, stage: 'proposal', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Gửi báo giá' },
-      { id: '6', title: 'Security Audit', customer: 'Beta Industries', value: 95000000, stage: 'proposal', tag: 'warm', date: '2026-05-16', owner: 'Minh Tran', nextAction: 'Xác nhận lịch audit' },
+      { id: '1', title: 'Website Redesign', customer: 'ABC Company', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Confirm scope' },
+      { id: '2', title: 'Mobile App Development', customer: 'Tech Solutions', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Confirm budget' },
+      { id: '3', title: 'CRM Integration', customer: 'Design Co', value: 85000000, stage: 'qualification', tag: 'cold', date: '2026-05-15', owner: 'Bao Le', nextAction: 'Verify requirements' },
+      { id: '4', title: 'E-commerce Platform', customer: 'Fashion Store', value: 125000000, stage: 'qualification', tag: 'warm', date: '2026-05-16', owner: 'An Nguyen', nextAction: 'Send sample proposal' },
+      { id: '5', title: 'Cloud Migration', customer: 'Alpha Corp', value: 480000000, stage: 'proposal', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Send quote' },
+      { id: '6', title: 'Security Audit', customer: 'Beta Industries', value: 95000000, stage: 'proposal', tag: 'warm', date: '2026-05-16', owner: 'Minh Tran', nextAction: 'Confirm audit schedule' },
       { id: '7', title: 'Data Analytics Suite', customer: 'Gamma Ltd', value: 210000000, stage: 'proposal', tag: 'warm', date: '2026-05-17', owner: 'An Nguyen', nextAction: 'Review proposal' },
-      { id: '8', title: 'Marketing Automation', customer: 'Delta Inc', value: 180000000, stage: 'negotiation', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Chốt điều khoản' },
-      { id: '9', title: 'Inventory System', customer: 'Epsilon Co', value: 120000000, stage: 'negotiation', tag: 'warm', date: '2026-05-18', owner: 'Linh Pham', nextAction: 'Demo sản phẩm' },
-      { id: '10', title: 'SEO Optimization', customer: 'Zeta Group', value: 75000000, stage: 'closed', tag: 'won', date: '2026-05-10', owner: 'Bao Le', nextAction: 'Bàn giao dự án' },
-      { id: '11', title: 'UI/UX Design System', customer: 'Eta Corp', value: 95000000, stage: 'closed', tag: 'won', date: '2026-05-11', owner: 'Linh Pham', nextAction: 'Gửi invoice' },
-      { id: '12', title: 'Social Media Campaign', customer: 'Theta Ltd', value: 45000000, stage: 'lost', tag: 'lost', date: '2026-05-09', owner: 'Bao Le', nextAction: 'Ghi nhận lý do' }
+      { id: '8', title: 'Marketing Automation', customer: 'Delta Inc', value: 180000000, stage: 'negotiation', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Finalize terms' },
+      { id: '9', title: 'Inventory System', customer: 'Epsilon Co', value: 120000000, stage: 'negotiation', tag: 'warm', date: '2026-05-18', owner: 'Linh Pham', nextAction: 'Product demo' },
+      { id: '10', title: 'SEO Optimization', customer: 'Zeta Group', value: 75000000, stage: 'closed', tag: 'won', date: '2026-05-10', owner: 'Bao Le', nextAction: 'Project handover' },
+      { id: '11', title: 'UI/UX Design System', customer: 'Eta Corp', value: 95000000, stage: 'closed', tag: 'won', date: '2026-05-11', owner: 'Linh Pham', nextAction: 'Send invoice' },
+      { id: '12', title: 'Social Media Campaign', customer: 'Theta Ltd', value: 45000000, stage: 'lost', tag: 'lost', date: '2026-05-09', owner: 'Bao Le', nextAction: 'Record loss reason' }
     ]);
   }
 
@@ -142,15 +157,15 @@ function hydrateDemoData() {
 
   if (localStorage.getItem(Storage.KEYS.TASKS) === null) {
     Storage.save(Storage.KEYS.TASKS, [
-      { id: '1', title: 'Gọi điện cho Alpha Corp', deadline: '2026-05-10', dueLabel: 'Đã hạn: 10/05/2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Alpha Corp', owner: 'An', priority: 'hot', completed: false },
-      { id: '2', title: 'Gửi báo giá cho Beta Industries', deadline: '2026-05-11', dueLabel: 'Đã hạn: 11/05/2026', category: 'overdue', deal: 'Security Audit', customer: 'Beta Industries', owner: 'Minh', priority: 'hot', completed: false },
-      { id: '3', title: 'Họp team về pipeline Q2', deadline: '2026-05-14', dueLabel: 'Hôm nay, 14:00', category: 'today', deal: 'Nội bộ', customer: 'Sales team', owner: 'An', priority: 'warm', completed: false },
-      { id: '4', title: 'Gửi báo giá cho Tech Solutions', deadline: '2026-05-14', dueLabel: 'Hôm nay, 10:30', category: 'today', deal: 'Mobile App Development', customer: 'Tech Solutions', owner: 'Linh', priority: 'warm', completed: true },
-      { id: '5', title: 'Follow up deal với Design Co', deadline: '2026-05-14', dueLabel: 'Hôm nay, 16:30', category: 'today', deal: 'CRM Integration', customer: 'Design Co', owner: 'Bao', priority: 'hot', completed: false },
-      { id: '6', title: 'Gửi hợp đồng cho Delta Inc', deadline: '2026-05-15', dueLabel: '15/05/2026', category: 'upcoming', deal: 'Marketing Automation', customer: 'Delta Inc', owner: 'Minh', priority: 'warm', completed: false },
-      { id: '7', title: 'Demo sản phẩm cho Epsilon Co', deadline: '2026-05-18', dueLabel: '18/05/2026', category: 'upcoming', deal: 'Inventory System', customer: 'Epsilon Co', owner: 'Linh', priority: 'cold', completed: false },
-      { id: '8', title: 'Review proposal với Gamma Ltd', deadline: '2026-05-20', dueLabel: '20/05/2026', category: 'upcoming', deal: 'Data Analytics Suite', customer: 'Gamma Ltd', owner: 'An', priority: 'warm', completed: false },
-      { id: '9', title: 'Chốt deal với Zeta Group', deadline: '2026-05-25', dueLabel: '25/05/2026', category: 'upcoming', deal: 'SEO Optimization', customer: 'Zeta Group', owner: 'Bao', priority: 'hot', completed: false }
+      { id: '1', title: 'Call Alpha Corp', deadline: '2026-05-10', dueLabel: 'Overdue: May 10, 2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Alpha Corp', owner: 'An', priority: 'hot', completed: false },
+      { id: '2', title: 'Send quote to Beta Industries', deadline: '2026-05-11', dueLabel: 'Overdue: May 11, 2026', category: 'overdue', deal: 'Security Audit', customer: 'Beta Industries', owner: 'Minh', priority: 'hot', completed: false },
+      { id: '3', title: 'Team meeting on Q2 pipeline', deadline: '2026-05-14', dueLabel: 'Today, 14:00', category: 'today', deal: 'Internal', customer: 'Sales team', owner: 'An', priority: 'warm', completed: false },
+      { id: '4', title: 'Send quote to Tech Solutions', deadline: '2026-05-14', dueLabel: 'Today, 10:30', category: 'today', deal: 'Mobile App Development', customer: 'Tech Solutions', owner: 'Linh', priority: 'warm', completed: true },
+      { id: '5', title: 'Follow up on Design Co deal', deadline: '2026-05-14', dueLabel: 'Today, 16:30', category: 'today', deal: 'CRM Integration', customer: 'Design Co', owner: 'Bao', priority: 'hot', completed: false },
+      { id: '6', title: 'Send contract to Delta Inc', deadline: '2026-05-15', dueLabel: 'May 15, 2026', category: 'upcoming', deal: 'Marketing Automation', customer: 'Delta Inc', owner: 'Minh', priority: 'warm', completed: false },
+      { id: '7', title: 'Product demo for Epsilon Co', deadline: '2026-05-18', dueLabel: 'May 18, 2026', category: 'upcoming', deal: 'Inventory System', customer: 'Epsilon Co', owner: 'Linh', priority: 'cold', completed: false },
+      { id: '8', title: 'Review proposal with Gamma Ltd', deadline: '2026-05-20', dueLabel: 'May 20, 2026', category: 'upcoming', deal: 'Data Analytics Suite', customer: 'Gamma Ltd', owner: 'An', priority: 'warm', completed: false },
+      { id: '9', title: 'Close deal with Zeta Group', deadline: '2026-05-25', dueLabel: 'May 25, 2026', category: 'upcoming', deal: 'SEO Optimization', customer: 'Zeta Group', owner: 'Bao', priority: 'hot', completed: false }
     ]);
   }
 
@@ -177,7 +192,7 @@ function localDateKey(date) {
 
 
 function formatCurrency(amount) {
-  return new Intl.NumberFormat('vi-VN', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'VND',
     minimumFractionDigits: 0,
@@ -189,41 +204,41 @@ const PIPELINE_STAGE_CONFIG = {
   qualification: {
     selector: 'qualification',
     probability: 28,
-    nextAction: 'Xác nhận ngân sách'
+    nextAction: 'Confirm budget'
   },
   proposal: {
     selector: 'proposal',
     probability: 52,
-    nextAction: 'Gửi đề xuất'
+    nextAction: 'Send proposal'
   },
   negotiation: {
     selector: 'negotiation',
     probability: 68,
-    nextAction: 'Chốt điều khoản'
+    nextAction: 'Finalize terms'
   },
   closed: {
     selector: 'closed-won',
     probability: 100,
-    nextAction: 'Bàn giao dự án'
+    nextAction: 'Project handover'
   },
   lost: {
     selector: 'closed-lost',
     probability: 0,
-    nextAction: 'Ghi nhận lý do'
+    nextAction: 'Record loss reason'
   }
 };
 
 const PIPELINE_OWNERS = ['An Nguyen', 'Minh Tran', 'Linh Pham', 'Bao Le'];
 
 function formatShortDate(value) {
-  if (!value) return 'Chưa có ngày';
+  if (!value) return 'No date';
 
   const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? value + "T00:00:00" : value);
   if (Number.isNaN(date.getTime())) return value;
 
-  return date.toLocaleDateString('vi-VN', {
-    day: '2-digit',
-    month: '2-digit'
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
   });
 }
 
@@ -246,7 +261,7 @@ function getDealPipelineMeta(deal, index, stage) {
     owner: deal.owner || PIPELINE_OWNERS[index % PIPELINE_OWNERS.length],
     followUp: deal.plan?.dueDate || deal.followUp || deal.date,
     probability: Number.isFinite(deal.probability) ? deal.probability : config.probability,
-    nextAction: deal.plan ? (deal.plan.completed ? 'Đã hoàn tất theo dõi' : deal.plan.task) : (deal.nextAction || config.nextAction)
+    nextAction: deal.plan ? (deal.plan.completed ? 'Follow-up completed' : deal.plan.task) : (deal.nextAction || config.nextAction)
   };
 }
 
@@ -435,7 +450,7 @@ function getFieldValue(formData, name, id, fallback = '') {
 }
 
 // ========================================
-// Hộp tạo nhanh (Quy trình bán hàng)
+// Quick create dialog (Pipeline)
 // ========================================
 if (quickCreateBtn) {
   quickCreateBtn.addEventListener('click', () => openModal(quickCreateModal));
@@ -461,7 +476,7 @@ if (quickCreateModal) {
 function openCustomerForm(customer) {
   editingCustomerId = customer?.id ?? null;
   addCustomerForm.reset();
-  addCustomerModal.querySelector('.modal-title').textContent = customer ? 'Sửa khách hàng' : 'Thêm khách hàng';
+  addCustomerModal.querySelector('.modal-title').textContent = customer ? 'Edit customer' : 'Add customer';
   if (customer) {
     for (const key of ['name', 'email', 'phone', 'company', 'status', 'notes']) {
       const field = document.getElementById('customer' + key[0].toUpperCase() + key.slice(1));
@@ -604,7 +619,7 @@ document.querySelectorAll('.form-input, .form-select').forEach(input => {
 });
 
 // ========================================
-// Cơ hội Creation with Toast
+// Deal Creation with Toast
 // ========================================
 if (createDealBtn) {
   createDealBtn.addEventListener('click', () => {
@@ -612,8 +627,8 @@ if (createDealBtn) {
       const formData = new FormData(quickCreateForm);
       const rawDealValue = formData.get('opportunityValue') || document.getElementById('opportunityValue')?.value;
       const newDeal = {
-        title: formData.get('opportunityTitle') || document.getElementById('opportunityName')?.value || 'Cơ hội chưa đặt tên',
-        customer: formData.get('customerName') || document.getElementById('opportunityCustomer')?.selectedOptions[0]?.textContent || 'Tiềm năng',
+        title: formData.get('opportunityTitle') || document.getElementById('opportunityName')?.value || 'Untitled deal',
+        customer: formData.get('customerName') || document.getElementById('opportunityCustomer')?.selectedOptions[0]?.textContent || 'Prospect',
         value: Number(String(rawDealValue || '').replace(/[^\d]/g, '')) || 0,
         stage: normalizePipelineStage(formData.get('opportunityStage') || document.getElementById('opportunityStage')?.value || 'qualification'),
         tag: formData.get('opportunityPriority') || document.getElementById('opportunityPriority')?.value || 'warm',
@@ -621,15 +636,15 @@ if (createDealBtn) {
       };
 
       createDealBtn.disabled = true;
-      createDealBtn.textContent = 'Đang tạo...';
+      createDealBtn.textContent = 'Creating...';
 
       setTimeout(() => {
         Storage.addItem(Storage.KEYS.DEALS, newDeal);
         createDealBtn.disabled = false;
-        createDealBtn.textContent = 'Tạo cơ hội';
+        createDealBtn.textContent = 'Create deal';
         quickCreateForm.reset();
         closeModal(quickCreateModal);
-        Toast.show('Cơ hội mới đã được tạo thành công!');
+        Toast.show('Deal created.');
       }, 500);
     }
   });
@@ -654,14 +669,14 @@ if (saveCustomerBtn && addCustomerForm) {
     };
     closeModal(addCustomerModal);
     if (editingCustomerId === null) {
-      Storage.addItem(Storage.KEYS.CUSTOMERS, { ...customer, latestDeal: 'Chưa có cơ hội' });
-      Toast.show('Đã thêm khách hàng.');
+      Storage.addItem(Storage.KEYS.CUSTOMERS, { ...customer, latestDeal: 'No deals yet' });
+      Toast.show('Customer added.');
     } else {
       Storage.updateItem(Storage.KEYS.CUSTOMERS, editingCustomerId, customer);
       const editButton = [...customerTableBody.querySelectorAll('[data-edit-customer]')]
         .find(button => button.dataset.editCustomer === String(editingCustomerId) && button.getClientRects().length);
       (editButton || tableSearch)?.focus();
-      Toast.show('Đã lưu khách hàng.');
+      Toast.show('Customer saved.');
     }
   };
   saveCustomerBtn.addEventListener('click', saveCustomer);
@@ -680,28 +695,28 @@ if (saveTaskBtn) {
       const dealSelect = document.getElementById('taskDeal');
       const selectedDeal = dealSelect?.selectedOptions[0]?.textContent || '';
       const newTask = {
-        title: getFieldValue(formData, 'taskTitle', 'taskTitle', 'Nhiệm vụ mới'),
+        title: getFieldValue(formData, 'taskTitle', 'taskTitle', 'New task'),
         deadline,
-        dueLabel: deadline ? `${formatShortDate(deadline)}${time ? `, ${time}` : ''}` : 'Chưa có hạn',
+        dueLabel: deadline ? `${formatShortDate(deadline)}${time ? `, ${time}` : ''}` : 'No due date',
         category: deadline === localDateKey(new Date()) ? 'today'
           : deadline && deadline < localDateKey(new Date()) ? 'overdue' : 'upcoming',
-        deal: selectedDeal && !selectedDeal.includes('Chọn') ? selectedDeal : 'Chưa liên kết',
-        customer: selectedDeal.includes('-') ? selectedDeal.split('-').pop().trim() : 'Chưa gán',
+        deal: dealSelect?.value && selectedDeal ? selectedDeal : 'Not linked',
+        customer: dealSelect?.value && selectedDeal.includes('-') ? selectedDeal.split('-').pop().trim() : 'Unassigned',
         owner: 'An',
         priority: getFieldValue(formData, 'taskPriority', 'taskPriority', 'warm'),
         completed: false
       };
 
       saveTaskBtn.disabled = true;
-      saveTaskBtn.textContent = 'Đang tạo...';
+      saveTaskBtn.textContent = 'Creating...';
 
       setTimeout(() => {
         Storage.addItem(Storage.KEYS.TASKS, newTask);
         saveTaskBtn.disabled = false;
-        saveTaskBtn.textContent = 'Tạo nhiệm vụ';
+        saveTaskBtn.textContent = 'Create task';
         addTaskForm.reset();
         closeModal(addTaskModal);
-        Toast.show('Nhiệm vụ mới đã được tạo!');
+        Toast.show('Task created.');
       }, 500);
     }
   });
@@ -719,7 +734,7 @@ if (saveEventBtn && addEventForm) {
     const formData = new FormData(addEventForm);
     const event = {
       id: Date.now().toString(),
-      title: getFieldValue(formData, 'eventTitle', 'eventTitle', 'Lịch hẹn mới'),
+      title: getFieldValue(formData, 'eventTitle', 'eventTitle', 'New appointment'),
       date: getFieldValue(formData, 'eventDate', 'eventDate'),
       startTime: getFieldValue(formData, 'eventStartTime', 'eventStartTime'),
       endTime: getFieldValue(formData, 'eventEndTime', 'eventEndTime'),
@@ -729,17 +744,17 @@ if (saveEventBtn && addEventForm) {
     };
 
     saveEventBtn.disabled = true;
-    saveEventBtn.textContent = 'Đang tạo...';
+    saveEventBtn.textContent = 'Creating...';
 
     setTimeout(() => {
       const events = Storage.get(Storage.KEYS.EVENTS);
       Storage.save(Storage.KEYS.EVENTS, [event, ...events]);
       saveEventBtn.disabled = false;
-      saveEventBtn.textContent = 'Tạo lịch hẹn';
+      saveEventBtn.textContent = 'Create appointment';
       addEventForm.reset();
       closeModal(addEventModal);
       window.dispatchEvent(new CustomEvent('flowcrm_event_created', { detail: event }));
-      Toast.show('Lịch hẹn mới đã được tạo!');
+      Toast.show('Appointment created.');
     }, 500);
   }, true);
 }
@@ -817,7 +832,7 @@ function handleDrop(e) {
     probability: undefined
   });
   draggedCard = sourceColumn = null;
-  Toast.show('Đã lưu giai đoạn của cơ hội.');
+  Toast.show('Deal stage saved.');
 }
 
 function updateColumnCounts() {
@@ -837,7 +852,7 @@ function updateColumnCounts() {
         emptyState.className = 'kanban-empty-state';
         cardList.appendChild(emptyState);
       }
-      emptyState.textContent = 'Chưa có cơ hội ở giai đoạn này';
+      emptyState.textContent = 'No deals in this stage';
     } else if (emptyState) {
       emptyState.remove();
     }
@@ -865,7 +880,7 @@ document.getElementById('tasksList')?.addEventListener('click', event => {
   const nextButton = [...document.querySelectorAll('.task-item')].find(item => item.dataset.id === id)?.querySelector('.task-complete');
   if (nextButton?.getClientRects().length) nextButton.focus();
   else document.querySelector('.task-filter.active')?.focus();
-  Toast.show(completed ? 'Đã hoàn thành nhiệm vụ.' : 'Đã mở lại nhiệm vụ.');
+  Toast.show(completed ? 'Task completed.' : 'Task reopened.');
 });
 
 // ========================================
@@ -898,9 +913,9 @@ if (tableSearch) {
 
 function getCustomerStatusLabel(status = 'active') {
   const labels = {
-    active: 'Đang hoạt động',
-    prospect: 'Tiềm năng',
-    inactive: 'Ngừng chăm sóc'
+    active: 'Active',
+    prospect: 'Prospect',
+    inactive: 'Inactive'
   };
   return labels[status] || status;
 }
@@ -919,7 +934,7 @@ function applyCustomerTableState() {
     row.hidden = !matchesSearch || !matchesFilter;
     if (!row.hidden) count++;
   });
-  document.getElementById('customerCount').textContent = count + ' khách hàng';
+  document.getElementById('customerCount').textContent = count + (count === 1 ? ' customer' : ' customers');
   document.getElementById('customersEmpty').hidden = count > 0;
 }
 
@@ -1012,23 +1027,23 @@ function initActionMenus() {
 
       let dropdown = this.nextElementSibling;
       if (!dropdown || !dropdown.classList.contains('dropdown-menu')) {
-        const canDelete = this.title === 'Xóa' || this.dataset.action === 'delete';
+        const canDelete = this.title === 'Delete' || this.dataset.action === 'delete';
 
         dropdown = document.createElement('div');
         dropdown.className = 'dropdown-menu show';
         dropdown.innerHTML = `
-          <div class="dropdown-item">Xem chi tiết</div>
-          <div class="dropdown-item">Chỉnh sửa</div>
-          ${canDelete ? '<div class="dropdown-item danger">Xóa</div>' : ''}
+          <div class="dropdown-item" data-action="view">View details</div>
+          <div class="dropdown-item" data-action="edit">Edit</div>
+          ${canDelete ? '<div class="dropdown-item danger" data-action="delete">Delete</div>' : ''}
         `;
         this.parentElement.appendChild(dropdown);
 
         dropdown.querySelectorAll('.dropdown-item').forEach(item => {
           item.addEventListener('click', (event) => {
             event.stopPropagation();
-            const action = item.textContent.trim();
+            const action = item.dataset.action;
 
-            if (action === 'Xóa') {
+            if (action === 'delete') {
               const card = menuBtn.closest('.kanban-card');
               const row = menuBtn.closest('tr');
               const task = menuBtn.closest('.task-item');
@@ -1049,9 +1064,9 @@ function initActionMenus() {
                 const tasks = Storage.get(Storage.KEYS.TASKS).filter(item => item.id !== task.dataset.id);
                 Storage.save(Storage.KEYS.TASKS, tasks);
               }
-              Toast.show('Đã xóa thành công!');
+              Toast.show('Deleted.');
             } else {
-              Toast.show('Chức năng đang phát triển...');
+              Toast.show('Coming soon.');
             }
 
             dropdown.classList.remove('show');
@@ -1074,31 +1089,31 @@ document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
 
     let dropdown = this.nextElementSibling;
     if (!dropdown || !dropdown.classList.contains('dropdown-menu')) {
-      const isDelete = this.innerHTML.includes('trash') || this.title === 'Xóa';
+      const isDelete = this.innerHTML.includes('trash') || this.title === 'Delete';
 
       dropdown = document.createElement('div');
       dropdown.className = 'dropdown-menu show';
       dropdown.innerHTML = `
-        <div class="dropdown-item">
+        <div class="dropdown-item" data-action="view">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
             <circle cx="12" cy="12" r="3"/>
           </svg>
-          Xem chi tiết
+          View details
         </div>
-        <div class="dropdown-item">
+        <div class="dropdown-item" data-action="edit">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
           </svg>
-          Chỉnh sửa
+          Edit
         </div>
         ${isDelete ? `
-        <div class="dropdown-item danger">
+        <div class="dropdown-item danger" data-action="delete">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
           </svg>
-          Xóa
+          Delete
         </div>` : ''}
       `;
       this.parentElement.appendChild(dropdown);
@@ -1106,9 +1121,9 @@ document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
       dropdown.querySelectorAll('.dropdown-item').forEach(item => {
         item.addEventListener('click', function(e) {
           e.stopPropagation();
-          const action = this.textContent.trim();
+          const action = this.dataset.action;
 
-          if (action === 'Xóa') {
+          if (action === 'delete') {
             const card = menuBtn.closest('.kanban-card');
             const row = menuBtn.closest('tr');
             if (card) {
@@ -1122,11 +1137,11 @@ document.querySelectorAll('.kanban-card-menu, .action-btn').forEach(menuBtn => {
               row.style.animation = 'fade-out 0.3s ease forwards';
               setTimeout(() => row.remove(), 300);
             }
-            Toast.show('Đã xóa thành công!');
-          } else if (action === 'Chỉnh sửa') {
-            Toast.show('Chức năng đang phát triển...');
-          } else if (action === 'Xem chi tiết') {
-            Toast.show('Chức năng đang phát triển...');
+            Toast.show('Deleted.');
+          } else if (action === 'edit') {
+            Toast.show('Coming soon.');
+          } else if (action === 'view') {
+            Toast.show('Coming soon.');
           }
           dropdown.classList.remove('show');
         });
@@ -1188,7 +1203,7 @@ document.addEventListener('keydown', (e) => {
 // ========================================
 document.addEventListener('keyup', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    Toast.show('Nhấn Ctrl+K để tìm kiếm nhanh', 2000);
+    Toast.show('Press Ctrl+K to search', 2000);
   }
 });
 
@@ -1220,7 +1235,7 @@ const UI = {
     const pending = document.getElementById('dashboardPendingTasks');
     if (pending) {
       const followUps = deals.filter(deal => deal.plan && !deal.plan.completed).length;
-      pending.textContent = (tasks.filter(task => !task.completed).length + followUps) + ' nhiệm vụ chưa hoàn thành';
+      pending.textContent = (tasks.filter(task => !task.completed).length + followUps) + ' open tasks';
     }
 
     // Render Recent Activities
@@ -1267,7 +1282,7 @@ const UI = {
             <p class="kanban-card-customer">${escapeText(deal.customer)}</p>
             <div class="kanban-card-footer">
               <strong class="kanban-card-value">${formatCurrency(deal.value || 0)}</strong>
-              <span class="kanban-card-probability" aria-label="Xác suất chốt ${meta.probability}%">${meta.probability}% chốt</span>
+              <span class="kanban-card-probability" aria-label="Win probability ${meta.probability}%">${meta.probability}% win</span>
             </div>
             <div class="kanban-card-next">
               <span>${escapeText(meta.nextAction)}</span>
@@ -1285,7 +1300,7 @@ const UI = {
     const tbody = document.getElementById('customerTableBody');
     if (tbody) {
       tbody.innerHTML = customers.map(customer => {
-        const name = customer.name || 'Khách hàng mới';
+        const name = customer.name || 'New customer';
         const status = ['active', 'prospect', 'inactive'].includes(customer.status) ? customer.status : 'active';
         return `
         <tr data-status="${status}">
@@ -1294,11 +1309,11 @@ const UI = {
             <div><div class="customer-name">${escapeText(name)}</div>
               <div class="customer-email">${escapeText(customer.email)}</div></div>
           </div></td>
-          <td data-label="Công ty">${escapeText(customer.company || 'Chưa có')}</td>
-          <td data-label="Điện thoại">${escapeText(customer.phone || 'Chưa có')}</td>
-          <td data-label="Trạng thái"><span class="status-badge ${status}">${getCustomerStatusLabel(status)}</span></td>
-          <td data-label="Cơ hội">${escapeText(customer.latestDeal || 'Chưa có cơ hội')}</td>
-          <td><button type="button" class="btn btn-secondary btn-sm" aria-label="Sửa ${escapeText(name)}" data-edit-customer="${escapeText(customer.id)}">Sửa</button></td>
+          <td data-label="Company">${escapeText(customer.company || 'Not set')}</td>
+          <td data-label="Phone">${escapeText(customer.phone || 'Not set')}</td>
+          <td data-label="Status"><span class="status-badge ${status}">${getCustomerStatusLabel(status)}</span></td>
+          <td data-label="Latest deal">${escapeText(customer.latestDeal || 'No deals yet')}</td>
+          <td><button type="button" class="btn btn-secondary btn-sm" aria-label="Edit ${escapeText(name)}" data-edit-customer="${escapeText(customer.id)}">Edit</button></td>
         </tr>`;
       }).join('');
       document.querySelectorAll('.filter-btn').forEach(button => {
@@ -1316,12 +1331,12 @@ const UI = {
 
     const tasks = Storage.get(Storage.KEYS.TASKS);
     const groups = [
-      { key: 'overdue', title: 'Quá hạn' },
-      { key: 'today', title: 'Hôm nay' },
-      { key: 'upcoming', title: 'Sắp tới' },
-      { key: 'completed', title: 'Đã hoàn thành' }
+      { key: 'overdue', title: 'Overdue' },
+      { key: 'today', title: 'Today' },
+      { key: 'upcoming', title: 'Upcoming' },
+      { key: 'completed', title: 'Completed' }
     ];
-    const priorityLabel = { hot: 'Cao', warm: 'Vừa', cold: 'Thấp', high: 'Cao', medium: 'Vừa', low: 'Thấp' };
+    const priorityLabel = { hot: 'High', warm: 'Medium', cold: 'Low', high: 'High', medium: 'Medium', low: 'Low' };
 
     taskList.innerHTML = groups.map(group => {
       const groupTasks = tasks.filter(task => (task.completed ? 'completed' : (task.category || 'upcoming')) === group.key);
@@ -1333,22 +1348,22 @@ const UI = {
           </div>
           ${groupTasks.map(task => `
             <div class="task-item task-${group.key} ${task.completed ? 'completed' : ''}" data-id="${escapeText(task.id)}">
-              <button class="task-complete" type="button" aria-pressed="${Boolean(task.completed)}" aria-label="${task.completed ? 'Mở lại' : 'Hoàn thành'} ${escapeText(task.title)}">
+              <button class="task-complete" type="button" aria-pressed="${Boolean(task.completed)}" aria-label="${task.completed ? 'Reopen' : 'Complete'} ${escapeText(task.title)}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
               </button>
               <div class="task-content">
-                <span class="task-title">${escapeText(task.title || 'Nhiệm vụ mới')}</span>
+                <span class="task-title">${escapeText(task.title || 'New task')}</span>
                 <div class="task-meta">
-                  ${task.deal && task.deal !== 'Chưa liên kết' ? `<span class="task-deal">${escapeText(task.deal)}</span>` : ''}
-                  ${task.customer && task.customer !== 'Chưa gán' && !task.deal?.includes(task.customer) ? `<span class="task-customer">${escapeText(task.customer)}</span>` : ''}
-                  ${task.owner ? `<span class="task-owner">Phụ trách: ${escapeText(task.owner)}</span>` : ''}
+                  ${task.deal && task.deal !== 'Not linked' ? `<span class="task-deal">${escapeText(task.deal)}</span>` : ''}
+                  ${task.customer && task.customer !== 'Unassigned' && !task.deal?.includes(task.customer) ? `<span class="task-customer">${escapeText(task.customer)}</span>` : ''}
+                  ${task.owner ? `<span class="task-owner">Owner: ${escapeText(task.owner)}</span>` : ''}
                 </div>
               </div>
               <div class="task-timing">
                 <span class="task-deadline ${group.key === 'overdue' ? 'overdue' : ''}">${escapeText(task.dueLabel || formatShortDate(task.deadline))}</span>
-                <span class="task-priority ${Object.hasOwn(priorityLabel, task.priority) ? task.priority : 'warm'}">Ưu tiên ${(priorityLabel[task.priority] || 'Vừa').toLowerCase()}</span>
+                <span class="task-priority ${Object.hasOwn(priorityLabel, task.priority) ? task.priority : 'warm'}">${priorityLabel[task.priority] || 'Medium'} priority</span>
               </div>
             </div>
           `).join('')}
@@ -1398,7 +1413,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const setMenu = (open, restoreFocus = false) => {
     sidebar.classList.toggle('open', open);
     sidebarToggle.setAttribute('aria-expanded', String(open));
-    sidebarToggle.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+    sidebarToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     main.inert = open;
     if (open) sidebar.querySelector('.nav-item[aria-current="page"], .nav-item')?.focus();
     else if (restoreFocus) sidebarToggle.focus();
@@ -1419,7 +1434,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const collapsed = !mobile.matches && localStorage.getItem('flowcrm_sidebar_collapsed') === 'true';
       sidebar.classList.toggle('collapsed', collapsed);
       sidebarToggleBtn.setAttribute('aria-expanded', String(!collapsed));
-      sidebarToggleBtn.setAttribute('aria-label', collapsed ? 'Mở rộng điều hướng' : 'Thu gọn điều hướng');
+      sidebarToggleBtn.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
     };
     sidebarToggleBtn.addEventListener('click', () => {
       localStorage.setItem('flowcrm_sidebar_collapsed', String(!sidebar.classList.contains('collapsed')));

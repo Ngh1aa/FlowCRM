@@ -1,21 +1,21 @@
 # FlowCRM
 
-## Cách chạy project
+## Running the project
 
-Đây là project web tĩnh, không cần build hay cài đặt dependencies.
+This is a static web project. There is no build step and no dependencies to install.
 
-### Cách 1: Mở trực tiếp bằng trình duyệt
-1. Mở file `FlowCRM/index.html` trong trình duyệt (Chrome, Firefox, Edge,...)
+### Option 1: Open directly in a browser
+1. Open `FlowCRM/index.html` in a browser (Chrome, Firefox, Edge, etc.)
 
-### Cách 2: Sử dụng local server (khuyến nghị)
-Sử dụng Python hoặc Node.js để chạy local server:
+### Option 2: Use a local server (recommended)
+Run a local server with Python or Node.js:
 
 **Python:**
 ```bash
 cd FlowCRM
 python -m http.server 8000
 ```
-Sau đó mở http://localhost:8000
+Then open http://localhost:8000
 
 **Node.js (npx):**
 ```bash
@@ -24,31 +24,31 @@ npx serve
 ```
 
 **VS Code:**
-Cài đặt extension "Live Server", click chuột phải vào `index.html` → "Open with Live Server"
+Install the "Live Server" extension, right-click `index.html` → "Open with Live Server"
 
-## Cấu trúc thư mục
+## Folder structure
 
 ```
 FlowCRM/
 ├── index.html        # Dashboard
-├── pipeline.html    # Pipeline deals (Kanban board)
-├── customers.html   # Quản lý khách hàng
-├── tasks.html      # Nhiệm vụ
-├── calendar.html   # Lịch hẹn
-├── messages.html   # Tin nhắn
+├── pipeline.html    # Deal pipeline (Kanban board)
+├── customers.html   # Customer management
+├── tasks.html      # Tasks
+├── calendar.html   # Appointments calendar
+├── messages.html   # Messages
 └── assets/
     ├── css/
-    │   ├── design-system.css  # Design system (biến CSS)
+    │   ├── design-system.css  # Design system (CSS variables)
     │   └── styles.css         # Custom styles
     └── js/
         └── app.js            # JavaScript
 ```
 
-## Tính năng
+## Features
 
-- **Dashboard**: KPI, biểu đồ pipeline, công việc hôm nay, hoạt động gần đây
-- **Pipeline**: Kanban board với drag & drop, tạo deal mới
-- **Khách hàng**: Bảng khách hàng, thêm/sửa/xóa, tìm kiếm
-- **Nhiệm vụ**: Danh sách nhiệm vụ theo ngày, filter, tạo mới
-- **Lịch hẹn**: Calendar view, danh sách lịch hẹn sắp tới
-- **Tin nhắn**: Chat interface, gửi tin nhắn mới
+- **Dashboard**: KPIs, pipeline chart, today's tasks, recent activity
+- **Pipeline**: Kanban board with drag and drop, create new deals
+- **Customers**: Customer table with add, edit, delete and search
+- **Tasks**: Tasks grouped by due date, with filters and task creation
+- **Calendar**: Calendar view and a list of upcoming appointments
+- **Messages**: Chat interface for sending new messages

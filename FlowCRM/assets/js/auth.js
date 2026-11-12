@@ -1,3 +1,18 @@
+// One-time reset of demo data seeded by the earlier Vietnamese build, so returning
+// visitors see the English sample data. Runs from app.js or auth.js, whichever loads first.
+(function migrateFlowcrmLocale() {
+  try {
+    if (localStorage.getItem('flowcrm_locale') === 'en') return;
+    ['flowcrm_deals', 'flowcrm_customers', 'flowcrm_tasks', 'flowcrm_events', 'flowcrm_messages', 'flowcrm_activities']
+      .forEach(key => localStorage.removeItem(key));
+    const session = JSON.parse(localStorage.getItem('flowcrm_session') || 'null');
+    if (session && (session.isDemo || session.userId === 'demo')) localStorage.removeItem('flowcrm_session');
+    localStorage.setItem('flowcrm_locale', 'en');
+  } catch (error) {
+    // Storage unavailable: nothing to migrate.
+  }
+})();
+
 /**
  * FlowCRM - Authentication Module
  * Client-side auth with localStorage and SHA-256 password hashing
@@ -45,13 +60,13 @@ const Auth = {
   },
 
   /**
-   * Get role display name in Vietnamese
+   * Get role display name
    */
   getRoleDisplayName(role) {
     const roles = {
-      admin: 'Quản trị viên',
-      manager: 'Quản lý',
-      sales: 'Nhân viên bán hàng'
+      admin: 'Admin',
+      manager: 'Manager',
+      sales: 'Sales rep'
     };
     return roles[role] || role;
   },
@@ -100,15 +115,15 @@ const Auth = {
    */
   async register(name, email, password) {
     if (!name || !email || !password) {
-      throw new Error('Vui lòng điền đầy đủ thông tin');
+      throw new Error('Please fill in all fields');
     }
 
     if (password.length < 6) {
-      throw new Error('Mật khẩu phải có ít nhất 6 ký tự');
+      throw new Error('Password must be at least 6 characters');
     }
 
     if (this.emailExists(email)) {
-      throw new Error('Email đã được sử dụng');
+      throw new Error('This email is already in use');
     }
 
     const users = this.getUsers();
@@ -138,17 +153,17 @@ const Auth = {
    */
   async login(email, password) {
     if (!email || !password) {
-      throw new Error('Vui lòng nhập email và mật khẩu');
+      throw new Error('Please enter your email and password');
     }
 
     const user = this.getUserByEmail(email);
     if (!user) {
-      throw new Error('Email hoặc mật khẩu không đúng');
+      throw new Error('Incorrect email or password');
     }
 
     const passwordHash = await this.hashPassword(password);
     if (passwordHash !== user.passwordHash) {
-      throw new Error('Email hoặc mật khẩu không đúng');
+      throw new Error('Incorrect email or password');
     }
 
     this.createSession(user);
@@ -230,7 +245,7 @@ const Auth = {
     this.createSession({
       id: 'demo',
       email: 'demo@flowcrm.vn',
-      name: 'Người dùng Demo',
+      name: 'Demo User',
       role: this.ROLES.ADMIN,
       avatar: 'DM'
     });
@@ -267,7 +282,7 @@ const Auth = {
     const users = this.getUsers();
     const index = users.findIndex(u => u.id === userId);
     if (index === -1) {
-      throw new Error('Không tìm thấy người dùng');
+      throw new Error('User not found');
     }
 
     if (updates.name) {
@@ -293,22 +308,22 @@ const Auth = {
    */
   async changePassword(userId, currentPassword, newPassword) {
     if (!currentPassword || !newPassword) {
-      throw new Error('Vui lòng điền đầy đủ thông tin');
+      throw new Error('Please fill in all fields');
     }
 
     if (newPassword.length < 6) {
-      throw new Error('Mật khẩu mới phải có ít nhất 6 ký tự');
+      throw new Error('New password must be at least 6 characters');
     }
 
     const users = this.getUsers();
     const index = users.findIndex(u => u.id === userId);
     if (index === -1) {
-      throw new Error('Không tìm thấy người dùng');
+      throw new Error('User not found');
     }
 
     const currentHash = await this.hashPassword(currentPassword);
     if (currentHash !== users[index].passwordHash) {
-      throw new Error('Mật khẩu hiện tại không đúng');
+      throw new Error('Current password is incorrect');
     }
 
     users[index].passwordHash = await this.hashPassword(newPassword);
@@ -321,15 +336,15 @@ const Auth = {
    */
   async addUser(name, email, password, role) {
     if (!name || !email || !password) {
-      throw new Error('Vui lòng điền đầy đủ thông tin');
+      throw new Error('Please fill in all fields');
     }
 
     if (!this.isAdmin()) {
-      throw new Error('Chỉ quản trị viên mới có quyền thêm người dùng');
+      throw new Error('Only admins can add users');
     }
 
     if (this.emailExists(email)) {
-      throw new Error('Email đã được sử dụng');
+      throw new Error('This email is already in use');
     }
 
     const users = this.getUsers();
@@ -353,13 +368,13 @@ const Auth = {
    */
   updateUser(userId, updates) {
     if (!this.isAdmin()) {
-      throw new Error('Chỉ quản trị viên mới có quyền sửa người dùng');
+      throw new Error('Only admins can edit users');
     }
 
     const users = this.getUsers();
     const index = users.findIndex(u => u.id === userId);
     if (index === -1) {
-      throw new Error('Không tìm thấy người dùng');
+      throw new Error('User not found');
     }
 
     if (updates.name) {
@@ -384,12 +399,12 @@ const Auth = {
    */
   deleteUser(userId) {
     if (!this.isAdmin()) {
-      throw new Error('Chỉ quản trị viên mới có quyền xóa người dùng');
+      throw new Error('Only admins can delete users');
     }
 
     const currentUser = this.getCurrentUser();
     if (currentUser?.id === userId) {
-      throw new Error('Bạn không thể xóa tài khoản của chính mình');
+      throw new Error('You cannot delete your own account');
     }
 
     const users = this.getUsers();

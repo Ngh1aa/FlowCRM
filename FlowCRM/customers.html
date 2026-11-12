@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowCRM - Khách hàng</title>
+  <title>FlowCRM - Customers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="customers-page">
-    <a class="skip-link" href="#mainContent">Tới nội dung</a>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -31,29 +31,29 @@
           </svg>
           <span>FlowCRM</span>
         </div>
-        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Thu gọn sidebar" aria-expanded="true">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Collapse navigation" aria-expanded="true">
           <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
         </button>
       </div>
 
-      <nav class="sidebar-nav" aria-label="Điều hướng chính">
+      <nav class="sidebar-nav" aria-label="Main navigation">
         <div class="nav-section">
-          <div class="nav-section-title">Tổng quan</div>
-          <a href="index.html" class="nav-item" aria-label="Tổng quan">
+          <div class="nav-section-title">Overview</div>
+          <a href="index.html" class="nav-item" aria-label="Dashboard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="3" width="7" height="9" rx="1"/>
               <rect x="14" y="3" width="7" height="5" rx="1"/>
               <rect x="14" y="12" width="7" height="9" rx="1"/>
               <rect x="3" y="16" width="7" height="5" rx="1"/>
             </svg>
-            <span>Tổng quan</span>
+            <span>Dashboard</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Quản lý</div>
+          <div class="nav-section-title">Sales</div>
           <a href="pipeline.html" class="nav-item" aria-label="Pipeline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 17V7m0 10l-3-3m3 3l3-3M21 7H3"/>
@@ -61,48 +61,48 @@
             <span>Pipeline</span>
 
           </a>
-          <a href="customers.html" class="nav-item active" aria-label="Khách hàng" aria-current="page">
+          <a href="customers.html" class="nav-item active" aria-label="Customers" aria-current="page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            <span>Khách hàng</span>
+            <span>Customers</span>
 
           </a>
-          <a href="messages.html" class="nav-item" aria-label="Tin nhắn">
+          <a href="messages.html" class="nav-item" aria-label="Messages">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
-            <span>Tin nhắn</span>
+            <span>Messages</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">Công việc</div>
-          <a href="tasks.html" class="nav-item" aria-label="Nhiệm vụ">
+          <div class="nav-section-title">Work</div>
+          <a href="tasks.html" class="nav-item" aria-label="Tasks">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
-            <span>Nhiệm vụ</span>
+            <span>Tasks</span>
 
           </a>
-          <a href="calendar.html" class="nav-item" aria-label="Lịch hẹn">
+          <a href="calendar.html" class="nav-item" aria-label="Calendar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <span>Lịch hẹn</span>
+            <span>Calendar</span>
           </a>
         </div>
 
         <div class="nav-section">
-          <div class="nav-section-title">KHÁC</div>
-          <a href="reports.html" class="nav-item" aria-label="Báo cáo">
+          <div class="nav-section-title">More</div>
+          <a href="reports.html" class="nav-item" aria-label="Reports">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -110,14 +110,14 @@
               <line x1="16" y1="17" x2="8" y2="17"/>
               <polyline points="10 9 9 9 8 9"/>
             </svg>
-            <span>Báo cáo</span>
+            <span>Reports</span>
           </a>
-          <a href="settings.html" class="nav-item" aria-label="Cài đặt">
+          <a href="settings.html" class="nav-item" aria-label="Settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
-            <span>Cài đặt</span>
+            <span>Settings</span>
           </a>
         </div>
       </nav>
@@ -127,7 +127,7 @@
           <div class="user-avatar">AN</div>
           <div class="user-info">
             <div class="user-name">An Nguyen</div>
-            <div class="user-role">Quản lý bán hàng</div>
+            <div class="user-role">Sales manager</div>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
       <header class="topbar">
         <div class="topbar-left">
           <div>
-            <h1 class="page-title">Khách hàng</h1>
+            <h1 class="page-title">Customers</h1>
           </div>
         </div>
         <div class="topbar-right">
@@ -147,14 +147,14 @@
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.35-4.35"/>
             </svg>
-            <input type="text" placeholder="Tìm khách hàng" id="searchInput" aria-label="Tìm khách hàng">
+            <input type="text" placeholder="Search customers" id="searchInput" aria-label="Search customers">
           </div>
           <button class="btn btn-primary" id="addCustomerBtn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-            Thêm khách hàng
+            Add customer
           </button>
         </div>
       </header>
@@ -166,40 +166,40 @@
           <div class="table-toolbar">
             <div class="toolbar-left">
               <div class="filter-group">
-                <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">Tất cả <span class="filter-count">48</span></button>
-                <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Đang hoạt động <span class="filter-count">32</span></button>
-                <button type="button" class="filter-btn" data-filter="prospect" aria-pressed="false">Tiềm năng <span class="filter-count">12</span></button>
-                <button type="button" class="filter-btn" data-filter="inactive" aria-pressed="false">Ngừng chăm sóc <span class="filter-count">4</span></button>
+                <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All <span class="filter-count">48</span></button>
+                <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active <span class="filter-count">32</span></button>
+                <button type="button" class="filter-btn" data-filter="prospect" aria-pressed="false">Prospect <span class="filter-count">12</span></button>
+                <button type="button" class="filter-btn" data-filter="inactive" aria-pressed="false">Inactive <span class="filter-count">4</span></button>
               </div>
             </div>
             </div>
           <table class="customer-table" id="customerTable">
             <thead>
               <tr>
-                <th class="sortable" data-sort="name" scope="col"><button class="sort-control" type="button"><span>Tên khách hàng</span>
+                <th class="sortable" data-sort="name" scope="col"><button class="sort-control" type="button"><span>Customer name</span>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
                     <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
                   </svg>
                 </button></th>
-                <th class="sortable" data-sort="company" scope="col"><button class="sort-control" type="button"><span>Công ty</span>
+                <th class="sortable" data-sort="company" scope="col"><button class="sort-control" type="button"><span>Company</span>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
                     <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
                   </svg>
                 </button></th>
-                <th>Điện thoại</th>
-                <th class="sortable" data-sort="status" scope="col"><button class="sort-control" type="button"><span>Trạng thái</span>
+                <th>Phone</th>
+                <th class="sortable" data-sort="status" scope="col"><button class="sort-control" type="button"><span>Status</span>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sort-icon">
                     <path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>
                   </svg>
                 </button></th>
-                <th>Cơ hội gần nhất</th>
-                <th>Thao tác</th>
+                <th>Latest deal</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="customerTableBody"></tbody>
           </table>
 
-          <p id="customersEmpty" class="workspace-empty" role="status" hidden>Không tìm thấy khách hàng.</p>
+          <p id="customersEmpty" class="workspace-empty" role="status" hidden>No customers found.</p>
           <div id="customerCount" class="table-footer" role="status"></div>
         </div>
       </div>
@@ -210,8 +210,8 @@
   <div class="modal-overlay" id="addCustomerModal">
     <div class="modal">
       <div class="modal-header">
-        <h2 class="modal-title">Thêm khách hàng mới</h2>
-        <button class="modal-close" id="closeModalBtn" aria-label="Đóng hộp thoại">
+        <h2 class="modal-title">Add customer</h2>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close dialog">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -221,7 +221,7 @@
       <div class="modal-body">
         <form id="addCustomerForm">
           <div class="form-group">
-            <label class="form-label required" for="customerName">Họ và tên</label>
+            <label class="form-label required" for="customerName">Full name</label>
             <input type="text" class="form-input" id="customerName" required maxlength="100">
           </div>
 
@@ -231,35 +231,35 @@
               <input type="email" class="form-input" id="customerEmail" placeholder="email@company.com" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="customerPhone">Điện thoại</label>
+              <label class="form-label" for="customerPhone">Phone</label>
               <input type="tel" class="form-input" id="customerPhone" placeholder="0912 345 678">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="customerCompany">Công ty</label>
-              <input type="text" class="form-input" id="customerCompany" placeholder="Tên công ty">
+              <label class="form-label" for="customerCompany">Company</label>
+              <input type="text" class="form-input" id="customerCompany" placeholder="Company name">
             </div>
             <div class="form-group">
-              <label class="form-label" for="customerStatus">Trạng thái</label>
+              <label class="form-label" for="customerStatus">Status</label>
               <select class="form-select" id="customerStatus">
-                <option value="active">Đang hoạt động</option>
-                <option value="prospect">Tiềm năng</option>
-                <option value="inactive">Ngừng chăm sóc</option>
+                <option value="active">Active</option>
+                <option value="prospect">Prospect</option>
+                <option value="inactive">Inactive</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="customerNotes">Ghi chú</label>
-            <textarea class="form-input" id="customerNotes" rows="3" placeholder="Thông tin bổ sung..."></textarea>
+            <label class="form-label" for="customerNotes">Notes</label>
+            <textarea class="form-input" id="customerNotes" rows="3" placeholder="Additional details..."></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" id="cancelBtn">Hủy</button>
-        <button class="btn btn-primary" id="saveCustomerBtn">Lưu khách hàng</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveCustomerBtn">Save customer</button>
       </div>
     </div>
   </div>
@@ -278,7 +278,7 @@
           <div class="user-name">${escapeText(user.name)}</div>
           <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
         </div>
-        <button class="logout-btn" id="logoutBtn" title="Đăng xuất" aria-label="Đăng xuất">
+        <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>
