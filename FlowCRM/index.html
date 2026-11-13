@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -281,7 +282,7 @@
                       <div class="deal-stage-indicator qualification"></div>
                       <div class="list-item-content">
                         <span class="list-item-title">Website Redesign</span>
-                        <span class="list-item-subtitle">ABC Company</span>
+                        <span class="list-item-subtitle">Lotus Bay Hotels</span>
                       </div>
                       <div class="deal-meta">
                         <span class="deal-stage-badge qualification">Negotiation</span>
@@ -293,7 +294,7 @@
                       <div class="deal-stage-indicator closed"></div>
                       <div class="list-item-content">
                         <span class="list-item-title">Mobile App Development</span>
-                        <span class="list-item-subtitle">Tech Solutions</span>
+                        <span class="list-item-subtitle">Brightline Logistics</span>
                       </div>
                       <div class="deal-meta">
                         <span class="deal-stage-badge won">Won</span>
@@ -304,7 +305,7 @@
                       <div class="deal-stage-indicator proposal"></div>
                       <div class="list-item-content">
                         <span class="list-item-title">CRM Implementation</span>
-                        <span class="list-item-subtitle">Fashion Store, 5 days ago</span>
+                        <span class="list-item-subtitle">Indigo Thread, 5 days ago</span>
                       </div>
                       <div class="deal-meta">
                         <span class="deal-stage-badge proposal">Proposal</span>
@@ -329,7 +330,7 @@
                   <div class="task-item urgent">
                     <div class="task-checkbox"></div>
                     <div class="task-content">
-                      <span class="task-title">Call ABC Company</span>
+                      <span class="task-title">Call Lotus Bay Hotels</span>
                       <div class="task-meta">
                         <span>09:00</span>
                         <span class="task-priority hot">Urgent</span>
@@ -343,7 +344,7 @@
                       </svg>
                     </div>
                     <div class="task-content">
-                      <span class="task-title">Send quote to Tech Solutions</span>
+                      <span class="task-title">Send quote to Brightline Logistics</span>
                       <div class="task-meta">
                         <span>10:30</span>
                       </div>
@@ -361,7 +362,7 @@
                   <div class="task-item normal">
                     <div class="task-checkbox"></div>
                     <div class="task-content">
-                      <span class="task-title">Follow up on Design Co deal</span>
+                      <span class="task-title">Follow up on Mai Anh Interiors deal</span>
                       <div class="task-meta">
                         <span>16:30</span>
                       </div>
@@ -381,22 +382,22 @@
                 <div class="customers-list">
                   <div class="list-item">
                     <div class="list-item-content">
-                      <span class="list-item-title">Alpha Corporation</span>
-                      <span class="list-item-subtitle">Manufacturing, this week</span>
+                      <span class="list-item-title">Northstar Pharma</span>
+                      <span class="list-item-subtitle">Pharmaceuticals, this week</span>
                     </div>
                     <span class="list-item-meta">New</span>
                   </div>
                   <div class="list-item">
                     <div class="list-item-content">
-                      <span class="list-item-title">Beta Industries</span>
-                      <span class="list-item-subtitle">Technology, 3 days ago</span>
+                      <span class="list-item-title">Harbor Fintech</span>
+                      <span class="list-item-subtitle">Financial services, 3 days ago</span>
                     </div>
                     <span class="list-item-meta">Prospect</span>
                   </div>
                   <div class="list-item">
                     <div class="list-item-content">
-                      <span class="list-item-title">Gamma Solutions</span>
-                      <span class="list-item-subtitle">Finance, 1 week ago</span>
+                      <span class="list-item-title">Riverside Retail</span>
+                      <span class="list-item-subtitle">Retail, 1 week ago</span>
                     </div>
                     <span class="list-item-meta">Prospect</span>
                   </div>
@@ -481,10 +482,10 @@
               <label class="form-label" for="opportunityCustomer">Customer</label>
               <select class="form-select" id="opportunityCustomer" name="customerName">
                 <option value="">Select a customer...</option>
-                <option value="ABC Company">ABC Company</option>
-                <option value="Tech Solutions">Tech Solutions</option>
-                <option value="Design Co">Design Co</option>
-                <option value="Fashion Store">Fashion Store</option>
+                <option value="Lotus Bay Hotels">Lotus Bay Hotels</option>
+                <option value="Brightline Logistics">Brightline Logistics</option>
+                <option value="Mai Anh Interiors">Mai Anh Interiors</option>
+                <option value="Indigo Thread">Indigo Thread</option>
               </select>
             </div>
             <div class="form-group">
@@ -523,7 +524,7 @@
         <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
           <div class="user-name">${escapeText(user.name)}</div>
-          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role, user)}</div>
         </div>
         <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

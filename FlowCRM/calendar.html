@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="calendar-page">
@@ -240,7 +241,7 @@
                   <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Call Alpha Corp</span>
+                  <span class="event-title">Call Northstar Pharma</span>
                   <span class="event-slot">10:00 - 10:30</span>
                   <span class="event-context">Deal: Cloud Migration</span>
                 </div>
@@ -251,7 +252,7 @@
                   <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Send contract to Delta Inc</span>
+                  <span class="event-title">Send contract to Cedarline Media</span>
                   <span class="event-slot">09:00 - 09:30</span>
                   <span class="event-context">Deal: Marketing Automation</span>
                 </div>
@@ -262,9 +263,9 @@
                   <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Demo for Epsilon Co</span>
+                  <span class="event-title">Product walkthrough for Kestrel Manufacturing</span>
                   <span class="event-slot">14:00 - 15:00</span>
-                  <span class="event-context">Lead: Epsilon Co</span>
+                  <span class="event-context">Lead: Kestrel Manufacturing</span>
                 </div>
               </div>
               <div class="event-item" data-id="5">
@@ -273,7 +274,7 @@
                   <span class="event-month">May</span>
                 </div>
                 <div class="event-content">
-                  <span class="event-title">Review Gamma Ltd proposal</span>
+                  <span class="event-title">Review Riverside Retail proposal</span>
                   <span class="event-slot">11:00 - 12:00</span>
                   <span class="event-context">Deal: Data Analytics Suite</span>
                 </div>
@@ -313,10 +314,10 @@
               <label class="form-label" for="eventCustomer">Customer</label>
               <select class="form-select" id="eventCustomer">
                 <option value="">Select a customer...</option>
-                <option value="1">ABC Company</option>
-                <option value="2">Tech Solutions</option>
-                <option value="3">Alpha Corp</option>
-                <option value="4">Design Co</option>
+                <option value="1">Lotus Bay Hotels</option>
+                <option value="2">Brightline Logistics</option>
+                <option value="3">Northstar Pharma</option>
+                <option value="4">Mai Anh Interiors</option>
               </select>
             </div>
           </div>
@@ -379,10 +380,10 @@
     // Event data with CRM context
     const eventsData = {
       12: [{ title: 'Q2 sales process meeting', time: '14:00', type: 'internal' }],
-      13: [{ title: 'Call Alpha Corp', time: '10:00', type: 'deal', context: 'Cloud Migration' }],
-      15: [{ title: 'Delta contract', time: '09:00', type: 'deal', context: 'Marketing Automation' }],
-      18: [{ title: 'Demo Epsilon', time: '14:00', type: 'lead', context: 'Epsilon Co' }],
-      20: [{ title: 'Gamma review', time: '11:00', type: 'deal', context: 'Data Analytics Suite' }]
+      13: [{ title: 'Call Northstar Pharma', time: '10:00', type: 'deal', context: 'Cloud Migration' }],
+      15: [{ title: 'Cedarline contract', time: '09:00', type: 'deal', context: 'Marketing Automation' }],
+      18: [{ title: 'Kestrel walkthrough', time: '14:00', type: 'lead', context: 'Kestrel Manufacturing' }],
+      20: [{ title: 'Riverside review', time: '11:00', type: 'deal', context: 'Data Analytics Suite' }]
     };
 
     const savedEvents = Storage.get(Storage.KEYS.EVENTS);
@@ -721,7 +722,7 @@
         <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
           <div class="user-name">${escapeText(user.name)}</div>
-          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role, user)}</div>
         </div>
         <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

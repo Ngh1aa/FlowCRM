@@ -7,10 +7,14 @@
   <script src="assets/js/auth.js"></script>
   <script>
     const requestedPage = new URLSearchParams(window.location.search).get('redirect') || '';
-    const demoPages = ['index.html', 'pipeline.html', 'calendar.html', 'tasks.html', 'customers.html', 'messages.html', 'reports.html', 'settings.html'];
-    const demoDestination = demoPages.includes(requestedPage.split(/[?#]/, 1)[0]) ? requestedPage : '';
-    const destination = demoDestination || 'index.html';
-    if (demoDestination || Auth.isAuthenticated()) {
+    const workPages = ['index.html', 'pipeline.html', 'calendar.html', 'tasks.html', 'customers.html', 'messages.html', 'reports.html', 'settings.html'];
+    const requestedDestination = workPages.includes(requestedPage.split(/[?#]/, 1)[0]) ? requestedPage : '';
+    const destination = requestedDestination || 'index.html';
+    // Shared deep links keep working for visitors who have not signed out.
+    if (requestedDestination && !Auth.isAuthenticated() && !Auth.wasSignedOut()) {
+      Auth.signInDefault();
+    }
+    if (Auth.isAuthenticated()) {
       window.location.replace(destination);
     }
   </script>
@@ -18,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body class="auth-page">
@@ -67,12 +72,9 @@
           <span>or</span>
         </div>
 
-        <button type="button" class="btn btn-secondary btn-full" id="demoLoginBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-          <span>Open demo</span>
+        <button type="button" class="btn btn-secondary btn-full" id="continueAsBtn">
+          <span class="continue-avatar" id="continueAsAvatar" aria-hidden="true">AN</span>
+          <span id="continueAsLabel">Continue as An Nguyen</span>
         </button>
       </form>
 
@@ -133,13 +135,18 @@
       }
     });
 
-    // Demo login button - bypass auth for HR/demo purposes
-    const demoLoginBtn = document.getElementById('demoLoginBtn');
-    if (demoLoginBtn) {
-      demoLoginBtn.addEventListener('click', () => {
-        Auth.startDemo();
+    // One-click sign-in for the remembered workspace account
+    const continueAsBtn = document.getElementById('continueAsBtn');
+    const rememberedUser = Auth.getDefaultUser();
+    if (rememberedUser) {
+      document.getElementById('continueAsLabel').textContent = 'Continue as ' + rememberedUser.name;
+      document.getElementById('continueAsAvatar').textContent = rememberedUser.avatar;
+      continueAsBtn.addEventListener('click', () => {
+        Auth.signInDefault();
         window.location.replace(destination);
       });
+    } else {
+      continueAsBtn.hidden = true;
     }
   </script>
 </body>

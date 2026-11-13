@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="settings-page">
@@ -204,7 +205,7 @@
         <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
           <div class="user-name">${escapeText(user.name)}</div>
-          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role, user)}</div>
         </div>
         <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -284,7 +285,7 @@
       container.innerHTML = `
         <nav class="settings-nav" aria-label="Settings sections">
           <a href="#ho-so">Profile</a>
-          ${user.isDemo ? '' : '<a href="#bao-mat">Password</a>'}
+          <a href="#bao-mat">Password</a>
           <a href="#giao-dien">Appearance</a>
           <a href="#cong-viec">Workspace</a>
           ${isAdmin ? '<a href="#du-lieu">Data</a>' : ''}
@@ -295,14 +296,8 @@
           <h2 id="profileHeading">Profile</h2>
           <div class="settings-identity">
             <span class="user-avatar" id="settingsAvatar" aria-hidden="true">${escapeText(user.avatar)}</span>
-            <div><strong id="settingsName">${escapeText(user.name)}</strong><span>${Auth.getRoleDisplayName(user.role)}</span></div>
-            ${user.isDemo ? '<span class="role-badge">Demo</span>' : ''}
+            <div><strong id="settingsName">${escapeText(user.name)}</strong><span>${Auth.getRoleDisplayName(user.role, user)}</span></div>
           </div>
-          ${user.isDemo ? `
-            <dl class="settings-profile-data">
-              <div><dt>Email</dt><dd>${escapeText(user.email)}</dd></div>
-              <div><dt>Profile</dt><dd>Read-only</dd></div>
-            </dl>` : `
             <form id="editProfileForm" class="form">
               <div class="form-group">
                 <label class="form-label" for="profileName">Full name</label>
@@ -314,11 +309,10 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="profileRole">Role</label>
-                <input type="text" id="profileRole" class="form-input" value="${Auth.getRoleDisplayName(user.role)}" readonly>
+                <input type="text" id="profileRole" class="form-input" value="${Auth.getRoleDisplayName(user.role, user)}" readonly>
               </div>
               <button type="submit" class="btn btn-primary">Save profile</button>
             </form>
-          `}
           <div class="settings-summary">
             <h3>Default views</h3>
             <dl class="settings-profile-data" id="settingsViewSummary"></dl>
@@ -326,7 +320,6 @@
           </div>
         </section>
 
-        ${!user.isDemo ? `
         <section class="settings-section" data-settings-page="bao-mat" aria-labelledby="passwordHeading" hidden>
           <h2 id="passwordHeading">Password</h2>
             <form id="changePasswordForm" class="form">
@@ -346,13 +339,12 @@
             </form>
         </section>
 
-        ` : ''}
         <section class="settings-section" data-settings-page="giao-dien" aria-labelledby="appearanceHeading" hidden>
           <h2 id="appearanceHeading">Appearance</h2>
           <div class="settings-option">
             <div>
               <label for="sidebarCollapseDefault">Collapse sidebar</label>
-              <p class="settings-description" id="sidebarSettingHelp">Show icons only on desktop. Saved automatically in this browser.</p>
+              <p class="settings-description" id="sidebarSettingHelp">Show icons only on desktop. Saved automatically.</p>
             </div>
             <input class="settings-switch" type="checkbox" role="switch" id="sidebarCollapseDefault" aria-describedby="sidebarSettingHelp" ${localStorage.getItem('flowcrm_sidebar_collapsed') === 'true' ? 'checked' : ''}>
           </div>
@@ -373,7 +365,7 @@
         ${isAdmin ? `
         <section class="settings-section" data-settings-page="du-lieu" aria-labelledby="dataHeading" hidden>
           <h2 id="dataHeading">Data</h2>
-          <h3 class="settings-subheading">Records in this browser</h3>
+          <h3 class="settings-subheading">Workspace records</h3>
           <dl class="settings-profile-data" id="settingsDataCounts"></dl>
           <div class="settings-data-export">
             <h3>Download a copy</h3>
@@ -512,7 +504,7 @@
     function attachFormHandlers() {
       // Edit profile form
       const editProfileForm = document.getElementById('editProfileForm');
-      if (editProfileForm && !Auth.getCurrentUser().isDemo) {
+      if (editProfileForm) {
         editProfileForm.addEventListener('submit', async (e) => {
           e.preventDefault();
           const user = Auth.getCurrentUser();
@@ -561,7 +553,7 @@
       if (!tbody) return;
 
       const users = Auth.getUsers();
-      document.getElementById('settingsUserCount').textContent = users.length + (users.length === 1 ? ' account' : ' accounts') + ' stored in this browser';
+      document.getElementById('settingsUserCount').textContent = users.length + (users.length === 1 ? ' account' : ' accounts') + ' in this workspace';
       document.getElementById('userTableWrap').hidden = users.length === 0;
       document.getElementById('usersEmpty').hidden = users.length > 0;
       const currentUser = Auth.getCurrentUser();
@@ -575,7 +567,7 @@
             </div>
           </td>
           <td data-label="Email">${escapeText(user.email)}</td>
-          <td data-label="Role"><span class="role-badge">${Auth.getRoleDisplayName(user.role)}</span></td>
+          <td data-label="Role"><span class="role-badge">${Auth.getRoleDisplayName(user.role, user)}</span></td>
           <td class="settings-user-actions">
             <button class="btn btn-ghost btn-sm" aria-label="Edit user" onclick="editUser('${user.id}')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">

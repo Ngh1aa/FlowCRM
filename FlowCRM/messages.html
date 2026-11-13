@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="messages-page">
@@ -173,7 +174,7 @@
               <span class="conversation-avatar">AC</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Alpha Corp</span>
+                  <span class="conversation-name">Northstar Pharma</span>
                   <span class="conversation-time">10:30</span>
                 </span>
                 <span class="conversation-preview">Thanks! We'll review it and get back to you soon...</span>
@@ -185,10 +186,10 @@
               <span class="conversation-avatar">TS</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Tech Solutions</span>
+                  <span class="conversation-name">Brightline Logistics</span>
                   <span class="conversation-time">Yesterday</span>
                 </span>
-                <span class="conversation-preview">The app deal is looking good. Can we book the demo now...</span>
+                <span class="conversation-preview">The app deal is looking good. Can we book the walkthrough now...</span>
               </span>
             </button>
 
@@ -196,7 +197,7 @@
               <span class="conversation-avatar">DC</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Design Co</span>
+                  <span class="conversation-name">Mai Anh Interiors</span>
                   <span class="conversation-time">Yesterday</span>
                 </span>
                 <span class="conversation-preview">Mai Linh has a few more questions about the CRM integration timeline...</span>
@@ -207,10 +208,10 @@
               <span class="conversation-avatar">GL</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Gamma Ltd</span>
+                  <span class="conversation-name">Riverside Retail</span>
                   <span class="conversation-time">2 days ago</span>
                 </span>
-                <span class="conversation-preview">Hoàng Diệp confirmed she will join the demo next week...</span>
+                <span class="conversation-preview">Hoàng Diệp confirmed she will join the walkthrough next week...</span>
               </span>
             </button>
 
@@ -218,7 +219,7 @@
               <span class="conversation-avatar">BI</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Beta Industries</span>
+                  <span class="conversation-name">Harbor Fintech</span>
                   <span class="conversation-time">3 days ago</span>
                 </span>
                 <span class="conversation-preview">Vũ Nam received the audit proposal and is reviewing it...</span>
@@ -229,10 +230,10 @@
               <span class="conversation-avatar">DI</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Delta Inc</span>
+                  <span class="conversation-name">Cedarline Media</span>
                   <span class="conversation-time">4 days ago</span>
                 </span>
-                <span class="conversation-preview">Delta is reviewing the automation rollout terms...</span>
+                <span class="conversation-preview">Cedarline is reviewing the automation rollout terms...</span>
               </span>
             </button>
 
@@ -240,10 +241,10 @@
               <span class="conversation-avatar">EC</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Epsilon Co</span>
+                  <span class="conversation-name">Kestrel Manufacturing</span>
                   <span class="conversation-time">Last week</span>
                 </span>
-                <span class="conversation-preview">The inventory system demo is confirmed for Thursday...</span>
+                <span class="conversation-preview">The inventory system walkthrough is confirmed for Thursday...</span>
               </span>
             </button>
 
@@ -251,7 +252,7 @@
               <span class="conversation-avatar">ZG</span>
               <span class="conversation-content">
                 <span class="conversation-header">
-                  <span class="conversation-name">Zeta Group</span>
+                  <span class="conversation-name">Tamarind Foods</span>
                   <span class="conversation-time">Last week</span>
                 </span>
                 <span class="conversation-preview">We have sent over the SEO campaign handover notes...</span>
@@ -269,7 +270,7 @@
                 <button id="chatBack" type="button" class="btn btn-secondary chat-back">Back</button>
                 <div class="chat-avatar">AC</div>
                 <div class="chat-info">
-                  <span class="chat-name">Alpha Corp</span>
+                  <span class="chat-name">Northstar Pharma</span>
                   <span class="chat-status">Online</span>
                 </div>
               </div>
@@ -377,12 +378,12 @@
             <label class="form-label required" for="messageRecipient">Recipient</label>
             <select class="form-select" id="messageRecipient" required>
               <option value="">Select a customer...</option>
-              <option value="1">Alpha Corp - Phạm Hương</option>
-              <option value="2">Tech Solutions - Trần Hoàng</option>
-              <option value="3">Design Co - Mai Linh</option>
-              <option value="4">Fashion Store - Lê Hùng</option>
-              <option value="5">Gamma Ltd - Hoàng Diệp</option>
-              <option value="6">Beta Industries - Vũ Nam</option>
+              <option value="1">Northstar Pharma - Phạm Hương</option>
+              <option value="2">Brightline Logistics - Trần Hoàng</option>
+              <option value="3">Mai Anh Interiors - Mai Linh</option>
+              <option value="4">Indigo Thread - Lê Hùng</option>
+              <option value="5">Riverside Retail - Hoàng Diệp</option>
+              <option value="6">Harbor Fintech - Vũ Nam</option>
             </select>
           </div>
 
@@ -505,7 +506,7 @@
         <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
           <div class="user-name">${escapeText(user.name)}</div>
-          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role, user)}</div>
         </div>
         <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

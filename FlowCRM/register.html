@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/shell.js" defer></script>
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body class="auth-page">
@@ -71,11 +72,6 @@
     // Check if already logged in
     if (Auth.isAuthenticated()) {
       window.location.href = 'index.html';
-    }
-
-    // Check if users already exist - redirect to login if so
-    if (Auth.getUsers().length > 0) {
-      window.location.href = 'login.html';
     }
 
     const registerForm = document.getElementById('registerForm');

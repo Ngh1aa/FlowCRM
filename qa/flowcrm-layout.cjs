@@ -108,15 +108,15 @@ async function inspectActions(browser) {
     await expect(page.getByRole('button', { name: 'Reopen QA task' })).toHaveAttribute('aria-pressed', 'true');
 
     await go('messages');
-    const tech = page.getByRole('button', { name: /Tech Solutions/ });
+    const tech = page.getByRole('button', { name: /Brightline Logistics/ });
     await tech.tap();
-    await expect(page.locator('.chat-name')).toHaveText('Tech Solutions');
+    await expect(page.locator('.chat-name')).toHaveText('Brightline Logistics');
     await page.getByRole('textbox', { name: 'Message', exact: true }).fill('QA message');
     await page.getByRole('button', { name: 'Send message' }).tap();
     await expect(page.getByRole('log')).toContainText('QA message');
     await page.getByRole('button', { name: 'Back' }).tap();
     await expect(tech).toBeFocused();
-    await page.getByRole('button', { name: /Alpha Corp/ }).tap();
+    await page.getByRole('button', { name: /Northstar Pharma/ }).tap();
     await expect(page.getByRole('log')).not.toContainText('QA message');
     await page.reload({ waitUntil: 'domcontentloaded' });
     await tech.tap();
@@ -137,7 +137,8 @@ async function inspectActions(browser) {
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(sidebarSwitch).toBeChecked();
     await settingsNav.getByRole('link', { name: 'Users' }).click();
-    await expect(page.getByText('No users created yet.')).toBeVisible();
+    await expect(page.getByText('4 accounts in this workspace')).toBeVisible();
+    await expect(page.locator('#userTableBody')).toContainText('Minh Tran');
     await page.goBack({ waitUntil: 'domcontentloaded' });
     await expect(sidebarSwitch).toBeVisible();
     await settingsNav.getByRole('link', { name: 'Users' }).click();

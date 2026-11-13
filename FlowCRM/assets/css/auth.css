@@ -321,3 +321,20 @@
 .auth-page :is(a, button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .checkbox-label input { display: inline-block; accent-color: var(--accent); }
 .checkbox-label .checkbox-custom { display: none; }
+
+/* Credit line sits under the card */
+.auth-page { flex-direction: column; gap: var(--space-4); }
+.auth-page .product-credit { padding: 0; }
+
+.continue-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-inverse);
+  background: var(--accent);
+}

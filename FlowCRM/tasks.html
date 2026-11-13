@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/design-system.css" />
+    <script src="assets/js/shell.js" defer></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body class="tasks-page">
@@ -326,12 +327,12 @@
               <label class="form-label" for="taskDeal">Related deal</label>
               <select class="form-select" id="taskDeal">
                 <option value="">Select a deal...</option>
-                <option value="1">Website Redesign - ABC Company</option>
+                <option value="1">Website Redesign - Lotus Bay Hotels</option>
                 <option value="2">
-                  Mobile App Development - Tech Solutions
+                  Mobile App Development - Brightline Logistics
                 </option>
-                <option value="3">CRM Integration - Design Co</option>
-                <option value="4">Cloud Migration - Alpha Corp</option>
+                <option value="3">CRM Integration - Mai Anh Interiors</option>
+                <option value="4">Cloud Migration - Northstar Pharma</option>
               </select>
             </div>
 
@@ -366,7 +367,7 @@
         <div class="user-avatar">${escapeText(user.avatar)}</div>
         <div class="user-info">
           <div class="user-name">${escapeText(user.name)}</div>
-          <div class="user-role">${Auth.getRoleDisplayName(user.role)}</div>
+          <div class="user-role">${Auth.getRoleDisplayName(user.role, user)}</div>
         </div>
         <button class="logout-btn" id="logoutBtn" title="Log out" aria-label="Log out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -84,9 +84,10 @@ Option 2 – Use Live Server in VS Code:
 
 ### Logging in
 
-Use the demo account or sign up for a new account:
+The workspace opens signed in as An Nguyen (Sales manager). After logging out, use **Continue as An Nguyen**, sign in with `an.nguyen@flowcrm.vn` / `flowcrm2026`, or sign up for a new account:
 - Log in page: `login.html`
 - Sign up page: `register.html`
+- Workspace tools (Reset demo data): add `?demo=1` to any page URL; `?demo=0` hides them
 
 ---
 

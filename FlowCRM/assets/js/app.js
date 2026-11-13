@@ -1,14 +1,15 @@
 // FlowCRM - Main Application JavaScript
-// One-time reset of demo data seeded by the earlier Vietnamese build, so returning
-// visitors see the English sample data. Runs from app.js or auth.js, whichever loads first.
-(function migrateFlowcrmLocale() {
+// One-time reset of workspace records seeded by earlier builds, so returning visitors
+// see the current English workspace. Runs from app.js or auth.js, whichever loads first.
+(function migrateFlowcrmSeed() {
   try {
-    if (localStorage.getItem('flowcrm_locale') === 'en') return;
+    if (localStorage.getItem('flowcrm_locale') === 'en' && localStorage.getItem('flowcrm_seed_version') === '2') return;
     ['flowcrm_deals', 'flowcrm_customers', 'flowcrm_tasks', 'flowcrm_events', 'flowcrm_messages', 'flowcrm_activities']
       .forEach(key => localStorage.removeItem(key));
     const session = JSON.parse(localStorage.getItem('flowcrm_session') || 'null');
     if (session && (session.isDemo || session.userId === 'demo')) localStorage.removeItem('flowcrm_session');
     localStorage.setItem('flowcrm_locale', 'en');
+    localStorage.setItem('flowcrm_seed_version', '2');
   } catch (error) {
     // Storage unavailable: nothing to migrate.
   }
@@ -127,45 +128,45 @@ Storage.init();
 function hydrateDemoData() {
   if (localStorage.getItem(Storage.KEYS.DEALS) === null) {
     Storage.save(Storage.KEYS.DEALS, [
-      { id: '1', title: 'Website Redesign', customer: 'ABC Company', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Confirm scope' },
-      { id: '2', title: 'Mobile App Development', customer: 'Tech Solutions', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Confirm budget' },
-      { id: '3', title: 'CRM Integration', customer: 'Design Co', value: 85000000, stage: 'qualification', tag: 'cold', date: '2026-05-15', owner: 'Bao Le', nextAction: 'Verify requirements' },
-      { id: '4', title: 'E-commerce Platform', customer: 'Fashion Store', value: 125000000, stage: 'qualification', tag: 'warm', date: '2026-05-16', owner: 'An Nguyen', nextAction: 'Send sample proposal' },
-      { id: '5', title: 'Cloud Migration', customer: 'Alpha Corp', value: 480000000, stage: 'proposal', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Send quote' },
-      { id: '6', title: 'Security Audit', customer: 'Beta Industries', value: 95000000, stage: 'proposal', tag: 'warm', date: '2026-05-16', owner: 'Minh Tran', nextAction: 'Confirm audit schedule' },
-      { id: '7', title: 'Data Analytics Suite', customer: 'Gamma Ltd', value: 210000000, stage: 'proposal', tag: 'warm', date: '2026-05-17', owner: 'An Nguyen', nextAction: 'Review proposal' },
-      { id: '8', title: 'Marketing Automation', customer: 'Delta Inc', value: 180000000, stage: 'negotiation', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Finalize terms' },
-      { id: '9', title: 'Inventory System', customer: 'Epsilon Co', value: 120000000, stage: 'negotiation', tag: 'warm', date: '2026-05-18', owner: 'Linh Pham', nextAction: 'Product demo' },
-      { id: '10', title: 'SEO Optimization', customer: 'Zeta Group', value: 75000000, stage: 'closed', tag: 'won', date: '2026-05-10', owner: 'Bao Le', nextAction: 'Project handover' },
-      { id: '11', title: 'UI/UX Design System', customer: 'Eta Corp', value: 95000000, stage: 'closed', tag: 'won', date: '2026-05-11', owner: 'Linh Pham', nextAction: 'Send invoice' },
-      { id: '12', title: 'Social Media Campaign', customer: 'Theta Ltd', value: 45000000, stage: 'lost', tag: 'lost', date: '2026-05-09', owner: 'Bao Le', nextAction: 'Record loss reason' }
+      { id: '1', title: 'Website Redesign', customer: 'Lotus Bay Hotels', value: 150000000, stage: 'qualification', tag: 'warm', date: '2026-05-14', owner: 'An Nguyen', nextAction: 'Confirm scope' },
+      { id: '2', title: 'Mobile App Development', customer: 'Brightline Logistics', value: 320000000, stage: 'qualification', tag: 'hot', date: '2026-05-14', owner: 'Linh Pham', nextAction: 'Confirm budget' },
+      { id: '3', title: 'CRM Integration', customer: 'Mai Anh Interiors', value: 85000000, stage: 'qualification', tag: 'cold', date: '2026-05-15', owner: 'Bao Le', nextAction: 'Verify requirements' },
+      { id: '4', title: 'E-commerce Platform', customer: 'Indigo Thread', value: 125000000, stage: 'qualification', tag: 'warm', date: '2026-05-16', owner: 'An Nguyen', nextAction: 'Send proposal' },
+      { id: '5', title: 'Cloud Migration', customer: 'Northstar Pharma', value: 480000000, stage: 'proposal', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Send quote' },
+      { id: '6', title: 'Security Audit', customer: 'Harbor Fintech', value: 95000000, stage: 'proposal', tag: 'warm', date: '2026-05-16', owner: 'Minh Tran', nextAction: 'Confirm audit schedule' },
+      { id: '7', title: 'Data Analytics Suite', customer: 'Riverside Retail', value: 210000000, stage: 'proposal', tag: 'warm', date: '2026-05-17', owner: 'An Nguyen', nextAction: 'Review proposal' },
+      { id: '8', title: 'Marketing Automation', customer: 'Cedarline Media', value: 180000000, stage: 'negotiation', tag: 'hot', date: '2026-05-15', owner: 'Minh Tran', nextAction: 'Finalize terms' },
+      { id: '9', title: 'Inventory System', customer: 'Kestrel Manufacturing', value: 120000000, stage: 'negotiation', tag: 'warm', date: '2026-05-18', owner: 'Linh Pham', nextAction: 'Product walkthrough' },
+      { id: '10', title: 'SEO Optimization', customer: 'Tamarind Foods', value: 75000000, stage: 'closed', tag: 'won', date: '2026-05-10', owner: 'Bao Le', nextAction: 'Project handover' },
+      { id: '11', title: 'UI/UX Design System', customer: 'Saola Studio', value: 95000000, stage: 'closed', tag: 'won', date: '2026-05-11', owner: 'Linh Pham', nextAction: 'Send invoice' },
+      { id: '12', title: 'Social Media Campaign', customer: 'Peakline Fitness', value: 45000000, stage: 'lost', tag: 'lost', date: '2026-05-09', owner: 'Bao Le', nextAction: 'Record loss reason' }
     ]);
   }
 
   if (localStorage.getItem(Storage.KEYS.CUSTOMERS) === null) {
     Storage.save(Storage.KEYS.CUSTOMERS, [
-      { id: '1', name: 'Nguyễn Văn An', email: 'an@alpha.vn', phone: '0901234567', status: 'active', company: 'Alpha Corp', latestDeal: 'Cloud Migration' },
-      { id: '2', name: 'Trần Minh', email: 'minh@techsolutions.vn', phone: '0912345678', status: 'active', company: 'Tech Solutions', latestDeal: 'Mobile App Development' },
-      { id: '3', name: 'Lê Mai Linh', email: 'linh@designco.vn', phone: '0987654321', status: 'prospect', company: 'Design Co', latestDeal: 'CRM Integration' },
-      { id: '4', name: 'Phạm Hoàng Diệp', email: 'diep@gamma.vn', phone: '0934567890', status: 'prospect', company: 'Gamma Ltd', latestDeal: 'Data Analytics Suite' },
-      { id: '5', name: 'Vũ Nam', email: 'nam@beta.vn', phone: '0976543210', status: 'active', company: 'Beta Industries', latestDeal: 'Security Audit' },
-      { id: '6', name: 'Đặng Bảo', email: 'bao@delta.vn', phone: '0966123456', status: 'active', company: 'Delta Inc', latestDeal: 'Marketing Automation' },
-      { id: '7', name: 'Ngô Khánh', email: 'khanh@epsilon.vn', phone: '0955123456', status: 'inactive', company: 'Epsilon Co', latestDeal: 'Inventory System' },
-      { id: '8', name: 'Hoàng My', email: 'my@zeta.vn', phone: '0944123456', status: 'active', company: 'Zeta Group', latestDeal: 'SEO Optimization' }
+      { id: '1', name: 'Nguyễn Văn An', email: 'an@northstarpharma.vn', phone: '0901234567', status: 'active', company: 'Northstar Pharma', latestDeal: 'Cloud Migration' },
+      { id: '2', name: 'Trần Minh', email: 'minh@brightline.vn', phone: '0912345678', status: 'active', company: 'Brightline Logistics', latestDeal: 'Mobile App Development' },
+      { id: '3', name: 'Lê Mai Linh', email: 'linh@maianhinteriors.vn', phone: '0987654321', status: 'prospect', company: 'Mai Anh Interiors', latestDeal: 'CRM Integration' },
+      { id: '4', name: 'Phạm Hoàng Diệp', email: 'diep@riversideretail.vn', phone: '0934567890', status: 'prospect', company: 'Riverside Retail', latestDeal: 'Data Analytics Suite' },
+      { id: '5', name: 'Vũ Nam', email: 'nam@harborfintech.vn', phone: '0976543210', status: 'active', company: 'Harbor Fintech', latestDeal: 'Security Audit' },
+      { id: '6', name: 'Đặng Bảo', email: 'bao@cedarline.vn', phone: '0966123456', status: 'active', company: 'Cedarline Media', latestDeal: 'Marketing Automation' },
+      { id: '7', name: 'Ngô Khánh', email: 'khanh@kestrelmfg.vn', phone: '0955123456', status: 'inactive', company: 'Kestrel Manufacturing', latestDeal: 'Inventory System' },
+      { id: '8', name: 'Hoàng My', email: 'my@tamarindfoods.vn', phone: '0944123456', status: 'active', company: 'Tamarind Foods', latestDeal: 'SEO Optimization' }
     ]);
   }
 
   if (localStorage.getItem(Storage.KEYS.TASKS) === null) {
     Storage.save(Storage.KEYS.TASKS, [
-      { id: '1', title: 'Call Alpha Corp', deadline: '2026-05-10', dueLabel: 'Overdue: May 10, 2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Alpha Corp', owner: 'An', priority: 'hot', completed: false },
-      { id: '2', title: 'Send quote to Beta Industries', deadline: '2026-05-11', dueLabel: 'Overdue: May 11, 2026', category: 'overdue', deal: 'Security Audit', customer: 'Beta Industries', owner: 'Minh', priority: 'hot', completed: false },
+      { id: '1', title: 'Call Northstar Pharma', deadline: '2026-05-10', dueLabel: 'Overdue: May 10, 2026', category: 'overdue', deal: 'Cloud Migration', customer: 'Northstar Pharma', owner: 'An', priority: 'hot', completed: false },
+      { id: '2', title: 'Send quote to Harbor Fintech', deadline: '2026-05-11', dueLabel: 'Overdue: May 11, 2026', category: 'overdue', deal: 'Security Audit', customer: 'Harbor Fintech', owner: 'Minh', priority: 'hot', completed: false },
       { id: '3', title: 'Team meeting on Q2 pipeline', deadline: '2026-05-14', dueLabel: 'Today, 14:00', category: 'today', deal: 'Internal', customer: 'Sales team', owner: 'An', priority: 'warm', completed: false },
-      { id: '4', title: 'Send quote to Tech Solutions', deadline: '2026-05-14', dueLabel: 'Today, 10:30', category: 'today', deal: 'Mobile App Development', customer: 'Tech Solutions', owner: 'Linh', priority: 'warm', completed: true },
-      { id: '5', title: 'Follow up on Design Co deal', deadline: '2026-05-14', dueLabel: 'Today, 16:30', category: 'today', deal: 'CRM Integration', customer: 'Design Co', owner: 'Bao', priority: 'hot', completed: false },
-      { id: '6', title: 'Send contract to Delta Inc', deadline: '2026-05-15', dueLabel: 'May 15, 2026', category: 'upcoming', deal: 'Marketing Automation', customer: 'Delta Inc', owner: 'Minh', priority: 'warm', completed: false },
-      { id: '7', title: 'Product demo for Epsilon Co', deadline: '2026-05-18', dueLabel: 'May 18, 2026', category: 'upcoming', deal: 'Inventory System', customer: 'Epsilon Co', owner: 'Linh', priority: 'cold', completed: false },
-      { id: '8', title: 'Review proposal with Gamma Ltd', deadline: '2026-05-20', dueLabel: 'May 20, 2026', category: 'upcoming', deal: 'Data Analytics Suite', customer: 'Gamma Ltd', owner: 'An', priority: 'warm', completed: false },
-      { id: '9', title: 'Close deal with Zeta Group', deadline: '2026-05-25', dueLabel: 'May 25, 2026', category: 'upcoming', deal: 'SEO Optimization', customer: 'Zeta Group', owner: 'Bao', priority: 'hot', completed: false }
+      { id: '4', title: 'Send quote to Brightline Logistics', deadline: '2026-05-14', dueLabel: 'Today, 10:30', category: 'today', deal: 'Mobile App Development', customer: 'Brightline Logistics', owner: 'Linh', priority: 'warm', completed: true },
+      { id: '5', title: 'Follow up on Mai Anh Interiors deal', deadline: '2026-05-14', dueLabel: 'Today, 16:30', category: 'today', deal: 'CRM Integration', customer: 'Mai Anh Interiors', owner: 'Bao', priority: 'hot', completed: false },
+      { id: '6', title: 'Send contract to Cedarline Media', deadline: '2026-05-15', dueLabel: 'May 15, 2026', category: 'upcoming', deal: 'Marketing Automation', customer: 'Cedarline Media', owner: 'Minh', priority: 'warm', completed: false },
+      { id: '7', title: 'Product walkthrough for Kestrel Manufacturing', deadline: '2026-05-18', dueLabel: 'May 18, 2026', category: 'upcoming', deal: 'Inventory System', customer: 'Kestrel Manufacturing', owner: 'Linh', priority: 'cold', completed: false },
+      { id: '8', title: 'Review proposal with Riverside Retail', deadline: '2026-05-20', dueLabel: 'May 20, 2026', category: 'upcoming', deal: 'Data Analytics Suite', customer: 'Riverside Retail', owner: 'An', priority: 'warm', completed: false },
+      { id: '9', title: 'Close deal with Tamarind Foods', deadline: '2026-05-25', dueLabel: 'May 25, 2026', category: 'upcoming', deal: 'SEO Optimization', customer: 'Tamarind Foods', owner: 'Bao', priority: 'hot', completed: false }
     ]);
   }
 

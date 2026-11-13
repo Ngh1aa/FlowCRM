@@ -18,7 +18,7 @@ async function enterDemo(page, route = 'pipeline.html') {
   assert.equal(response.url(), url);
   await expect(page).toHaveURL(url);
   await expect(page.locator('#loginForm')).toHaveCount(0);
-  await expect(page.locator('#userProfile')).toContainText('Demo User');
+  await expect(page.locator('#userProfile')).toContainText('An Nguyen');
 }
 
 async function verifyFlow(browser, width) {
@@ -153,7 +153,7 @@ async function verifyFlow(browser, width) {
     await expect(deal).toBeFocused();
     await expect(page).toHaveURL(new URL('pipeline.html', base).href);
     assert.deepEqual(errors, []);
-    console.log('PASS ' + width + 'px · Demo, validation, calendar, task, edit, reload, focus, overflow');
+    console.log('PASS ' + width + 'px · Signed-in entry, validation, calendar, task, edit, reload, focus, overflow');
   } finally {
     await context.close();
   }

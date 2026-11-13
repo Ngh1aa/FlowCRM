@@ -1,5 +1,23 @@
 # FlowCRM
 
+Live: https://ngh1aa.github.io/FlowCRM/ (opens the dashboard already signed in as An Nguyen, Sales manager).
+
+## Accounts and workspace tools
+
+- Visitors land signed in on the dashboard. After **Log out**, the login screen offers **Continue as An Nguyen**, or sign in with `an.nguyen@flowcrm.vn` / `flowcrm2026` (teammates `minh.tran@`, `linh.pham@`, `bao.le@flowcrm.vn` use the same password). **Sign up** creates a new account.
+- All data lives in the browser's `localStorage`.
+- Add `?demo=1` to any page URL to show the small **Demo tools** panel (bottom left) with **Reset demo data**. It stays on for that tab; `?demo=0` hides it.
+
+## QA
+
+Serve the repository root, then run with Playwright on `NODE_PATH`:
+
+```bash
+FLOWCRM_BASE_URL=http://127.0.0.1:8000/FlowCRM/ node qa/real-product.cjs
+FLOWCRM_BASE_URL=http://127.0.0.1:8000/FlowCRM/ node qa/flowcrm-follow-up.cjs
+FLOWCRM_BASE_URL=http://127.0.0.1:8000/FlowCRM/ node qa/flowcrm-layout.cjs
+```
+
 ## Running the project
 
 This is a static web project. There is no build step and no dependencies to install.
